@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlRoot">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VT4XMLT0Q"></script>
@@ -8,582 +8,1618 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6VT4XMLT0Q');
-  gtag('event', 'product_access', {'event_category':'ecommerce','event_label':'dayzero_complete_499','value':499});
+  gtag('event', 'course_access', {'event_category':'ecommerce','event_label':'day_zero_30day_499','value':499});
 </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Day 4&ndash;30 — The Complete Journey | Day Zero, The Kahaaniya</title>
-<meta name="description" content="The rest of the Day Zero worksheet: Brand & Content, Systems & Proof, and Launch & Sell — Day 4 to Day 30, interactive, from idea to your first paying customer.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://thedayzero.in/day4-30/">
+<title>Your 30-Day Business Builder | thedayzero by TheKahaaniya</title>
+<meta name="description" content="A day-by-day, gated 30-day business builder — discover your skill, test it in the market, build, get feedback, adjust, grow your social presence, and reach out to real clients. Available in English, Hindi and Tamil.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://thedayzero.in/course/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Day 4&ndash;30 — The Complete Journey | The Kahaaniya">
-<meta property="og:description" content="Brand & Content, Systems & Proof, Launch & Sell — the rest of your 30-day worksheet, interactive.">
-<meta property="og:url" content="https://thedayzero.in/day4-30/">
-<meta property="og:site_name" content="The Kahaaniya">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Your 30-Day Business Builder — thedayzero">
+<meta property="og:site_name" content="thedayzero by TheKahaaniya">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Quicksand:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Quicksand:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Tamil:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
   :root{
     --bg-mint:#dfe8e1; --bg-cream:#f4f1e7; --panel-mint:#e8eee6;
-    --ink:#141a13; --ink-soft:#2b332a; --sage:#4f6d61; --sage-deep:#3a4f46;
-    --sage-bright:#7fa396; --amber:#c97a3f; --line:#d7d1bd; --white:#fffdf7;
-    --gold:#b8923f; --teal:#3a6e64;
+    --ink:#141a13; --ink-soft:#2b332a; --sage:#4f6d61; --sage-deep:#3a4f46; --sage-bright:#7fa396;
+    --amber:#c97a3f; --line:#d7d1bd; --white:#fffdf7;
+    --radius-lg:20px; --radius-md:14px;
+    --shadow-card:0 10px 34px rgba(20,26,19,0.10); --shadow-pop:0 20px 60px rgba(0,0,0,0.30);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-cream);color:var(--ink);line-height:1.5;}
+  html[lang="hi"] body{font-family:'Noto Sans Devanagari','Inter',sans-serif;}
+  html[lang="ta"] body{font-family:'Noto Sans Tamil','Inter',sans-serif;}
   .label{font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;font-size:12px;}
+  html[lang="hi"] .label, html[lang="ta"] .label{letter-spacing:0.5px;}
   h1,h2,h3{font-family:'Poppins',sans-serif;font-weight:800;letter-spacing:-0.5px;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  html[lang="hi"] h1,html[lang="hi"] h2,html[lang="hi"] h3,html[lang="ta"] h1,html[lang="ta"] h2,html[lang="ta"] h3{letter-spacing:0;}
+  button{font-family:inherit;}
+  a{color:inherit;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
 
-  /* HERO */
-  .hero{
-    background:radial-gradient(ellipse 900px 500px at 80% -10%, rgba(127,163,150,0.35), transparent 60%),
-      linear-gradient(180deg, var(--bg-mint) 0%, #b9c7bd 45%, var(--ink) 100%);
-    color:var(--white);padding:60px 0 90px 0;position:relative;overflow:hidden;
+  html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after{
+    animation-duration:0.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important; scroll-behavior:auto !important;
   }
-  .hero .wrap{position:relative;z-index:2;}
-  .hero-brand{display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;flex-wrap:wrap;gap:8px;}
-  .hero-brand .name{font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:3px;font-size:13px;color:var(--ink);}
-  .hero-brand .tag{font-size:12px;color:var(--ink-soft);font-weight:600;}
-  .hero-eyebrow{color:var(--ink);opacity:0.75;margin-bottom:14px;}
-  .hero h1{font-size:clamp(44px,8vw,84px);line-height:0.98;color:var(--ink);}
-  .hero-lead{margin-top:24px;max-width:540px;font-size:17px;color:var(--ink-soft);font-weight:500;}
-  .hero-meta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
-  .pill{background:rgba(20,26,19,0.08);border:1.5px solid rgba(20,26,19,0.25);color:var(--ink);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:600;}
-  .welcome-note{
-    margin-top:36px;background:rgba(255,255,255,0.5);border:1.5px solid rgba(20,26,19,0.2);
-    border-radius:12px;padding:16px 20px;max-width:560px;font-size:14px;color:var(--ink-soft);
-  }
-  .welcome-note b{color:var(--ink);}
+  button,.clickable{cursor:pointer;}
+  button:focus-visible,a:focus-visible,input:focus-visible,.clickable:focus-visible{outline:3px solid var(--amber);outline-offset:2px;}
 
-  section.block{padding:70px 0;}
-  .block-head{max-width:640px;margin-bottom:38px;}
-  .block-head .label{color:var(--sage);}
-  .block-head h2{font-size:clamp(28px,4vw,38px);margin-top:12px;color:var(--ink);}
-  .block-head p{margin-top:12px;color:var(--ink-soft);font-size:15.5px;}
+  /* ============ TOP CHROME ============ */
+  .top-chrome{position:sticky;top:0;z-index:500;display:flex;justify-content:space-between;align-items:center;
+    padding:14px 22px;background:rgba(244,241,231,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .brand-mini{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-mini .bm-name{font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:1.5px;font-size:13px;color:var(--ink);text-transform:lowercase;}
+  .brand-mini .bm-by{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.3px;font-size:9.5px;color:var(--ink-soft);}
+  .top-chrome-right{display:flex;align-items:center;gap:10px;}
+  .identity-badge{border:1.5px solid var(--line);background:var(--white);color:var(--ink-soft);font-weight:700;font-size:12px;padding:7px 13px;border-radius:20px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .identity-badge.has-name{color:var(--sage-deep);border-color:var(--sage-bright);background:var(--panel-mint);}
+  .lang-toggle{display:flex;gap:2px;background:var(--white);border:1.5px solid var(--line);border-radius:20px;padding:3px;}
+  .lang-btn{border:none;background:transparent;color:var(--ink-soft);font-weight:700;font-size:12.5px;padding:7px 12px;border-radius:16px;transition:background .2s ease,color .2s ease;}
+  .lang-btn.active{background:var(--ink);color:var(--white);}
+  @media(max-width:480px){.identity-badge{max-width:90px;font-size:10.5px;padding:7px 9px;}}
 
-  /* OVERALL PROGRESS BAR (sticky-ish, near top of content) */
-  .overall-progress{background:var(--panel-mint);padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;}
-  .overall-progress .wrap{display:flex;align-items:center;gap:18px;}
-  .op-label{font-size:13px;font-weight:700;color:var(--sage-deep);white-space:nowrap;}
-  .op-track{flex:1;height:8px;background:#d3dcd4;border-radius:6px;overflow:hidden;}
-  .op-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--amber),var(--gold));transition:width .3s ease;}
-  .op-count{font-family:'Poppins',sans-serif;font-weight:800;font-size:15px;color:var(--ink);white-space:nowrap;}
+  /* ============ HERO ============ */
+  .hero{padding:44px 0 30px 0;}
+  .hero-eyebrow{color:var(--sage);}
+  .hero h1{font-size:clamp(28px,5vw,42px);margin-top:10px;}
+  .hero-lead{margin-top:12px;color:var(--ink-soft);font-size:15px;max-width:560px;}
+  .hero-actions{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:13px 22px;border-radius:12px;border:none;text-decoration:none;transition:transform .15s ease,background .15s ease;}
+  .btn-primary{background:var(--ink);color:var(--white);}
+  .btn-primary:hover{background:var(--sage-deep);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--ink);border:2px solid rgba(20,26,19,0.25);}
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-sm{padding:9px 16px;font-size:12.5px;}
 
-  /* PHASE SECTIONS */
-  .phase-section{background:var(--bg-cream);}
-  .phase-section.alt{background:var(--panel-mint);}
-  .phase-head-row{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
-  .phase-num{font-family:'Poppins',sans-serif;font-weight:800;font-size:15px;}
-  .phase-range{font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;}
+  .progress-hero{display:flex;align-items:center;gap:18px;margin-top:26px;background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:18px 22px;}
+  .progress-ring{width:64px;height:64px;flex-shrink:0;}
+  .progress-hero-text .ptitle{font-weight:700;font-size:15px;color:var(--ink);}
+  .progress-hero-text .psub{font-size:12.5px;color:var(--ink-soft);margin-top:3px;}
+  .progress-bar-track{height:8px;background:var(--panel-mint);border-radius:8px;overflow:hidden;margin-top:8px;}
+  .progress-bar-fill{height:100%;background:var(--amber);border-radius:8px;transition:width .5s ease;width:0%;}
 
-  .day-card{background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:24px 26px;margin-bottom:16px;border-left-width:5px;border-left-style:solid;}
-  .day-card .dhead{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
-  .day-card .dtag{font-family:'Poppins',sans-serif;font-weight:800;font-size:13px;padding:5px 12px;border-radius:8px;white-space:nowrap;background:var(--panel-mint);color:var(--sage-deep);}
-  .day-card h3{font-size:20px;color:var(--ink);}
-  .day-card .dgoal{color:var(--ink-soft);font-size:14px;margin:6px 0 14px 0;}
-  .task-row{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-top:1px solid var(--line);}
-  .task-row:first-of-type{border-top:none;}
-  .task-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--sage);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease;}
-  .task-check.checked{background:var(--sage);}
-  .task-check svg{width:12px;height:12px;opacity:0;transition:opacity .15s ease;}
-  .task-check.checked svg{opacity:1;}
-  .task-body{flex:1;}
-  .task-text{font-size:14.5px;color:var(--ink);margin-bottom:6px;}
-  .task-text.done{color:#94998c;text-decoration:line-through;}
-  .task-input{width:100%;border:none;border-bottom:1.5px dashed var(--line);outline:none;font-family:'Inter',sans-serif;font-size:14px;color:var(--sage-deep);padding:6px 0;background:transparent;}
-  .task-input:focus{border-color:var(--sage-bright);}
-  .checkpoint{margin-top:6px;border-radius:10px;padding:12px 16px;font-size:13.5px;font-style:italic;border-left:4px solid;background:var(--panel-mint);}
+  /* ============ REDO BANNER ============ */
+  .redo-banner{display:none;background:var(--panel-mint);border:1.5px solid var(--sage-bright);border-radius:16px;padding:18px 20px;margin:18px 0;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .redo-banner.show{display:flex;}
+  .redo-banner .rb-title{font-weight:700;font-size:14.5px;color:var(--ink);}
+  .redo-banner .rb-body{font-size:13px;color:var(--ink-soft);margin-top:4px;max-width:440px;}
+  .redo-banner .rb-actions{display:flex;gap:10px;flex-wrap:wrap;}
 
-  .theme-gold .day-card{border-left-color:var(--gold);}
-  .theme-gold .phase-range{color:var(--gold);}
-  .theme-gold .checkpoint{border-color:var(--gold);}
+  /* ============ PHASE / DAY CARDS ============ */
+  .phase-block{margin-top:36px;}
+  .phase-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap;}
+  .phase-num{font-family:'Poppins',sans-serif;font-weight:800;font-size:12px;color:var(--sage-deep);background:var(--panel-mint);padding:4px 10px;border-radius:8px;}
+  .phase-head h2{font-size:20px;}
+  .phase-range{font-size:12px;color:var(--ink-soft);font-weight:600;}
+  .phase-mission{font-size:14px;color:var(--ink-soft);margin-bottom:16px;max-width:600px;}
 
-  .theme-sage2 .day-card{border-left-color:var(--sage);}
-  .theme-sage2 .phase-range{color:var(--sage-deep);}
-  .theme-sage2 .checkpoint{border-color:var(--sage);}
+  .day-card{background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:12px;transition:opacity .3s ease,box-shadow .2s ease;}
+  .day-card.locked{opacity:0.5;}
+  .day-card.today{border-color:var(--sage-bright);box-shadow:0 4px 20px rgba(79,109,97,0.14);}
+  .day-card.completed{border-color:var(--sage-bright);background:linear-gradient(180deg,var(--white) 0%,var(--panel-mint) 180%);}
+  .day-head{display:flex;align-items:center;gap:14px;cursor:pointer;}
+  .day-num{width:38px;height:38px;border-radius:50%;background:var(--panel-mint);color:var(--sage-deep);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;flex-shrink:0;transition:background .2s ease,color .2s ease;}
+  .day-card.completed .day-num{background:var(--sage);color:var(--white);}
+  .day-card.locked .day-num{background:var(--line);color:#9a9a8c;}
+  .day-titlewrap{flex:1;min-width:0;}
+  .day-title{font-weight:700;font-size:15px;color:var(--ink);}
+  .day-tag{font-size:11px;font-weight:700;letter-spacing:0.4px;color:var(--sage-bright);text-transform:uppercase;margin-top:2px;}
+  .day-card.locked .day-tag{color:#9a9a8c;}
+  .day-chevron{width:18px;height:18px;color:var(--ink-soft);transition:transform .25s ease;flex-shrink:0;}
+  .day-card.expanded .day-chevron{transform:rotate(180deg);}
+  .day-body{display:none;padding-top:16px;margin-top:14px;border-top:1px solid var(--line);}
+  .day-card.expanded .day-body{display:block;}
+  .day-task{font-size:14.5px;color:var(--ink-soft);line-height:1.6;}
+  .day-note{margin-top:14px;}
+  .day-note label{display:block;font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+  .day-note textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;font-family:inherit;font-size:14px;color:var(--ink);outline:none;resize:vertical;min-height:56px;background:var(--bg-cream);}
+  .day-note textarea:focus{border-color:var(--sage-bright);background:var(--white);}
+  .day-proof{margin-top:14px;background:var(--panel-mint);border-radius:10px;padding:12px 13px;}
+  .day-proof label{display:block;font-size:12px;font-weight:700;color:var(--sage-deep);margin-bottom:6px;}
+  .day-proof input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13.5px;color:var(--ink);outline:none;background:var(--white);}
+  .day-proof input:focus{border-color:var(--sage-bright);}
+  .proof-hint{font-size:11px;color:var(--ink-soft);margin-top:7px;line-height:1.4;}
+  .proof-sent-indicator{font-size:12px;font-weight:700;color:var(--sage-deep);}
+  .day-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px;}
+  .day-complete-check{display:flex;align-items:center;gap:10px;}
+  .day-checkbox{width:24px;height:24px;border-radius:7px;border:2px solid var(--sage);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .2s ease;}
+  .day-checkbox.checked{background:var(--sage);}
+  .day-checkbox svg{width:13px;height:13px;opacity:0;transition:opacity .15s ease;}
+  .day-checkbox.checked svg{opacity:1;}
+  .day-complete-label{font-size:13.5px;font-weight:600;color:var(--ink);}
 
-  .theme-teal .day-card{border-left-color:var(--teal);}
-  .theme-teal .phase-range{color:var(--teal);}
-  .theme-teal .checkpoint{border-color:var(--teal);}
+  /* Day 3 decision widget */
+  .decision-box{background:var(--panel-mint);border-radius:14px;padding:18px 20px;margin-top:16px;}
+  .decision-q{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:12px;}
+  .decision-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .decision-no-note{font-size:12px;color:var(--ink-soft);margin-top:12px;display:none;}
+  .decision-no-note.show{display:block;}
 
-  .tagline{margin-top:24px;font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:var(--sage-deep);text-align:center;font-style:italic;}
+  /* ============ SURVEY / SOCIAL HOWTO ============ */
+  .howto-card{background:var(--panel-mint);border-radius:16px;padding:20px 22px;margin-bottom:16px;}
+  .howto-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+  .howto-toggle .label{color:var(--sage-deep);}
+  .howto-body{display:none;margin-top:14px;}
+  .howto-card.open .howto-body{display:block;}
+  .howto-sub{font-weight:700;font-size:13.5px;color:var(--ink);margin:14px 0 8px 0;}
+  .howto-sub:first-child{margin-top:0;}
+  .howto-steps{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .howto-steps li{font-size:13px;color:var(--ink-soft);display:flex;gap:8px;}
+  .howto-steps li b{color:var(--sage-deep);flex-shrink:0;}
 
-  /* REFLECTION */
-  .reflect-section{background:linear-gradient(160deg, var(--ink) 0%, #202a1f 100%);color:var(--white);}
-  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
-  .reflect-box{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);border-radius:14px;padding:20px 22px;}
-  .reflect-box label{display:block;font-size:14.5px;font-weight:700;color:var(--amber);margin-bottom:10px;}
-  .reflect-box textarea{width:100%;background:transparent;border:none;border-bottom:1px dashed rgba(255,255,255,0.3);outline:none;color:var(--white);font-family:'Inter',sans-serif;font-size:14px;min-height:44px;resize:none;}
-  .reflect-box textarea::placeholder{color:rgba(255,255,255,0.4);}
+  /* ============ SOCIAL TRACK ============ */
+  .social-block{margin-top:36px;background:linear-gradient(160deg,var(--ink) 0%,#202a1f 100%);color:var(--white);border-radius:var(--radius-lg);padding:28px 26px;}
+  .social-block .label{color:var(--sage-bright);}
+  .social-block h2{font-size:22px;margin-top:8px;color:var(--white);}
+  .social-block .subtitle{font-size:13.5px;color:#b7c2b8;margin-top:8px;max-width:520px;}
+  .social-platforms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px;}
+  .social-card{background:rgba(255,253,247,0.06);border:1.5px solid rgba(255,253,247,0.16);border-radius:14px;padding:16px 18px;}
+  .social-card h3{font-size:15px;color:var(--white);margin-bottom:10px;}
+  .social-step{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12.5px;color:#d7ddd3;}
+  .social-step .sc{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--sage-bright);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s ease;}
+  .social-step .sc.checked{background:var(--sage-bright);}
+  .social-step .sc svg{width:10px;height:10px;opacity:0;}
+  .social-step .sc.checked svg{opacity:1;}
+  .social-step span.txt{cursor:pointer;}
+  .social-step span.txt.done{color:#8b9488;text-decoration:line-through;}
+  .social-handle{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,253,247,0.14);}
+  .social-handle label{display:block;font-size:11.5px;font-weight:700;color:var(--sage-bright);margin-bottom:6px;}
+  .social-handle-row{display:flex;gap:8px;}
+  .social-handle-row input{flex:1;min-width:0;border:1.5px solid rgba(255,253,247,0.2);background:rgba(255,253,247,0.08);border-radius:9px;padding:9px 11px;font-family:inherit;font-size:12.5px;color:var(--white);outline:none;}
+  .social-handle-row input::placeholder{color:#8b9488;}
+  .social-handle-row input:focus{border-color:var(--sage-bright);}
+  .social-handle .proof-sent-indicator{color:var(--sage-bright);display:block;margin-top:7px;}
 
-  .final-badge{margin-top:40px;background:rgba(255,255,255,0.06);border:1.5px solid var(--amber);border-radius:16px;padding:28px 30px;text-align:center;}
-  .final-badge .flabel{color:var(--amber);}
-  .final-badge h3{font-size:24px;margin-top:10px;color:var(--white);}
-  .final-badge p{margin-top:8px;color:#c9d1c9;font-size:14.5px;}
+  /* ============ MILESTONE ============ */
+  .milestone-card{margin-top:20px;background:var(--ink);color:var(--white);border-radius:var(--radius-lg);padding:28px 26px;text-align:center;display:none;}
+  .milestone-card.show{display:block;}
+  .milestone-card h3{font-size:22px;margin-top:6px;}
+  .milestone-card p{font-size:14px;color:#c8d1c6;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;}
+  .milestone-actions{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
 
-  footer{background:var(--bg-cream);padding:36px 0;border-top:1px solid var(--line);}
-  footer .fwrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-  footer .fname{font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:2px;font-size:13px;}
-  footer .fcontact{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-soft);}
-  footer .fcontact img{width:44px;height:44px;border-radius:6px;border:1.5px solid var(--line);}
+  /* ============ FINAL / BOOK ============ */
+  .final-block{display:none;margin-top:40px;background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius-lg);padding:36px 32px;text-align:center;}
+  .final-block.show{display:block;}
+  .final-block .label{color:var(--amber);}
+  .final-block h2{font-size:clamp(24px,4vw,32px);margin-top:10px;}
+  .final-block p{color:var(--ink-soft);font-size:14.5px;margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto;}
+  .founder-row-final{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px;}
+  .founder-avatar-final{width:64px;height:64px;border-radius:50%;overflow:hidden;border:2.5px solid var(--panel-mint);box-shadow:0 2px 10px rgba(20,26,19,0.15);}
+  .founder-avatar-final img{width:100%;height:100%;object-fit:cover;display:block;}
+  .founder-final-text{text-align:left;}
+  .founder-final-name{font-weight:700;color:var(--ink);font-size:14.5px;}
+  .founder-final-role{font-size:12px;color:var(--ink-soft);}
+  .calendly-inline-widget{border-radius:14px;overflow:hidden;border:1.5px solid var(--line);margin-top:22px;text-align:left;}
+  .final-cta-fallback{margin-top:18px;}
 
-  @media(max-width:820px){
-    .reflect-grid{grid-template-columns:1fr;}
-    .hero-brand{flex-direction:column;align-items:flex-start;}
-    .overall-progress .wrap{flex-wrap:wrap;}
-  }
+  #confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:950;}
 
-  /* ============ WHATSAPP STICKY BUTTON ============ */
-  .wa-sticky{
-    position:fixed;bottom:22px;right:22px;z-index:999;
-    width:58px;height:58px;border-radius:50%;
-    background:#25D366;box-shadow:0 6px 20px rgba(0,0,0,0.25);
-    display:flex;align-items:center;justify-content:center;
-    text-decoration:none;transition:transform .2s ease;
-    animation:wa-pulse 2.4s ease-in-out infinite;
-  }
+  footer{background:var(--bg-cream);padding:40px 0 90px 0;border-top:1px solid var(--line);margin-top:40px;}
+  footer .fwrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:820px;margin:0 auto;padding:0 24px;}
+  footer .fname{font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:1.5px;font-size:13px;text-transform:lowercase;}
+  footer .fname .fby{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.3px;text-transform:none;color:var(--ink-soft);font-size:12px;}
+  footer .flinks{font-size:12.5px;color:var(--ink-soft);text-decoration:underline;}
+
+  .wa-sticky{position:fixed;bottom:22px;right:22px;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 6px 20px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s ease;animation:wa-pulse 2.4s ease-in-out infinite;}
   .wa-sticky:hover{transform:scale(1.08);}
   .wa-sticky svg{width:30px;height:30px;}
-  @keyframes wa-pulse{
-    0%,100%{box-shadow:0 6px 20px rgba(0,0,0,0.25),0 0 0 0 rgba(37,211,102,0.5);}
-    50%{box-shadow:0 6px 20px rgba(0,0,0,0.25),0 0 0 10px rgba(37,211,102,0);}
-  }
+  @keyframes wa-pulse{0%,100%{box-shadow:0 6px 20px rgba(0,0,0,0.25),0 0 0 0 rgba(37,211,102,0.5);}50%{box-shadow:0 6px 20px rgba(0,0,0,0.25),0 0 0 10px rgba(37,211,102,0);}}
+  @media(max-width:600px){.wa-sticky{width:50px;height:50px;bottom:16px;right:16px;}.wa-sticky svg{width:25px;height:25px;}}
+
+  .help-sticky{position:fixed;bottom:22px;left:22px;z-index:900;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--white);text-decoration:none;padding:12px 18px 12px 14px;border-radius:30px;box-shadow:0 6px 20px rgba(20,26,19,0.28);transition:transform .2s ease,background .2s ease;}
+  .help-sticky:hover{transform:translateY(-2px);background:var(--sage-deep);}
+  .help-sticky-icon{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .help-sticky-icon svg{width:20px;height:20px;}
+  .help-sticky-text{font-size:12.5px;font-weight:700;white-space:nowrap;}
   @media(max-width:600px){
-    .wa-sticky{width:52px;height:52px;bottom:16px;right:16px;}
-    .wa-sticky svg{width:26px;height:26px;}
+    .help-sticky{left:14px;bottom:16px;padding:11px 14px 11px 11px;}
+    .help-sticky-text{font-size:11px;}
+  }
+  @media(max-width:380px){
+    .help-sticky-text{display:none;}
+    .help-sticky{padding:12px;border-radius:50%;}
   }
 
-  /* ============ LEAD CAPTURE POPUP ============ */
-  .lead-overlay{
-    position:fixed;inset:0;background:rgba(20,26,19,0.55);
-    display:none;align-items:center;justify-content:center;
-    z-index:1000;padding:20px;
+  .modal-overlay{position:fixed;inset:0;background:rgba(20,26,19,0.55);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:var(--white);border-radius:20px;max-width:460px;width:100%;padding:32px 30px 26px 30px;position:relative;box-shadow:var(--shadow-pop);max-height:88vh;overflow-y:auto;animation:modalIn .35s ease;}
+  @keyframes modalIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  .modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;color:var(--ink-soft);width:30px;height:30px;}
+  .modal-box .label{color:var(--sage);}
+  .modal-box h3{font-size:21px;margin-top:8px;color:var(--ink);}
+  .modal-box p.sub{font-size:13.5px;color:var(--ink-soft);margin-top:6px;margin-bottom:18px;}
+  .guide-steps{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .guide-step{display:flex;gap:12px;align-items:flex-start;}
+  .guide-num{width:26px;height:26px;border-radius:50%;background:var(--panel-mint);color:var(--sage-deep);font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .guide-step p{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+  .guide-cta{width:100%;margin-top:22px;}
+  .identity-field{margin-bottom:14px;}
+  .identity-field label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;}
+  .identity-field input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-family:inherit;font-size:14.5px;color:var(--ink);outline:none;background:var(--bg-cream);}
+  .identity-field input:focus{border-color:var(--sage-bright);background:var(--white);}
+  .identity-submit{width:100%;margin-top:6px;}
+  .identity-skip{display:block;width:100%;text-align:center;background:none;border:none;color:var(--ink-soft);font-size:12.5px;font-weight:600;text-decoration:underline;margin-top:14px;padding:4px;}
+
+  @media(max-width:600px){
+    .day-card{padding:16px 16px;}
+    .final-block{padding:26px 20px;}
+    .founder-row-final{flex-direction:column;text-align:center;}
+    .founder-final-text{text-align:center;}
   }
-  .lead-overlay.show{display:flex;}
-  .lead-modal{
-    background:var(--white);border-radius:20px;max-width:420px;width:100%;
-    padding:34px 32px 28px 32px;position:relative;
-    box-shadow:0 20px 60px rgba(0,0,0,0.3);
-    animation:lead-in .35s ease;
-  }
-  @keyframes lead-in{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-  .lead-close{
-    position:absolute;top:16px;right:18px;background:none;border:none;
-    font-size:20px;color:var(--ink-soft);cursor:pointer;line-height:1;
-    width:28px;height:28px;
-  }
-  .lead-modal .label{color:var(--sage);}
-  .lead-modal h3{font-size:22px;margin-top:8px;color:var(--ink);}
-  .lead-modal p{font-size:13.5px;color:var(--ink-soft);margin-top:8px;margin-bottom:20px;}
-  .lead-field{margin-bottom:14px;}
-  .lead-field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:5px;}
-  .lead-field input{
-    width:100%;border:1.5px solid var(--line);border-radius:10px;
-    padding:11px 14px;font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);
-    outline:none;transition:border-color .2s ease;
-  }
-  .lead-field input:focus{border-color:var(--sage-bright);}
-  .lead-submit{
-    width:100%;background:var(--ink);color:var(--white);border:none;
-    padding:14px;border-radius:12px;font-weight:700;font-size:14.5px;
-    cursor:pointer;margin-top:6px;transition:background .2s ease;
-    font-family:'Inter',sans-serif;
-  }
-  .lead-submit:hover{background:var(--sage-deep);}
-  .lead-skip{
-    display:block;text-align:center;margin-top:14px;font-size:12.5px;
-    color:var(--ink-soft);text-decoration:underline;cursor:pointer;background:none;border:none;width:100%;
-  }
-  .lead-thanks{display:none;text-align:center;padding:20px 0;}
-  .lead-thanks.show{display:block;}
-  .lead-thanks .ticon{font-size:38px;margin-bottom:10px;}
-  .lead-thanks h3{font-size:20px;color:var(--ink);}
-  .lead-thanks p{font-size:13.5px;color:var(--ink-soft);margin-top:8px;}
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-brand">
-      <div class="name">THE KAHAANIYA</div>
-      <div class="tag">Day Zero Series &middot; Part 2 of 2</div>
+<div class="top-chrome">
+  <div class="brand-mini"><span class="bm-name">thedayzero</span><span class="bm-by">by TheKahaaniya</span></div>
+  <div class="top-chrome-right">
+    <button class="identity-badge clickable" id="identityBadge" type="button"></button>
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" data-lang="en" type="button">EN</button>
+      <button class="lang-btn" data-lang="hi" type="button">हिं</button>
+      <button class="lang-btn" data-lang="ta" type="button">தமிழ்</button>
     </div>
-    <div class="hero-eyebrow label">Foundation Is Behind You</div>
-    <h1>Day 4&ndash;30<br>The Complete Journey</h1>
-    <p class="hero-lead">You've got your why, your customer, and your offer. Now: become visible, build trust, and ask for the sale. Three phases, twenty-six days, one paying customer waiting at the end.</p>
-    <div class="hero-meta">
-      <div class="pill">&#9673; Brand &amp; Content</div>
-      <div class="pill">&#9673; Systems &amp; Proof</div>
-      <div class="pill">&#9673; Launch &amp; Sell</div>
-    </div>
-    <div class="welcome-note">Already completed <b>Day 0 Quick Start</b>? Good — you've got your Foundation answers ready. If you're starting fresh here, that's fine too; each task still stands on its own.</div>
-  </div>
-</section>
-
-<div class="overall-progress">
-  <div class="wrap">
-    <div class="op-label">Your Progress</div>
-    <div class="op-track"><div class="op-fill" id="op-fill"></div></div>
-    <div class="op-count" id="op-count">0 / 24</div>
   </div>
 </div>
 
-<section class="block phase-section theme-gold" id="phase2">
-  <div class="wrap">
-    <div class="block-head">
-      <div class="phase-head-row">
-        <div class="phase-num label" style="color:var(--gold);">Phase 02 &middot; Brand &amp; Content</div>
-        <div class="phase-range">Day 4&ndash;10</div>
-      </div>
-      <h2>Become visible.</h2>
-      <p>You don't need a designer or a studio — you need a page, a face, and consistency.</p>
+<main class="wrap">
+  <section class="hero">
+    <div class="label hero-eyebrow" data-i18n="hero.eyebrow"></div>
+    <h1 data-i18n="hero.title"></h1>
+    <p class="hero-lead" data-i18n="hero.lead"></p>
+    <div class="hero-actions">
+      <button class="btn btn-ghost clickable" id="guideOpenBtn" type="button" data-i18n="hero.cta_guide"></button>
     </div>
 
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 4</div><h3>Set Up Your Page</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-1"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-1">Create your Instagram or Facebook business page with your business name.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-2"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-2">Pick two or three brand colours, write a one-line bio, add a clear photo.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 5&ndash;6</div><h3>Capture Raw Content</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-3"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-3">Take 10 phone photos of your process, hands at work, and space.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-4"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-4">Record one 30-second video explaining what you make.</div><input class="task-input" placeholder="Type your answer here..."></div>
+    <div class="progress-hero">
+      <svg class="progress-ring" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--panel-mint)" stroke-width="9"/>
+        <circle id="ringFill" cx="50" cy="50" r="42" fill="none" stroke="var(--amber)" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/>
+        <text id="ringText" x="50" y="56" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="20" fill="#141a13">0/30</text>
+      </svg>
+      <div class="progress-hero-text" style="flex:1;">
+        <div class="ptitle" data-i18n="hero.progress_label"></div>
+        <div class="psub" id="progressSub"></div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="heroBarFill"></div></div>
       </div>
     </div>
 
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 7&ndash;8</div><h3>Introduce Yourself</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-5"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-5">Post who you are and why you started, show behind-the-scenes too.</div><input class="task-input" placeholder="Type your answer here..."></div>
+    <div class="redo-banner" id="redoBanner">
+      <div>
+        <div class="rb-title" data-i18n="redo.banner_title"></div>
+        <div class="rb-body" data-i18n="redo.banner_body"></div>
       </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-6"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-6">Message 10 people in your circle and tell them what you're building.</div><input class="task-input" placeholder="Type your answer here..."></div>
+      <div class="rb-actions">
+        <button class="btn btn-primary btn-sm clickable" id="redoRestartBtn" type="button" data-i18n="redo.banner_cta"></button>
+        <button class="btn btn-ghost btn-sm clickable" id="redoDismissBtn" type="button" data-i18n="redo.banner_dismiss"></button>
       </div>
     </div>
+  </section>
 
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 9&ndash;10</div><h3>Show the Result</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-7"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-7">Post the finished product or result in simple natural light.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p2-8"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p2-8">Save WhatsApp status updates and reply to every comment same day.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="checkpoint">Checkpoint: by Day 10, have at least three posts and make sure everyone close to you knows what you sell.</div>
-    </div>
-    <div class="tagline">"Visibility is a practice, not a perfect launch."</div>
-  </div>
-</section>
+  <div id="courseBody"></div>
 
-<section class="block phase-section alt theme-sage2" id="phase3">
-  <div class="wrap">
-    <div class="block-head">
-      <div class="phase-head-row">
-        <div class="phase-num label" style="color:var(--sage-deep);">Phase 03 &middot; Systems &amp; Proof</div>
-        <div class="phase-range">Day 11&ndash;20</div>
-      </div>
-      <h2>Make it easy to trust and buy.</h2>
-      <p>Build proof and a process so saying yes feels easy and safe.</p>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 11&ndash;12</div><h3>Build Basic Systems</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-1"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-1">Make a simple price list and decide how you will get paid.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-2"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-2">Decide how orders reach the customer: pickup, delivery, booking, or digital access link.</div><input class="task-input" placeholder="Type your answer here..."></div>
+  <section class="final-block" id="finalBlock">
+    <div class="label" data-i18n="final.eyebrow"></div>
+    <h2 data-i18n="final.title"></h2>
+    <p data-i18n="final.body"></p>
+    <div class="founder-row-final">
+      <div class="founder-avatar-final"><img src="data:image/jpeg;base64,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" alt="Noor Mohammed J, Founder of thedayzero"></div>
+      <div class="founder-final-text">
+        <div class="founder-final-name">Noor Mohammed J</div>
+        <div class="founder-final-role" data-i18n="final.founder_role"></div>
       </div>
     </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 13&ndash;14</div><h3>Remove the Friction</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-3"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-3">Write three FAQs a new customer may ask, with clear answers.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-4"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-4">Save a copy-paste order-message template and pin your price list.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
+    <div class="calendly-inline-widget" data-url="https://calendly.com/thekahaaniya/30min" style="min-width:280px;height:660px;"></div>
+    <div class="final-cta-fallback">
+      <a href="https://calendly.com/thekahaaniya/30min" target="_blank" rel="noopener" class="btn btn-primary" id="finalFallbackBtn" data-i18n="final.cta"></a>
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:10px;" data-i18n="final.note"></p>
     </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 15&ndash;17</div><h3>Create Real Proof</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-5"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-5">Offer your product or service free or discounted to two testers.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-6"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-6">Ask directly for honest feedback — good and bad — then take better photos.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 18&ndash;20</div><h3>Package Your Proof</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-7"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-7">Turn tester feedback into your first testimonial post or story.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p3-8"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p3-8">Build a simple catalogue and save every interested message.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="checkpoint">Checkpoint: by Day 20, have one real testimonial, a price list, and a clear way to pay and receive an order.</div>
-    </div>
-    <div class="tagline">"Trust is a system, not an accident."</div>
-  </div>
-</section>
-
-<section class="block phase-section theme-teal" id="phase4">
-  <div class="wrap">
-    <div class="block-head">
-      <div class="phase-head-row">
-        <div class="phase-num label" style="color:var(--teal);">Phase 04 &middot; Launch &amp; Sell</div>
-        <div class="phase-range">Day 21&ndash;30</div>
-      </div>
-      <h2>Ask for the sale.</h2>
-      <p>Everything before this was preparation. Now ask people to buy, clearly and confidently.</p>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 21&ndash;22</div><h3>Announce You're Open</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-1"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-1">Post "now taking orders" with a clear message and price list.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-2"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-2">Share in two or three relevant groups, with permission.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 23&ndash;25</div><h3>Track and Follow Up</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-3"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-3">Message 20 more contacts personally and log every enquiry.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-4"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-4">Follow up with anyone who asked but has not ordered yet.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 26&ndash;28</div><h3>Deliver With Care</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-5"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-5">Fulfil each order with extra care — packaging, presentation, or a clean digital delivery all matter.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-6"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-6">Ask every buyer for a photo, review, or quote you can share.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="dhead"><div class="dtag">DAY 29&ndash;30</div><h3>Review &amp; Set Month 2</h3></div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-7"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-7">Post your first sale as a celebration and list what worked.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="task-row">
-        <div class="task-check" data-task="p4-8"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="task-body"><div class="task-text" data-tasktext="p4-8">List what you'll change, then set exactly one Month 2 goal.</div><input class="task-input" placeholder="Type your answer here..."></div>
-      </div>
-      <div class="checkpoint">Checkpoint: by Day 30, have at least one paying customer, one testimonial, and one clear goal for what's next.</div>
-    </div>
-    <div class="tagline">"Ask clearly. Follow up kindly. Repeat."</div>
-  </div>
-</section>
-
-<section class="block reflect-section" id="reflection">
-  <div class="wrap">
-    <div class="block-head">
-      <div class="label" style="color:#7fa396;">Day 30 &middot; Look Back Before You Look Forward</div>
-      <h2 style="color:#fff;">You didn't just start a business.<br>You built a habit of showing up.</h2>
-      <p style="color:#c9d1c9;">That matters more than any single sale this month. Reflect honestly, then carry your one Month 2 goal forward.</p>
-    </div>
-    <div class="reflect-grid">
-      <div class="reflect-box"><label>The moment I felt most proud this month was —</label><textarea placeholder="Write here..."></textarea></div>
-      <div class="reflect-box"><label>The task I kept avoiding was —</label><textarea placeholder="Write here..."></textarea></div>
-      <div class="reflect-box"><label>One thing a customer said that I want to remember —</label><textarea placeholder="Write here..."></textarea></div>
-      <div class="reflect-box"><label>My one goal for Month 2 is —</label><textarea placeholder="Write here..."></textarea></div>
-    </div>
-    <div class="final-badge">
-      <div class="label flabel">Day 30 &middot; Complete</div>
-      <h3>Thank you for building something real.</h3>
-      <p>Cakes, kurtis, soap, tuition, a coaching practice, a digital product, or a community — whatever it was, you followed it through. That's the whole game.</p>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  <div class="wrap fwrap">
-    <div class="fname">THE KAHAANIYA &middot; DAY ZERO SERIES</div>
-    <div class="fcontact"><img src="data:image/png;base64,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" alt="QR"> WhatsApp +91 96298 43122 &middot; @the.kahaaniya</div>
+  <div class="fwrap">
+    <div class="fname">thedayzero <span class="fby">by TheKahaaniya</span></div>
+    <div>
+      <a href="https://thedayzero.in/quick-start/" class="flinks" data-i18n="footer.quickstart_link"></a>
+      <span style="margin:0 8px;color:var(--line);">&middot;</span>
+      <span class="flinks" style="text-decoration:none;" data-i18n="footer.contact"></span>
+    </div>
   </div>
 </footer>
 
-<script>
-  const totalTasks = 24;
-  const checks = document.querySelectorAll('.task-check');
-  const opFill = document.getElementById('op-fill');
-  const opCount = document.getElementById('op-count');
-
-  function updateProgress(){
-    const done = document.querySelectorAll('.task-check.checked').length;
-    opFill.style.width = (done/totalTasks*100) + '%';
-    opCount.textContent = done + ' / ' + totalTasks;
-  }
-
-  checks.forEach(c => {
-    c.addEventListener('click', () => {
-      c.classList.toggle('checked');
-      const id = c.getAttribute('data-task');
-      const txt = document.querySelector(`[data-tasktext="${id}"]`);
-      txt.classList.toggle('done', c.classList.contains('checked'));
-      updateProgress();
-    });
-  });
-
-  updateProgress();
-</script>
-
-<a href="https://wa.me/919629843122?text=Hi!%20am%20here%20to%20know%20more%20about%20dayzero" class="wa-sticky" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/919629843122?text=Hi!%20I'm%20working%20through%20the%2030-day%20plan%20and%20have%20a%20question." class="wa-sticky" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.83 14.09c-.25.7-1.23 1.28-2.02 1.45-.55.12-1.26.21-3.66-.78-3.07-1.27-5.05-4.39-5.2-4.59-.15-.2-1.25-1.66-1.25-3.17s.79-2.24 1.07-2.55c.28-.3.61-.38.82-.38.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.85 2.08.93 2.23.08.15.13.32.03.52-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.36 1.46.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.75.83 2.05.98.3.15.5.22.58.35.07.13.07.75-.18 1.45z"/></svg>
 </a>
 
-<!-- Lead Capture Popup -->
-<div class="lead-overlay" id="leadOverlay">
-  <div class="lead-modal">
-    <button class="lead-close" id="leadClose" aria-label="Close">&times;</button>
-    <div id="leadForm">
-      <div class="label">Before You Go</div>
-      <h3>Want the Day Zero drops?</h3>
-      <p>Leave your details and we'll keep you posted on tips, offers, and what's new — no spam, just the good stuff.</p>
-      <form id="leadFormEl">
-        <div class="lead-field">
-          <label for="leadName">Name</label>
-          <input type="text" id="leadName" name="name" placeholder="Your name" required>
-        </div>
-        <div class="lead-field">
-          <label for="leadPhone">Phone Number</label>
-          <input type="tel" id="leadPhone" name="phone" placeholder="+91 98765 43210" required>
-        </div>
-        <div class="lead-field">
-          <label for="leadEmail">Email</label>
-          <input type="email" id="leadEmail" name="email" placeholder="you@email.com" required>
-        </div>
-        <button type="submit" class="lead-submit" id="leadSubmitBtn">Keep Me Posted</button>
-      </form>
-      <button class="lead-skip" id="leadSkip">Maybe later</button>
-    </div>
-    <div class="lead-thanks" id="leadThanks">
-      <div class="ticon">&#10003;</div>
-      <h3>You're on the list!</h3>
-      <p>Thanks — we'll be in touch. In the meantime, feel free to explore below.</p>
-    </div>
+<a href="https://calendly.com/thekahaaniya/30min" id="helpStickyBtn" class="help-sticky" target="_blank" rel="noopener">
+  <span class="help-sticky-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v.01M12 8a2.5 2.5 0 0 1 2.5 2.5c0 1.5-2.5 1.75-2.5 3.5"/></svg>
+  </span>
+  <span class="help-sticky-text" data-i18n="sticky.help_cta"></span>
+</a>
+
+<canvas id="confettiCanvas"></canvas>
+
+<div class="modal-overlay" id="guideOverlay">
+  <div class="modal-box">
+    <button class="modal-close clickable" id="guideCloseBtn" aria-label="Close">&times;</button>
+    <div class="label" data-i18n="guide.title_label">GUIDE</div>
+    <h3 data-i18n="guide.title"></h3>
+    <p class="sub" data-i18n="guide.subtitle"></p>
+    <ol class="guide-steps">
+      <li class="guide-step"><span class="guide-num">1</span><p data-i18n="guide.step1"></p></li>
+      <li class="guide-step"><span class="guide-num">2</span><p data-i18n="guide.step2"></p></li>
+      <li class="guide-step"><span class="guide-num">3</span><p data-i18n="guide.step3"></p></li>
+      <li class="guide-step"><span class="guide-num">4</span><p data-i18n="guide.step4"></p></li>
+      <li class="guide-step"><span class="guide-num">5</span><p data-i18n="guide.step5"></p></li>
+    </ol>
+    <button class="btn btn-primary guide-cta clickable" id="guideCtaBtn" type="button" data-i18n="guide.cta"></button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="identityOverlay">
+  <div class="modal-box">
+    <div class="label" data-i18n="identity.title_label">QUICK INTRO</div>
+    <h3 data-i18n="identity.title"></h3>
+    <p class="sub" data-i18n="identity.body"></p>
+    <form id="identityFormEl">
+      <div class="identity-field">
+        <label for="identityNameInput" data-i18n="identity.name_label"></label>
+        <input type="text" id="identityNameInput" data-i18n-placeholder="identity.name_placeholder" required>
+      </div>
+      <div class="identity-field">
+        <label for="identityPhoneInput" data-i18n="identity.phone_label"></label>
+        <input type="tel" id="identityPhoneInput" data-i18n-placeholder="identity.phone_placeholder">
+      </div>
+      <button type="submit" class="btn btn-primary identity-submit clickable" data-i18n="identity.submit"></button>
+    </form>
+    <button class="identity-skip clickable" id="identitySkipBtn" type="button" data-i18n="identity.skip"></button>
   </div>
 </div>
 
 <script>
-  // ---------- Lead Capture Popup ----------
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-s9yWE6h7kufwI6VA5C43MhU9ZRfTAVgqmvRL5yYIy3uXTki8BNzOPxJ1bNdfffeH/exec";
+window.I18N = {
+  en: {
+  "meta.title": "Day Zero — Your 30-Day Business Builder",
+  "nav.brand_name": "thedayzero",
+  "nav.brand_by": "by TheKahaaniya",
 
-  (function(){
-    const overlay = document.getElementById('leadOverlay');
-    const closeBtn = document.getElementById('leadClose');
-    const skipBtn = document.getElementById('leadSkip');
-    const form = document.getElementById('leadFormEl');
-    const formWrap = document.getElementById('leadForm');
-    const thanksWrap = document.getElementById('leadThanks');
-    const submitBtn = document.getElementById('leadSubmitBtn');
+  "hero.eyebrow": "You bought the plan. Now let's build.",
+  "hero.title": "Your 30-Day Business Builder",
+  "hero.lead": "One day at a time. Each day unlocks the next once you complete it — no skipping ahead, no overwhelm. Just today's task.",
+  "hero.progress_label": "Days complete",
+  "hero.cta_guide": "How does this work?",
+  "hero.resume": "Continue Day {n}",
 
-    const ALREADY_SHOWN_KEY = 'dz_lead_popup_shown';
+  "guide.title_label": "Guide",
+  "guide.title": "How This 30-Day Plan Works",
+  "guide.subtitle": "Read this once — then just show up daily.",
+  "guide.step1": "The plan is split into 9 short phases, each 3-6 days long. You only ever see today's task.",
+  "guide.step2": "Complete a day's task and check it off to unlock the next day. You can't skip ahead — that's on purpose.",
+  "guide.step3": "On Day 3, you'll decide honestly if the skill you're practicing is really you. If not, you can go redefine it on the Quick Start tool and come back.",
+  "guide.step4": "From Day 16, a parallel Social Media checklist unlocks too — build it alongside your daily task, at your own pace.",
+  "guide.step5": "At a few key milestones, you'll get the option to book a free 15-minute session with Noor to work through it together.",
+  "guide.cta": "Got it, let's begin!",
 
-    function openPopup(){
-      overlay.classList.add('show');
-    }
-    function closePopup(){
-      overlay.classList.remove('show');
-      try{ localStorage.setItem(ALREADY_SHOWN_KEY, '1'); }catch(e){}
-    }
+  "day.note_label": "Your note (optional)",
+  "day.note_placeholder": "Anything worth remembering about today...",
+  "day.complete_btn": "Mark Day {n} Complete",
+  "day.completed_tag": "Completed",
+  "day.locked_tag": "Locked — finish Day {n} first",
+  "day.today_tag": "Today",
+  "day.proof_label": "Add proof (optional)",
+  "day.proof_placeholder": "Paste a link, a screenshot URL, or write a quick note...",
+  "day.proof_hint": "This goes straight to our team, so we know it's really happening — not just a box you're ticking.",
+  "day.proof_saved": "Sent ✓",
 
-    try{
-      if(!localStorage.getItem(ALREADY_SHOWN_KEY)){
-        setTimeout(openPopup, 1400);
-      }
-    }catch(e){
-      setTimeout(openPopup, 1400);
-    }
+  "sticky.help_cta": "Feeling stuck? Book free help",
 
-    closeBtn.addEventListener('click', closePopup);
-    skipBtn.addEventListener('click', closePopup);
-    overlay.addEventListener('click', function(e){ if(e.target === overlay) closePopup(); });
+  "identity.title_label": "Quick intro",
+  "identity.title": "Who's building this?",
+  "identity.body": "So we actually know it's you when you check in your progress — not sold, not shared anywhere else.",
+  "identity.name_label": "Your name",
+  "identity.name_placeholder": "e.g. Priya Sharma",
+  "identity.phone_label": "WhatsApp number",
+  "identity.phone_placeholder": "e.g. 98765 43210",
+  "identity.submit": "Continue",
+  "identity.skip": "I'll add this later",
+  "identity.badge_add": "+ Add your name",
 
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('leadName').value.trim();
-      const phone = document.getElementById('leadPhone').value.trim();
-      const email = document.getElementById('leadEmail').value.trim();
-      if(!name || !phone || !email) return;
+  "social.instagram.handle_label": "Your Instagram handle or profile link",
+  "social.facebook.handle_label": "Your Facebook Page link",
+  "social.youtube.handle_label": "Your YouTube channel link",
+  "social.handle_placeholder": "Paste it here once it's live...",
+  "social.handle_save": "Save",
+  "social.handle_saved": "Saved ✓",
 
-      submitBtn.textContent = 'Saving...';
-      submitBtn.disabled = true;
+  "phase.discover.name": "Discover Your Skill",
+  "phase.discover.range": "Days 1–3",
+  "phase.discover.mission": "Practice the skill you found in your Ikigai zone — for real, for three days straight. This isn't about being ready. It's about finding out if it's actually you.",
+  "day.1.title": "Do it for 30 minutes today",
+  "day.1.task": "Spend at least 30 minutes actually doing the skill you discovered — not researching it, doing it.",
+  "day.2.title": "Do it again, a little longer",
+  "day.2.task": "Repeat yesterday's practice. Notice what felt easy and what felt like a chore.",
+  "day.3.title": "Decide: does this feel like you?",
+  "day.3.task": "Practice one more time, then answer honestly — could you see yourself doing this for the next 27 days?",
+  "day3.decision.question": "Be honest. Does this still feel right?",
+  "day3.decision.yes": "Yes, this is my skill — Continue",
+  "day3.decision.no": "No, I need to redefine my skill",
+  "day3.decision.no_note": "You'll be sent to the Quick Start tool to rediscover your Ikigai. Come back here when you're ready — Days 1–3 will reset so you can try again with your new answer.",
+  "redo.banner_title": "Welcome back!",
+  "redo.banner_body": "Looks like you went to redefine your skill. Ready to restart Day 1–3 with your new direction?",
+  "redo.banner_cta": "Restart Days 1–3",
+  "redo.banner_dismiss": "Not yet",
 
-      const payload = {
-        name: name, phone: phone, email: email,
-        source: 'product_page_popup',
-        page: window.location.href,
-        timestamp: new Date().toISOString()
-      };
+  "phase.test1.name": "Market Test",
+  "phase.test1.range": "Days 4–6",
+  "phase.test1.mission": "Before you build anything, find out if anyone actually wants it. A 5-minute survey beats months of guessing.",
+  "survey.howto_label": "How to create your survey",
+  "survey.howto_intro": "Pick whichever is easiest for you — both work fine.",
+  "survey.forms_title": "Option A: Google Forms (recommended)",
+  "survey.forms_step1": "Go to forms.google.com and click the + to start a blank form.",
+  "survey.forms_step2": "Add 3–5 short questions, e.g. \"Would you use/buy this?\", \"What would you expect to pay?\", \"What's your biggest hesitation?\"",
+  "survey.forms_step3": "Click Send, then click the link icon to copy a short shareable link.",
+  "survey.forms_step4": "Responses collect automatically into a linked Google Sheet — click the Responses tab to see them anytime.",
+  "survey.paper_title": "Option B: Paper survey",
+  "survey.paper_step1": "Write your same 3–5 questions at the top of a sheet of paper, with space to answer underneath.",
+  "survey.paper_step2": "Photocopy or hand-write a few copies and hand them to people directly.",
+  "survey.paper_step3": "Collect them back within a day or two and transfer the answers into a notebook or spreadsheet.",
+  "day.4.title": "Build your simple survey",
+  "day.4.task": "Create a 3–5 question survey (Google Forms or paper) asking people if they'd want or pay for what you're building.",
+  "day.5.title": "Send it to at least 15 people",
+  "day.5.task": "Share your survey link — or hand out paper copies — to friends, family, colleagues, and classmates. Aim for at least 15 people.",
+  "day.6.title": "Read every response",
+  "day.6.task": "Collect the responses and write down the 3 things you learned, even if they're uncomfortable.",
 
-      if(GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.indexOf('PASTE_YOUR') === -1){
-        fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {'Content-Type':'text/plain;charset=utf-8'},
-          body: JSON.stringify(payload)
-        }).catch(function(){ /* no-cors: errors are usually just opaque responses, ignore */ });
-      }
+  "phase.build1.name": "Build The System",
+  "phase.build1.range": "Days 7–9",
+  "phase.build1.mission": "Time to build the smallest real version of what you're offering — not the perfect version, the provable one. This could be one dish, one class, one small batch, or one session — anything you can actually deliver this week.",
+  "day.7.title": "Decide your smallest test version",
+  "day.7.task": "Pick ONE simple version of your product or service you can realistically deliver this week.",
+  "day.8.title": "Price it using your survey data",
+  "day.8.task": "Set a price based on what people told you in your survey — competitive, not a guess.",
+  "day.9.title": "Deliver it to at least 3 people",
+  "day.9.task": "Actually deliver your test version to 3 real people — sell it, gift it, or run it for free.",
 
-      try{ localStorage.setItem('dz_lead_captured', JSON.stringify(payload)); }catch(err){}
+  "phase.feedback1.name": "Collect Feedback",
+  "phase.feedback1.range": "Days 10–12",
+  "phase.feedback1.mission": "Now go back to the people who experienced it and ask what they really thought — not what they think you want to hear.",
+  "day.10.title": "Ask your first customers",
+  "day.10.task": "Ask everyone who experienced your test version: what did they like, what would they change, would they pay again?",
+  "day.11.title": "Ask a few more people",
+  "day.11.task": "Reach 3 more people the same way — grow your feedback pool to at least 6 people.",
+  "day.12.title": "Write down the patterns",
+  "day.12.task": "Look for repeated feedback — the same comment from 2 or more people is a real signal, not an opinion.",
 
-      setTimeout(function(){
-        formWrap.style.display = 'none';
-        thanksWrap.classList.add('show');
-        setTimeout(closePopup, 2200);
-      }, 500);
-    });
-  })();
+  "phase.adjust1.name": "Adjust For Fit",
+  "phase.adjust1.range": "Days 13–15",
+  "phase.adjust1.mission": "This is where most people quit. Don't. Adjust instead — this is the whole point of testing early.",
+  "day.13.title": "Pick ONE thing to change",
+  "day.13.task": "Based on your feedback patterns, choose the single biggest change to make — price, format, offer, or audience.",
+  "day.14.title": "Make the change",
+  "day.14.task": "Actually update your offer, pricing, or delivery based on what you decided yesterday.",
+  "day.15.title": "Milestone: Round 1 complete",
+  "day.15.task": "Look back at Day 1. Write one sentence on what you now know that you didn't 15 days ago.",
+  "milestone.day15.title": "You just finished Round 1.",
+  "milestone.day15.body": "Fifteen days ago you had an idea. Now you have real feedback and a sharper offer — that's further than most people ever get. Want a second pair of eyes on it before Round 2?",
+  "milestone.cta": "Book a Free 15-Min Session With Noor",
+  "milestone.dismiss": "Continue to Round 2",
+
+  "phase.test2.name": "Retest, Round 2",
+  "phase.test2.range": "Days 16–18",
+  "phase.test2.mission": "Same test, sharper offer. This time you already know what people want — from Day 16, your Social Media checklist also unlocks below. Work on it alongside your daily task, at your own pace.",
+  "day.16.title": "Re-run your survey (short version)",
+  "day.16.task": "Send a quick 2-question check to 10 people about your NEW offer: would this work better for you?",
+  "day.17.title": "Confirm your price and offer",
+  "day.17.task": "Lock in your adjusted price and offer based on the quick check.",
+  "day.18.title": "Prep your next delivery",
+  "day.18.task": "Get everything ready to deliver your improved version this week.",
+
+  "phase.build2.name": "Rebuild, Round 2",
+  "phase.build2.range": "Days 19–21",
+  "phase.build2.mission": "Deliver the improved version and watch closely for what's different this time.",
+  "day.19.title": "Deliver the improved version",
+  "day.19.task": "Deliver your adjusted offer to at least 3 new people.",
+  "day.20.title": "Deliver to 3 more",
+  "day.20.task": "Reach 3 more people with the same improved offer — 6 or more total this round.",
+  "day.21.title": "Track what's different",
+  "day.21.task": "Compare this round's reactions to Round 1 — what's better, what still needs work?",
+
+  "phase.feedback2.name": "Feedback + Adjust, Round 2",
+  "phase.feedback2.range": "Days 22–24",
+  "phase.feedback2.mission": "One more honest look before you lock in what you're actually selling.",
+  "day.22.title": "Collect Round 2 feedback",
+  "day.22.task": "Ask your Round 2 customers the same questions as before.",
+  "day.23.title": "Spot the new patterns",
+  "day.23.task": "Compare Round 1 and Round 2 feedback side by side — what changed?",
+  "day.24.title": "Milestone: Lock your offer",
+  "day.24.task": "Decide: this is now your real offer, price, and audience. Write it down in one line.",
+  "milestone.day24.title": "Your offer is locked.",
+  "milestone.day24.body": "Two rounds of real testing later, you're not guessing anymore — you know what you're selling, to whom, and for how much. Now it's time to go find them. Want help planning your outreach?",
+
+  "social.title_label": "Parallel Track — Unlocked",
+  "social.title": "Build Your Social Presence",
+  "social.subtitle": "This runs alongside Days 16–24. Work through it at your own pace — it doesn't block your daily task.",
+  "social.instagram.title": "Instagram",
+  "social.instagram.step1": "Create a free Business account (Settings → Switch to Professional Account).",
+  "social.instagram.step2": "Write your bio in one line: who you help + what you offer.",
+  "social.instagram.step3": "Post your first 3 posts introducing your offer and the story behind it.",
+  "social.instagram.step4": "Follow and genuinely engage with 20 people or pages in your niche.",
+  "social.facebook.title": "Facebook",
+  "social.facebook.step1": "Create a Facebook Page for your business (not a personal profile) — Pages → Create New Page.",
+  "social.facebook.step2": "Add your offer, location, and a way to contact you.",
+  "social.facebook.step3": "Share your Page in 2 local or community groups where your customers hang out.",
+  "social.youtube.title": "YouTube",
+  "social.youtube.step1": "Create a channel using your business name.",
+  "social.youtube.step2": "Post one short video (even on your phone) explaining what you do and who it's for.",
+  "social.youtube.step3": "Add your Instagram or WhatsApp link in the video description.",
+
+  "phase.outreach.name": "Outreach To Targeted Clients",
+  "phase.outreach.range": "Days 25–30",
+  "phase.outreach.mission": "Stop waiting for people to find you. Go find them — this is how every real business gets its first paying customers.",
+  "day.25.title": "List 20 ideal clients",
+  "day.25.task": "Write down 20 real people or businesses who are exactly who you want to sell to.",
+  "day.26.title": "Write your outreach message",
+  "day.26.task": "Write one short, honest message you could send to any of them — no hard sell, just a real offer.",
+  "day.27.title": "Send it to your first 5",
+  "day.27.task": "Message your first 5 people from the list today.",
+  "day.28.title": "Follow up and refine",
+  "day.28.task": "Follow up with anyone who didn't reply, and adjust your message if it isn't landing.",
+  "day.29.title": "Send to your next 10",
+  "day.29.task": "Message the remaining people on your list.",
+  "day.30.title": "Review your 30 days",
+  "day.30.task": "Write down your 3 biggest wins from this month — you built something real.",
+
+  "final.eyebrow": "30 Days Complete",
+  "final.title": "You didn't just finish a course. You built a business.",
+  "final.body": "Thirty days ago this was an idea. Now it's a tested offer, real customers, real feedback, and a social presence you built yourself. The next stage — pricing it right, scaling it, and turning it into steady income — is exactly what 1:1 coaching with Noor is for.",
+  "final.founder_role": "Founder, thedayzero by TheKahaaniya",
+  "final.cta": "Book My Free 15-Min Session",
+  "final.note": "Takes less than a minute to book. Pick any slot that works for you.",
+
+  "footer.contact": "WhatsApp +91 96298 43122 · @the.kahaaniya",
+  "footer.quickstart_link": "Redo the Ikigai Quick Start tool"
+},
+  hi: {
+  "meta.title": "डे ज़ीरो — आपका 30-दिन बिज़नेस बिल्डर",
+  "nav.brand_name": "thedayzero",
+  "nav.brand_by": "by TheKahaaniya",
+
+  "hero.eyebrow": "आपने प्लान खरीद लिया। अब बनाते हैं।",
+  "hero.title": "आपका 30-दिन बिज़नेस बिल्डर",
+  "hero.lead": "एक बार में एक दिन। हर दिन पूरा करते ही अगला दिन अनलॉक होता है — न आगे कूदना, न ओवरव्हेल्म होना। बस आज का काम।",
+  "hero.progress_label": "पूरे हुए दिन",
+  "hero.cta_guide": "यह कैसे काम करता है?",
+  "hero.resume": "डे {n} जारी रखें",
+
+  "guide.title_label": "गाइड",
+  "guide.title": "यह 30-दिन प्लान कैसे काम करता है",
+  "guide.subtitle": "इसे एक बार पढ़ें — फिर बस रोज़ आते रहें।",
+  "guide.step1": "यह प्लान 9 छोटे फ़ेज़ में बंटा है, हर एक 3-6 दिन का। आपको हमेशा सिर्फ़ आज का काम दिखेगा।",
+  "guide.step2": "किसी दिन का काम पूरा करें और उसे चेक करें ताकि अगला दिन अनलॉक हो। आप आगे नहीं कूद सकते — यह जानबूझकर है।",
+  "guide.step3": "डे 3 पर, आप ईमानदारी से तय करेंगे कि जो हुनर आप प्रैक्टिस कर रहे हैं वो सच में आप ही हैं या नहीं। अगर नहीं, तो आप क्विक स्टार्ट टूल पर जाकर उसे फिर से तय कर सकते हैं और वापस आ सकते हैं।",
+  "guide.step4": "डे 16 से, नीचे एक पैरेलल सोशल मीडिया चेकलिस्ट भी अनलॉक होती है। इसे अपने डेली टास्क के साथ-साथ, अपनी रफ़्तार से करें।",
+  "guide.step5": "कुछ ज़रूरी माइलस्टोन पर, आपको नूर के साथ मुफ़्त 15-मिनट सेशन बुक करने का विकल्प मिलेगा ताकि साथ मिलकर आगे बढ़ें।",
+  "guide.cta": "समझ गया, शुरू करते हैं!",
+
+  "day.note_label": "आपका नोट (वैकल्पिक)",
+  "day.note_placeholder": "आज के बारे में कुछ भी जो याद रखने लायक हो...",
+  "day.complete_btn": "डे {n} पूरा किया",
+  "day.completed_tag": "पूरा हुआ",
+  "day.locked_tag": "लॉक्ड — पहले डे {n} पूरा करें",
+  "day.today_tag": "आज",
+  "day.proof_label": "प्रूफ़ जोड़ें (वैकल्पिक)",
+  "day.proof_placeholder": "एक लिंक, स्क्रीनशॉट URL पेस्ट करें, या एक छोटा नोट लिखें...",
+  "day.proof_hint": "यह सीधे हमारी टीम के पास जाता है, ताकि हमें पता चले कि यह सच में हो रहा है — सिर्फ़ एक बॉक्स टिक करना नहीं।",
+  "day.proof_saved": "भेज दिया ✓",
+
+  "sticky.help_cta": "फंस गए? मुफ़्त मदद बुक करें",
+
+  "identity.title_label": "एक छोटा परिचय",
+  "identity.title": "इसे कौन बना रहा है?",
+  "identity.body": "ताकि जब आप अपनी प्रगति चेक-इन करें तो हमें सच में पता हो कि यह आप ही हैं — यह न बेचा जाएगा, न कहीं और शेयर होगा।",
+  "identity.name_label": "आपका नाम",
+  "identity.name_placeholder": "जैसे: प्रिया शर्मा",
+  "identity.phone_label": "व्हाट्सएप नंबर",
+  "identity.phone_placeholder": "जैसे: 98765 43210",
+  "identity.submit": "जारी रखें",
+  "identity.skip": "बाद में जोड़ूंगा/जोड़ूंगी",
+  "identity.badge_add": "+ अपना नाम जोड़ें",
+
+  "social.instagram.handle_label": "आपका इंस्टाग्राम हैंडल या प्रोफ़ाइल लिंक",
+  "social.facebook.handle_label": "आपका फ़ेसबुक पेज लिंक",
+  "social.youtube.handle_label": "आपका यूट्यूब चैनल लिंक",
+  "social.handle_placeholder": "लाइव होते ही यहां पेस्ट करें...",
+  "social.handle_save": "सेव करें",
+  "social.handle_saved": "सेव हो गया ✓",
+
+  "phase.discover.name": "अपना हुनर खोजें",
+  "phase.discover.range": "डे 1–3",
+  "phase.discover.mission": "अपने इकिगाई ज़ोन में मिले हुनर को प्रैक्टिस करें — सच में, लगातार तीन दिन। यह तैयार होने के बारे में नहीं है। यह जानने के बारे में है कि क्या यह सच में आप ही हैं।",
+  "day.1.title": "आज 30 मिनट करें",
+  "day.1.task": "अपने खोजे गए हुनर को कम से कम 30 मिनट के लिए सच में करें — उस पर रिसर्च नहीं, बल्कि उसे करें।",
+  "day.2.title": "फिर से करें, थोड़ा और",
+  "day.2.task": "कल की प्रैक्टिस दोहराएं। ध्यान दें कि क्या आसान लगा और क्या बोझ जैसा लगा।",
+  "day.3.title": "तय करें: क्या यह आप जैसा लगता है?",
+  "day.3.task": "एक बार और प्रैक्टिस करें, फिर ईमानदारी से जवाब दें — क्या आप अगले 27 दिन यही करते हुए खुद को देख सकते हैं?",
+  "day3.decision.question": "ईमानदार रहें। क्या यह अभी भी सही लगता है?",
+  "day3.decision.yes": "हां, यह मेरा हुनर है — जारी रखें",
+  "day3.decision.no": "नहीं, मुझे अपना हुनर फिर से तय करना है",
+  "day3.decision.no_note": "आपको क्विक स्टार्ट टूल पर भेजा जाएगा ताकि आप अपना इकिगाई फिर से खोज सकें। जब तैयार हों तो यहां वापस आएं — डे 1–3 रीसेट हो जाएंगे ताकि आप अपने नए जवाब के साथ फिर से कोशिश कर सकें।",
+  "redo.banner_title": "वापसी पर स्वागत है!",
+  "redo.banner_body": "लगता है आप अपना हुनर फिर से तय करने गए थे। अपनी नई दिशा के साथ डे 1–3 फिर से शुरू करने के लिए तैयार हैं?",
+  "redo.banner_cta": "डे 1–3 फिर से शुरू करें",
+  "redo.banner_dismiss": "अभी नहीं",
+
+  "phase.test1.name": "मार्केट टेस्ट",
+  "phase.test1.range": "डे 4–6",
+  "phase.test1.mission": "कुछ भी बनाने से पहले, जान लें कि क्या सच में किसी को इसकी ज़रूरत है। एक 5-मिनट का सर्वे, महीनों के अंदाज़े से बेहतर है।",
+  "survey.howto_label": "अपना सर्वे कैसे बनाएं",
+  "survey.howto_intro": "जो भी आपके लिए आसान हो चुनें — दोनों तरीके ठीक काम करते हैं।",
+  "survey.forms_title": "ऑप्शन A: गूगल फ़ॉर्म्स (सुझाया गया)",
+  "survey.forms_step1": "forms.google.com पर जाएं और एक खाली फ़ॉर्म शुरू करने के लिए + पर क्लिक करें।",
+  "survey.forms_step2": "3–5 छोटे सवाल जोड़ें, जैसे \"क्या आप इसे इस्तेमाल करेंगे/खरीदेंगे?\", \"आप इसके लिए कितना देना चाहेंगे?\", \"आपकी सबसे बड़ी हिचक क्या है?\"",
+  "survey.forms_step3": "Send पर क्लिक करें, फिर एक छोटा शेयर करने लायक लिंक कॉपी करने के लिए लिंक आइकन पर क्लिक करें।",
+  "survey.forms_step4": "जवाब अपने आप एक जुड़ी हुई गूगल शीट में जमा होते हैं — कभी भी देखने के लिए Responses टैब पर क्लिक करें।",
+  "survey.paper_title": "ऑप्शन B: पेपर सर्वे",
+  "survey.paper_step1": "अपने वही 3–5 सवाल एक कागज़ के ऊपर लिखें, नीचे जवाब लिखने की जगह छोड़ते हुए।",
+  "survey.paper_step2": "कुछ कॉपी फ़ोटोकॉपी करें या हाथ से लिखें और सीधे लोगों को दें।",
+  "survey.paper_step3": "एक-दो दिन में वापस इकट्ठा करें और जवाबों को एक नोटबुक या स्प्रेडशीट में डालें।",
+  "day.4.title": "अपना सिंपल सर्वे बनाएं",
+  "day.4.task": "3–5 सवालों का सर्वे बनाएं (गूगल फ़ॉर्म्स या पेपर) जो लोगों से पूछे कि क्या वे आपकी बनाई चीज़ चाहेंगे या उसके लिए पैसे देंगे।",
+  "day.5.title": "कम से कम 15 लोगों को भेजें",
+  "day.5.task": "अपना सर्वे लिंक — या पेपर कॉपी — दोस्तों, परिवार, सहकर्मियों और क्लासमेट्स को दें। कम से कम 15 लोगों तक पहुंचें।",
+  "day.6.title": "हर जवाब पढ़ें",
+  "day.6.task": "जवाब इकट्ठा करें और 3 बातें लिखें जो आपने सीखीं, भले ही वे असहज हों।",
+
+  "phase.build1.name": "सिस्टम बनाएं",
+  "phase.build1.range": "डे 7–9",
+  "phase.build1.mission": "अब समय है अपनी पेशकश का सबसे छोटा असली वर्ज़न बनाने का — परफ़ेक्ट वर्ज़न नहीं, साबित होने लायक वर्ज़न। यह एक डिश, एक क्लास, एक छोटा बैच, या एक सेशन हो सकता है — कुछ भी जो आप इस हफ़्ते सच में दे सकें।",
+  "day.7.title": "अपना सबसे छोटा टेस्ट वर्ज़न तय करें",
+  "day.7.task": "अपने प्रोडक्ट या सर्विस का एक सिंपल वर्ज़न चुनें जिसे आप इस हफ़्ते वाकई दे सकें।",
+  "day.8.title": "अपने सर्वे डेटा से कीमत तय करें",
+  "day.8.task": "अपने सर्वे में लोगों ने जो बताया उसके आधार पर कीमत तय करें — अंदाज़ा नहीं, बल्कि कॉम्पिटिटिव कीमत।",
+  "day.9.title": "कम से कम 3 लोगों को दें",
+  "day.9.task": "अपना टेस्ट वर्ज़न सच में 3 असली लोगों को दें — बेचें, गिफ़्ट करें, या मुफ़्त में करें।",
+
+  "phase.feedback1.name": "फ़ीडबैक इकट्ठा करें",
+  "phase.feedback1.range": "डे 10–12",
+  "phase.feedback1.mission": "अब उन लोगों के पास वापस जाएं जिन्होंने इसे अनुभव किया और पूछें कि वे सच में क्या सोचते हैं — न कि जो वे सोचते हैं आप सुनना चाहते हैं।",
+  "day.10.title": "अपने पहले ग्राहकों से पूछें",
+  "day.10.task": "हर उस व्यक्ति से पूछें जिसने आपका टेस्ट वर्ज़न अनुभव किया: उन्हें क्या पसंद आया, वे क्या बदलेंगे, क्या वे फिर से पैसे देंगे?",
+  "day.11.title": "कुछ और लोगों से पूछें",
+  "day.11.task": "उसी तरह 3 और लोगों तक पहुंचें — अपना फ़ीडबैक पूल कम से कम 6 लोगों तक बढ़ाएं।",
+  "day.12.title": "पैटर्न लिखें",
+  "day.12.task": "बार-बार आने वाले फ़ीडबैक को देखें — 2 या ज़्यादा लोगों की एक जैसी बात एक असली संकेत है, राय नहीं।",
+
+  "phase.adjust1.name": "फ़िट के लिए एडजस्ट करें",
+  "phase.adjust1.range": "डे 13–15",
+  "phase.adjust1.mission": "यहीं ज़्यादातर लोग छोड़ देते हैं। आप मत छोड़ना। इसके बजाय एडजस्ट करें — जल्दी टेस्ट करने का यही पूरा मतलब है।",
+  "day.13.title": "बदलने के लिए एक चीज़ चुनें",
+  "day.13.task": "अपने फ़ीडबैक पैटर्न के आधार पर, सबसे बड़ा बदलाव चुनें — कीमत, फ़ॉर्मेट, ऑफ़र, या ऑडियंस।",
+  "day.14.title": "बदलाव करें",
+  "day.14.task": "कल जो तय किया था उसके आधार पर अपना ऑफ़र, कीमत, या डिलीवरी सच में अपडेट करें।",
+  "day.15.title": "माइलस्टोन: राउंड 1 पूरा",
+  "day.15.task": "डे 1 पर वापस देखें। एक वाक्य लिखें कि अब आप क्या जानते हैं जो 15 दिन पहले नहीं जानते थे।",
+  "milestone.day15.title": "आपने अभी राउंड 1 पूरा किया।",
+  "milestone.day15.body": "पंद्रह दिन पहले आपके पास एक आइडिया था। अब आपके पास असली फ़ीडबैक और एक बेहतर ऑफ़र है — यह ज़्यादातर लोगों से आगे है। राउंड 2 से पहले इस पर एक और नज़र चाहिए?",
+  "milestone.cta": "नूर के साथ मुफ़्त 15-मिनट सेशन बुक करें",
+  "milestone.dismiss": "राउंड 2 पर जारी रखें",
+
+  "phase.test2.name": "फिर से टेस्ट करें, राउंड 2",
+  "phase.test2.range": "डे 16–18",
+  "phase.test2.mission": "वही टेस्ट, बेहतर ऑफ़र। इस बार आप पहले से जानते हैं लोगों को क्या चाहिए — डे 16 से, नीचे आपकी सोशल मीडिया चेकलिस्ट भी अनलॉक होती है। इसे अपने डेली टास्क के साथ, अपनी रफ़्तार से करें।",
+  "day.16.title": "अपना सर्वे फिर से चलाएं (छोटा वर्ज़न)",
+  "day.16.task": "अपने नए ऑफ़र के बारे में 10 लोगों को एक क्विक 2-सवाल वाला चेक भेजें: क्या यह आपके लिए बेहतर काम करेगा?",
+  "day.17.title": "अपनी कीमत और ऑफ़र कन्फ़र्म करें",
+  "day.17.task": "क्विक चेक के आधार पर अपनी एडजस्ट की गई कीमत और ऑफ़र लॉक करें।",
+  "day.18.title": "अपनी अगली डिलीवरी तैयार करें",
+  "day.18.task": "इस हफ़्ते अपना बेहतर वर्ज़न देने के लिए सब कुछ तैयार करें।",
+
+  "phase.build2.name": "फिर से बनाएं, राउंड 2",
+  "phase.build2.range": "डे 19–21",
+  "phase.build2.mission": "बेहतर वर्ज़न दें और ध्यान से देखें कि इस बार क्या अलग है।",
+  "day.19.title": "बेहतर वर्ज़न दें",
+  "day.19.task": "अपना एडजस्ट किया हुआ ऑफ़र कम से कम 3 नए लोगों को दें।",
+  "day.20.title": "3 और लोगों को दें",
+  "day.20.task": "उसी बेहतर ऑफ़र के साथ 3 और लोगों तक पहुंचें — इस राउंड में कुल 6 या ज़्यादा।",
+  "day.21.title": "देखें क्या अलग है",
+  "day.21.task": "इस राउंड की प्रतिक्रियाओं की राउंड 1 से तुलना करें — क्या बेहतर है, अभी भी क्या काम चाहिए?",
+
+  "phase.feedback2.name": "फ़ीडबैक + एडजस्ट, राउंड 2",
+  "phase.feedback2.range": "डे 22–24",
+  "phase.feedback2.mission": "आप सच में क्या बेच रहे हैं इसे लॉक करने से पहले एक और ईमानदार नज़र।",
+  "day.22.title": "राउंड 2 का फ़ीडबैक इकट्ठा करें",
+  "day.22.task": "अपने राउंड 2 ग्राहकों से पहले जैसे ही सवाल पूछें।",
+  "day.23.title": "नए पैटर्न ढूंढें",
+  "day.23.task": "राउंड 1 और राउंड 2 के फ़ीडबैक की साथ-साथ तुलना करें — क्या बदला?",
+  "day.24.title": "माइलस्टोन: अपना ऑफ़र लॉक करें",
+  "day.24.task": "तय करें: यही अब आपका असली ऑफ़र, कीमत, और ऑडियंस है। इसे एक लाइन में लिखें।",
+  "milestone.day24.title": "आपका ऑफ़र लॉक हो गया है।",
+  "milestone.day24.body": "दो राउंड असली टेस्टिंग के बाद, अब आप अंदाज़ा नहीं लगा रहे — आप जानते हैं क्या बेच रहे हैं, किसे, और कितने में। अब समय है उन्हें ढूंढने का। आउटरीच प्लान करने में मदद चाहिए?",
+
+  "social.title_label": "पैरेलल ट्रैक — अनलॉक्ड",
+  "social.title": "अपनी सोशल मौजूदगी बनाएं",
+  "social.subtitle": "यह डे 16–24 के साथ-साथ चलता है। इसे अपनी रफ़्तार से करें — यह आपके डेली टास्क को नहीं रोकता।",
+  "social.instagram.title": "इंस्टाग्राम",
+  "social.instagram.step1": "एक मुफ़्त बिज़नेस अकाउंट बनाएं (Settings → Switch to Professional Account)।",
+  "social.instagram.step2": "अपनी बायो एक लाइन में लिखें: आप किसकी मदद करते हैं + आप क्या ऑफ़र करते हैं।",
+  "social.instagram.step3": "अपने ऑफ़र और उसके पीछे की कहानी बताते हुए अपनी पहली 3 पोस्ट डालें।",
+  "social.instagram.step4": "अपनी निच में 20 लोगों या पेजेस को फ़ॉलो करें और सच में एंगेज करें।",
+  "social.facebook.title": "फ़ेसबुक",
+  "social.facebook.step1": "अपने बिज़नेस के लिए एक फ़ेसबुक पेज बनाएं (पर्सनल प्रोफ़ाइल नहीं) — Pages → Create New Page।",
+  "social.facebook.step2": "अपना ऑफ़र, लोकेशन, और संपर्क करने का तरीका जोड़ें।",
+  "social.facebook.step3": "अपना पेज 2 लोकल या कम्युनिटी ग्रुप्स में शेयर करें जहां आपके ग्राहक होते हैं।",
+  "social.youtube.title": "यूट्यूब",
+  "social.youtube.step1": "अपने बिज़नेस के नाम से एक चैनल बनाएं।",
+  "social.youtube.step2": "एक छोटा वीडियो पोस्ट करें (फ़ोन से भी) जिसमें बताएं आप क्या करते हैं और यह किसके लिए है।",
+  "social.youtube.step3": "वीडियो डिस्क्रिप्शन में अपना इंस्टाग्राम या व्हाट्सएप लिंक जोड़ें।",
+
+  "phase.outreach.name": "टारगेटेड क्लाइंट्स को आउटरीच करें",
+  "phase.outreach.range": "डे 25–30",
+  "phase.outreach.mission": "लोगों के आपको ढूंढने का इंतज़ार करना बंद करें। उन्हें ढूंढें — हर असली बिज़नेस को उसके पहले पेइंग कस्टमर ऐसे ही मिलते हैं।",
+  "day.25.title": "20 आदर्श क्लाइंट्स की लिस्ट बनाएं",
+  "day.25.task": "20 असली लोगों या बिज़नेस को लिखें जो बिल्कुल वैसे हैं जिन्हें आप बेचना चाहते हैं।",
+  "day.26.title": "अपना आउटरीच मैसेज लिखें",
+  "day.26.task": "एक छोटा, ईमानदार मैसेज लिखें जो आप उनमें से किसी को भी भेज सकें — कोई हार्ड सेल नहीं, बस एक असली ऑफ़र।",
+  "day.27.title": "अपने पहले 5 को भेजें",
+  "day.27.task": "आज अपनी लिस्ट के पहले 5 लोगों को मैसेज करें।",
+  "day.28.title": "फ़ॉलो अप करें और सुधारें",
+  "day.28.task": "जिन्होंने जवाब नहीं दिया उनसे फ़ॉलो अप करें, और अगर मैसेज असर नहीं कर रहा तो उसे बदलें।",
+  "day.29.title": "अगले 10 को भेजें",
+  "day.29.task": "अपनी लिस्ट के बाकी लोगों को मैसेज करें।",
+  "day.30.title": "अपने 30 दिन देखें",
+  "day.30.task": "इस महीने की अपनी 3 सबसे बड़ी जीत लिखें — आपने कुछ असली बनाया है।",
+
+  "final.eyebrow": "30 दिन पूरे",
+  "final.title": "आपने सिर्फ़ एक कोर्स पूरा नहीं किया। आपने एक बिज़नेस बनाया।",
+  "final.body": "तीस दिन पहले यह सिर्फ़ एक आइडिया था। अब यह एक टेस्ट किया हुआ ऑफ़र है, असली ग्राहक हैं, असली फ़ीडबैक है, और एक सोशल मौजूदगी है जो आपने खुद बनाई। अगला चरण — सही कीमत तय करना, इसे बड़ा करना, और इसे लगातार आमदनी में बदलना — यही तो नूर के साथ 1:1 कोचिंग के लिए है।",
+  "final.founder_role": "फ़ाउंडर, thedayzero by TheKahaaniya",
+  "final.cta": "मेरा मुफ़्त 15-मिनट सेशन बुक करें",
+  "final.note": "बुक करने में एक मिनट से भी कम समय लगता है। जो भी स्लॉट आपको सही लगे, चुन लें।",
+
+  "footer.contact": "व्हाट्सएप +91 96298 43122 · @the.kahaaniya",
+  "footer.quickstart_link": "इकिगाई क्विक स्टार्ट टूल फिर से करें"
+},
+  ta: {
+  "meta.title": "டே ஜீரோ — உங்கள் 30-நாள் பிசினஸ் பில்டர்",
+  "nav.brand_name": "thedayzero",
+  "nav.brand_by": "by TheKahaaniya",
+
+  "hero.eyebrow": "நீங்கள் திட்டத்தை வாங்கிவிட்டீர்கள். இப்போது கட்டமைப்போம்.",
+  "hero.title": "உங்கள் 30-நாள் பிசினஸ் பில்டர்",
+  "hero.lead": "ஒரு நேரத்தில் ஒரு நாள். ஒவ்வொரு நாளையும் முடித்ததும் அடுத்த நாள் திறக்கும் — முன்னேறிக் குதிக்க முடியாது, அதிக சுமையும் இல்லை. இன்றைய பணி மட்டும்.",
+  "hero.progress_label": "முடிந்த நாட்கள்",
+  "hero.cta_guide": "இது எப்படி வேலை செய்கிறது?",
+  "hero.resume": "நாள் {n} தொடரவும்",
+
+  "guide.title_label": "வழிகாட்டி",
+  "guide.title": "இந்த 30-நாள் திட்டம் எப்படி வேலை செய்கிறது",
+  "guide.subtitle": "இதை ஒருமுறை படியுங்கள் — பிறகு தினமும் வாருங்கள்.",
+  "guide.step1": "இந்த திட்டம் 9 சிறிய கட்டங்களாக பிரிக்கப்பட்டுள்ளது, ஒவ்வொன்றும் 3-6 நாட்கள். உங்களுக்கு எப்போதும் இன்றைய பணி மட்டுமே தெரியும்.",
+  "guide.step2": "ஒரு நாளின் பணியை முடித்து, அடுத்த நாளைத் திறக்க அதைச் சரிபார்க்கவும். நீங்கள் முன்னேறிக் குதிக்க முடியாது — இது வேண்டுமென்றே செய்யப்பட்டது.",
+  "guide.step3": "நாள் 3 அன்று, நீங்கள் பயிற்சி செய்யும் திறமை உண்மையில் நீங்கள்தானா என்பதை நேர்மையாக முடிவு செய்வீர்கள். இல்லையென்றால், குயிக் ஸ்டார்ட் டூலுக்குச் சென்று அதை மீண்டும் வரையறுத்து திரும்பி வரலாம்.",
+  "guide.step4": "நாள் 16 முதல், கீழே ஒரு இணையான சோஷியல் மீடியா செக்லிஸ்டும் திறக்கும். உங்கள் தினசரி பணியுடன் சேர்த்து, உங்கள் வேகத்தில் அதை செய்யுங்கள்.",
+  "guide.step5": "சில முக்கியமான மைல்கல்களில், நூருடன் ஒன்றாக வேலை செய்ய இலவச 15-நிமிட அமர்வை பதிவு செய்யும் வாய்ப்பு கிடைக்கும்.",
+  "guide.cta": "புரிந்தது, தொடங்கலாம்!",
+
+  "day.note_label": "உங்கள் குறிப்பு (விருப்பத்தேர்வு)",
+  "day.note_placeholder": "இன்று பற்றி நினைவில் வைக்க வேண்டியது ஏதேனும்...",
+  "day.complete_btn": "நாள் {n} முடிந்தது என குறிக்கவும்",
+  "day.completed_tag": "முடிந்தது",
+  "day.locked_tag": "பூட்டப்பட்டது — முதலில் நாள் {n} முடிக்கவும்",
+  "day.today_tag": "இன்று",
+  "day.proof_label": "ஆதாரம் சேர்க்கவும் (விருப்பத்தேர்வு)",
+  "day.proof_placeholder": "ஒரு இணைப்பு, ஸ்க்ரீன்ஷாட் URL ஒட்டவும், அல்லது ஒரு குறிப்பு எழுதவும்...",
+  "day.proof_hint": "இது நேரடியாக எங்கள் அணிக்குச் செல்கிறது, இது உண்மையில் நடக்கிறது என்பதை நாங்கள் அறிய — வெறும் பெட்டியை டிக் செய்வது அல்ல.",
+  "day.proof_saved": "அனுப்பப்பட்டது ✓",
+
+  "sticky.help_cta": "சிக்கலில் இருக்கிறீர்களா? இலவச உதவியை பதிவு செய்யுங்கள்",
+
+  "identity.title_label": "ஒரு சிறு அறிமுகம்",
+  "identity.title": "இதை யார் கட்டமைக்கிறார்கள்?",
+  "identity.body": "நீங்கள் உங்கள் முன்னேற்றத்தை பதிவு செய்யும்போது இது நீங்கள்தான் என்று எங்களுக்குத் தெரிய — விற்கப்படாது, வேறு எங்கும் பகிரப்படாது.",
+  "identity.name_label": "உங்கள் பெயர்",
+  "identity.name_placeholder": "எடு: பிரியா சர்மா",
+  "identity.phone_label": "வாட்ஸ்அப் எண்",
+  "identity.phone_placeholder": "எடு: 98765 43210",
+  "identity.submit": "தொடரவும்",
+  "identity.skip": "பிறகு சேர்ப்பேன்",
+  "identity.badge_add": "+ உங்கள் பெயரைச் சேர்க்கவும்",
+
+  "social.instagram.handle_label": "உங்கள் இன்ஸ்டாகிராம் ஹேண்டில் அல்லது சுயவிவர இணைப்பு",
+  "social.facebook.handle_label": "உங்கள் பேஸ்புக் பக்க இணைப்பு",
+  "social.youtube.handle_label": "உங்கள் யூட்யூப் சேனல் இணைப்பு",
+  "social.handle_placeholder": "இது நேரடியாக வந்தவுடன் இங்கே ஒட்டவும்...",
+  "social.handle_save": "சேமிக்கவும்",
+  "social.handle_saved": "சேமிக்கப்பட்டது ✓",
+
+  "phase.discover.name": "உங்கள் திறமையைக் கண்டறியுங்கள்",
+  "phase.discover.range": "நாள் 1–3",
+  "phase.discover.mission": "உங்கள் இகிகாய் மண்டலத்தில் கண்டறிந்த திறமையைப் பயிற்சி செய்யுங்கள் — உண்மையில், தொடர்ச்சியாக மூன்று நாட்கள். இது தயாராக இருப்பது பற்றியது அல்ல. இது உண்மையில் இது நீங்கள்தானா என்பதைக் கண்டறிவது பற்றியது.",
+  "day.1.title": "இன்று 30 நிமிடங்கள் செய்யுங்கள்",
+  "day.1.task": "நீங்கள் கண்டறிந்த திறமையை குறைந்தது 30 நிமிடங்கள் உண்மையில் செய்யுங்கள் — அதைப் பற்றி ஆராயவேண்டாம், அதைச் செய்யுங்கள்.",
+  "day.2.title": "மீண்டும் செய்யுங்கள், சற்று அதிக நேரம்",
+  "day.2.task": "நேற்றைய பயிற்சியை மீண்டும் செய்யுங்கள். எது எளிதாக உணரப்பட்டது, எது சுமையாக உணரப்பட்டது என்பதைக் கவனியுங்கள்.",
+  "day.3.title": "முடிவு செய்யுங்கள்: இது உங்களைப் போல் தோன்றுகிறதா?",
+  "day.3.task": "இன்னும் ஒருமுறை பயிற்சி செய்யுங்கள், பிறகு நேர்மையாக பதிலளியுங்கள் — அடுத்த 27 நாட்கள் இதைச் செய்யும் உங்களை நீங்கள் காணமுடியுமா?",
+  "day3.decision.question": "நேர்மையாக இருங்கள். இது இன்னும் சரியாக உணரப்படுகிறதா?",
+  "day3.decision.yes": "ஆம், இது என் திறமை — தொடரவும்",
+  "day3.decision.no": "இல்லை, என் திறமையை மீண்டும் வரையறுக்க வேண்டும்",
+  "day3.decision.no_note": "உங்கள் இகிகாயை மீண்டும் கண்டறிய குயிக் ஸ்டார்ட் டூலுக்கு அனுப்பப்படுவீர்கள். தயாராக இருக்கும்போது இங்கு திரும்பி வாருங்கள் — நாள் 1–3 மீட்டமைக்கப்படும், அதனால் உங்கள் புதிய பதிலுடன் மீண்டும் முயற்சிக்கலாம்.",
+  "redo.banner_title": "மீண்டும் வரவேற்கிறோம்!",
+  "redo.banner_body": "உங்கள் திறமையை மீண்டும் வரையறுக்கச் சென்றீர்கள் போல் தெரிகிறது. உங்கள் புதிய திசையுடன் நாள் 1–3ஐ மீண்டும் தொடங்க தயாரா?",
+  "redo.banner_cta": "நாள் 1–3ஐ மீண்டும் தொடங்கவும்",
+  "redo.banner_dismiss": "இப்போது வேண்டாம்",
+
+  "phase.test1.name": "மார்க்கெட் டெஸ்ட்",
+  "phase.test1.range": "நாள் 4–6",
+  "phase.test1.mission": "எதையும் உருவாக்குவதற்கு முன், உண்மையில் யாருக்காவது அது வேண்டுமா என்பதைக் கண்டறியுங்கள். ஒரு 5-நிமிட கணக்கெடுப்பு, மாதக்கணக்கான யூகங்களை விட சிறந்தது.",
+  "survey.howto_label": "உங்கள் கணக்கெடுப்பை எப்படி உருவாக்குவது",
+  "survey.howto_intro": "உங்களுக்கு எது எளிதோ அதைத் தேர்வு செய்யுங்கள் — இரண்டும் நன்றாக வேலை செய்யும்.",
+  "survey.forms_title": "விருப்பம் A: கூகுள் ஃபார்ம்ஸ் (பரிந்துரைக்கப்படுகிறது)",
+  "survey.forms_step1": "forms.google.com க்குச் சென்று, ஒரு காலி படிவத்தைத் தொடங்க + ஐ கிளிக் செய்யுங்கள்.",
+  "survey.forms_step2": "3–5 சிறு கேள்விகளைச் சேர்க்கவும், உதாரணமாக \"இதை நீங்கள் பயன்படுத்துவீர்களா/வாங்குவீர்களா?\", \"இதற்கு எவ்வளவு செலுத்த எதிர்பார்க்கிறீர்கள்?\", \"உங்கள் மிகப்பெரிய தயக்கம் என்ன?\"",
+  "survey.forms_step3": "Send ஐ கிளிக் செய்யுங்கள், பிறகு ஒரு சிறு பகிரக்கூடிய இணைப்பை நகலெடுக்க இணைப்பு ஐகானை கிளிக் செய்யுங்கள்.",
+  "survey.forms_step4": "பதில்கள் தானாகவே இணைக்கப்பட்ட கூகுள் ஷீட்டில் சேகரிக்கப்படும் — எப்போது வேண்டுமானாலும் பார்க்க Responses தாவலைக் கிளிக் செய்யுங்கள்.",
+  "survey.paper_title": "விருப்பம் B: காகித கணக்கெடுப்பு",
+  "survey.paper_step1": "உங்கள் அதே 3–5 கேள்விகளை ஒரு தாளின் மேலே எழுதுங்கள், கீழே பதிலளிக்க இடம் விட்டு.",
+  "survey.paper_step2": "சில நகல்களை ஃபோட்டோகாபி செய்யவும் அல்லது கையால் எழுதவும், நேரடியாக மக்களிடம் கொடுங்கள்.",
+  "survey.paper_step3": "ஒரு நாள் அல்லது இரண்டு நாட்களுக்குள் அவற்றைத் திரும்பப் பெற்று, பதில்களை ஒரு நோட்புக் அல்லது ஸ்பிரெட்ஷீட்டில் மாற்றுங்கள்.",
+  "day.4.title": "உங்கள் எளிய கணக்கெடுப்பை உருவாக்குங்கள்",
+  "day.4.task": "நீங்கள் உருவாக்குவதை மக்கள் விரும்புவார்களா அல்லது அதற்கு பணம் செலுத்துவார்களா என்று கேட்கும் 3–5 கேள்வி கணக்கெடுப்பை உருவாக்குங்கள் (கூகுள் ஃபார்ம்ஸ் அல்லது காகிதம்).",
+  "day.5.title": "குறைந்தது 15 பேருக்கு அனுப்புங்கள்",
+  "day.5.task": "உங்கள் கணக்கெடுப்பு இணைப்பை — அல்லது காகித நகல்களை — நண்பர்கள், குடும்பம், சக ஊழியர்கள், வகுப்பு தோழர்களிடம் பகிருங்கள். குறைந்தது 15 பேரை இலக்காகக் கொள்ளுங்கள்.",
+  "day.6.title": "ஒவ்வொரு பதிலையும் படியுங்கள்",
+  "day.6.task": "பதில்களை சேகரித்து, நீங்கள் கற்றுக்கொண்ட 3 விஷயங்களை எழுதுங்கள், அவை சங்கடமாக இருந்தாலும் சரி.",
+
+  "phase.build1.name": "அமைப்பை உருவாக்குங்கள்",
+  "phase.build1.range": "நாள் 7–9",
+  "phase.build1.mission": "நீங்கள் வழங்குவதன் மிகச் சிறிய உண்மையான பதிப்பை உருவாக்க வேண்டிய நேரம் இது — சரியான பதிப்பு அல்ல, நிரூபிக்கக்கூடிய பதிப்பு. இது ஒரு உணவு வகை, ஒரு வகுப்பு, ஒரு சிறிய தொகுதி, அல்லது ஒரு அமர்வாக இருக்கலாம் — இந்த வாரம் நீங்கள் உண்மையில் வழங்கக்கூடிய எதுவும்.",
+  "day.7.title": "உங்கள் மிகச் சிறிய டெஸ்ட் பதிப்பை முடிவு செய்யுங்கள்",
+  "day.7.task": "இந்த வாரம் நீங்கள் நிஜமாக வழங்கக்கூடிய உங்கள் தயாரிப்பு அல்லது சேவையின் ஒரு எளிய பதிப்பைத் தேர்வு செய்யுங்கள்.",
+  "day.8.title": "உங்கள் கணக்கெடுப்பு தரவைப் பயன்படுத்தி விலை நிர்ணயிக்கவும்",
+  "day.8.task": "உங்கள் கணக்கெடுப்பில் மக்கள் சொன்னதன் அடிப்படையில் ஒரு விலையை நிர்ணயிக்கவும் — யூகம் அல்ல, போட்டித்தன்மையானது.",
+  "day.9.title": "குறைந்தது 3 பேருக்கு வழங்குங்கள்",
+  "day.9.task": "உங்கள் டெஸ்ட் பதிப்பை உண்மையில் 3 நிஜமான மக்களுக்கு வழங்குங்கள் — விற்கவும், பரிசாக அளிக்கவும், அல்லது இலவசமாக இயக்கவும்.",
+
+  "phase.feedback1.name": "கருத்துகளை சேகரிக்கவும்",
+  "phase.feedback1.range": "நாள் 10–12",
+  "phase.feedback1.mission": "இப்போது அதை அனுபவித்த மக்களிடம் திரும்பிச் சென்று, அவர்கள் உண்மையில் என்ன நினைத்தார்கள் என்று கேளுங்கள் — நீங்கள் கேட்க விரும்புவதாக அவர்கள் நினைப்பதை அல்ல.",
+  "day.10.title": "உங்கள் முதல் வாடிக்கையாளர்களிடம் கேளுங்கள்",
+  "day.10.task": "உங்கள் டெஸ்ட் பதிப்பை அனுபவித்த அனைவரிடமும் கேளுங்கள்: அவர்களுக்கு என்ன பிடித்தது, என்ன மாற்றுவார்கள், மீண்டும் பணம் செலுத்துவார்களா?",
+  "day.11.title": "இன்னும் சிலரிடம் கேளுங்கள்",
+  "day.11.task": "அதே வழியில் இன்னும் 3 பேரை அடையுங்கள் — உங்கள் கருத்து குழுவை குறைந்தது 6 பேராக வளர்க்கவும்.",
+  "day.12.title": "வடிவங்களை எழுதுங்கள்",
+  "day.12.task": "மீண்டும் மீண்டும் வரும் கருத்துகளைத் தேடுங்கள் — 2 அல்லது அதற்கு மேற்பட்டவர்களிடமிருந்து ஒரே கருத்து ஒரு உண்மையான சமிக்ஞை, கருத்து அல்ல.",
+
+  "phase.adjust1.name": "பொருத்தத்திற்கு சரிசெய்யுங்கள்",
+  "phase.adjust1.range": "நாள் 13–15",
+  "phase.adjust1.mission": "இங்குதான் பெரும்பாலான மக்கள் விட்டுவிடுகிறார்கள். நீங்கள் விட்டுவிட வேண்டாம். அதற்குப் பதிலாக சரிசெய்யுங்கள் — முன்கூட்டியே சோதிப்பதன் முழு நோக்கமும் இதுதான்.",
+  "day.13.title": "மாற்ற ஒரு விஷயத்தைத் தேர்வு செய்யுங்கள்",
+  "day.13.task": "உங்கள் கருத்து வடிவங்களின் அடிப்படையில், செய்ய வேண்டிய மிகப்பெரிய மாற்றத்தைத் தேர்வு செய்யுங்கள் — விலை, வடிவம், சலுகை, அல்லது பார்வையாளர்கள்.",
+  "day.14.title": "மாற்றத்தைச் செய்யுங்கள்",
+  "day.14.task": "நேற்று நீங்கள் முடிவு செய்ததன் அடிப்படையில் உங்கள் சலுகை, விலை, அல்லது வழங்குதலை உண்மையில் புதுப்பிக்கவும்.",
+  "day.15.title": "மைல்கல்: சுற்று 1 முடிந்தது",
+  "day.15.task": "நாள் 1ஐ திரும்பிப் பாருங்கள். 15 நாட்களுக்கு முன் தெரியாத எதை இப்போது நீங்கள் அறிவீர்கள் என்பதை ஒரு வாக்கியத்தில் எழுதுங்கள்.",
+  "milestone.day15.title": "நீங்கள் இப்போது சுற்று 1ஐ முடித்துவிட்டீர்கள்.",
+  "milestone.day15.body": "பதினைந்து நாட்களுக்கு முன் உங்களிடம் ஒரு யோசனை இருந்தது. இப்போது உங்களிடம் உண்மையான கருத்தும் கூர்மையான சலுகையும் உள்ளது — இது பெரும்பாலான மக்கள் அடையும் இடத்தை விட மேலானது. சுற்று 2க்கு முன் இதைப் பற்றி இன்னொரு பார்வை வேண்டுமா?",
+  "milestone.cta": "நூருடன் இலவச 15-நிமிட அமர்வை பதிவு செய்யுங்கள்",
+  "milestone.dismiss": "சுற்று 2க்குத் தொடரவும்",
+
+  "phase.test2.name": "மீண்டும் சோதிக்கவும், சுற்று 2",
+  "phase.test2.range": "நாள் 16–18",
+  "phase.test2.mission": "அதே சோதனை, கூர்மையான சலுகை. இந்த முறை மக்களுக்கு என்ன வேண்டும் என்று உங்களுக்கு ஏற்கனவே தெரியும் — நாள் 16 முதல், உங்கள் சோஷியல் மீடியா செக்லிஸ்டும் கீழே திறக்கும். உங்கள் தினசரி பணியுடன் சேர்த்து, உங்கள் வேகத்தில் அதை செய்யுங்கள்.",
+  "day.16.title": "உங்கள் கணக்கெடுப்பை மீண்டும் இயக்குங்கள் (சிறு பதிப்பு)",
+  "day.16.task": "உங்கள் புதிய சலுகை பற்றி 10 பேருக்கு விரைவான 2-கேள்வி சரிபார்ப்பை அனுப்புங்கள்: இது உங்களுக்கு சிறப்பாக வேலை செய்யுமா?",
+  "day.17.title": "உங்கள் விலை மற்றும் சலுகையை உறுதிப்படுத்துங்கள்",
+  "day.17.task": "விரைவான சரிபார்ப்பின் அடிப்படையில் உங்கள் சரிசெய்யப்பட்ட விலை மற்றும் சலுகையை பூட்டுங்கள்.",
+  "day.18.title": "உங்கள் அடுத்த வழங்குதலை தயார் செய்யுங்கள்",
+  "day.18.task": "இந்த வாரம் உங்கள் மேம்பட்ட பதிப்பை வழங்க எல்லாவற்றையும் தயார் செய்யுங்கள்.",
+
+  "phase.build2.name": "மீண்டும் உருவாக்குங்கள், சுற்று 2",
+  "phase.build2.range": "நாள் 19–21",
+  "phase.build2.mission": "மேம்படுத்தப்பட்ட பதிப்பை வழங்கி, இந்த முறை என்ன வித்தியாசம் என்பதை உன்னிப்பாக கவனியுங்கள்.",
+  "day.19.title": "மேம்படுத்தப்பட்ட பதிப்பை வழங்குங்கள்",
+  "day.19.task": "உங்கள் சரிசெய்யப்பட்ட சலுகையை குறைந்தது 3 புதிய பேருக்கு வழங்குங்கள்.",
+  "day.20.title": "இன்னும் 3 பேருக்கு வழங்குங்கள்",
+  "day.20.task": "அதே மேம்படுத்தப்பட்ட சலுகையுடன் இன்னும் 3 பேரை அடையுங்கள் — இந்த சுற்றில் மொத்தம் 6 அல்லது அதற்கு மேற்பட்டோர்.",
+  "day.21.title": "என்ன வித்தியாசம் என்பதைக் கண்காணிக்கவும்",
+  "day.21.task": "இந்த சுற்றின் எதிர்வினைகளை சுற்று 1உடன் ஒப்பிடுங்கள் — எது சிறப்பாக உள்ளது, இன்னும் என்ன வேலை தேவை?",
+
+  "phase.feedback2.name": "கருத்து + சரிசெய்தல், சுற்று 2",
+  "phase.feedback2.range": "நாள் 22–24",
+  "phase.feedback2.mission": "நீங்கள் உண்மையில் விற்பதை பூட்டுவதற்கு முன் இன்னும் ஒரு நேர்மையான பார்வை.",
+  "day.22.title": "சுற்று 2 கருத்துகளை சேகரிக்கவும்",
+  "day.22.task": "உங்கள் சுற்று 2 வாடிக்கையாளர்களிடம் முன்பு போலவே அதே கேள்விகளைக் கேளுங்கள்.",
+  "day.23.title": "புதிய வடிவங்களைக் கண்டறியுங்கள்",
+  "day.23.task": "சுற்று 1 மற்றும் சுற்று 2 கருத்துகளை அருகருகே ஒப்பிடுங்கள் — என்ன மாறியது?",
+  "day.24.title": "மைல்கல்: உங்கள் சலுகையை பூட்டுங்கள்",
+  "day.24.task": "முடிவு செய்யுங்கள்: இதுவே இப்போது உங்கள் உண்மையான சலுகை, விலை, மற்றும் பார்வையாளர்கள். இதை ஒரு வரியில் எழுதுங்கள்.",
+  "milestone.day24.title": "உங்கள் சலுகை பூட்டப்பட்டது.",
+  "milestone.day24.body": "இரண்டு சுற்று உண்மையான சோதனைக்குப் பிறகு, நீங்கள் இனி யூகிக்கவில்லை — நீங்கள் என்ன விற்கிறீர்கள், யாருக்கு, எவ்வளவுக்கு என்பது உங்களுக்குத் தெரியும். இப்போது அவர்களைக் கண்டறியும் நேரம். உங்கள் அவுட்ரீச்சைத் திட்டமிட உதவி வேண்டுமா?",
+
+  "social.title_label": "இணையான பாதை — திறக்கப்பட்டது",
+  "social.title": "உங்கள் சோஷியல் இருப்பை உருவாக்குங்கள்",
+  "social.subtitle": "இது நாள் 16–24உடன் இணையாக இயங்குகிறது. உங்கள் வேகத்தில் இதைச் செய்யுங்கள் — இது உங்கள் தினசரி பணியைத் தடுக்காது.",
+  "social.instagram.title": "இன்ஸ்டாகிராம்",
+  "social.instagram.step1": "ஒரு இலவச பிசினஸ் கணக்கை உருவாக்குங்கள் (Settings → Switch to Professional Account).",
+  "social.instagram.step2": "உங்கள் பயோவை ஒரு வரியில் எழுதுங்கள்: நீங்கள் யாருக்கு உதவுகிறீர்கள் + நீங்கள் என்ன வழங்குகிறீர்கள்.",
+  "social.instagram.step3": "உங்கள் சலுகையையும் அதன் பின்னணி கதையையும் அறிமுகப்படுத்தும் உங்கள் முதல் 3 பதிவுகளை இடுங்கள்.",
+  "social.instagram.step4": "உங்கள் துறையில் 20 பேரை அல்லது பக்கங்களை பின்தொடர்ந்து உண்மையாக ஈடுபடுங்கள்.",
+  "social.facebook.title": "பேஸ்புக்",
+  "social.facebook.step1": "உங்கள் பிசினஸுக்கு ஒரு பேஸ்புக் பக்கத்தை உருவாக்குங்கள் (தனிப்பட்ட சுயவிவரம் அல்ல) — Pages → Create New Page.",
+  "social.facebook.step2": "உங்கள் சலுகை, இருப்பிடம், மற்றும் தொடர்பு கொள்ளும் வழியைச் சேர்க்கவும்.",
+  "social.facebook.step3": "உங்கள் வாடிக்கையாளர்கள் இருக்கும் 2 உள்ளூர் அல்லது சமூக குழுக்களில் உங்கள் பக்கத்தைப் பகிருங்கள்.",
+  "social.youtube.title": "யூட்யூப்",
+  "social.youtube.step1": "உங்கள் பிசினஸ் பெயரைப் பயன்படுத்தி ஒரு சேனலை உருவாக்குங்கள்.",
+  "social.youtube.step2": "நீங்கள் என்ன செய்கிறீர்கள் மற்றும் அது யாருக்கானது என்பதை விளக்கும் ஒரு குறுகிய வீடியோவை (உங்கள் ஃபோனில் கூட) இடுங்கள்.",
+  "social.youtube.step3": "வீடியோ விளக்கத்தில் உங்கள் இன்ஸ்டாகிராம் அல்லது வாட்ஸ்அப் இணைப்பைச் சேர்க்கவும்.",
+
+  "phase.outreach.name": "இலக்கு வாடிக்கையாளர்களை அவுட்ரீச் செய்யுங்கள்",
+  "phase.outreach.range": "நாள் 25–30",
+  "phase.outreach.mission": "மக்கள் உங்களைக் கண்டுபிடிப்பதற்காக காத்திருப்பதை நிறுத்துங்கள். அவர்களைக் கண்டறியுங்கள் — ஒவ்வொரு உண்மையான பிசினஸும் அதன் முதல் பணம் செலுத்தும் வாடிக்கையாளர்களை இப்படித்தான் பெறுகிறது.",
+  "day.25.title": "20 சிறந்த வாடிக்கையாளர்களை பட்டியலிடுங்கள்",
+  "day.25.task": "நீங்கள் யாருக்கு விற்க விரும்புகிறீர்களோ அவர்களைப் போன்ற 20 நிஜமான மக்கள் அல்லது பிசினஸ்களை எழுதுங்கள்.",
+  "day.26.title": "உங்கள் அவுட்ரீச் செய்தியை எழுதுங்கள்",
+  "day.26.task": "அவர்களில் யாருக்கும் அனுப்பக்கூடிய ஒரு குறுகிய, நேர்மையான செய்தியை எழுதுங்கள் — கடினமான விற்பனை இல்லை, ஒரு உண்மையான சலுகை மட்டும்.",
+  "day.27.title": "உங்கள் முதல் 5 பேருக்கு அனுப்புங்கள்",
+  "day.27.task": "இன்று உங்கள் பட்டியலின் முதல் 5 பேருக்கு செய்தி அனுப்புங்கள்.",
+  "day.28.title": "பின்தொடர்ந்து மேம்படுத்துங்கள்",
+  "day.28.task": "பதிலளிக்காதவர்களுடன் பின்தொடருங்கள், மேலும் உங்கள் செய்தி பலனளிக்கவில்லை என்றால் அதை சரிசெய்யுங்கள்.",
+  "day.29.title": "அடுத்த 10 பேருக்கு அனுப்புங்கள்",
+  "day.29.task": "உங்கள் பட்டியலில் மீதமுள்ளவர்களுக்கு செய்தி அனுப்புங்கள்.",
+  "day.30.title": "உங்கள் 30 நாட்களை மதிப்பாய்வு செய்யுங்கள்",
+  "day.30.task": "இந்த மாதத்தின் உங்கள் 3 மிகப்பெரிய வெற்றிகளை எழுதுங்கள் — நீங்கள் உண்மையான ஒன்றை உருவாக்கியுள்ளீர்கள்.",
+
+  "final.eyebrow": "30 நாட்கள் முடிந்தது",
+  "final.title": "நீங்கள் ஒரு பாடத்தை மட்டும் முடிக்கவில்லை. நீங்கள் ஒரு பிசினஸை உருவாக்கினீர்கள்.",
+  "final.body": "முப்பது நாட்களுக்கு முன் இது ஒரு யோசனையாக இருந்தது. இப்போது இது ஒரு சோதிக்கப்பட்ட சலுகை, நிஜமான வாடிக்கையாளர்கள், நிஜமான கருத்து, மற்றும் நீங்களே உருவாக்கிய ஒரு சோஷியல் இருப்பு. அடுத்த கட்டம் — சரியாக விலை நிர்ணயித்தல், அதை பெரிதாக்குதல், மற்றும் அதை நிலையான வருமானமாக மாற்றுதல் — இதற்குத்தான் நூருடனான 1:1 பயிற்சி.",
+  "final.founder_role": "நிறுவனர், thedayzero by TheKahaaniya",
+  "final.cta": "என் இலவச 15-நிமிட அமர்வை பதிவு செய்யுங்கள்",
+  "final.note": "பதிவு செய்ய ஒரு நிமிடத்திற்கும் குறைவான நேரம் ஆகும். உங்களுக்கு ஏற்ற எந்த நேரத்தையும் தேர்வு செய்யுங்கள்.",
+
+  "footer.contact": "வாட்ஸ்அப் +91 96298 43122 · @the.kahaaniya",
+  "footer.quickstart_link": "இகிகாய் குயிக் ஸ்டார்ட் டூலை மீண்டும் செய்யுங்கள்"
+}
+};
 </script>
+<script>
+(function(){
+  "use strict";
 
+  function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function safeSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(ch){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+    });
+  }
+  var prefersReducedMotion = false;
+  try{ prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+  if(prefersReducedMotion){ document.documentElement.classList.add('reduce-motion'); }
+
+  /* ================= Data model ================= */
+  var PHASES = [
+    { key:'discover',  days:[1,2,3],             howto:null,     milestoneAfter:null },
+    { key:'test1',     days:[4,5,6],             howto:'survey', milestoneAfter:null },
+    { key:'build1',    days:[7,8,9],             howto:null,     milestoneAfter:null },
+    { key:'feedback1', days:[10,11,12],          howto:null,     milestoneAfter:null },
+    { key:'adjust1',   days:[13,14,15],          howto:null,     milestoneAfter:'day15' },
+    { key:'test2',     days:[16,17,18],          howto:null,     milestoneAfter:null, socialAfter:true },
+    { key:'build2',    days:[19,20,21],          howto:null,     milestoneAfter:null },
+    { key:'feedback2', days:[22,23,24],          howto:null,     milestoneAfter:'day24' },
+    { key:'outreach',  days:[25,26,27,28,29,30], howto:null,     milestoneAfter:null }
+  ];
+  var TOTAL_DAYS = 30;
+
+  var STATE_KEY = 'dzc_state_v1';
+  var LANG_KEY = 'dz_lang';
+  var REDO_FLAG_KEY = 'dz_redo_discovery_requested';
+  var GUIDE_SHOWN_KEY = 'dzc_guide_shown';
+  var MILESTONE_DISMISS_PREFIX = 'dzc_milestone_dismissed_';
+  var IDENTITY_KEY = 'dzc_identity_v1';
+  var IDENTITY_PROMPTED_KEY = 'dzc_identity_prompted';
+
+  // Google Apps Script Web App URL — appendRow order must be [timestamp, name, phone, email, source, page]
+  // to match the already-deployed script. We repurpose: email -> day/phase label, source -> event type, page -> proof text.
+  var PROGRESS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfX4R5jNmQ3l1vC-FVx9Ud5Xl1CEHs4sae06nTjjizS61eIzwAcYCp2rbzvswGqixu/exec";
+
+  var state = {
+    days: {},            // {1: {complete:true, note:'...', proof:'...'}, ...}
+    social: {},           // {instagram_step1:true, ...}
+    socialHandles: {},    // {instagram:'', facebook:'', youtube:''}
+    expandedDay: null
+  };
+  for(var i=1;i<=TOTAL_DAYS;i++){ state.days[i] = {complete:false, note:'', proof:''}; }
+
+  function loadState(){
+    var raw = safeGet(STATE_KEY);
+    if(!raw) return;
+    try{
+      var saved = JSON.parse(raw);
+      if(saved.days){
+        Object.keys(saved.days).forEach(function(k){
+          if(state.days[k]) state.days[k] = Object.assign(state.days[k], saved.days[k]);
+        });
+      }
+      if(saved.social) state.social = saved.social;
+      if(saved.socialHandles) state.socialHandles = saved.socialHandles;
+    }catch(e){}
+  }
+  function saveState(){ safeSet(STATE_KEY, JSON.stringify({days:state.days, social:state.social, socialHandles:state.socialHandles})); }
+
+  /* ================= Identity (name + phone, so proof rows are attributable) ================= */
+  function getIdentity(){
+    var raw = safeGet(IDENTITY_KEY);
+    if(!raw) return {name:'', phone:''};
+    try{ var v = JSON.parse(raw); return {name:v.name||'', phone:v.phone||''}; }catch(e){ return {name:'', phone:''}; }
+  }
+  function setIdentity(name, phone){
+    safeSet(IDENTITY_KEY, JSON.stringify({name:name||'', phone:phone||''}));
+  }
+  function hasIdentity(){ var id = getIdentity(); return !!(id.name && id.name.trim()); }
+
+  /* ================= Progress → Google Sheet ================= */
+  function submitProgressRow(eventType, dayLabel, proofText){
+    if(!PROGRESS_SCRIPT_URL || PROGRESS_SCRIPT_URL.indexOf('PASTE_YOUR') !== -1) return;
+    var id = getIdentity();
+    var payload = {
+      name: id.name || '(not provided)',
+      phone: id.phone || '',
+      email: dayLabel + ' [' + currentLang + ']',
+      source: eventType,
+      page: proofText || '(no proof added)'
+    };
+    try{
+      fetch(PROGRESS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) });
+    }catch(e){}
+  }
+
+  function isComplete(n){ return !!(state.days[n] && state.days[n].complete); }
+  function isUnlocked(n){ if(n === 1) return true; return isComplete(n-1); }
+  function completedCount(){
+    var c = 0;
+    for(var i=1;i<=TOTAL_DAYS;i++){ if(isComplete(i)) c++; }
+    return c;
+  }
+  function firstIncompleteDay(){
+    for(var i=1;i<=TOTAL_DAYS;i++){ if(!isComplete(i)) return i; }
+    return TOTAL_DAYS;
+  }
+
+  /* ================= i18n ================= */
+  var currentLang = safeGet(LANG_KEY) || 'en';
+  function dict(){ return window.I18N[currentLang] || window.I18N.en; }
+  function t(key){
+    var d = dict();
+    var val = d[key];
+    if(val === undefined) val = window.I18N.en[key] !== undefined ? window.I18N.en[key] : key;
+    return val;
+  }
+  function tf(key, params){
+    var s = t(key);
+    Object.keys(params||{}).forEach(function(p){ s = s.replace('{'+p+'}', params[p]); });
+    return s;
+  }
+
+  function applyStaticI18n(){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(key) el.textContent = t(key);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-placeholder');
+      if(key) el.setAttribute('placeholder', t(key));
+    });
+    document.documentElement.setAttribute('lang', currentLang);
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
+    });
+  }
+
+  function setLang(lang){
+    currentLang = lang;
+    safeSet(LANG_KEY, lang);
+    applyStaticI18n();
+    renderCourse();
+    updateIdentityBadge();
+    if(window.gtag) gtag('event','language_change',{'event_category':'engagement','event_label':lang});
+  }
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
+  });
+
+  /* ================= Rendering ================= */
+  var courseBody = document.getElementById('courseBody');
+
+  function phaseNumIndex(phaseKey){
+    return PHASES.findIndex(function(p){ return p.key === phaseKey; }) + 1;
+  }
+
+  function dayCardHtml(n){
+    var complete = isComplete(n);
+    var unlocked = isUnlocked(n);
+    var isToday = unlocked && !complete;
+    var classes = ['day-card'];
+    if(!unlocked) classes.push('locked');
+    if(complete) classes.push('completed');
+    if(isToday) classes.push('today');
+    var note = (state.days[n] && state.days[n].note) || '';
+
+    var tag = complete ? t('day.completed_tag') : (unlocked ? t('day.today_tag') : tf('day.locked_tag', {n:n-1}));
+
+    var bodyInner = '';
+    if(n === 3){
+      var noteVisible = false;
+      bodyInner += '<p class="day-task">' + escapeHtml(t('day.'+n+'.task')) + '</p>';
+      bodyInner += '<div class="decision-box">' +
+        '<div class="decision-q">' + escapeHtml(t('day3.decision.question')) + '</div>' +
+        '<div class="decision-actions">' +
+          '<button class="btn btn-primary btn-sm clickable" data-decision="yes" type="button">' + escapeHtml(t('day3.decision.yes')) + '</button>' +
+          '<button class="btn btn-ghost btn-sm clickable" data-decision="no" type="button">' + escapeHtml(t('day3.decision.no')) + '</button>' +
+        '</div>' +
+        '<div class="decision-no-note" id="decisionNoNote">' + escapeHtml(t('day3.decision.no_note')) + '</div>' +
+      '</div>';
+    } else {
+      var proof = (state.days[n] && state.days[n].proof) || '';
+      bodyInner += '<p class="day-task">' + escapeHtml(t('day.'+n+'.task')) + '</p>';
+      bodyInner += '<div class="day-note">' +
+        '<label>' + escapeHtml(t('day.note_label')) + '</label>' +
+        '<textarea data-note-day="' + n + '" placeholder="' + escapeHtml(t('day.note_placeholder')) + '">' + escapeHtml(note) + '</textarea>' +
+      '</div>';
+      bodyInner += '<div class="day-proof">' +
+        '<label>' + escapeHtml(t('day.proof_label')) + '</label>' +
+        '<input type="text" data-proof-day="' + n + '" placeholder="' + escapeHtml(t('day.proof_placeholder')) + '" value="' + escapeHtml(proof) + '">' +
+        '<p class="proof-hint">' + escapeHtml(t('day.proof_hint')) + '</p>' +
+      '</div>';
+      bodyInner += '<div class="day-footer">' +
+        '<div class="day-complete-check clickable" data-toggle-day="' + n + '">' +
+          '<div class="day-checkbox' + (complete ? ' checked' : '') + '"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+          '<span class="day-complete-label">' + escapeHtml(tf('day.complete_btn', {n:n})) + '</span>' +
+        '</div>' +
+        '<span class="proof-sent-indicator" data-proof-sent="' + n + '">' + (complete ? escapeHtml(t('day.proof_saved')) : '') + '</span>' +
+      '</div>';
+    }
+
+    return (
+      '<div class="' + classes.join(' ') + '" data-day-card="' + n + '">' +
+        '<div class="day-head" data-day-toggle="' + n + '">' +
+          '<div class="day-num">' + n + '</div>' +
+          '<div class="day-titlewrap">' +
+            '<div class="day-title">' + escapeHtml(t('day.'+n+'.title')) + '</div>' +
+            '<div class="day-tag">' + escapeHtml(tag) + '</div>' +
+          '</div>' +
+          '<svg class="day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+        '</div>' +
+        '<div class="day-body">' + bodyInner + '</div>' +
+      '</div>'
+    );
+  }
+
+  function howtoSurveyHtml(){
+    return (
+      '<div class="howto-card" id="surveyHowto">' +
+        '<div class="howto-toggle" data-howto-toggle="surveyHowto">' +
+          '<div class="label">' + escapeHtml(t('survey.howto_label')) + '</div>' +
+          '<svg class="day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+        '</div>' +
+        '<div class="howto-body">' +
+          '<p style="font-size:13px;color:var(--ink-soft);">' + escapeHtml(t('survey.howto_intro')) + '</p>' +
+          '<div class="howto-sub">' + escapeHtml(t('survey.forms_title')) + '</div>' +
+          '<ul class="howto-steps">' +
+            '<li><b>1.</b><span>' + escapeHtml(t('survey.forms_step1')) + '</span></li>' +
+            '<li><b>2.</b><span>' + escapeHtml(t('survey.forms_step2')) + '</span></li>' +
+            '<li><b>3.</b><span>' + escapeHtml(t('survey.forms_step3')) + '</span></li>' +
+            '<li><b>4.</b><span>' + escapeHtml(t('survey.forms_step4')) + '</span></li>' +
+          '</ul>' +
+          '<div class="howto-sub">' + escapeHtml(t('survey.paper_title')) + '</div>' +
+          '<ul class="howto-steps">' +
+            '<li><b>1.</b><span>' + escapeHtml(t('survey.paper_step1')) + '</span></li>' +
+            '<li><b>2.</b><span>' + escapeHtml(t('survey.paper_step2')) + '</span></li>' +
+            '<li><b>3.</b><span>' + escapeHtml(t('survey.paper_step3')) + '</span></li>' +
+          '</ul>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  var SOCIAL_STEPS = {
+    instagram: ['step1','step2','step3','step4'],
+    facebook: ['step1','step2','step3'],
+    youtube: ['step1','step2','step3']
+  };
+
+  function socialBlockHtml(){
+    var unlocked = isUnlocked(16);
+    if(!unlocked) return '';
+    var platforms = ['instagram','facebook','youtube'];
+    var cards = platforms.map(function(p){
+      var steps = SOCIAL_STEPS[p].map(function(stepKey, idx){
+        var id = p + '_' + stepKey;
+        var checked = !!state.social[id];
+        return '<div class="social-step">' +
+          '<div class="sc' + (checked ? ' checked' : '') + '" data-social-toggle="' + id + '"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+          '<span class="txt' + (checked ? ' done' : '') + '" data-social-toggle="' + id + '">' + escapeHtml(t('social.'+p+'.'+stepKey)) + '</span>' +
+        '</div>';
+      }).join('');
+      var handleVal = (state.socialHandles && state.socialHandles[p]) || '';
+      var handleBlock = '<div class="social-handle">' +
+        '<label>' + escapeHtml(t('social.'+p+'.handle_label')) + '</label>' +
+        '<div class="social-handle-row">' +
+          '<input type="text" data-social-handle="' + p + '" placeholder="' + escapeHtml(t('social.handle_placeholder')) + '" value="' + escapeHtml(handleVal) + '">' +
+          '<button class="btn btn-primary btn-sm clickable" data-social-handle-save="' + p + '" type="button">' + escapeHtml(t('social.handle_save')) + '</button>' +
+        '</div>' +
+        '<span class="proof-sent-indicator" data-social-handle-sent="' + p + '"></span>' +
+      '</div>';
+      return '<div class="social-card"><h3>' + escapeHtml(t('social.'+p+'.title')) + '</h3>' + steps + handleBlock + '</div>';
+    }).join('');
+
+    return (
+      '<div class="social-block" id="socialBlock">' +
+        '<div class="label">' + escapeHtml(t('social.title_label')) + '</div>' +
+        '<h2>' + escapeHtml(t('social.title')) + '</h2>' +
+        '<p class="subtitle">' + escapeHtml(t('social.subtitle')) + '</p>' +
+        '<div class="social-platforms">' + cards + '</div>' +
+      '</div>'
+    );
+  }
+
+  function milestoneHtml(key){
+    var dismissedKey = MILESTONE_DISMISS_PREFIX + key;
+    var dayTrigger = key === 'day15' ? 15 : 24;
+    var visible = isComplete(dayTrigger) && !safeGet(dismissedKey);
+    return (
+      '<div class="milestone-card' + (visible ? ' show' : '') + '" id="milestone_' + key + '" data-milestone="' + key + '">' +
+        '<div class="label" style="color:var(--sage-bright);">' + escapeHtml(t('milestone.cta')).split(' ')[0] + '</div>' +
+        '<h3>' + escapeHtml(t('milestone.'+key+'.title')) + '</h3>' +
+        '<p>' + escapeHtml(t('milestone.'+key+'.body')) + '</p>' +
+        '<div class="milestone-actions">' +
+          '<a href="https://calendly.com/thekahaaniya/30min" target="_blank" rel="noopener" class="btn btn-primary" data-milestone-book="' + key + '">' + escapeHtml(t('milestone.cta')) + '</a>' +
+          '<button class="btn btn-ghost clickable" data-milestone-dismiss="' + key + '" type="button">' + escapeHtml(t('milestone.dismiss')) + '</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderCourse(){
+    var html = '';
+    PHASES.forEach(function(phase, idx){
+      html += '<div class="phase-block" data-phase="' + phase.key + '">';
+      html += '<div class="phase-head"><div class="phase-num">' + t('phase.'+phase.key+'.range') + '</div><h2>' + escapeHtml(t('phase.'+phase.key+'.name')) + '</h2></div>';
+      html += '<p class="phase-mission">' + escapeHtml(t('phase.'+phase.key+'.mission')) + '</p>';
+      if(phase.howto === 'survey') html += howtoSurveyHtml();
+      phase.days.forEach(function(n){ html += dayCardHtml(n); });
+      if(phase.milestoneAfter) html += milestoneHtml(phase.milestoneAfter);
+      if(phase.socialAfter) html += socialBlockHtml();
+      html += '</div>';
+    });
+    courseBody.innerHTML = html;
+    bindCourseEvents();
+    updateProgressUI();
+    updateFinalBlock();
+  }
+
+  /* ================= Events (delegated after each render) ================= */
+  function bindCourseEvents(){
+    courseBody.querySelectorAll('[data-day-toggle]').forEach(function(el){
+      el.addEventListener('click', function(){
+        var n = parseInt(el.getAttribute('data-day-toggle'), 10);
+        if(!isUnlocked(n)) return;
+        var card = courseBody.querySelector('[data-day-card="'+n+'"]');
+        card.classList.toggle('expanded');
+      });
+    });
+    courseBody.querySelectorAll('[data-note-day]').forEach(function(ta){
+      var timer = null;
+      ta.addEventListener('input', function(){
+        var n = ta.getAttribute('data-note-day');
+        state.days[n].note = ta.value;
+        clearTimeout(timer);
+        timer = setTimeout(saveState, 400);
+      });
+    });
+    courseBody.querySelectorAll('[data-proof-day]').forEach(function(input){
+      var timer = null;
+      input.addEventListener('input', function(){
+        var n = input.getAttribute('data-proof-day');
+        state.days[n].proof = input.value;
+        clearTimeout(timer);
+        timer = setTimeout(saveState, 400);
+      });
+    });
+    courseBody.querySelectorAll('[data-social-handle]').forEach(function(input){
+      input.addEventListener('input', function(){
+        var p = input.getAttribute('data-social-handle');
+        state.socialHandles[p] = input.value;
+      });
+    });
+    courseBody.querySelectorAll('[data-social-handle-save]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var p = btn.getAttribute('data-social-handle-save');
+        var input = courseBody.querySelector('[data-social-handle="' + p + '"]');
+        var val = input ? input.value.trim() : '';
+        state.socialHandles[p] = val;
+        saveState();
+        promptIdentityIfMissing(function(){
+          submitProgressRow('social_' + p + '_handle', 'Social — ' + p, val);
+          var indicator = courseBody.querySelector('[data-social-handle-sent="' + p + '"]');
+          if(indicator) indicator.textContent = t('social.handle_saved');
+          if(window.gtag) gtag('event','social_handle_saved',{'event_category':'engagement','event_label':p});
+        });
+      });
+    });
+    courseBody.querySelectorAll('[data-toggle-day]').forEach(function(el){
+      el.addEventListener('click', function(){
+        var n = parseInt(el.getAttribute('data-toggle-day'), 10);
+        completeDay(n);
+      });
+    });
+    courseBody.querySelectorAll('[data-decision]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var decision = btn.getAttribute('data-decision');
+        if(decision === 'yes'){
+          safeSet(REDO_FLAG_KEY, '');
+          completeDay(3);
+        } else {
+          var note = courseBody.querySelector('#decisionNoNote');
+          if(note) note.classList.add('show');
+          safeSet(REDO_FLAG_KEY, '1');
+          if(window.gtag) gtag('event','redo_skill_requested',{'event_category':'funnel','event_label':'day3'});
+          setTimeout(function(){
+            window.location.href = 'https://thedayzero.in/quick-start/';
+          }, 1400);
+        }
+      });
+    });
+    courseBody.querySelectorAll('[data-howto-toggle]').forEach(function(el){
+      el.addEventListener('click', function(){
+        document.getElementById(el.getAttribute('data-howto-toggle')).classList.toggle('open');
+      });
+    });
+    courseBody.querySelectorAll('[data-social-toggle]').forEach(function(el){
+      el.addEventListener('click', function(){
+        var id = el.getAttribute('data-social-toggle');
+        state.social[id] = !state.social[id];
+        saveState();
+        renderCourse();
+      });
+    });
+    courseBody.querySelectorAll('[data-milestone-dismiss]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var key = btn.getAttribute('data-milestone-dismiss');
+        safeSet(MILESTONE_DISMISS_PREFIX + key, '1');
+        var card = document.getElementById('milestone_' + key);
+        if(card) card.classList.remove('show');
+      });
+    });
+    courseBody.querySelectorAll('[data-milestone-book]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(window.gtag) gtag('event','milestone_book_click',{'event_category':'conversion','event_label':btn.getAttribute('data-milestone-book')});
+      });
+    });
+  }
+
+  function dayLabelEn(n){
+    var phase = PHASES.find(function(p){ return p.days.indexOf(n) !== -1; });
+    var phaseName = (window.I18N.en['phase.' + (phase ? phase.key : '') + '.name']) || '';
+    var dayTitle = window.I18N.en['day.' + n + '.title'] || '';
+    return 'Day ' + n + ' of ' + TOTAL_DAYS + ' — ' + phaseName + ' — ' + dayTitle;
+  }
+
+  function completeDay(n){
+    var wasComplete = isComplete(n);
+    state.days[n].complete = !wasComplete;
+    saveState();
+    if(!wasComplete){
+      if(window.gtag) gtag('event','day_complete',{'event_category':'funnel','event_label':'day_'+n});
+      if(n === 15 || n === 24 || n === 30){ fireConfetti(); }
+      var proofText = (state.days[n] && state.days[n].proof) || '';
+      promptIdentityIfMissing(function(){
+        submitProgressRow('day_complete', dayLabelEn(n), proofText);
+      });
+    }
+    renderCourse();
+    // scroll to the newly unlocked day for continuity
+    if(!wasComplete && n < TOTAL_DAYS){
+      setTimeout(function(){
+        var nextCard = courseBody.querySelector('[data-day-card="'+(n+1)+'"]');
+        if(nextCard) nextCard.scrollIntoView({behavior: prefersReducedMotion ? 'auto' : 'smooth', block:'center'});
+      }, 200);
+    }
+  }
+
+  /* ================= Progress / hero ================= */
+  var circumference = 264;
+  function updateProgressUI(){
+    var done = completedCount();
+    document.getElementById('ringFill').setAttribute('stroke-dashoffset', String(circumference - (circumference * done / TOTAL_DAYS)));
+    document.getElementById('ringText').textContent = done + '/' + TOTAL_DAYS;
+    document.getElementById('heroBarFill').style.width = ((done/TOTAL_DAYS)*100) + '%';
+    var sub = document.getElementById('progressSub');
+    if(done === 0){ sub.textContent = tf('hero.resume', {n:1}); }
+    else if(done < TOTAL_DAYS){ sub.textContent = tf('hero.resume', {n: firstIncompleteDay()}); }
+    else { sub.textContent = t('final.eyebrow'); }
+  }
+
+  function updateFinalBlock(){
+    var block = document.getElementById('finalBlock');
+    var shouldShow = isComplete(30);
+    block.classList.toggle('show', shouldShow);
+    if(shouldShow) loadCalendlyWidget();
+  }
+
+  /* ================= Redo banner ================= */
+  function updateRedoBanner(){
+    var banner = document.getElementById('redoBanner');
+    var flag = safeGet(REDO_FLAG_KEY);
+    banner.classList.toggle('show', flag === '1');
+  }
+  document.getElementById('redoRestartBtn').addEventListener('click', function(){
+    [1,2,3].forEach(function(n){ state.days[n] = {complete:false, note:''}; });
+    saveState();
+    safeSet(REDO_FLAG_KEY, '');
+    updateRedoBanner();
+    renderCourse();
+    if(window.gtag) gtag('event','redo_restart_confirmed',{'event_category':'funnel'});
+    window.scrollTo({top:0, behavior: prefersReducedMotion ? 'auto' : 'smooth'});
+  });
+  document.getElementById('redoDismissBtn').addEventListener('click', function(){
+    document.getElementById('redoBanner').classList.remove('show');
+  });
+
+  /* ================= Confetti ================= */
+  function fireConfetti(){
+    if(prefersReducedMotion) return;
+    var canvas = document.getElementById('confettiCanvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    var colors = ['#c97a3f','#4f6d61','#7fa396','#141a13','#fffdf7'];
+    var pieces = [];
+    for(var i=0;i<70;i++){
+      pieces.push({
+        x: canvas.width/2 + (Math.random()-0.5)*140, y: canvas.height*0.25,
+        vx:(Math.random()-0.5)*7, vy:-Math.random()*6-3, size:Math.random()*6+4,
+        color:colors[i%colors.length], rot:Math.random()*360, vrot:(Math.random()-0.5)*10
+      });
+    }
+    var start = null;
+    function frame(ts){
+      if(!start) start = ts;
+      var elapsed = ts - start;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pieces.forEach(function(p){
+        p.vy += 0.16; p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0, 1-elapsed/2200);
+        ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6); ctx.restore();
+      });
+      if(elapsed < 2200){ requestAnimationFrame(frame); } else { ctx.clearRect(0,0,canvas.width,canvas.height); }
+    }
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize', function(){
+    var c = document.getElementById('confettiCanvas'); c.width = window.innerWidth; c.height = window.innerHeight;
+  });
+
+  /* ================= Calendly ================= */
+  var calendlyLoaded = false;
+  function loadCalendlyWidget(){
+    if(calendlyLoaded) return;
+    calendlyLoaded = true;
+    var script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
+  /* ================= Guide modal ================= */
+  var guideOverlay = document.getElementById('guideOverlay');
+  function openGuide(){ guideOverlay.classList.add('show'); if(window.gtag) gtag('event','guide_open',{'event_category':'engagement'}); }
+  function closeGuide(){ guideOverlay.classList.remove('show'); }
+  document.getElementById('guideOpenBtn').addEventListener('click', openGuide);
+  document.getElementById('guideCloseBtn').addEventListener('click', closeGuide);
+  document.getElementById('guideCtaBtn').addEventListener('click', closeGuide);
+  guideOverlay.addEventListener('click', function(e){ if(e.target === guideOverlay) closeGuide(); });
+
+  function maybeShowGuide(){
+    if(!safeGet(GUIDE_SHOWN_KEY)){
+      setTimeout(openGuide, 500);
+      safeSet(GUIDE_SHOWN_KEY, '1');
+    }
+  }
+
+  /* ================= Identity modal (name + phone) ================= */
+  var identityOverlay = document.getElementById('identityOverlay');
+  var identityFormEl = document.getElementById('identityFormEl');
+  var identityNameInput = document.getElementById('identityNameInput');
+  var identityPhoneInput = document.getElementById('identityPhoneInput');
+  var identityBadge = document.getElementById('identityBadge');
+  var pendingIdentityCallback = null;
+
+  function updateIdentityBadge(){
+    var id = getIdentity();
+    if(id.name && id.name.trim()){
+      identityBadge.textContent = id.name.trim();
+      identityBadge.classList.add('has-name');
+    } else {
+      identityBadge.textContent = t('identity.badge_add');
+      identityBadge.classList.remove('has-name');
+    }
+  }
+
+  function openIdentity(){
+    var id = getIdentity();
+    identityNameInput.value = id.name || '';
+    identityPhoneInput.value = id.phone || '';
+    identityOverlay.classList.add('show');
+  }
+  function closeIdentity(){
+    identityOverlay.classList.remove('show');
+    var cb = pendingIdentityCallback;
+    pendingIdentityCallback = null;
+    if(cb) cb();
+  }
+  // Force an identity check before a proof-bearing action, but never hard-block it —
+  // if the user has already been asked once (skipped or filled), just proceed.
+  function promptIdentityIfMissing(callback){
+    if(hasIdentity() || safeGet(IDENTITY_PROMPTED_KEY)){
+      callback();
+      return;
+    }
+    pendingIdentityCallback = callback;
+    openIdentity();
+  }
+
+  identityBadge.addEventListener('click', function(){ pendingIdentityCallback = null; openIdentity(); });
+  document.getElementById('identitySkipBtn').addEventListener('click', function(){
+    safeSet(IDENTITY_PROMPTED_KEY, '1');
+    closeIdentity();
+    maybeShowGuide();
+  });
+  identityOverlay.addEventListener('click', function(e){ if(e.target === identityOverlay){ safeSet(IDENTITY_PROMPTED_KEY, '1'); closeIdentity(); maybeShowGuide(); } });
+  identityFormEl.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = identityNameInput.value.trim();
+    var phone = identityPhoneInput.value.trim();
+    setIdentity(name, phone);
+    safeSet(IDENTITY_PROMPTED_KEY, '1');
+    updateIdentityBadge();
+    if(window.gtag) gtag('event','identity_captured',{'event_category':'engagement'});
+    closeIdentity();
+    maybeShowGuide();
+  });
+
+  /* ================= Sticky help CTA ================= */
+  var helpStickyBtn = document.getElementById('helpStickyBtn');
+  if(helpStickyBtn){
+    helpStickyBtn.addEventListener('click', function(){
+      if(window.gtag) gtag('event','sticky_help_click',{'event_category':'conversion'});
+    });
+  }
+
+  /* ================= Init ================= */
+  loadState();
+  applyStaticI18n();
+  updateIdentityBadge();
+  updateRedoBanner();
+  renderCourse();
+  if(!safeGet(IDENTITY_PROMPTED_KEY) && !hasIdentity()){
+    setTimeout(openIdentity, 600);
+  } else {
+    maybeShowGuide();
+  }
+})();
+
+</script>
 </body>
 </html>
