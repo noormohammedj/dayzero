@@ -24,24 +24,27 @@
 <meta property="og:site_name" content="thedayzero by TheKahaaniya">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Quicksand:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Tamil:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Tamil:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
   :root{
-    --bg-mint:#dfe8e1;
+    /* thedayzero brand system — same palette as the rest of the site (hero, find-business, run-business, founder, story) */
+    --font-heading: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    --bg-mint:#f4f1e7;
     --bg-cream:#f4f1e7;
-    --panel-mint:#e8eee6;
-    --ink:#141a13;
-    --ink-soft:#2b332a;
-    --sage:#4f6d61;
-    --sage-deep:#3a4f46;
-    --sage-bright:#7fa396;
-    --amber:#c97a3f;
+    --panel-mint:#ece7d6;
+    --ink:#111111;
+    --ink-soft:#3a3529;
+    --sage:#8a7f5f;
+    --sage-deep:#1c1a12;
+    --sage-bright:#caa47c;
+    --amber:#d9622b;
+    --amber-pale:#fbe6d8;
     --line:#d7d1bd;
     --white:#fffdf7;
     --radius-lg:20px;
     --radius-md:14px;
-    --shadow-card:0 10px 34px rgba(20,26,19,0.10);
+    --shadow-card:0 10px 34px rgba(17,17,17,0.10);
     --shadow-pop:0 20px 60px rgba(0,0,0,0.30);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -56,7 +59,7 @@
   html[lang="hi"] body, html[lang="hi"] .font-display{font-family:'Noto Sans Devanagari','Inter',sans-serif;}
   html[lang="ta"] body, html[lang="ta"] .font-display{font-family:'Noto Sans Tamil','Inter',sans-serif;}
   .label{
-    font-family:'Quicksand',sans-serif;
+    font-family:var(--font-heading);
     font-weight:700;
     letter-spacing:2.5px;
     text-transform:uppercase;
@@ -99,7 +102,7 @@
     padding:7px 14px;border-radius:16px;border:1.5px solid var(--line);
   }
   .brand-mini .bm-name{
-    font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:1.5px;font-size:12px;color:var(--ink);
+    font-family:var(--font-heading);font-weight:700;letter-spacing:0;font-size:13px;color:var(--ink);
     text-transform:lowercase;
   }
   .brand-mini .bm-by{
@@ -146,16 +149,27 @@
   /* ============ WELCOME ============ */
   .screen-welcome{
     background:
-      radial-gradient(ellipse 900px 500px at 80% -10%, rgba(127,163,150,0.35), transparent 60%),
-      linear-gradient(180deg, var(--bg-mint) 0%, #b9c7bd 45%, var(--ink) 100%);
-    color:var(--white);
+      radial-gradient(ellipse 900px 500px at 82% -8%, rgba(217,98,43,0.14), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -5% 100%, rgba(202,164,124,0.20), transparent 55%),
+      var(--bg-cream);
+    color:var(--ink);
     padding-top:130px;padding-bottom:90px;
     position:relative;overflow:hidden;
   }
   .hero-eyebrow{color:var(--ink);opacity:0.75;margin-bottom:14px;}
   .hero-title{font-size:clamp(40px,8vw,84px);line-height:0.98;color:var(--ink);}
-  .hero-title .accent{display:block;color:var(--white);-webkit-text-stroke:2px var(--ink);}
+  .hero-title .accent{display:block;color:var(--amber);}
   .hero-lead{margin-top:24px;max-width:560px;font-size:17px;color:var(--ink-soft);font-weight:500;}
+  .hero-typewriter{
+    margin-top:22px;max-width:600px;color:var(--ink-soft);
+    font-size:clamp(15.5px,3vw,17.5px);line-height:1.6;font-weight:500;min-height:1.6em;
+  }
+  @keyframes twCursorBlink{0%,100%{opacity:1;}50%{opacity:0;}}
+  #twCursor{
+    display:inline-block;width:2px;height:1em;background:var(--amber);
+    vertical-align:middle;margin-left:2px;animation:twCursorBlink 1s step-end infinite;
+  }
+  html.reduce-motion #twCursor{animation:none;}
   .hero-meta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;}
   .pill{
     background:rgba(20,26,19,0.08);border:1.5px solid rgba(20,26,19,0.25);color:var(--ink);
@@ -206,7 +220,7 @@
     font-family:inherit;font-size:15px;color:var(--ink);outline:none;
     transition:border-color .2s ease, box-shadow .2s ease;background:var(--bg-cream);
   }
-  .opt-field input:focus{border-color:var(--sage-bright);box-shadow:0 0 0 3px rgba(127,163,150,0.18);background:var(--white);}
+  .opt-field input:focus{border-color:var(--sage-bright);box-shadow:0 0 0 3px rgba(202,164,124,0.22);background:var(--white);}
   .discovery-min-hint{text-align:center;font-size:12px;color:#8a8f7e;margin-top:6px;}
   .discovery-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:12px;}
   .discovery-nav .btn{padding:13px 24px;font-size:14px;}
@@ -215,6 +229,26 @@
     position:fixed;bottom:22px;left:22px;z-index:900;
     width:48px;height:48px;border-radius:50%;background:var(--ink);color:var(--white);
     border:none;font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  /* ============ STICKY "Build this in 30 days" CTA ============ */
+  .sticky-30{
+    position:fixed;bottom:22px;left:22px;z-index:895;
+    display:flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--white);border-radius:9999px;
+    font-family:var(--font-heading);font-weight:700;font-size:13.5px;
+    padding:0.85em 1.2em;text-decoration:none;white-space:nowrap;
+    box-shadow:0 8px 22px rgba(17,17,17,0.28);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .4s ease, transform .4s ease, background-color .15s ease, box-shadow .15s ease;
+  }
+  .sticky-30.show{opacity:1;transform:translateY(0);}
+  .sticky-30:hover{background:var(--amber);box-shadow:0 10px 26px rgba(217,98,43,0.32);}
+  .sticky-30 svg{flex-shrink:0;}
+  .discovery-active .sticky-30{bottom:82px;}
+  @media(max-width:600px){
+    .sticky-30{font-size:12.5px;padding:0.75em 1em;bottom:16px;left:16px;}
+    .discovery-active .sticky-30{bottom:74px;}
   }
 
   /* ============ COMBINE (processing) ============ */
@@ -245,7 +279,7 @@
     max-width:640px;margin:26px auto 0 auto;background:var(--ink);color:var(--white);
     border-radius:var(--radius-lg);padding:28px 30px;text-align:center;
   }
-  .combo-label{font-family:'Quicksand',sans-serif;letter-spacing:2px;text-transform:uppercase;font-size:11px;color:var(--sage-bright);font-weight:700;}
+  .combo-label{font-family:var(--font-heading);letter-spacing:2px;text-transform:uppercase;font-size:11px;color:var(--sage-bright);font-weight:700;}
   .combo-chain{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:16px;}
   .combo-piece{
     background:rgba(255,253,247,0.08);border:1.5px solid rgba(255,253,247,0.25);
@@ -268,6 +302,76 @@
   .snap-copied-msg{display:block;text-align:center;font-size:12px;color:var(--sage-deep);font-weight:700;margin-top:10px;opacity:0;transition:opacity .25s ease;}
   .snap-copied-msg.show{opacity:1;}
   #confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:950;}
+
+
+  /* ============ AGENT (AI opportunity insight) — icon-forward, tile-based, minimal copy ============ */
+  .agent-working{max-width:520px;margin:34px auto 0 auto;text-align:center;}
+  .agent-orb{position:relative;width:100px;height:100px;margin:0 auto 26px auto;}
+  .agent-orb-ring{position:absolute;inset:0;border-radius:50%;border:3px solid var(--panel-mint);border-top-color:var(--amber);animation:agentSpin 1.1s linear infinite;}
+  .agent-orb-ring.r2{inset:14px;border-top-color:var(--sage-bright);animation-duration:1.6s;animation-direction:reverse;}
+  .agent-orb-core{position:absolute;inset:28px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;}
+  .agent-orb-core svg{width:22px;height:22px;color:var(--white);}
+  @keyframes agentSpin{to{transform:rotate(360deg);}}
+  html.reduce-motion .agent-orb-ring{animation:none;}
+
+  .agent-status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:480px;margin:0 auto;}
+  @media(max-width:640px){ .agent-status-grid{grid-template-columns:repeat(2,1fr);} }
+  .agent-status{
+    background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius-md);
+    padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;
+    opacity:0.45;transition:opacity .3s ease, border-color .3s ease, transform .3s ease;
+  }
+  .agent-status.active{opacity:1;border-color:var(--amber);transform:translateY(-2px);}
+  .agent-status.done{opacity:1;border-color:var(--sage-bright);}
+  .agent-status-icon{
+    width:32px;height:32px;border-radius:50%;background:var(--panel-mint);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);
+    transition:background .3s ease, color .3s ease;
+  }
+  .agent-status-icon svg{width:16px;height:16px;}
+  .agent-status.active .agent-status-icon{background:var(--amber);color:var(--white);animation:agentPulseIcon 1s ease-in-out infinite;}
+  .agent-status.done .agent-status-icon{background:var(--sage-bright);color:var(--white);}
+  .agent-status-label{font-family:var(--font-heading);font-weight:700;font-size:11px;color:var(--ink-soft);line-height:1.3;}
+  .agent-status.active .agent-status-label, .agent-status.done .agent-status-label{color:var(--ink);}
+  @keyframes agentPulseIcon{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+  html.reduce-motion .agent-status.active .agent-status-icon{animation:none;}
+
+  .agent-progress-bar{height:6px;background:var(--panel-mint);border-radius:6px;overflow:hidden;max-width:480px;margin:22px auto 0 auto;}
+  .agent-progress-fill{height:100%;background:var(--amber);border-radius:6px;width:0%;transition:width .5s ease;}
+
+  .agent-reveal{max-width:640px;margin:24px auto 0 auto;text-align:center;}
+  .agent-niche-chip{
+    display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);
+    font-family:var(--font-heading);font-weight:700;font-size:13px;padding:8px 16px;border-radius:9999px;
+    margin:0 auto 20px auto;
+  }
+  .agent-niche-chip svg{width:14px;height:14px;flex-shrink:0;}
+  .insight-eyebrow{text-align:center;margin-bottom:14px;}
+  .insight-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;}
+  @media(max-width:640px){ .insight-tiles{grid-template-columns:1fr;} }
+  .insight-tile{
+    background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius-md);
+    padding:20px 18px;box-shadow:var(--shadow-card);
+  }
+  .insight-tile-icon{width:38px;height:38px;border-radius:11px;background:var(--amber-pale);color:var(--amber);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .insight-tile-icon svg{width:19px;height:19px;}
+  .insight-tile-tag{font-family:var(--font-heading);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;font-size:10px;color:var(--amber);margin-bottom:6px;}
+  .insight-tile p{font-size:13px;color:var(--ink-soft);line-height:1.5;font-weight:600;}
+
+  .locked-tile{
+    position:relative;margin-top:16px;background:var(--ink);border-radius:var(--radius-lg);
+    padding:26px 24px;text-align:center;overflow:hidden;
+  }
+  .locked-icon{width:42px;height:42px;border-radius:50%;background:rgba(255,253,247,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px auto;}
+  .locked-icon svg{width:21px;height:21px;color:var(--amber);}
+  .locked-label{font-family:var(--font-heading);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:10.5px;color:var(--sage-bright);margin-bottom:10px;}
+  .locked-text{filter:blur(5px);user-select:none;color:rgba(255,253,247,0.85);font-size:14px;font-weight:600;max-width:420px;margin:0 auto;line-height:1.6;}
+  .locked-badge{
+    display:inline-flex;align-items:center;gap:6px;margin-top:16px;background:var(--amber);color:var(--white);
+    font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;letter-spacing:0.3px;
+  }
+  .agent-unlock-btn{width:100%;justify-content:center;margin-top:22px;font-size:15.5px;padding:17px 28px;}
+  .agent-microcopy{text-align:center;font-size:11.5px;color:var(--ink-soft);margin-top:12px;}
 
   /* ============ UPSELL ============ */
   .upsell-card{
@@ -304,7 +408,7 @@
   /* ============ FOOTER ============ */
   footer{background:var(--bg-cream);padding:40px 0;border-top:1px solid var(--line);}
   footer .fwrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1080px;margin:0 auto;padding:0 24px;}
-  footer .fname{font-family:'Quicksand',sans-serif;font-weight:700;letter-spacing:1.5px;font-size:13px;text-transform:lowercase;}
+  footer .fname{font-family:var(--font-heading);font-weight:700;letter-spacing:0;font-size:14px;text-transform:lowercase;}
   footer .fname .fby{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.3px;text-transform:none;color:var(--ink-soft);font-size:12px;}
   footer .fcontact{font-size:13px;color:var(--ink-soft);}
 
@@ -359,7 +463,7 @@
   .guide-step{display:flex;gap:12px;align-items:flex-start;}
   .guide-num{
     width:26px;height:26px;border-radius:50%;background:var(--panel-mint);color:var(--sage-deep);
-    font-family:'Quicksand',sans-serif;font-weight:700;font-size:13px;flex-shrink:0;
+    font-family:var(--font-heading);font-weight:700;font-size:13px;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;margin-top:1px;
   }
   .guide-step p{font-size:14px;color:var(--ink-soft);line-height:1.5;}
@@ -400,6 +504,7 @@
 <div class="progress-dots" id="progressDots">
   <div class="pdot" data-stage="discovery"><span class="dotcircle"></span><span data-i18n="stage.discovery"></span></div>
   <div class="pdot" data-stage="result"><span class="dotcircle"></span><span data-i18n="stage.result"></span></div>
+  <div class="pdot" data-stage="agent"><span class="dotcircle"></span><span data-i18n="stage.agent"></span></div>
   <div class="pdot" data-stage="upsell"><span class="dotcircle"></span><span data-i18n="stage.upsell"></span></div>
   <div class="pdot" data-stage="book"><span class="dotcircle"></span><span data-i18n="stage.book"></span></div>
 </div>
@@ -414,7 +519,7 @@
         <span data-i18n="welcome.title_line1"></span>
         <span class="accent" data-i18n="welcome.title_line2"></span>
       </h1>
-      <p class="hero-lead" data-i18n="welcome.lead"></p>
+      <p class="hero-typewriter" aria-live="polite"><span id="twContent"></span><span id="twCursor"></span></p>
       <div class="hero-meta">
         <div class="pill">&#9673; <span data-i18n="welcome.pill1"></span></div>
         <div class="pill">&#9673; <span data-i18n="welcome.pill2"></span></div>
@@ -503,15 +608,15 @@
 
       <div class="result-venn-wrap">
         <svg viewBox="0 0 340 340" width="100%" style="max-width:300px;">
-          <circle id="r-c-love" cx="140" cy="130" r="95" fill="#c97a3f" opacity="0.42"/>
-          <circle id="r-c-skill" cx="200" cy="130" r="95" fill="#4f6d61" opacity="0.42"/>
-          <circle id="r-c-need" cx="140" cy="190" r="95" fill="#7fa396" opacity="0.42"/>
-          <circle id="r-c-paid" cx="200" cy="190" r="95" fill="#141a13" opacity="0.30"/>
-          <text x="72" y="90" font-family="Quicksand,sans-serif" font-weight="700" font-size="12" fill="#3a4f46">LOVE</text>
-          <text x="230" y="90" font-family="Quicksand,sans-serif" font-weight="700" font-size="12" fill="#3a4f46">SKILL</text>
-          <text x="45" y="255" font-family="Quicksand,sans-serif" font-weight="700" font-size="12" fill="#3a4f46">NEED</text>
-          <text x="235" y="255" font-family="Quicksand,sans-serif" font-weight="700" font-size="12" fill="#3a4f46">PAID</text>
-          <text id="r-center-label" x="170" y="164" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="12" fill="#141a13">IKIGAI</text>
+          <circle id="r-c-love" cx="140" cy="130" r="95" fill="#d9622b" opacity="0.42"/>
+          <circle id="r-c-skill" cx="200" cy="130" r="95" fill="#8a7f5f" opacity="0.42"/>
+          <circle id="r-c-need" cx="140" cy="190" r="95" fill="#caa47c" opacity="0.42"/>
+          <circle id="r-c-paid" cx="200" cy="190" r="95" fill="#111111" opacity="0.30"/>
+          <text x="72" y="90" font-family="Poppins,sans-serif" font-weight="700" font-size="12" fill="#1c1a12">LOVE</text>
+          <text x="230" y="90" font-family="Poppins,sans-serif" font-weight="700" font-size="12" fill="#1c1a12">SKILL</text>
+          <text x="45" y="255" font-family="Poppins,sans-serif" font-weight="700" font-size="12" fill="#1c1a12">NEED</text>
+          <text x="235" y="255" font-family="Poppins,sans-serif" font-weight="700" font-size="12" fill="#1c1a12">PAID</text>
+          <text id="r-center-label" x="170" y="164" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="12" fill="#111111">IKIGAI</text>
         </svg>
       </div>
 
@@ -533,6 +638,41 @@
         <button class="btn btn-primary clickable" id="resultNextBtn" type="button" data-i18n="result.cta_next"></button>
       </div>
       <span class="snap-copied-msg" id="snapCopiedMsg" data-i18n="result.snapshot_copied"></span>
+    </div>
+  </section>
+
+  <!-- ================= AGENT (AI opportunity insight) ================= -->
+  <section class="screen" data-screen="agent">
+    <div class="step-shell">
+      <div class="label step-eyebrow" data-i18n="agent.label"></div>
+      <h2 class="step-title font-display" data-i18n="agent.title"></h2>
+      <p class="step-lead" id="agentLeadText"></p>
+
+      <div class="agent-working" id="agentWorking">
+        <div class="agent-orb">
+          <div class="agent-orb-ring"></div>
+          <div class="agent-orb-ring r2"></div>
+          <div class="agent-orb-core">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+        <div class="agent-status-grid" id="agentStatusList"></div>
+        <div class="agent-progress-bar"><div class="agent-progress-fill" id="agentProgressFill"></div></div>
+      </div>
+
+      <div class="agent-reveal" id="agentReveal" style="display:none;">
+        <div class="agent-niche-chip" id="agentNicheChip"></div>
+        <div class="label insight-eyebrow" id="agentPainLabel"></div>
+        <div class="insight-tiles" id="insightTiles"></div>
+        <div class="locked-tile">
+          <div class="locked-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+          <div class="locked-label" data-i18n="agent.locked_label"></div>
+          <p class="locked-text" id="lockedText"></p>
+          <div class="locked-badge" data-i18n="agent.locked_badge"></div>
+        </div>
+        <button class="btn btn-primary agent-unlock-btn clickable" id="agentUnlockBtn" type="button" data-i18n="agent.cta_unlock"></button>
+        <p class="agent-microcopy" data-i18n="agent.microcopy"></p>
+      </div>
     </div>
   </section>
 
@@ -590,6 +730,11 @@
 </footer>
 
 <button class="help-fab clickable" id="helpFab" type="button" aria-label="Help" style="display:none;">?</button>
+
+<a href="https://thedayzero.in/run-business-30-days.html" class="sticky-30" id="sticky30Btn">
+  <span data-i18n="sticky.build30"></span>
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+</a>
 
 <a href="https://wa.me/919629843122?text=Hi!%20am%20here%20to%20know%20more%20about%20dayzero" class="wa-sticky" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.83 14.09c-.25.7-1.23 1.28-2.02 1.45-.55.12-1.26.21-3.66-.78-3.07-1.27-5.05-4.39-5.2-4.59-.15-.2-1.25-1.66-1.25-3.17s.79-2.24 1.07-2.55c.28-.3.61-.38.82-.38.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.85 2.08.93 2.23.08.15.13.32.03.52-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.36 1.46.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.75.83 2.05.98.3.15.5.22.58.35.07.13.07.75-.18 1.45z"/></svg>
@@ -653,6 +798,7 @@ window.I18N = {
   en: {
     "stage.discovery": "Discovery",
     "stage.result": "Result",
+    "stage.agent": "Insight",
     "stage.upsell": "Plan",
     "stage.book": "Book",
 
@@ -660,6 +806,7 @@ window.I18N = {
     "welcome.title_line1": "DISCOVER YOUR",
     "welcome.title_line2": "IKIGAI",
     "welcome.lead": "Most people don't fail at business because they can't execute. They fail because they never got clear on what to build. Answer a few honest questions — we'll show you exactly where your passion, your skill, the world's need, and getting paid all meet.",
+    "welcome.typewriter": "Thanks for taking interest in finding out your purpose in life. This ₹99 investment is the biggest one you'll ever make — it's going to change your life drastically, one careful step at a time. You'll uncover what business naturally comes to you, what the top 1% miss in your niche, and what people really want — the kind of insight that could convert into a real business.",
     "welcome.pill1": "12 Guided Questions",
     "welcome.pill2": "Live Venn Reveal",
     "welcome.pill3": "~15 Minutes",
@@ -732,6 +879,116 @@ window.I18N = {
     "book.note": "Takes less than a minute to book. Pick any slot that works for you.",
 
     "footer.contact": "WhatsApp +91 96298 43122 · @the.kahaaniya",
+    "sticky.build30": "Build This In 30 Days",
+    "agent.label": "Your AI Business Agent",
+    "agent.title": "Working On Your Blueprint...",
+    "agent.lead": "Here's what we found about top {niche} businesses in India — and where you could beat them.",
+    "agent.niche_fallback": "your idea",
+    "agent.pain_label": "What top {niche} businesses are missing",
+    "agent.tile_tag": "Gap Found",
+    "agent.locked_label": "Your Build Plan",
+    "agent.locked_badge": "Unlocks With The ₹499 Course",
+    "agent.cta_unlock": "Unlock My Blueprint — ₹499",
+    "agent.microcopy": "Built around your exact Ikigai answers · Step-by-step, Day 1 to Day 30",
+    insights: {
+      "baking": {
+            "pains": [
+                  "No signature product people specifically travel for.",
+                  "Orders taken over WhatsApp with zero tracking or repeat-order system."
+            ],
+            "opportunity": "A 3-item signature menu with a simple pre-order system — turns one-time buyers into weekly regulars."
+      },
+      "fashion": {
+            "pains": [
+                  "Stock shown only in random Instagram stories — hard to browse or trust sizing.",
+                  "No easy way for a happy customer to reorder their exact fit again."
+            ],
+            "opportunity": "A simple lookbook plus a saved-measurements system so repeat buyers order in one message."
+      },
+      "beauty": {
+            "pains": [
+                  "Bookings managed in DMs or a notebook — double-bookings and no-shows are common.",
+                  "No visible before/after proof, so new clients can't trust the work sight unseen."
+            ],
+            "opportunity": "A booking link plus a before/after portfolio that fills your calendar without chasing DMs."
+      },
+      "skincare": {
+            "pains": [
+                  "‘Natural’ claims with no real ingredient story — hard to stand out from mass brands.",
+                  "No reminder system, so customers simply forget to reorder once the bar runs out."
+            ],
+            "opportunity": "An ingredient-story label plus a simple reorder-reminder that turns buyers into repeat customers."
+      },
+      "tuition": {
+            "pains": [
+                  "No visible proof of results — parents can't see the score jump, only promises.",
+                  "Every batch taught the same way, with no 1-on-1 tracking of where each student is stuck."
+            ],
+            "opportunity": "A simple progress-tracking and result-proof system that makes you the tutor parents actually recommend."
+      },
+      "fitness": {
+            "pains": [
+                  "Sessions feel random with no structured plan clients can see themselves progress through.",
+                  "Motivation drops after week two, with nothing keeping people accountable in between."
+            ],
+            "opportunity": "A simple check-in and visible-progress system that keeps clients accountable — and renewing."
+      },
+      "photo": {
+            "pains": [
+                  "Portfolio scattered across Instagram highlights — hard for a client to judge fit fast.",
+                  "Pricing negotiated fresh with every client, so every conversation starts from zero."
+            ],
+            "opportunity": "A tight best-9 portfolio with 3 fixed packages that turn booking into a 2-minute decision."
+      },
+      "handmade": {
+            "pains": [
+                  "Every piece looks like a one-off — no consistent style people recognise as ‘yours’.",
+                  "No story behind the product, so it competes on price against mass-made items."
+            ],
+            "opportunity": "A signature-style collection with a short maker-story that lets you price above ‘just another seller’."
+      },
+      "community": {
+            "pains": [
+                  "Events organised one WhatsApp broadcast at a time, with no sense of an ongoing group.",
+                  "No easy way for members to invite people like themselves — growth is all word of mouth."
+            ],
+            "opportunity": "A simple recurring-meetup rhythm with an invite system that turns one-off events into a real community."
+      },
+      "digital": {
+            "pains": [
+                  "Work scattered across random posts — no single place a client can see real proof of skill.",
+                  "Pricing negotiated fresh every project, so income stays unpredictable."
+            ],
+            "opportunity": "A tight portfolio with fixed-package pricing that gets you hired without re-pitching every time."
+      },
+      "localservice": {
+            "pains": [
+                  "Found only through word of mouth — invisible to anyone searching nearby right now.",
+                  "No follow-up after the job, so one-time customers rarely come back or refer others."
+            ],
+            "opportunity": "A simple ‘findable nearby’ listing with a follow-up system that turns one job into repeat customers."
+      },
+      "consulting": {
+            "pains": [
+                  "No clear specialty — sounds like ‘general advice’, which makes it hard to charge premium rates.",
+                  "Value delivered only in conversation, with nothing tangible the client can point to afterward."
+            ],
+            "opportunity": "A named signature-method with one tangible deliverable that lets you charge like a specialist, not a generalist."
+      },
+      "general": {
+            "pains": [
+                  "Most people building something new just copy what everyone else is already doing.",
+                  "Without a clear system, early momentum fades after the first few customers."
+            ],
+            "opportunity": "A simple, repeatable system built around exactly what you told us — built with you, step by step."
+      }
+},
+    agentSteps: [
+      "Scanning top {niche} businesses in India...",
+      "Finding what their customers keep complaining about...",
+      "Spotting the gap you're best placed to own...",
+      "Building your personal blueprint..."
+],
 
     "lead.eyebrow": "Before You Go",
     "lead.title": "Want the Day Zero drops?",
@@ -763,6 +1020,7 @@ window.I18N = {
   hi: {
     "stage.discovery": "डिस्कवरी",
     "stage.result": "रिज़ल्ट",
+    "stage.agent": "इनसाइट",
     "stage.upsell": "प्लान",
     "stage.book": "बुक",
 
@@ -770,6 +1028,7 @@ window.I18N = {
     "welcome.title_line1": "अपना इकिगाई",
     "welcome.title_line2": "खोजें",
     "welcome.lead": "ज्यादातर लोग बिज़नेस में इसलिए नहीं हारते क्योंकि वे काम नहीं कर सकते — वे इसलिए हारते हैं क्योंकि उन्हें कभी साफ़ नहीं पता चलता कि क्या बनाना है। कुछ ईमानदार सवालों के जवाब दें — हम आपको दिखाएंगे कि आपका जुनून, हुनर, दुनिया की ज़रूरत, और पैसा — ये चारों कहाँ मिलते हैं।",
+    "welcome.typewriter": "अपने जीवन के मकसद को खोजने में दिलचस्पी दिखाने के लिए धन्यवाद। यह ₹99 का निवेश आपका अब तक का सबसे बड़ा निवेश है — जो एक-एक कदम सोच-समझकर उठाकर आपकी ज़िंदगी को पूरी तरह बदल देगा। आप जानेंगे कि कौन सा बिज़नेस आपके लिए स्वाभाविक है, आपकी निच में टॉप 1% क्या मिस कर रहे हैं, और लोग असल में क्या चाहते हैं — जो एक असली बिज़नेस में बदल सकता है।",
     "welcome.pill1": "12 गाइडेड सवाल",
     "welcome.pill2": "लाइव वेन डायग्राम",
     "welcome.pill3": "~15 मिनट",
@@ -842,6 +1101,116 @@ window.I18N = {
     "book.note": "बुक करने में एक मिनट से भी कम समय लगता है। जो भी स्लॉट आपको सही लगे, चुन लें।",
 
     "footer.contact": "व्हाट्सएप +91 96298 43122 · @the.kahaaniya",
+    "sticky.build30": "इसे 30 दिनों में बनाएं",
+    "agent.label": "आपका AI बिज़नेस एजेंट",
+    "agent.title": "आपका ब्लूप्रिंट तैयार हो रहा है...",
+    "agent.lead": "भारत के टॉप {niche} बिज़नेस के बारे में हमें यह मिला — और आप उन्हें कहां पीछे छोड़ सकते हैं।",
+    "agent.niche_fallback": "आपके आइडिया",
+    "agent.pain_label": "टॉप {niche} बिज़नेस में क्या कमी है",
+    "agent.tile_tag": "कमी मिली",
+    "agent.locked_label": "आपका बिल्ड प्लान",
+    "agent.locked_badge": "₹499 कोर्स के साथ अनलॉक होगा",
+    "agent.cta_unlock": "मेरा ब्लूप्रिंट अनलॉक करें — ₹499",
+    "agent.microcopy": "आपके इकिगाई जवाबों पर आधारित · डे 1 से डे 30 तक, स्टेप-बाय-स्टेप",
+    insights: {
+      "baking": {
+            "pains": [
+                  "ऐसा कोई खास प्रोडक्ट नहीं जिसके लिए लोग खासतौर पर आएं।",
+                  "ऑर्डर सिर्फ़ WhatsApp पर लिए जाते हैं — कोई ट्रैकिंग या रिपीट-ऑर्डर सिस्टम नहीं।"
+            ],
+            "opportunity": "3 आइटम का सिग्नेचर मेन्यू + आसान प्री-ऑर्डर सिस्टम — एक बार के ग्राहकों को हफ़्ते के रेगुलर कस्टमर बनाता है।"
+      },
+      "fashion": {
+            "pains": [
+                  "स्टॉक सिर्फ़ रैंडम इंस्टाग्राम स्टोरीज़ में दिखता है — ब्राउज़ करना और साइज़ पर भरोसा करना मुश्किल।",
+                  "खुश कस्टमर के लिए अपनी सही फ़िट दोबारा ऑर्डर करने का कोई आसान तरीका नहीं।"
+            ],
+            "opportunity": "एक आसान लुकबुक + सेव्ड मेज़रमेंट सिस्टम, ताकि रिपीट कस्टमर एक मेसेज में ऑर्डर कर सकें।"
+      },
+      "beauty": {
+            "pains": [
+                  "बुकिंग DMs या नोटबुक में मैनेज होती है — डबल-बुकिंग और नो-शो आम बात है।",
+                  "पहले-बाद का कोई प्रूफ़ नहीं दिखता, इसलिए नए क्लाइंट बिना देखे भरोसा नहीं कर पाते।"
+            ],
+            "opportunity": "एक बुकिंग लिंक + पहले-बाद का पोर्टफ़ोलियो, जो DMs पीछे भागे बिना कैलेंडर भर देता है।"
+      },
+      "skincare": {
+            "pains": [
+                  "'नेचरल' कहने भर से काम नहीं चलता — असली इंग्रीडिएंट स्टोरी नहीं, तो बड़े ब्रांड्स से अलग नहीं दिखते।",
+                  "कोई रिमाइंडर सिस्टम नहीं, तो साबुन खत्म होने पर कस्टमर दोबारा ऑर्डर करना ही भूल जाते हैं।"
+            ],
+            "opportunity": "एक इंग्रीडिएंट-स्टोरी लेबल + आसान रीऑर्डर-रिमाइंडर, जो एक बार के ग्राहक को रिपीट कस्टमर बनाता है।"
+      },
+      "tuition": {
+            "pains": [
+                  "रिज़ल्ट का कोई साफ़ प्रूफ़ नहीं — पेरेंट्स को सिर्फ़ वादे दिखते हैं, स्कोर में सुधार नहीं।",
+                  "हर बैच एक जैसे पढ़ाया जाता है — किस स्टूडेंट को कहां दिक्कत है, इसकी 1-on-1 ट्रैकिंग नहीं होती।"
+            ],
+            "opportunity": "एक आसान प्रोग्रेस-ट्रैकिंग और रिज़ल्ट-प्रूफ़ सिस्टम, जो आपको वह टीचर बनाता है जिसे पेरेंट्स असल में सुझाते हैं।"
+      },
+      "fitness": {
+            "pains": [
+                  "सेशन रैंडम लगते हैं — क्लाइंट को अपनी प्रोग्रेस का कोई साफ़ रास्ता नहीं दिखता।",
+                  "दूसरे हफ़्ते के बाद मोटिवेशन गिर जाता है, बीच में कोई अकाउंटेबिलिटी नहीं होती।"
+            ],
+            "opportunity": "एक आसान चेक-इन और दिखने वाली प्रोग्रेस का सिस्टम, जो क्लाइंट को जोड़े रखता है — और रिन्यू भी कराता है।"
+      },
+      "photo": {
+            "pains": [
+                  "पोर्ट्फ़ोलियो सिर्फ़ इंस्टाग्राम हाइलाइट्स में बिखरा है — क्लाइंट को फ़िट समझने में वक्त लगता है।",
+                  "हर क्लाइंट के साथ प्राइसिंग नई सिरे से तय होती है — हर बातचीत ज़ीरो से शुरू होती है।"
+            ],
+            "opportunity": "एक टाइट बेस्ट-9 पोर्ट्फ़ोलियो + 3 फ़िक्स पैकेज, जो बुकिंग को 2 मिनट का फ़ैसला बना देता है।"
+      },
+      "handmade": {
+            "pains": [
+                  "हर पीस अलग-थलग लगता है — कोई ऐसी पहचान नहीं जिसे लोग 'आपकी स्टाइल' कहें।",
+                  "प्रोडक्ट के पीछे कोई कहानी नहीं, इसलिए सिर्फ़ कीमत पर मास-मेड आइटम्स से मुक़ाबला होता है।"
+            ],
+            "opportunity": "एक सिग्नेचर-स्टाइल कलेक्शन + छोटी मेकर-स्टोरी, जो आपको 'बस एक और हैंडमेड सेलर' से ऊपर प्राइस करने देती है।"
+      },
+      "community": {
+            "pains": [
+                  "इवेंट्स एक-एक WhatsApp ब्रोडकास्ट के सहारे होते हैं — किसी लगातार चलते ग्रुप का एहसास नहीं।",
+                  "मेंबर्स के लिए अपने जैसे लोगों को इनवाइट करने का आसान तरीका नहीं — ग्रोथ सिर्फ़ वर्ड-ऑफ़-माउथ पर टिकी है।"
+            ],
+            "opportunity": "एक रेगुलर मीटअप रिदम + इनवाइट सिस्टम, जो एक बार के इवेंट्स को असली कम्यूनिटी में बदल देता है।"
+      },
+      "digital": {
+            "pains": [
+                  "काम रैंडम पोस्ट्स में बिखरा है — क्लाइंट को असली स्किल का प्रूफ़ एक जगह नहीं दिखता।",
+                  "हर प्रोजेक्ट में प्राइसिंग नई सिरे से तय होती है, इसलिए इनकम कभी तय नहीं रहती।"
+            ],
+            "opportunity": "एक टाइट पोर्ट्फ़ोलियो + फ़िक्स-पैकेज प्राइसिंग सिस्टम, जो हर बार दोबारा पिच किए बिना आपको हायर करवाता है।"
+      },
+      "localservice": {
+            "pains": [
+                  "सिर्फ़ वर्ड-ऑफ़-माउथ से पहचान मिलती है — पास में सर्च करने वाले किसी को भी नहीं दिखते।",
+                  "काम के बाद कोई फ़ॉलो-अप नहीं होता, इसलिए एक बार का कस्टमर दोबारा या रेफ़र करके शायद ही आता है।"
+            ],
+            "opportunity": "एक आसान 'पास में मिलने वाला' लिस्टिंग + फ़ॉलो-अप सिस्टम, जो एक काम को रिपीट कस्टमर में बदल देता है।"
+      },
+      "consulting": {
+            "pains": [
+                  "कोई साफ़ स्पेशियलिटी नहीं — 'जनरल एडवाइज़' जैसा लगता है, इसलिए प्रीमियम रेट लेना मुश्किल होता है।",
+                  "वैल्यू सिर्फ़ बातचीत में मिलती है — बाद में क्लाइंट के पास दिखाने लायक कुछ ठोस नहीं बचता।"
+            ],
+            "opportunity": "एक नाम वाला सिग्नेचर-मेथड + एक ठोस डिलीवरेबल, जो आपको जनरलिस्ट नहीं, स्पेशलिस्ट की तरह चार्ज करने देता है।"
+      },
+      "general": {
+            "pains": [
+                  "ज़्यादातर लोग कुछ नया बनाते वक्त बस वही कॉपी करते हैं जो पहले से सब कर रहे हैं।",
+                  "बिना किसी साफ़ सिस्टम के, शुरुआती मोमेंटम पहले कुछ कस्टमर्स के बाद ही ठंडा पड़ जाता है।"
+            ],
+            "opportunity": "आपने जो बताया, ठीक उसी पर बना एक आसान, दोहराने लायक सिस्टम — कदम-दर-कदम आपके साथ बनाया गया।"
+      }
+},
+    agentSteps: [
+      "भारत के टॉप {niche} बिज़नेस को स्कैन कर रहे हैं...",
+      "उनके ग्राहकों की सबसे बड़ी शिकायतें ढूंढ रहे हैं...",
+      "वह गैप ढूंढ रहे हैं जिस पर आप कब्ज़ा कर सकते हैं...",
+      "आपका पर्सनल ब्लूप्रिंट बना रहे हैं..."
+],
 
     "lead.eyebrow": "जाने से पहले",
     "lead.title": "डे जीरो के अपडेट चाहिए?",
@@ -873,6 +1242,7 @@ window.I18N = {
   ta: {
     "stage.discovery": "கண்டறிதல்",
     "stage.result": "முடிவு",
+    "stage.agent": "நுண்ணறிவு",
     "stage.upsell": "திட்டம்",
     "stage.book": "பதிவு",
 
@@ -880,6 +1250,7 @@ window.I18N = {
     "welcome.title_line1": "உங்கள் இகிகாயை",
     "welcome.title_line2": "கண்டறியுங்கள்",
     "welcome.lead": "பெரும்பாலான மக்கள் தொழிலில் தோற்பது செயல்படுத்த முடியாததால் அல்ல — என்ன உருவாக்க வேண்டும் என்பதில் தெளிவு இல்லாததால்தான். சில நேர்மையான கேள்விகளுக்கு பதிலளியுங்கள் — உங்கள் ஆர்வம், திறமை, உலகின் தேவை, மற்றும் சம்பாதிப்பது ஆகிய நான்கும் எங்கே சந்திக்கின்றன என்பதை நாங்கள் காட்டுவோம்.",
+    "welcome.typewriter": "உங்கள் வாழ்க்கையின் நோக்கத்தை கண்டுபிடிக்க ஆர்வம் காட்டியதற்கு நன்றி. இந்த ₹99 முதலீடு நீங்கள் இதுவரை செய்யும் மிகப்பெரிய முதலீடு — ஒவ்வொரு அடியையும் கவனமாக எடுத்து உங்கள் வாழ்க்கையை முழுமையாக மாற்றப் போகிறது. உங்களுக்கு இயல்பாக பொருந்தும் தொழில் எது, உங்கள் துறையில் டாப் 1% தவறவிடுவது என்ன, மக்கள் உண்மையில் என்ன விரும்புகிறார்கள் என்பதை நீங்கள் கண்டறிவீர்கள் — இது ஒரு உண்மையான தொழிலாக மாறக்கூடியது.",
     "welcome.pill1": "12 வழிகாட்டு கேள்விகள்",
     "welcome.pill2": "நேரடி வென் விளக்கப்படம்",
     "welcome.pill3": "~15 நிமிடங்கள்",
@@ -952,6 +1323,116 @@ window.I18N = {
     "book.note": "பதிவு செய்ய ஒரு நிமிடத்திற்கும் குறைவான நேரமே ஆகும். உங்களுக்குப் பொருந்தும் நேரத்தைத் தேர்ந்தெடுங்கள்.",
 
     "footer.contact": "வாட்ஸ்அப் +91 96298 43122 · @the.kahaaniya",
+    "sticky.build30": "இதை 30 நாட்களில் உருவாக்குங்கள்",
+    "agent.label": "உங்கள் AI பிசினஸ் ஏஜெண்ட்",
+    "agent.title": "உங்கள் திட்டம் தயாராகிறது...",
+    "agent.lead": "இந்தியாவின் சிறந்த {niche} தொழில்களைப் பற்றி நாங்கள் கண்டறிந்தது — நீங்கள் அவர்களை எப்படி முந்திக்கொள்ளலாம் என்பதும்.",
+    "agent.niche_fallback": "உங்கள் யோசனை",
+    "agent.pain_label": "சிறந்த {niche} தொழில்களில் இல்லாதது என்ன",
+    "agent.tile_tag": "இடைவெளி கண்டறியப்பட்டது",
+    "agent.locked_label": "உங்கள் கட்டமைப்பு திட்டம்",
+    "agent.locked_badge": "₹499 கோர்ஸுடன் திறக்கும்",
+    "agent.cta_unlock": "என் திட்டத்தைத் திற — ₹499",
+    "agent.microcopy": "உங்கள் இகிகாய் பதில்களின் அடிப்படையில் · டே 1 முதல் டே 30 வரை, படிப்படியாக",
+    insights: {
+      "baking": {
+            "pains": [
+                  "மக்கள் தனியாக வந்து வாங்கும் ஒரு சிக்னேச்சர் பொருள் இல்லை.",
+                  "ஆர்டர்கள் WhatsApp-ல் மட்டுமே எடுக்கப்படுகின்றன — எந்த டிராக்கிங்கும் ரீபீட்-ஆர்டர் சிஸ்டமும் இல்லை."
+            ],
+            "opportunity": "3 பொருட்கள் கொண்ட சிக்னேச்சர் மெனு + எளிய முன்-ஆர்டர் சிஸ்டம் — ஒருமுறை வாங்குபவர்களை வாராந்திர வழக்கமான வாடிக்கையாளர்களாக மாற்றும்."
+      },
+      "fashion": {
+            "pains": [
+                  "ஸ்டாக் ரேண்டம் இன்ஸ்டாகிராம் ஸ்டோரிகளில் மட்டும் காட்டப்படுகிறது — உலாவுவதும் சைஸை நம்புவதும் கடினம்.",
+                  "மகிழ்ச்சியான வாடிக்கையாளர் தன் சரியான அளவை மீண்டும் ஆர்டர் செய்ய எளிதான வழி இல்லை."
+            ],
+            "opportunity": "எளிய லுக்புக் + சேமிக்கப்பட்ட அளவீடு சிஸ்டம் — மீண்டும் வாங்குபவர்கள் ஒரே மெசேஜில் ஆர்டர் செய்யலாம்."
+      },
+      "beauty": {
+            "pains": [
+                  "முன்பதிவுகள் DM-கள் அல்லது நோட்புக்கில் நிர்வகிக்கப்படுகின்றன — இரட்டை முன்பதிவு, வராதவர்கள் அதிகம்.",
+                  "முன்பு-பின்பு ஆதாரம் தெரியவில்லை, அதனால் புதிய வாடிக்கையாளர்கள் பார்க்காமல் நம்ப முடியவில்லை."
+            ],
+            "opportunity": "ஒரு முன்பதிவு லிங்க் + முன்பு-பின்பு போர்ட்ஃபோலியோ — DM-களைத் துரத்தாமல் உங்கள் கேலெண்டரை நிரப்பும்."
+      },
+      "skincare": {
+            "pains": [
+                  "'இயற்கை' என்று சொன்னாலும் உண்மையான மூலப்பொருள் கதை இல்லை — பெரிய பிராண்டுகளிடமிருந்து வேறுபடுவது கடினம்.",
+                  "நினைவூட்டல் சிஸ்டம் இல்லை, சோப் தீர்ந்தவுடன் வாடிக்கையாளர் மீண்டும் ஆர்டர் செய்ய மறந்துவிடுகிறார்."
+            ],
+            "opportunity": "மூலப்பொருள்-கதை லேபிள் + எளிய மீண்டும்-ஆர்டர் நினைவூட்டல் — வாங்குபவரை மீண்டும் வரும் வாடிக்கையாளராக மாற்றும்."
+      },
+      "tuition": {
+            "pains": [
+                  "முடிவுகளுக்கான தெளிவான ஆதாரம் இல்லை — பெற்றோருக்கு வாக்குறுதிகள் மட்டுமே தெரியும், மதிப்பெண் முன்னேற்றம் தெரியாது.",
+                  "ஒவ்வொரு பேட்சும் ஒரே மாதிரி கற்பிக்கப்படுகிறது — எந்த மாணவர் எங்கே சிக்கியிருக்கிறார் என்பதற்கு 1-on-1 டிராக்கிங் இல்லை."
+            ],
+            "opportunity": "எளிய முன்னேற்ற-கண்காணிப்பு + முடிவு-ஆதார சிஸ்டம் — பெற்றோர் உண்மையிலேயே பரிந்துரைக்கும் ஆசிரியராக உங்களை மாற்றும்."
+      },
+      "fitness": {
+            "pains": [
+                  "அமர்வுகள் தெளிவான திட்டமின்றி ரேண்டமாக உணரப்படுகின்றன — வாடிக்கையாளருக்குத் தன் முன்னேற்றம் தெரியவில்லை.",
+                  "இரண்டாம் வாரத்திற்குப் பிறகு உற்சாகம் குறைகிறது — இடையில் எந்த பொறுப்புணர்வும் இல்லை."
+            ],
+            "opportunity": "எளிய செக்-இன் + தெரியும் முன்னேற்ற சிஸ்டம் — வாடிக்கையாளரை பொறுப்புடன் வைத்து புதுப்பிக்க வைக்கும்."
+      },
+      "photo": {
+            "pains": [
+                  "போர்ட்ஃபோலியோ இன்ஸ்டாகிராம் ஹைலைட்டுகளில் சிதறிக் கிடக்கிறது — வாடிக்கையாளர் விரைவாக பொருத்தத்தை மதிப்பிடுவது கடினம்.",
+                  "ஒவ்வொரு வாடிக்கையாளருக்கும் புதிதாக விலை பேசப்படுகிறது — ஒவ்வொரு உரையாடலும் பூஜ்ஜியத்தில் தொடங்குகிறது."
+            ],
+            "opportunity": "இறுக்கமான பெஸ்ட்-9 போர்ட்ஃபோலியோ + 3 நிலையான பேக்கேஜ்கள் — முன்பதிவை 2-நிமிட முடிவாக மாற்றும்."
+      },
+      "handmade": {
+            "pains": [
+                  "ஒவ்வொரு பொருளும் தனித்தனியாகத் தெரிகிறது — மக்கள் 'உங்கள் ஸ்டைல்' என அடையாளம் காணும் நிலைத்தன்மை இல்லை.",
+                  "பொருளுக்குப் பின்னால் ஒரு கதை இல்லை, அதனால் விலையில் மட்டுமே பெருமளவு தயாரிப்புகளுடன் போட்டி."
+            ],
+            "opportunity": "சிக்னேச்சர்-ஸ்டைல் தொகுப்பு + சிறு மேக்கர்-கதை — 'இன்னொரு ஹேண்ட்மேட் விற்பனையாளர்' என்பதற்கு மேல் விலை நிர்ணயிக்க அனுமதிக்கும்."
+      },
+      "community": {
+            "pains": [
+                  "நிகழ்வுகள் ஒரு WhatsApp அறிவிப்பின் அடிப்படையில் மட்டுமே ஏற்பாடு செய்யப்படுகின்றன — தொடர்ச்சியான குழு உணர்வு இல்லை.",
+                  "தங்களைப் போன்றவர்களை அழைக்க உறுப்பினர்களுக்கு எளிய வழி இல்லை — வளர்ச்சி முழுவதும் வாய்மொழி மட்டுமே."
+            ],
+            "opportunity": "ஒரு தொடர் சந்திப்பு தாளம் + அழைப்பு சிஸ்டம் — ஒருமுறை நிகழ்வுகளை உண்மையான சமூகமாக மாற்றும்."
+      },
+      "digital": {
+            "pains": [
+                  "வேலை ரேண்டம் பதிவுகளில் சிதறிக் கிடக்கிறது — திறமையின் உண்மையான ஆதாரத்தை ஒரே இடத்தில் வாடிக்கையாளர் காணவில்லை.",
+                  "ஒவ்வொரு ப்ராஜெக்ட்டிலும் புதிதாக விலை பேசப்படுகிறது, அதனால் வருமானம் ஒருபோதும் நிலையாக இல்லை."
+            ],
+            "opportunity": "இறுக்கமான போர்ட்ஃபோலியோ + நிலையான-பேக்கேஜ் விலை சிஸ்டம் — ஒவ்வொரு முறையும் மீண்டும் பிட்ச் செய்யாமல் உங்களை பணியமர்த்த வைக்கும்."
+      },
+      "localservice": {
+            "pains": [
+                  "வாய்மொழி மூலம் மட்டுமே அறியப்படுகிறீர்கள் — அருகில் தேடும் யாருக்கும் தெரியவில்லை.",
+                  "வேலைக்குப் பிறகு பின்தொடர்தல் இல்லை, அதனால் ஒருமுறை வாடிக்கையாளர் மீண்டும் வருவதோ பரிந்துரைப்பதோ அரிது."
+            ],
+            "opportunity": "எளிய 'அருகில் கிடைக்கும்' லிஸ்டிங் + பின்தொடர்தல் சிஸ்டம் — ஒரு வேலையை மீண்டும் வரும் வாடிக்கையாளராக மாற்றும்."
+      },
+      "consulting": {
+            "pains": [
+                  "தெளிவான நிபுணத்துவம் இல்லை — 'பொதுவான ஆலோசனை' போல் தெரிகிறது, அதனால் அதிக கட்டணம் வாங்குவது கடினம்.",
+                  "மதிப்பு உரையாடலில் மட்டுமே கிடைக்கிறது, பிறகு வாடிக்கையாளரிடம் காட்ட உறுதியான எதுவும் இல்லை."
+            ],
+            "opportunity": "பெயருடன் கூடிய சிக்னேச்சர்-முறை + ஒரு உறுதியான டெலிவரப்பிள் — பொதுநிபுணர் அல்ல, சிறப்பு நிபுணர் போல் கட்டணம் வாங்க அனுமதிக்கும்."
+      },
+      "general": {
+            "pains": [
+                  "புதிதாக ஏதாவது உருவாக்கும் பெரும்பாலான மக்கள் ஏற்கனவே அனைவரும் செய்வதை மட்டுமே காப்பி செய்கிறார்கள்.",
+                  "தெளிவான சிஸ்டம் இல்லாமல், ஆரம்ப வேகம் முதல் சில வாடிக்கையாளர்களுக்குப் பிறகே தணிந்துவிடும்."
+            ],
+            "opportunity": "நீங்கள் சொன்னதை அடிப்படையாகக் கொண்ட எளிய, மீண்டும் பயன்படுத்தக்கூடிய சிஸ்டம் — உங்களுடன் சேர்ந்து, படிப்படியாக உருவாக்கப்படும்."
+      }
+},
+    agentSteps: [
+      "இந்தியாவின் சிறந்த {niche} தொழில்களை ஸ்கேன் செய்கிறோம்...",
+      "அவர்களின் வாடிக்கையாளர்களின் முக்கிய புகார்களைக் கண்டறிகிறோம்...",
+      "நீங்கள் கைப்பற்றக்கூடிய இடைவெளியைக் கண்டறிகிறோம்...",
+      "உங்கள் தனிப்பட்ட திட்டத்தை உருவாக்குகிறோம்..."
+],
 
     "lead.eyebrow": "நீங்கள் செல்லும் முன்",
     "lead.title": "டே ஜீரோ புதுப்பிப்புகள் வேண்டுமா?",
@@ -1088,10 +1569,40 @@ window.I18N = {
     if(currentScreen === 'result' && lastMatchResult){ renderResult(lastMatchResult); }
   }
 
+  /* ================= Welcome typewriter ================= */
+  var twContentEl = document.getElementById('twContent');
+  var twCursorEl = document.getElementById('twCursor');
+  var twTimer = null;
+  var TW_SPEED = 16;
+  var TW_START_DELAY = 500;
+  function runTypewriter(){
+    if(!twContentEl) return;
+    clearTimeout(twTimer);
+    var text = t('welcome.typewriter');
+    if(prefersReducedMotion){
+      twContentEl.textContent = text;
+      twCursorEl.style.display = 'none';
+      return;
+    }
+    var i = 0;
+    twContentEl.textContent = '';
+    twCursorEl.style.display = '';
+    function step(){
+      if(i <= text.length){
+        twContentEl.textContent = text.slice(0, i);
+        i++;
+        if(i <= text.length){ twTimer = setTimeout(step, TW_SPEED); }
+        else { twCursorEl.style.display = 'none'; }
+      }
+    }
+    twTimer = setTimeout(step, TW_START_DELAY);
+  }
+
   function setLang(lang){
     currentLang = lang;
     safeSet(LANG_KEY, lang);
     applyI18n();
+    runTypewriter();
     if(window.gtag) gtag('event','language_change',{'event_category':'engagement','event_label':lang});
   }
 
@@ -1100,7 +1611,7 @@ window.I18N = {
   });
 
   /* ================= Router ================= */
-  var STAGE_ORDER = ['discovery','result','upsell','book'];
+  var STAGE_ORDER = ['discovery','result','agent','upsell','book'];
 
   function updateProgressDots(){
     var dotsWrap = document.getElementById('progressDots');
@@ -1125,6 +1636,7 @@ window.I18N = {
       if(match){ s.classList.remove('anim-in'); void s.offsetWidth; s.classList.add('anim-in'); }
     });
     document.getElementById('helpFab').style.display = (screenName === 'discovery') ? 'flex' : 'none';
+    document.body.classList.toggle('discovery-active', screenName === 'discovery');
     updateProgressDots();
     window.scrollTo({top:0, behavior: prefersReducedMotion ? 'auto' : 'smooth'});
     try{ history.replaceState(null, '', '#/' + screenName); }catch(e){}
@@ -1143,8 +1655,21 @@ window.I18N = {
       renderResult(lastMatchResult);
       maybeShowLeadPopup();
     }
+    if(screenName === 'agent'){
+      playAgentAnalysis();
+    }
     if(screenName === 'book'){
       loadCalendlyWidget();
+    }
+    if(window.gsap && !prefersReducedMotion){
+      var animTargets = {
+        upsell: '.upsell-card',
+        book: '.book-card'
+      };
+      var sel = animTargets[screenName];
+      if(sel){
+        gsap.fromTo(sel, {opacity:0, y:16}, {opacity:1, y:0, duration:.5, ease:'power2.out', delay:.05});
+      }
     }
   }
 
@@ -1168,6 +1693,10 @@ window.I18N = {
     backBtn.disabled = (currentDim === 0);
     nextBtn.textContent = (currentDim === 3) ? t('discovery.finish') : t('discovery.next');
     updateVennFromAnswers();
+    if(window.gsap && !prefersReducedMotion){
+      var activeCard = document.querySelector('.discovery-card.active');
+      if(activeCard){ gsap.fromTo(activeCard, {opacity:0, y:14}, {opacity:1, y:0, duration:.4, ease:'power2.out'}); }
+    }
   }
 
   function readCurrentDimInputs(){
@@ -1344,7 +1873,139 @@ window.I18N = {
     } else { flash(); }
   });
 
-  document.getElementById('resultNextBtn').addEventListener('click', function(){ goTo('upsell'); });
+  /* ================= AI Agent insight (curated per-niche content bank) ================= */
+  var CATEGORY_ICONS = {
+    baking: '<path d="M3 2v7c0 1.1.9 2 2 2h1v11h2V4a2 2 0 0 0-2-2H3z"/><path d="M16 2c-1.1 0-2 .9-2 2v7a2 2 0 0 0 2 2h1v9h2V2h-3z"/>',
+    fashion: '<path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5"/>',
+    beauty: '<path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3z"/>',
+    skincare: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+    tuition: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+    fitness: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+    photo: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+    handmade: '<rect x="3" y="7" width="18" height="13" rx="1"/><path d="M3 7l9-4 9 4"/><line x1="12" y1="7" x2="12" y2="21"/>',
+    community: '<circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M17 3.13a4 4 0 0 1 0 7.75"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/>',
+    digital: '<path d="M4 4h16v10H4z"/><path d="M2 18h20l-2 3H4z"/>',
+    localservice: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    consulting: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+    general: '<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.5.4.8 1 .9 1.6L9 17h6l.1-.7c.1-.6.4-1.2.9-1.6A7 7 0 0 0 12 2z"/>'
+  };
+  var AGENT_STEP_ICONS = [
+    '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+    '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+    '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+    '<circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/>'
+  ];
+
+  var agentTimers = [];
+  function clearAgentTimers(){ agentTimers.forEach(function(id){ clearTimeout(id); }); agentTimers = []; }
+
+  function currentInsightCatKey(){
+    if(lastMatchResult && lastMatchResult.hasMatch) return lastMatchResult.results[0].catKey;
+    return 'general';
+  }
+
+  function insightsFor(catKey){
+    var dict = window.I18N[currentLang] || window.I18N.en;
+    var ins = (dict.insights && dict.insights[catKey]) || (window.I18N.en.insights && window.I18N.en.insights[catKey]);
+    return ins || { pains: [], opportunity: '' };
+  }
+
+  function agentStepsForLang(){
+    var dict = window.I18N[currentLang] || window.I18N.en;
+    return dict.agentSteps || window.I18N.en.agentSteps || [];
+  }
+
+  function iconSvg(inner){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>';
+  }
+
+  function playAgentAnalysis(){
+    clearAgentTimers();
+    var catKey = currentInsightCatKey();
+    var niche = (catKey === 'general') ? t('agent.niche_fallback') : catName(catKey);
+
+    document.getElementById('agentLeadText').textContent = t('agent.lead').split('{niche}').join(niche);
+    document.getElementById('agentPainLabel').textContent = t('agent.pain_label').split('{niche}').join(niche);
+    var chip = document.getElementById('agentNicheChip');
+    chip.innerHTML = iconSvg(CATEGORY_ICONS[catKey] || CATEGORY_ICONS.general) + '<span>' + escapeHtml(niche) + '</span>';
+
+    var workingEl = document.getElementById('agentWorking');
+    var revealEl = document.getElementById('agentReveal');
+    workingEl.style.display = '';
+    revealEl.style.display = 'none';
+
+    var listEl = document.getElementById('agentStatusList');
+    listEl.innerHTML = '';
+    var steps = agentStepsForLang();
+    steps.forEach(function(stepText, i){
+      var tile = document.createElement('div');
+      tile.className = 'agent-status';
+      tile.id = 'agentStep' + i;
+      tile.innerHTML = '<span class="agent-status-icon">' + iconSvg(AGENT_STEP_ICONS[i] || AGENT_STEP_ICONS[0]) + '</span><span class="agent-status-label">' + escapeHtml(stepText.split('{niche}').join(niche)) + '</span>';
+      listEl.appendChild(tile);
+    });
+
+    var fill = document.getElementById('agentProgressFill');
+    fill.style.width = '0%';
+
+    var stepDuration = prefersReducedMotion ? 60 : 900;
+    var n = steps.length || 1;
+
+    steps.forEach(function(_, i){
+      var stepTimer = setTimeout(function(){
+        document.querySelectorAll('.agent-status').forEach(function(el, idx){
+          var active = (idx === i), done = (idx < i);
+          el.classList.toggle('active', active);
+          el.classList.toggle('done', done);
+        });
+        fill.style.width = (((i + 1) / n) * 100) + '%';
+      }, i * stepDuration);
+      agentTimers.push(stepTimer);
+    });
+
+    var totalDuration = n * stepDuration + (prefersReducedMotion ? 80 : 500);
+    var finishTimer = setTimeout(function(){
+      document.querySelectorAll('.agent-status').forEach(function(el){
+        el.classList.add('done'); el.classList.remove('active');
+      });
+      workingEl.style.display = 'none';
+      revealEl.style.display = '';
+      renderAgentInsight(catKey);
+      if(window.gtag) gtag('event','agent_insight_view',{'event_category':'funnel','event_label':catKey});
+    }, totalDuration);
+    agentTimers.push(finishTimer);
+  }
+
+  function renderAgentInsight(catKey){
+    var ins = insightsFor(catKey);
+    var tilesWrap = document.getElementById('insightTiles');
+    tilesWrap.innerHTML = '';
+    var tagText = t('agent.tile_tag');
+    var painIcon = iconSvg(CATEGORY_ICONS[catKey] || CATEGORY_ICONS.general);
+    (ins.pains || []).forEach(function(painText){
+      var tile = document.createElement('div');
+      tile.className = 'insight-tile';
+      tile.innerHTML =
+        '<div class="insight-tile-icon">' + painIcon + '</div>' +
+        '<div class="insight-tile-tag">' + escapeHtml(tagText) + '</div>' +
+        '<p>' + escapeHtml(painText) + '</p>';
+      tilesWrap.appendChild(tile);
+    });
+    document.getElementById('lockedText').textContent = ins.opportunity || '';
+
+    if(window.gsap && !prefersReducedMotion){
+      gsap.fromTo('.insight-tile', {opacity:0, y:14}, {opacity:1, y:0, duration:.45, stagger:.12, ease:'power1.out'});
+      gsap.fromTo('.locked-tile', {opacity:0, y:14}, {opacity:1, y:0, duration:.45, delay:.3, ease:'power1.out'});
+      gsap.fromTo('.agent-unlock-btn', {opacity:0, scale:.95}, {opacity:1, scale:1, duration:.4, delay:.55, ease:'back.out(1.6)'});
+    }
+  }
+
+  document.getElementById('agentUnlockBtn').addEventListener('click', function(){
+    if(window.gtag) gtag('event','agent_unlock_click',{'event_category':'ecommerce','event_label':'day_zero_499_agent','value':499});
+    goTo('upsell');
+  });
+
+  document.getElementById('resultNextBtn').addEventListener('click', function(){ goTo('agent'); });
   document.getElementById('upsellSecondaryBtn').addEventListener('click', function(){ goTo('book'); });
   document.getElementById('bookFallbackBtn').addEventListener('click', function(){
     if(window.gtag) gtag('event','calendly_click',{'event_category':'conversion','event_label':'book_free_session'});
@@ -1359,7 +2020,7 @@ window.I18N = {
     var canvas = document.getElementById('confettiCanvas');
     var ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    var colors = ['#c97a3f','#4f6d61','#7fa396','#141a13','#fffdf7'];
+    var colors = ['#d9622b','#8a7f5f','#caa47c','#111111','#fffdf7'];
     var pieces = [];
     for(var i=0;i<70;i++){
       pieces.push({
@@ -1463,6 +2124,19 @@ window.I18N = {
   restoreDiscoveryInputs();
   applyI18n();
   goTo('welcome');
+  runTypewriter();
+
+  /* Welcome hero entrance + sticky CTA reveal */
+  if(window.gsap && !prefersReducedMotion){
+    gsap.fromTo('.hero-eyebrow', {opacity:0, y:10}, {opacity:1, y:0, duration:.45, ease:'power2.out'});
+    gsap.fromTo('.hero-title', {opacity:0, y:14}, {opacity:1, y:0, duration:.55, delay:.08, ease:'power2.out'});
+    gsap.fromTo('.hero-meta .pill', {opacity:0, y:10}, {opacity:1, y:0, duration:.4, delay:.25, stagger:.08, ease:'power2.out'});
+    gsap.fromTo('.hero-ctas .btn', {opacity:0, y:10}, {opacity:1, y:0, duration:.4, delay:.4, stagger:.1, ease:'power2.out'});
+  }
+  setTimeout(function(){
+    var s30 = document.getElementById('sticky30Btn');
+    if(s30) s30.classList.add('show');
+  }, 900);
 })();
 </script>
 </body>
