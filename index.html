@@ -46,7 +46,7 @@
   /* ============ background video + scrim ============ */
   .bg-video{
     position:fixed; inset:0; z-index:0;
-    width:100%; height:100%; object-fit:cover; object-position:70% center;
+    width:100%; height:100%; object-fit:cover; object-position:45% 20%;
   }
   .bg-scrim{
     position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -72,17 +72,20 @@
   @media (min-width:640px){ .navbar-logo-mark{ font-size:30px; } }
 
   .navbar-links{
-    display:none; align-items:center; gap:4px; font-size:23px; color:#000;
+    display:none; align-items:center; gap:5px; font-size:13.5px; font-weight:600;
+    color:#000; flex-wrap:wrap; max-width:44vw;
   }
+  @media (min-width:1100px){ .navbar-links{ font-size:15px; max-width:none; } }
   @media (min-width:768px){ .navbar-links{ display:flex; } }
-  .navbar-links a{ transition:opacity .2s ease; }
+  .navbar-links a{ transition:opacity .2s ease; white-space:nowrap; }
   .navbar-links a:hover{ opacity:.6; }
 
   .navbar-cta{
-    display:none; font-size:23px; color:#000;
+    display:none; font-size:14px; font-weight:600; color:#000;
     text-decoration:underline; text-underline-offset:2px;
-    transition:opacity .2s ease;
+    transition:opacity .2s ease; white-space:nowrap; flex-shrink:0;
   }
+  @media (min-width:1100px){ .navbar-cta{ font-size:15px; } }
   @media (min-width:768px){ .navbar-cta{ display:inline; } }
   .navbar-cta:hover{ opacity:.6; }
 
@@ -95,15 +98,16 @@
   /* ============ mobile overlay ============ */
   .mobile-overlay{
     position:fixed; inset:0; z-index:9;
-    background:rgba(255,255,255,0.95);
+    background:rgba(255,255,255,0.97);
     -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
     display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
-    padding:0 32px; gap:32px;
+    padding:90px 32px 32px; gap:20px;
     opacity:0; pointer-events:none; transition:opacity .3s ease;
+    overflow-y:auto;
   }
   @media (min-width:768px){ .mobile-overlay{ display:none; } }
-  .mobile-overlay a{ font-size:32px; font-weight:500; color:#000; }
-  .mobile-overlay a.underline-link{ text-decoration:underline; text-underline-offset:2px; }
+  .mobile-overlay a{ font-size:24px; font-weight:600; line-height:1.25; color:#000; }
+  .mobile-overlay a.underline-link{ text-decoration:underline; text-underline-offset:2px; margin-top:6px; }
 
   /* ============ hero ============ */
   .hero{
@@ -120,16 +124,16 @@
 
   .hero-intro{
     pointer-events:none; user-select:none; margin-bottom:20px;
-    font-size:clamp(18px,4vw,26px); line-height:1.3; font-weight:400; color:#000;
+    font-size:clamp(20px,5.5vw,26px); line-height:1.3; font-weight:400; color:#000;
     filter:blur(4px);
   }
   @media (min-width:640px){ .hero-intro{ margin-bottom:24px; } }
 
   .hero-typewriter{
-    color:#000; margin-bottom:20px;
-    font-size:clamp(15px,3vw,20px); line-height:1.45; font-weight:400; min-height:54px;
+    color:#000; margin-bottom:22px;
+    font-size:clamp(17px,4.6vw,20px); line-height:1.5; font-weight:500; min-height:54px;
   }
-  @media (min-width:640px){ .hero-typewriter{ margin-bottom:24px; } }
+  @media (min-width:640px){ .hero-typewriter{ margin-bottom:24px; font-weight:400; } }
 
   #cursor{
     display:inline-block; width:2px; height:1.1em; background:#000;
@@ -137,7 +141,6 @@
   }
 
   .hero-pills{
-    display:flex; flex-wrap:wrap; row-gap:4px;
     opacity:0; transform:translateY(8px);
     transition:opacity .4s ease, transform .4s ease;
   }
@@ -147,41 +150,67 @@
     opacity:0; transition:opacity .25s ease;
   }
 
-  /* ============ pills ============ */
-  .pill-white{
+  /* ============ primary CTAs — the two money buttons, big and obvious ============ */
+  .cta-primary-row{
+    display:flex; flex-direction:column; gap:10px; margin-bottom:14px;
+  }
+  @media (min-width:640px){ .cta-primary-row{ flex-direction:row; flex-wrap:wrap; } }
+
+  .cta-primary{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#000; color:#fff; border-radius:9999px;
+    font-family:var(--font-heading); font-weight:700; font-size:17px;
+    padding:1em 1.4em; text-align:center;
+    box-shadow:0 8px 22px rgba(0,0,0,0.22);
+    transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+  }
+  .cta-primary:hover{ background:#1a1a1a; transform:translateY(-1px); box-shadow:0 10px 26px rgba(0,0,0,0.28); }
+  .cta-primary svg{ flex-shrink:0; }
+  @media (min-width:640px){ .cta-primary{ font-size:16px; padding:0.95em 1.6em; flex:1 1 auto; } }
+
+  /* ============ secondary links — smaller, less visual weight ============ */
+  .cta-secondary-row{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+  }
+
+  .pill-secondary{
     display:inline-flex; align-items:center; justify-content:center;
-    background:#fff; color:#000; border:1px solid rgba(0,0,0,0.1); border-radius:9999px;
-    font-size:13px; padding:0.3em 1rem; margin:0 0.2em 0.4em; white-space:nowrap;
-    transition:background-color .2s ease, color .2s ease;
+    background:rgba(255,255,255,0.75); color:#000; border:1px solid rgba(0,0,0,0.1); border-radius:9999px;
+    font-size:13px; padding:0.45em 0.95em; white-space:nowrap;
+    transition:background-color .2s ease;
     font-family:var(--font-body);
   }
-  .pill-white:hover{ background:#000; color:#fff; }
+  .pill-secondary:hover{ background:#fff; }
 
   .pill-outline{
     display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;
-    color:#fff; background:transparent; border:1px solid #fff; border-radius:9999px;
-    font-size:13px; padding:0.3em 1rem; margin:0 0.2em 0.4em; white-space:nowrap;
+    color:#000; background:transparent; border:1px solid rgba(0,0,0,0.3); border-radius:9999px;
+    font-size:13px; padding:0.45em 0.95em; white-space:nowrap;
     transition:background-color .2s ease, color .2s ease;
     font-family:var(--font-body);
   }
-  .pill-outline:hover{ background:#fff; color:#000; }
+  .pill-outline:hover{ background:#000; color:#fff; }
 
   @media (min-width:640px){
-    .pill-white{ font-size:15px; padding:0.3em 1.25rem; }
-    .pill-outline{ font-size:15px; padding:0.3em 1.25rem; gap:0.75rem; }
+    .pill-secondary{ font-size:14px; padding:0.5em 1.1rem; }
+    .pill-outline{ font-size:14px; padding:0.5em 1.1rem; gap:0.75rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- ================= BACKGROUND VIDEO (mouse-scrub controlled) =================
+<!-- ================= BACKGROUND VIDEO =================
      Real thedayzero footage (portrait 720x1280, ~10s). IMPORTANT: this file
      (hero-video.mp4) MUST sit in the exact same folder as this page, whether
      that's your local machine or your GitHub repo — the src below is a
      relative path, so if hero-video.mp4 isn't uploaded alongside index.html,
-     the video silently won't show. object-position is tuned to 70% center so
-     the subject stays framed on wide desktop crops. -->
-<video id="heroVideo" class="bg-video" muted playsinline preload="auto">
+     the video silently won't show.
+     autoplay+loop+muted+playsinline: most visitors are on mobile, where
+     there's no mouse to scrub with, so the video needs to play itself by
+     default on every device. Moving the mouse (desktop) or dragging a finger
+     across the screen (touch) switches it into the interactive scrub mode
+     below as a bonus, pausing the loop while you're doing it. -->
+<video id="heroVideo" class="bg-video" muted playsinline autoplay loop preload="auto">
   <source src="hero-video.mp4" type="video/mp4">
 </video>
 <!-- light scrim over the video so black text stays readable regardless of footage brightness —
@@ -196,10 +225,11 @@
   </div>
 
   <div class="navbar-links">
-    <a href="/quick-start/" class="hover:opacity-60">Quick Start</a><span>,</span>
-    <a href="/course/">Course</a><span>,</span>
-    <a href="/#founder">About</a><span>,</span>
-    <a href="/#faq">FAQ</a>
+    <a href="find-business.html">What Business Suits You</a><span>,</span>
+    <a href="run-business-30-days.html">Run Any Business In 30 Days</a><span>,</span>
+    <a href="founder.html">Meet The Founder</a><span>,</span>
+    <a href="story.html">Read Our Story</a><span>,</span>
+    <a href="story.html">About</a>
   </div>
 
   <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="navbar-cta">Get in touch</a>
@@ -213,10 +243,11 @@
 
 <!-- ================= MOBILE OVERLAY MENU ================= -->
 <div id="mobileOverlay" class="mobile-overlay">
-  <a href="/quick-start/">Quick Start</a>
-  <a href="/course/">Course</a>
-  <a href="/#founder">About</a>
-  <a href="/#faq">FAQ</a>
+  <a href="find-business.html">What Business Suits You</a>
+  <a href="run-business-30-days.html">Run Any Business In 30 Days</a>
+  <a href="founder.html">Meet The Founder</a>
+  <a href="story.html">Read Our Story</a>
+  <a href="story.html">About</a>
   <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="underline-link">Get in touch</a>
 </div>
 
@@ -237,17 +268,27 @@
 
     <!-- 3. Action pills -->
     <div id="pillContainer" class="hero-pills">
-      <a href="find-business.html" class="pill-white">Find What Business You Should Do</a>
-      <a href="run-business-30-days.html" class="pill-white">Run Any Business In 30 Days</a>
-      <a href="founder.html" class="pill-white">Meet The Founder</a>
-      <a href="story.html" class="pill-white">Read Our Story</a>
-      <button id="copyPill" type="button" class="pill-outline">
-        <span>Reach us: <span style="text-decoration:underline;text-underline-offset:1px;">+91 96298 43122</span></span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <rect x="9" y="9" width="11" height="11" rx="1"></rect>
-          <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
-        </svg>
-      </button>
+      <div class="cta-primary-row">
+        <a href="find-business.html" class="cta-primary">
+          Find What Business You Should Do
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="run-business-30-days.html" class="cta-primary">
+          Run Any Business In 30 Days
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+      <div class="cta-secondary-row">
+        <a href="founder.html" class="pill-secondary">Meet The Founder</a>
+        <a href="story.html" class="pill-secondary">Read Our Story</a>
+        <button id="copyPill" type="button" class="pill-outline">
+          <span>Reach us: <span style="text-decoration:underline;text-underline-offset:1px;">+91 96298 43122</span></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="9" y="9" width="11" height="11" rx="1"></rect>
+            <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
+          </svg>
+        </button>
+      </div>
     </div>
     <span id="copyToast" class="copy-toast">Copied to clipboard</span>
   </div>
@@ -332,13 +373,16 @@
     }
   });
 
-  /* ================= Background video: mouse-scrub control ================= */
+  /* ================= Background video: autoplay by default, scrub as a bonus ================= */
   var video = document.getElementById('heroVideo');
   var videoReady = false;
   var prevX = null;
+  var touchPrevX = null;
   var targetTime = 0;
   var isSeeking = false;
+  var scrubbing = false;
   var SENSITIVITY = 0.8;
+  var MOVE_THRESHOLD = 4; // px -- ignores tiny/incidental movement so the ambient loop doesn't stop for no reason
 
   function markVideoReady(){
     videoReady = isFinite(video.duration) && video.duration > 0;
@@ -350,6 +394,20 @@
   // check readyState directly as a fallback so scrubbing still activates.
   if(video.readyState >= 1){ markVideoReady(); }
 
+  // Most visitors have no mouse (mobile), so the video plays itself on load.
+  // autoplay+muted+playsinline is attribute-driven above; this is a defensive
+  // retry in case a browser needs the .play() call to actually happen (some
+  // browsers only honor the attribute after the tab is visible/interacted with).
+  var playPromise = video.play();
+  if(playPromise && playPromise.catch){ playPromise.catch(function(){ /* fails safe: first frame still shows via preload */ }); }
+
+  function enterScrubMode(){
+    if(scrubbing) return;
+    scrubbing = true;
+    targetTime = video.currentTime;
+    video.pause();
+  }
+
   function seekTo(time){
     if(isSeeking) return;
     isSeeking = true;
@@ -359,20 +417,44 @@
 
   video.addEventListener('seeked', function(){
     isSeeking = false;
-    if(Math.abs(video.currentTime - targetTime) > 0.03){
+    if(scrubbing && Math.abs(video.currentTime - targetTime) > 0.03){
       seekTo(targetTime);
     }
   });
 
+  function applyScrubDelta(delta){
+    enterScrubMode();
+    var offset = (delta / window.innerWidth) * SENSITIVITY * video.duration;
+    targetTime = Math.min(Math.max(targetTime + offset, 0), video.duration);
+    seekTo(targetTime);
+  }
+
+  /* Desktop: mouse-drag scrub */
   window.addEventListener('mousemove', function(e){
     if(!videoReady){ return; }
     if(prevX === null){ prevX = e.clientX; return; }
     var delta = e.clientX - prevX;
     prevX = e.clientX;
-    var offset = (delta / window.innerWidth) * SENSITIVITY * video.duration;
-    targetTime = Math.min(Math.max(targetTime + offset, 0), video.duration);
-    seekTo(targetTime);
+    if(Math.abs(delta) < MOVE_THRESHOLD) return;
+    applyScrubDelta(delta);
   });
+
+  /* Mobile/touch: finger-drag scrub, same math as the mouse version */
+  window.addEventListener('touchstart', function(e){
+    if(!videoReady || !e.touches || !e.touches.length) return;
+    touchPrevX = e.touches[0].clientX;
+  }, { passive:true });
+
+  window.addEventListener('touchmove', function(e){
+    if(!videoReady || touchPrevX === null || !e.touches || !e.touches.length) return;
+    var x = e.touches[0].clientX;
+    var delta = x - touchPrevX;
+    touchPrevX = x;
+    if(Math.abs(delta) < MOVE_THRESHOLD) return;
+    applyScrubDelta(delta);
+  }, { passive:true });
+
+  window.addEventListener('touchend', function(){ touchPrevX = null; });
 
 })();
 </script>
