@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — thedayzero</title>
+<meta name="description" content="Why thedayzero exists, where the idea came from, and what we've already seen work.">
+<meta name="robots" content="noindex, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --font-heading: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --cream:#f4f1e7;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ font-family:var(--font-body); margin:0; background:var(--cream); color:#111; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .home-nav{ position:fixed; top:16px; left:16px; z-index:20; display:flex; align-items:center; gap:10px; }
+  @media (min-width:640px){ .home-nav{ top:24px; left:24px; } }
+  .home-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px; border-radius:50%;
+    background:#fff; border:1px solid rgba(0,0,0,0.1);
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    transition:background-color .2s ease;
+  }
+  .home-btn:hover{ background:#000; }
+  .home-btn:hover svg{ stroke:#fff; }
+  .home-btn svg{ stroke:#111; transition:stroke .2s ease; }
+  .home-label{
+    font-family:var(--font-heading); font-size:14px; font-weight:600; color:#111;
+    background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:9999px;
+    padding:0.5em 1em; box-shadow:0 2px 10px rgba(0,0,0,0.06); display:none;
+  }
+  @media (min-width:640px){ .home-label{ display:inline-block; } }
+
+  .wrap{ max-width:50rem; margin:0 auto; padding:96px 20px 80px; }
+  @media (min-width:640px){ .wrap{ padding:112px 32px 96px; } }
+
+  .eyebrow{
+    font-family:var(--font-heading); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; color:#6b6555; margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--font-heading); font-weight:800; letter-spacing:-0.01em;
+    font-size:clamp(28px,6vw,44px); line-height:1.1; margin:0 0 18px;
+  }
+  .lead{ font-size:clamp(16px,2.4vw,19px); line-height:1.65; color:#3a3529; max-width:40rem; margin:0 0 56px; }
+
+  h2{
+    font-family:var(--font-heading); font-weight:700; letter-spacing:-0.005em;
+    font-size:clamp(21px,3.6vw,28px); line-height:1.25; margin:0 0 14px;
+  }
+  .section{ margin-bottom:56px; }
+  .section p{ font-size:16px; line-height:1.75; color:#302c22; margin:0 0 16px; max-width:44rem; }
+
+  .proof-strip{
+    display:flex; flex-wrap:wrap; gap:14px; margin:28px 0 4px;
+  }
+  .proof-card{
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:14px;
+    padding:20px 22px; flex:1 1 220px;
+  }
+  .proof-num{ font-family:var(--font-heading); font-weight:800; font-size:26px; margin-bottom:4px; }
+  .proof-lbl{ font-size:13px; color:#6b6555; line-height:1.5; }
+
+  .honest-block{
+    background:#111; color:#fff; border-radius:18px; padding:32px 28px; margin-top:8px;
+  }
+  .honest-block .tag{
+    display:inline-block; font-family:var(--font-heading); font-weight:700; font-size:12px;
+    letter-spacing:0.05em; text-transform:uppercase; color:#c9c2ab; margin-bottom:12px;
+  }
+  .honest-block p{ color:rgba(255,255,255,0.85); font-size:15.5px; line-height:1.75; margin:0 0 14px; max-width:none; }
+  .honest-block p:last-child{ margin-bottom:0; }
+
+  .cta-block{
+    margin-top:56px; padding:36px 28px; border-radius:20px; background:#fff; border:1px solid rgba(0,0,0,0.08); text-align:center;
+  }
+  .cta-block h2{ margin-bottom:10px; }
+  .cta-block p{ margin:0 auto 24px; color:#3a3529; font-size:15px; }
+  .cta-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+
+  .pill-black{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:#111; color:#fff; border-radius:9999px;
+    font-size:15px; font-weight:600; padding:0.75em 1.5rem; white-space:nowrap;
+    transition:opacity .2s ease; font-family:var(--font-body);
+  }
+  .pill-black:hover{ opacity:0.85; }
+  .pill-line{
+    display:inline-flex; align-items:center; justify-content:center;
+    color:#111; background:transparent; border:1px solid rgba(0,0,0,0.2); border-radius:9999px;
+    font-size:15px; font-weight:600; padding:0.75em 1.5rem; white-space:nowrap;
+    transition:background-color .2s ease, color .2s ease; font-family:var(--font-body);
+  }
+  .pill-line:hover{ background:#111; color:#fff; }
+</style>
+</head>
+<body>
+
+<nav class="home-nav">
+  <a href="index.html" class="home-btn" aria-label="Back to home">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 11l9-8 9 8"></path>
+      <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path>
+    </svg>
+  </a>
+  <a href="index.html" class="home-label">thedayzero</a>
+</nav>
+
+<div class="wrap">
+  <div class="eyebrow">Our story</div>
+  <h1>It started with kids. It turned into thedayzero.</h1>
+  <p class="lead">
+    Before there was a ₹99 Quick Start or a 30-day course, there was a simpler problem we couldn't
+    stop thinking about: almost nobody — kids or adults — is ever asked what they actually want to build.
+    They're handed a short list of "safe" answers and told to pick one.
+  </p>
+
+  <div class="section">
+    <h2>It started with kids</h2>
+    <p>
+      Our parent venture, TheKahaaniya, runs immersive storytelling events for kids — built on one
+      belief: children should be free to dream past "doctor" or "engineer" into whatever they're
+      actually curious about. Watching kids light up the moment someone finally asked them "but what
+      do <em>you</em> want to build?" — instead of handing them a script — was the spark.
+    </p>
+    <p>
+      It didn't take long to notice the exact same thing happening to adults. Most people never
+      get asked that question either. They pick a job, or a business idea, the same way they were
+      handed "doctor or engineer" as kids — because it's safe, not because it's theirs.
+      thedayzero exists to ask adults that same question, properly, and then help them act on the answer.
+    </p>
+
+    <div class="proof-strip">
+      <div class="proof-card">
+        <div class="proof-num">2</div>
+        <div class="proof-lbl">TheKahaaniya storytelling events run so far</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">28</div>
+        <div class="proof-lbl">Kids reached across those events</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">Event 1</div>
+        <div class="proof-lbl">Was already profitable — proof this idea holds up in the real world, not just in theory</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Where we are, honestly</h2>
+    <div class="honest-block">
+      <span class="tag">A note from the founder</span>
+      <p>
+        thedayzero itself — the Quick Start and the 30-day course — is newly launched. We'd rather
+        tell you that plainly than dress up a page with reviews that don't exist yet.
+      </p>
+      <p>
+        What we can tell you is this: the method underneath thedayzero — get honest about what you
+        love, what you're good at, what's needed, and what people will pay for, then move in small
+        daily steps instead of one big leap — is the same method behind every venture we've actually
+        run, from TheKahaaniya's storytelling events to Murugaaa.in's temple-tech platform. It's not
+        an untested theory. It's how we build, ourselves, every day.
+      </p>
+      <p>
+        If you're one of the first people through the door, you're not a guinea pig for a gimmick —
+        you're getting the same process we already use, at the earliest and most generous pricing
+        it will ever be offered at.
+      </p>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <h2>Be one of the first to build with us</h2>
+    <p>Start your ₹99 Quick Start today — the price rises at the end of September 2026.</p>
+    <div class="cta-row">
+      <a href="/quick-start/" class="pill-black">Start My Quick Start — ₹99</a>
+      <a href="founder.html" class="pill-line">Meet The Founder</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
