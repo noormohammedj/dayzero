@@ -195,6 +195,90 @@
     .pill-secondary{ font-size:14px; padding:0.5em 1.1rem; }
     .pill-outline{ font-size:14px; padding:0.5em 1.1rem; gap:0.75rem; }
   }
+
+  /* ============ lead capture popup ============ */
+  .leadmodal-overlay{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(20,18,12,0.55);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+    opacity:0; pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .leadmodal-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+  .leadmodal{
+    position:relative; width:100%; max-width:420px;
+    background:#f4f1e7; border-radius:20px;
+    padding:28px 24px 24px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.35);
+    transform:translateY(12px) scale(0.98);
+    transition:transform .25s ease;
+    max-height:90vh; overflow-y:auto;
+  }
+  .leadmodal-overlay.is-open .leadmodal{ transform:translateY(0) scale(1); }
+
+  .leadmodal-close{
+    position:absolute; top:14px; right:14px;
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.06); color:#000;
+  }
+  .leadmodal-close:hover{ background:rgba(0,0,0,0.12); }
+
+  .leadmodal-title{
+    font-family:var(--font-heading); font-weight:700; font-size:21px; color:#000;
+    margin:0 0 6px; padding-right:28px;
+  }
+  .leadmodal-sub{
+    font-size:14px; line-height:1.45; color:rgba(0,0,0,0.65);
+    margin:0 0 20px;
+  }
+
+  .leadmodal-field{ margin-bottom:14px; }
+  .leadmodal-label{
+    display:block; font-size:12.5px; font-weight:600; color:rgba(0,0,0,0.7);
+    margin-bottom:6px;
+  }
+  .leadmodal-input{
+    width:100%; font-family:var(--font-body); font-size:15px; color:#000;
+    background:#fff; border:1px solid rgba(0,0,0,0.15); border-radius:10px;
+    padding:0.75em 0.9em;
+  }
+  .leadmodal-input:focus{ outline:none; border-color:#000; }
+  .leadmodal-input.has-error{ border-color:#c0392b; }
+
+  .leadmodal-error{
+    font-size:12px; color:#c0392b; margin-top:4px; display:none;
+  }
+  .leadmodal-error.is-visible{ display:block; }
+
+  .leadmodal-submit{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#000; color:#fff; border-radius:9999px;
+    font-family:var(--font-heading); font-weight:700; font-size:16px;
+    padding:0.9em 1.4em; text-align:center; margin-top:6px;
+    transition:background-color .15s ease, opacity .15s ease;
+  }
+  .leadmodal-submit:hover{ background:#1a1a1a; }
+  .leadmodal-submit:disabled{ opacity:0.6; cursor:default; }
+
+  .leadmodal-formerror{
+    font-size:13px; color:#c0392b; margin-top:12px; text-align:center; display:none;
+  }
+  .leadmodal-formerror.is-visible{ display:block; }
+
+  .leadmodal-success{
+    display:none; text-align:center; padding:12px 0 4px;
+  }
+  .leadmodal-success.is-visible{ display:block; }
+  .leadmodal-success-title{
+    font-family:var(--font-heading); font-weight:700; font-size:19px; color:#000;
+    margin:0 0 6px;
+  }
+  .leadmodal-success-sub{ font-size:14px; color:rgba(0,0,0,0.65); margin:0; }
+
+  .leadmodal-form.is-hidden{ display:none; }
 </style>
 </head>
 <body>
@@ -293,6 +377,53 @@
     <span id="copyToast" class="copy-toast">Copied to clipboard</span>
   </div>
 </section>
+
+<!-- ================= LEAD CAPTURE POPUP =================
+     Opens when a visitor clicks either primary CTA (or the matching links in
+     the navbar / mobile menu) that point to find-business.html or
+     run-business-30-days.html. Collects name, WhatsApp number and email,
+     sends them to the Apps Script Web App (see WEBAPP_URL below), then
+     continues on to whichever page they originally clicked. -->
+<div id="leadModalOverlay" class="leadmodal-overlay" aria-hidden="true">
+  <div class="leadmodal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+    <button type="button" id="leadModalClose" class="leadmodal-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+
+    <form id="leadForm" class="leadmodal-form" novalidate>
+      <p id="leadModalTitle" class="leadmodal-title">Quick details before you continue</p>
+      <p class="leadmodal-sub">Just so we can reach you if you get stuck — takes 10 seconds.</p>
+
+      <div class="leadmodal-field">
+        <label class="leadmodal-label" for="leadName">Name</label>
+        <input type="text" id="leadName" name="name" class="leadmodal-input" autocomplete="name" required>
+        <span class="leadmodal-error" data-error-for="leadName">Please enter your name.</span>
+      </div>
+
+      <div class="leadmodal-field">
+        <label class="leadmodal-label" for="leadPhone">WhatsApp number</label>
+        <input type="tel" id="leadPhone" name="phone" class="leadmodal-input" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" required>
+        <span class="leadmodal-error" data-error-for="leadPhone">Please enter a valid WhatsApp number.</span>
+      </div>
+
+      <div class="leadmodal-field">
+        <label class="leadmodal-label" for="leadEmail">Email ID</label>
+        <input type="email" id="leadEmail" name="email" class="leadmodal-input" autocomplete="email" required>
+        <span class="leadmodal-error" data-error-for="leadEmail">Please enter a valid email.</span>
+      </div>
+
+      <button type="submit" id="leadSubmitBtn" class="leadmodal-submit">
+        <span id="leadSubmitLabel">Continue</span>
+      </button>
+      <p id="leadFormError" class="leadmodal-formerror">Something went wrong — please try again.</p>
+    </form>
+
+    <div id="leadSuccess" class="leadmodal-success">
+      <p class="leadmodal-success-title">Thanks — you're in!</p>
+      <p class="leadmodal-success-sub">Taking you there now…</p>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -455,6 +586,166 @@
   }, { passive:true });
 
   window.addEventListener('touchend', function(){ touchPrevX = null; });
+
+})();
+</script>
+
+<!-- ================= LEAD CAPTURE POPUP LOGIC =================
+     Separate script block on purpose, so it's easy to find and edit on its own.
+
+     >>> PASTE YOUR APPS SCRIPT WEB APP URL BELOW (it must end in /exec) <<<
+     Deploy the script: Deploy -> New deployment -> Web app -> Execute as "Me",
+     Who has access "Anyone" -> Deploy -> copy the URL it gives you. -->
+<script>
+(function(){
+  var WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyjjwBTV5jqUnAirtxvlGuImVplCd5EWx6qvRXxnLExYsDt4WzbQDeqQZf2jCE5hzx4/exec';
+
+  // Any link on the page pointing to these two pages opens the popup first.
+  var GATED_PAGES = ['find-business.html', 'run-business-30-days.html'];
+
+  var overlay = document.getElementById('leadModalOverlay');
+  var form = document.getElementById('leadForm');
+  var successPanel = document.getElementById('leadSuccess');
+  var submitBtn = document.getElementById('leadSubmitBtn');
+  var submitLabel = document.getElementById('leadSubmitLabel');
+  var formError = document.getElementById('leadFormError');
+  var closeBtn = document.getElementById('leadModalClose');
+  var nameInput = document.getElementById('leadName');
+  var phoneInput = document.getElementById('leadPhone');
+  var emailInput = document.getElementById('leadEmail');
+
+  var pendingTarget = null;
+  var pendingSource = null;
+
+  function isGatedLink(a){
+    if(!a || !a.getAttribute) return false;
+    var href = a.getAttribute('href') || '';
+    for(var i = 0; i < GATED_PAGES.length; i++){
+      if(href.indexOf(GATED_PAGES[i]) !== -1) return true;
+    }
+    return false;
+  }
+
+  function setFieldError(input, show){
+    input.classList.toggle('has-error', !!show);
+    var err = form.querySelector('[data-error-for="' + input.id + '"]');
+    if(err) err.classList.toggle('is-visible', !!show);
+  }
+
+  function clearErrorsOnInput(){
+    [nameInput, phoneInput, emailInput].forEach(function(input){
+      input.addEventListener('input', function(){ setFieldError(input, false); });
+    });
+  }
+  clearErrorsOnInput();
+
+  function openModal(targetHref, sourceLabel){
+    pendingTarget = targetHref;
+    pendingSource = sourceLabel;
+
+    // Reset to a clean form state each time it opens.
+    form.classList.remove('is-hidden');
+    successPanel.classList.remove('is-visible');
+    formError.classList.remove('is-visible');
+    submitBtn.disabled = false;
+    submitLabel.textContent = 'Continue';
+    [nameInput, phoneInput, emailInput].forEach(function(input){ setFieldError(input, false); });
+
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    setTimeout(function(){ nameInput.focus(); }, 50);
+  }
+
+  function closeModal(){
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    pendingTarget = null;
+    pendingSource = null;
+  }
+
+  // Wire up every gated link on the page: hero CTAs, navbar links, mobile menu links.
+  Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function(a){
+    if(!isGatedLink(a)) return;
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      // If this link came from the mobile menu, let that menu's own click
+      // handler close the overlay first (it's already wired separately).
+      openModal(a.getAttribute('href'), (a.textContent || '').trim());
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  function validate(){
+    var ok = true;
+
+    var name = nameInput.value.trim();
+    if(!name){ setFieldError(nameInput, true); ok = false; }
+
+    var digits = phoneInput.value.replace(/[^0-9]/g, '');
+    if(digits.length < 8){ setFieldError(phoneInput, true); ok = false; }
+
+    var email = emailInput.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setFieldError(emailInput, true); ok = false; }
+
+    return ok;
+  }
+
+  function goToPendingTarget(){
+    var target = pendingTarget;
+    closeModal();
+    if(target) window.location.href = target;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    formError.classList.remove('is-visible');
+
+    if(!validate()) return;
+
+    submitBtn.disabled = true;
+    submitLabel.textContent = 'Sending…';
+
+    var payload = {
+      name: nameInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      email: emailInput.value.trim(),
+      source: pendingSource || '',
+      page: pendingTarget || ''
+    };
+
+    // Apps Script Web Apps don't return CORS headers for a normal fetch, so
+    // this uses mode:'no-cors' — the request still reaches doPost and the
+    // row still gets appended, we just can't read the response back here.
+    // That's why we can't tell a real server-side failure apart from success;
+    // we treat "the request was sent" as good enough and move the visitor on.
+    fetch(WEBAPP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).then(function(){
+      showSuccessThenGo();
+    }).catch(function(err){
+      // Only a genuine network failure (offline, blocked request, wrong URL)
+      // lands here. Don't strand the visitor on a lead form over a logging
+      // failure — let them continue, but leave a trace in the console.
+      console.warn('Lead capture: request to WEBAPP_URL failed, continuing anyway.', err);
+      showSuccessThenGo();
+    });
+  });
+
+  function showSuccessThenGo(){
+    form.classList.add('is-hidden');
+    successPanel.classList.add('is-visible');
+    setTimeout(goToPendingTarget, 900);
+  }
 
 })();
 </script>
