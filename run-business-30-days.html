@@ -15,12 +15,15 @@
   :root{
     --font-heading: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
     --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-    --cream:#f4f1e7;
+    --mustard-light:#f0c875; --mustard:#d9a441; --mustard-deep:#b9832a; --mustard-tint:#f7e8c2;
+    --ink:#1c1509; --ink-body:rgba(28,21,9,0.86); --ink-soft:rgba(28,21,9,0.62);
   }
   *{ box-sizing:border-box; }
   html{ -webkit-text-size-adjust:100%; }
   body{
-    font-family:var(--font-body); margin:0; background:var(--cream); color:#111;
+    font-family:var(--font-body); margin:0;
+    background:linear-gradient(160deg, var(--mustard-light) 0%, var(--mustard) 45%, var(--mustard-deep) 100%);
+    color:var(--ink);
     -webkit-font-smoothing:antialiased; min-height:100vh;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:88px 20px 40px;
@@ -50,46 +53,47 @@
 
   .eyebrow{
     font-family:var(--font-heading); font-size:12.5px; font-weight:700; letter-spacing:0.06em;
-    text-transform:uppercase; color:#8a7f5f; margin-bottom:14px;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px;
   }
   h1{
     font-family:var(--font-heading); font-weight:800; letter-spacing:-0.01em;
-    font-size:clamp(26px,6.5vw,38px); line-height:1.12; margin:0 0 12px;
+    font-size:clamp(26px,6.5vw,38px); line-height:1.12; margin:0 0 12px; color:var(--ink);
   }
-  .lead{ font-size:16px; line-height:1.5; color:#3a3529; margin:0 0 32px; }
+  .lead{ font-size:16px; line-height:1.5; color:var(--ink-body); margin:0 0 32px; }
 
   .steps{
     display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:36px;
   }
   @media (max-width:420px){ .steps{ grid-template-columns:repeat(5,1fr); gap:6px; } }
   .step{
-    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px;
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:12px;
     padding:10px 4px; display:flex; flex-direction:column; align-items:center; gap:4px;
   }
-  .step .days{ font-family:var(--font-heading); font-weight:800; font-size:12.5px; }
-  .step .lbl{ font-size:9.5px; font-weight:600; color:#6b6555; line-height:1.2; }
-  .step.done{ background:#111; }
+  .step .days{ font-family:var(--font-heading); font-weight:800; font-size:12.5px; color:var(--ink); }
+  .step .lbl{ font-size:9.5px; font-weight:600; color:var(--ink-soft); line-height:1.2; }
+  .step.done{ background:var(--ink); }
   .step.done .days, .step.done .lbl{ color:#fff; }
 
   .religiously{
     display:inline-flex; align-items:center; gap:7px; font-family:var(--font-heading);
-    font-weight:700; font-size:13px; background:#111; color:#fff; border-radius:9999px;
+    font-weight:700; font-size:13px; background:var(--ink); color:#fff; border-radius:9999px;
     padding:0.5em 1em; margin-bottom:28px;
   }
 
   .cta-btn{
     display:flex; align-items:center; justify-content:center; gap:10px;
-    background:#111; color:#fff; border-radius:9999px;
+    background:var(--ink); color:#fff; border-radius:9999px;
     font-family:var(--font-heading); font-weight:700; font-size:18px;
     padding:1.05em 1.5em; width:100%;
-    box-shadow:0 10px 30px rgba(0,0,0,0.18);
+    box-shadow:0 10px 30px rgba(0,0,0,0.28);
     transition:opacity .2s ease;
   }
   .cta-btn:hover{ opacity:0.88; }
-  .cta-sub{ font-size:13px; color:#6b6555; margin-top:14px; }
+  .cta-sub{ font-size:13px; color:var(--ink-soft); margin-top:14px; }
   .urgency{
     display:inline-block; margin-top:22px; font-size:12.5px; font-weight:700;
-    color:#8a3b1a; background:#fbe6d8; border-radius:9999px; padding:0.4em 0.9em;
+    color:#8a3b1a; background:#fff; border-radius:9999px; padding:0.4em 0.9em;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
   }
 </style>
 </head>
