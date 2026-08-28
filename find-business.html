@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Find What Business You Should Do — thedayzero</title>
-<meta name="description" content="Find the one business that's actually yours. ₹99. 10 minutes.">
+<meta name="description" content="A researched, psychometric-style business-fit test. ₹99. 10 minutes.">
 <meta name="robots" content="noindex, follow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,7 @@
     padding:88px 20px 40px;
   }
   a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; }
 
   .home-nav{ position:fixed; top:16px; left:16px; z-index:20; display:flex; align-items:center; gap:10px; }
   @media (min-width:640px){ .home-nav{ top:24px; left:24px; } }
@@ -46,7 +47,8 @@
   }
   @media (min-width:640px){ .home-label{ display:inline-block; } }
 
-  .wrap{ max-width:30rem; width:100%; text-align:center; }
+  .wrap{ max-width:34rem; width:100%; text-align:center; }
+  .wrap.is-hidden{ display:none; }
 
   .eyebrow{
     font-family:var(--font-heading); font-size:12.5px; font-weight:700; letter-spacing:0.06em;
@@ -57,6 +59,36 @@
     font-size:clamp(28px,7vw,40px); line-height:1.12; margin:0 0 12px;
   }
   .lead{ font-size:16px; line-height:1.5; color:#3a3529; margin:0 0 32px; }
+
+  /* ============ Step 1 — persona cards ============ */
+  .persona-grid{
+    display:flex; flex-direction:column; gap:12px; margin-bottom:22px; text-align:left;
+  }
+  .persona-card{
+    display:flex; align-items:center; gap:14px;
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:18px;
+    padding:16px 18px; width:100%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .persona-card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.1); border-color:rgba(0,0,0,0.15); }
+  .persona-ic{
+    flex-shrink:0; width:46px; height:46px; border-radius:50%;
+    background:var(--cream); display:flex; align-items:center; justify-content:center; font-size:21px;
+  }
+  .persona-copy{ flex:1; }
+  .persona-title{ font-family:var(--font-heading); font-weight:700; font-size:15.5px; color:#111; margin:0 0 2px; }
+  .persona-sub{ font-size:13px; color:#6b6555; line-height:1.35; margin:0; }
+  .persona-arrow{ flex-shrink:0; color:#111; opacity:0.35; }
+
+  .persona-foot{ font-size:12.5px; color:#8a8168; }
+
+  /* ============ Step 2 — pitch / paywall ============ */
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;
+    color:#6b6555; margin-bottom:18px;
+  }
+  .back-link:hover{ color:#111; }
 
   .chips{
     display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:36px;
@@ -70,7 +102,7 @@
 
   .cta-btn{
     display:flex; align-items:center; justify-content:center; gap:10px;
-    background:#111; color:#fff; border-radius:9999px;
+    background:#111; color:#fff; border-radius:9999px; border:none;
     font-family:var(--font-heading); font-weight:700; font-size:18px;
     padding:1.05em 1.5em; width:100%;
     box-shadow:0 10px 30px rgba(0,0,0,0.18);
@@ -96,25 +128,126 @@
   <a href="index.html" class="home-label">thedayzero</a>
 </nav>
 
-<div class="wrap">
-  <div class="eyebrow">₹99 · 10 minutes</div>
-  <h1>Find the one business that's yours.</h1>
-  <p class="lead">4 honest questions. One clear answer.</p>
+<!-- ================= STEP 1: persona picker ================= -->
+<div id="personaStep" class="wrap">
+  <div class="eyebrow">Step 1 of 2 · Before the test</div>
+  <h1>First, tell us who you are.</h1>
+  <p class="lead">Your test and your result are built around your actual life — not a one-size-fits-all quiz.</p>
+
+  <div id="personaGrid" class="persona-grid"><!-- persona cards injected by JS --></div>
+
+  <div class="persona-foot">Takes 10 minutes either way. Nothing you pick here locks you out of the others later.</div>
+</div>
+
+<!-- ================= STEP 2: pitch + ₹99 unlock ================= -->
+<div id="pitchStep" class="wrap is-hidden">
+  <button type="button" id="backToPersona" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    Change who you are
+  </button>
+
+  <div class="eyebrow" id="pitchEyebrow">₹99 · 10 minutes</div>
+  <h1 id="pitchH1">Find the one business that's yours.</h1>
+  <p class="lead" id="pitchLead">A researched, psychometric-style assessment — not 4 random questions.</p>
 
   <div class="chips">
-    <span class="chip"><span class="ic">❤️</span> Love</span>
-    <span class="chip"><span class="ic">⚡</span> Skill</span>
-    <span class="chip"><span class="ic">🎯</span> Need</span>
-    <span class="chip"><span class="ic">💰</span> Paid</span>
+    <span class="chip"><span class="ic">❤️</span> Interests</span>
+    <span class="chip"><span class="ic">⚡</span> Natural Skill</span>
+    <span class="chip"><span class="ic">🎯</span> Real-World Fit</span>
+    <span class="chip"><span class="ic">🧭</span> Working Style</span>
   </div>
 
-  <a href="https://rzp.io/rzp/xAvsKApO" target="_blank" rel="noopener" class="cta-btn">
-    Start Now — ₹99
+  <a href="https://rzp.io/rzp/xAvsKApO" id="startCta" class="cta-btn">
+    Unlock My Business-Fit Test — ₹99
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
   </a>
   <div class="cta-sub">Instant. Secure payment via Razorpay.</div>
-  <div class="urgency">Price rises end of September 2026</div>
+  <div class="urgency">₹99 until 30 Sep 2026 — then ₹499</div>
 </div>
+
+<script>
+(function(){
+  var PERSONAS = [
+    {
+      id: 'it',
+      icon: '💻',
+      cardTitle: 'IT Pro Going Solo',
+      cardSub: "You've got the skills. Ready to build something that's actually yours.",
+      pitchEyebrow: '₹99 · 10 minutes · For people leaving the payslip behind',
+      pitchH1: "Find the business your skills are wasted without.",
+      pitchLead: "Not a coding test. A real look at whether you should build a product, a system for other businesses, or something else entirely."
+    },
+    {
+      id: 'student',
+      icon: '🎓',
+      cardTitle: 'Student, Future Founder',
+      cardSub: "Not looking for a job. Looking for the business that's yours to build.",
+      pitchEyebrow: '₹99 · 10 minutes · For people skipping the "get a job" script',
+      pitchH1: "Find the business you can start before you graduate.",
+      pitchLead: "Built for zero-capital, time-flexible starts — not corporate case studies."
+    },
+    {
+      id: 'homemaker',
+      icon: '🏡',
+      cardTitle: 'Homemaker, Building Freedom',
+      cardSub: "Your own income, on your own time — no permission needed.",
+      pitchEyebrow: '₹99 · 10 minutes · For people starting from home, on their own time',
+      pitchH1: "Find the business already hiding in your skills.",
+      pitchLead: "Built around real time constraints and skills you already have — not a generic 'side hustle' list."
+    }
+  ];
+
+  var personaGrid = document.getElementById('personaGrid');
+  var personaStep = document.getElementById('personaStep');
+  var pitchStep = document.getElementById('pitchStep');
+  var pitchEyebrow = document.getElementById('pitchEyebrow');
+  var pitchH1 = document.getElementById('pitchH1');
+  var pitchLead = document.getElementById('pitchLead');
+  var backToPersona = document.getElementById('backToPersona');
+
+  PERSONAS.forEach(function(p){
+    var card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'persona-card';
+    card.setAttribute('data-persona', p.id);
+    card.innerHTML =
+      '<span class="persona-ic">' + p.icon + '</span>' +
+      '<span class="persona-copy">' +
+        '<span class="persona-title">' + p.cardTitle + '</span>' +
+        '<span class="persona-sub">' + p.cardSub + '</span>' +
+      '</span>' +
+      '<svg class="persona-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>';
+    card.addEventListener('click', function(){ choosePersona(p); });
+    personaGrid.appendChild(card);
+  });
+
+  function choosePersona(p){
+    try{ localStorage.setItem('tdz_persona', p.id); }catch(e){}
+    pitchEyebrow.textContent = p.pitchEyebrow;
+    pitchH1.textContent = p.pitchH1;
+    pitchLead.textContent = p.pitchLead;
+    personaStep.classList.add('is-hidden');
+    pitchStep.classList.remove('is-hidden');
+    window.scrollTo(0, 0);
+  }
+
+  backToPersona.addEventListener('click', function(){
+    pitchStep.classList.add('is-hidden');
+    personaStep.classList.remove('is-hidden');
+    window.scrollTo(0, 0);
+  });
+
+  // Returning visitor who already picked a persona earlier this session —
+  // skip straight to the pitch step instead of asking again.
+  try{
+    var saved = localStorage.getItem('tdz_persona');
+    if(saved){
+      var match = PERSONAS.filter(function(p){ return p.id === saved; })[0];
+      if(match) choosePersona(match);
+    }
+  }catch(e){}
+})();
+</script>
 
 </body>
 </html>

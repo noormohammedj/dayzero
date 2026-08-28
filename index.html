@@ -89,6 +89,19 @@
   @media (min-width:768px){ .navbar-cta{ display:inline; } }
   .navbar-cta:hover{ opacity:.6; }
 
+  .navbar-right{ display:flex; align-items:center; gap:16px; }
+
+  .navbar-insta{
+    display:none; align-items:center; justify-content:center;
+    color:#000; opacity:0.85; transition:opacity .2s ease; flex-shrink:0;
+  }
+  .navbar-insta:hover{ opacity:0.5; }
+  @media (min-width:768px){ .navbar-insta{ display:inline-flex; } }
+
+  .mobile-overlay-social{
+    display:flex; align-items:center; gap:8px; font-size:24px !important; font-weight:600;
+  }
+
   .hamburger{
     display:flex; flex-direction:column; gap:5px; padding:10px;
   }
@@ -124,30 +137,24 @@
 
   .hero-intro{
     pointer-events:none; user-select:none; margin-bottom:20px;
-    font-size:clamp(20px,5.5vw,26px); line-height:1.3; font-weight:400; color:#000;
-    filter:blur(4px);
+    font-size:clamp(20px,5.5vw,26px); line-height:1.3; font-weight:400; color:#fff;
   }
   @media (min-width:640px){ .hero-intro{ margin-bottom:24px; } }
 
   .hero-typewriter{
-    color:#000; margin-bottom:22px;
+    color:#fff; margin-bottom:22px;
     font-size:clamp(17px,4.6vw,20px); line-height:1.5; font-weight:500; min-height:54px;
   }
   @media (min-width:640px){ .hero-typewriter{ margin-bottom:24px; font-weight:400; } }
 
   #cursor{
-    display:inline-block; width:2px; height:1.1em; background:#000;
+    display:inline-block; width:2px; height:1.1em; background:#fff;
     vertical-align:middle; margin-left:2px;
   }
 
   .hero-pills{
     opacity:0; transform:translateY(8px);
     transition:opacity .4s ease, transform .4s ease;
-  }
-
-  .copy-toast{
-    display:block; margin-top:8px; font-size:12px; color:#000;
-    opacity:0; transition:opacity .25s ease;
   }
 
   /* ============ primary CTAs — the two money buttons, big and obvious ============ */
@@ -309,14 +316,28 @@
   </div>
 
   <div class="navbar-links">
-    <a href="find-business.html">What Business Suits You</a><span>,</span>
-    <a href="run-business-30-days.html">Run Any Business In 30 Days</a><span>,</span>
+    <a href="find-business.html">Find your skill</a><span>,</span>
+    <a href="run-business-30-days.html">Convert skill as business</a><span>,</span>
     <a href="founder.html">Meet The Founder</a><span>,</span>
     <a href="story.html">Read Our Story</a><span>,</span>
     <a href="story.html">About</a>
   </div>
 
-  <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="navbar-cta">Get in touch</a>
+  <div class="navbar-right">
+    <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="navbar-cta">Get in touch</a>
+    <a href="https://www.instagram.com/the.kahaaniya/" target="_blank" rel="noopener" class="navbar-insta" aria-label="thedayzero on Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4.2"></circle>
+        <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle>
+      </svg>
+    </a>
+    <a href="https://chat.whatsapp.com/D6XeJK0D8kD7zfMAJkAeda" target="_blank" rel="noopener" class="navbar-insta" aria-label="thedayzero WhatsApp community">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.19 0 4.24.85 5.79 2.4a8.13 8.13 0 0 1 2.4 5.79c0 4.52-3.68 8.19-8.2 8.19a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.15 8.15 0 0 1-1.25-4.34c0-4.52 3.68-8.19 8.21-8.19zm-4.5 4.5c-.16 0-.42.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.09.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28-.25-.13-1.44-.71-1.66-.79-.22-.08-.39-.13-.55.13-.16.25-.63.79-.78.96-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.44-.06-.13-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42h-.4z"></path>
+      </svg>
+    </a>
+  </div>
 
   <button id="hamburgerBtn" class="hamburger" aria-label="Open menu" aria-expanded="false">
     <span id="barTop" class="hamburger-bar"></span>
@@ -327,22 +348,35 @@
 
 <!-- ================= MOBILE OVERLAY MENU ================= -->
 <div id="mobileOverlay" class="mobile-overlay">
-  <a href="find-business.html">What Business Suits You</a>
-  <a href="run-business-30-days.html">Run Any Business In 30 Days</a>
+  <a href="find-business.html">Find your skill</a>
+  <a href="run-business-30-days.html">Convert skill as business</a>
   <a href="founder.html">Meet The Founder</a>
   <a href="story.html">Read Our Story</a>
   <a href="story.html">About</a>
   <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="underline-link">Get in touch</a>
+  <a href="https://www.instagram.com/the.kahaaniya/" target="_blank" rel="noopener" class="mobile-overlay-social">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+      <circle cx="12" cy="12" r="4.2"></circle>
+      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle>
+    </svg>
+    Instagram
+  </a>
+  <a href="https://chat.whatsapp.com/D6XeJK0D8kD7zfMAJkAeda" target="_blank" rel="noopener" class="mobile-overlay-social">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.19 0 4.24.85 5.79 2.4a8.13 8.13 0 0 1 2.4 5.79c0 4.52-3.68 8.19-8.2 8.19a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.12.82.83-3.04-.19-.31a8.15 8.15 0 0 1-1.25-4.34c0-4.52 3.68-8.19 8.21-8.19zm-4.5 4.5c-.16 0-.42.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.09.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28-.25-.13-1.44-.71-1.66-.79-.22-.08-.39-.13-.55.13-.16.25-.63.79-.78.96-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.44-.06-.13-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42h-.4z"></path>
+    </svg>
+    WhatsApp
+  </a>
 </div>
 
 <!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-content">
 
-    <!-- 1. Blurred intro label -->
+    <!-- 1. Intro label -->
     <p class="hero-intro">
-      Hey there, this is thedayzero,<br>
-      Before Day 1, there's Day 0.
+      Hello There, this is TheDayZero your agentic mentor who can tell you what would suits you!
     </p>
 
     <!-- 2. Typewriter text -->
@@ -354,27 +388,19 @@
     <div id="pillContainer" class="hero-pills">
       <div class="cta-primary-row">
         <a href="find-business.html" class="cta-primary">
-          Find What Business You Should Do
+          Find your skill
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
         </a>
         <a href="run-business-30-days.html" class="cta-primary">
-          Run Any Business In 30 Days
+          Convert skill as business
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
         </a>
       </div>
       <div class="cta-secondary-row">
         <a href="founder.html" class="pill-secondary">Meet The Founder</a>
         <a href="story.html" class="pill-secondary">Read Our Story</a>
-        <button id="copyPill" type="button" class="pill-outline">
-          <span>Reach us: <span style="text-decoration:underline;text-underline-offset:1px;">+91 96298 43122</span></span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <rect x="9" y="9" width="11" height="11" rx="1"></rect>
-            <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
-          </svg>
-        </button>
       </div>
     </div>
-    <span id="copyToast" class="copy-toast">Copied to clipboard</span>
   </div>
 </section>
 
@@ -459,7 +485,7 @@
   });
 
   /* ================= Typewriter ================= */
-  var TYPE_TEXT = "Are you still figuring out what the purpose of your life is? Don't know what business to start, what company to build, or how to start something that actually connects to your purpose? Then you're at the right place. thedayzero helps you figure out and unlock your life's purpose for just ₹99/-, and helps you run any business in 30 days for just ₹499/-. Limited period offer only — price goes up by end of September 2026!";
+  var TYPE_TEXT = "Thanks for taking interest on yourself, if you have landed here, its the first investment towards your right future, you are just Rs. 99/- away to find what is your skill and turn it to working business - Price goes up by end of September 2026!";
   var SPEED = 16;
   var START_DELAY = 500;
   var contentEl = document.getElementById('typewriterContent');
@@ -485,24 +511,6 @@
     pillContainer.style.opacity = '1';
     pillContainer.style.transform = 'translateY(0)';
   }, 400);
-
-  /* ================= Copy-to-clipboard pill ================= */
-  var copyPill = document.getElementById('copyPill');
-  var copyToast = document.getElementById('copyToast');
-  var toastTimer = null;
-  copyPill.addEventListener('click', function(){
-    var value = '+91 96298 43122';
-    function showToast(){
-      copyToast.style.opacity = '1';
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function(){ copyToast.style.opacity = '0'; }, 1800);
-    }
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(value).then(showToast).catch(showToast);
-    } else {
-      showToast();
-    }
-  });
 
   /* ================= Background video: autoplay by default, scrub as a bonus ================= */
   var video = document.getElementById('heroVideo');

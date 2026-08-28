@@ -87,6 +87,10 @@
   }
   .cta-btn:hover{ opacity:0.88; }
   .cta-sub{ font-size:13px; color:#6b6555; margin-top:14px; }
+  .urgency{
+    display:inline-block; margin-top:22px; font-size:12.5px; font-weight:700;
+    color:#8a3b1a; background:#fbe6d8; border-radius:9999px; padding:0.4em 0.9em;
+  }
 </style>
 </head>
 <body>
@@ -102,9 +106,9 @@
 </nav>
 
 <div class="wrap">
-  <div class="eyebrow">₹499 · 30 days</div>
-  <h1>Run it. Step by step.</h1>
-  <p class="lead">One task a day. 30 days. A real business.</p>
+  <div class="eyebrow" id="pageEyebrow">₹499 · 30 days</div>
+  <h1 id="pageH1">Run it. Step by step.</h1>
+  <p class="lead" id="pageLead">One task a day. 30 days. A real business.</p>
 
   <div class="steps">
     <div class="step"><div class="days">1–3</div><div class="lbl">Discover</div></div>
@@ -122,12 +126,66 @@
   <div class="religiously">🔥 Works if you follow it daily</div>
   <br>
 
-  <a href="https://rzp.io/rzp/xaRyRIP" target="_blank" rel="noopener" class="cta-btn">
+  <a href="https://rzp.io/rzp/xaRyRIP" class="cta-btn">
     Start Now — ₹499
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
   </a>
   <div class="cta-sub">Instant. Secure payment via Razorpay.</div>
+  <div class="urgency">₹499 until 30 Sep 2026 — then ₹1,299</div>
 </div>
+
+<script>
+(function(){
+  // Optional personalization: if the visitor arrived from their business-fit
+  // result (via ?biz=<archetype-id> or a saved localStorage.tdz_biz), tailor
+  // the eyebrow/H1/lead to name their specific recommended business.
+  var BIZ = {
+    'hyperlocal-trust': { name:'Hyperlocal Trust Services', focus:'organizing and branding a verified local service' },
+    'regional-d2c': { name:'Niche Regional D2C Brand', focus:'building and launching your regional product brand' },
+    'vernacular-edu': { name:'Vernacular Coaching & EdTech', focus:'packaging your teaching into a sellable, bookable offer' },
+    'automation-consulting': { name:'Small-Business Systems & Automation', focus:'productizing your first WhatsApp-to-system client fix' },
+    'creator-brand': { name:'Personal Brand → Owned Product', focus:'turning your audience into your first owned product' },
+    'home-skill': { name:'Home-Based Skill Business', focus:'packaging your skill into a real, bookable business' },
+    'wellness': { name:'Affordable Everyday Wellness', focus:'launching an accessible, non-clinical wellness offer' },
+    'pet-elder-care': { name:'Pet & Elder Care Concierge', focus:'building a small, trusted, vetted care team' },
+    'reselling-curation': { name:'Sourcing & Curated Reselling', focus:'picking your niche and becoming its trusted source' },
+    'productized-freelance': { name:'Productized Freelance Agency', focus:'turning your hourly skill into a fixed-price offer' }
+  };
+
+  function getBiz(){
+    try{
+      var q = new URLSearchParams(window.location.search).get('biz');
+      if(q && BIZ[q]) return q;
+    }catch(e){}
+    try{
+      var saved = localStorage.getItem('tdz_biz');
+      if(saved && BIZ[saved]) return saved;
+    }catch(e){}
+    return null;
+  }
+
+  function getNiche(){
+    try{
+      var q = new URLSearchParams(window.location.search).get('niche');
+      if(q) return q;
+    }catch(e){}
+    return null;
+  }
+
+  var id = getBiz();
+  if(id){
+    var b = BIZ[id];
+    var niche = getNiche();
+    var displayName = niche || b.name;
+    var eyebrow = document.getElementById('pageEyebrow');
+    var h1 = document.getElementById('pageH1');
+    var lead = document.getElementById('pageLead');
+    if(eyebrow) eyebrow.textContent = '₹499 · 30 days · Built for: ' + displayName;
+    if(h1) h1.textContent = 'Run your ' + displayName + '. Step by step.';
+    if(lead) lead.textContent = 'One task a day for 30 days — starting with ' + b.focus + ', through to your first paying customer.';
+  }
+})();
+</script>
 
 </body>
 </html>
