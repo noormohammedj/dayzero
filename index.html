@@ -50,7 +50,13 @@
   }
   .bg-scrim{
     position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:linear-gradient(180deg, rgba(255,253,247,0.22) 0%, rgba(255,253,247,0.55) 100%);
+    /* Dark scrim (not a light wash) so the white hero text stays readable no
+       matter how bright/yellow the underlying video frame is — heavier on
+       the left/bottom where the text block sits, lighter over the right side
+       so the founder footage still reads through. */
+    background:
+      linear-gradient(90deg, rgba(10,9,6,0.62) 0%, rgba(10,9,6,0.5) 40%, rgba(10,9,6,0.22) 72%, rgba(10,9,6,0.05) 100%),
+      linear-gradient(180deg, rgba(10,9,6,0.28) 0%, rgba(10,9,6,0.2) 40%, rgba(10,9,6,0.48) 100%);
   }
 
   /* ============ navbar ============ */
@@ -138,12 +144,14 @@
   .hero-intro{
     pointer-events:none; user-select:none; margin-bottom:20px;
     font-size:clamp(20px,5.5vw,26px); line-height:1.3; font-weight:400; color:#fff;
+    text-shadow:0 2px 14px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.5);
   }
   @media (min-width:640px){ .hero-intro{ margin-bottom:24px; } }
 
   .hero-typewriter{
     color:#fff; margin-bottom:22px;
     font-size:clamp(17px,4.6vw,20px); line-height:1.5; font-weight:500; min-height:54px;
+    text-shadow:0 2px 12px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.5);
   }
   @media (min-width:640px){ .hero-typewriter{ margin-bottom:24px; font-weight:400; } }
 
@@ -304,8 +312,9 @@
 <video id="heroVideo" class="bg-video" muted playsinline autoplay loop preload="auto">
   <source src="hero-video.mp4" type="video/mp4">
 </video>
-<!-- light scrim over the video so black text stays readable regardless of footage brightness —
-     safe to remove or tune once the real, final video is in place -->
+<!-- Dark scrim over the video so white text stays readable regardless of
+     footage brightness (the founder video runs warm/yellow-lit) — safe to
+     tune the rgba stops above once the real, final video is in place. -->
 <div class="bg-scrim" aria-hidden="true"></div>
 
 <!-- ================= NAVBAR ================= -->
