@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6VT4XMLT0Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6VT4XMLT0Q');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take The Quick Start Quiz — thedayzero</title>
+<meta name="description" content="A simple, click-based business-fit test. ₹99. 5 minutes.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://thedayzero.in/quick-start/">
+
+<link rel="icon" type="image/png" href="https://thedayzero.in/assets/favicon.png">
+<link rel="apple-touch-icon" href="https://thedayzero.in/assets/favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thedayzero.in/quick-start/">
+<meta property="og:title" content="Take The Quick Start Quiz — thedayzero">
+<meta property="og:description" content="A simple, click-based business-fit test. ₹99. 5 minutes.">
+<meta property="og:site_name" content="thedayzero by TheKahaaniya">
+<meta property="og:image" content="https://thedayzero.in/assets/logo-og.png">
+<meta property="og:image:alt" content="thedayzero by TheKahaaniya">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Take The Quick Start Quiz — thedayzero">
+<meta name="twitter:description" content="A simple, click-based business-fit test. ₹99. 5 minutes.">
+<meta name="twitter:image" content="https://thedayzero.in/assets/logo-og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --font-heading: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --mustard-light:#f0c875; --mustard:#d9a441; --mustard-deep:#b9832a; --mustard-tint:#f7e8c2;
+    --ink:#1c1509; --ink-body:rgba(28,21,9,0.86); --ink-soft:rgba(28,21,9,0.62);
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    font-family:var(--font-body); margin:0;
+    background:linear-gradient(160deg, var(--mustard-light) 0%, var(--mustard) 45%, var(--mustard-deep) 100%);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding:140px 16px 50px;
+  }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .home-nav{ position:fixed; top:16px; left:16px; z-index:20; display:flex; align-items:center; gap:10px; }
+  @media (min-width:640px){ .home-nav{ top:24px; left:24px; } }
+  .home-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:44px; height:44px; border-radius:50%;
+    background:#fff; border:1px solid rgba(0,0,0,0.1);
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    transition:background-color .2s ease;
+  }
+  .home-btn:hover{ background:#000; }
+  .home-btn:hover svg{ stroke:#fff; }
+  .home-btn svg{ stroke:#111; transition:stroke .2s ease; }
+  .home-label{
+    font-family:var(--font-heading); font-size:14px; font-weight:600; color:#111;
+    background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:9999px;
+    padding:0.5em 1em; box-shadow:0 2px 10px rgba(0,0,0,0.06); display:none;
+  }
+  @media (min-width:640px){ .home-label{ display:inline-block; } }
+
+  /* ============ Language switch ============ */
+  .lang-switch{
+    position:fixed; top:16px; right:16px; z-index:20;
+    display:flex; gap:4px; background:#fff; border:1px solid rgba(0,0,0,0.1);
+    border-radius:9999px; padding:4px; box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+  @media (min-width:640px){ .lang-switch{ top:24px; right:24px; } }
+  .lang-btn{
+    border:none; background:transparent; border-radius:9999px; padding:0.4em 0.85em;
+    font-family:var(--font-heading); font-weight:700; font-size:12.5px; color:#6b6555;
+  }
+  .lang-btn.active{ background:#111; color:#fff; }
+
+  .wrap{ max-width:36rem; width:100%; text-align:center; }
+  .wrap.is-hidden{ display:none; }
+  .is-hidden{ display:none; }
+
+  .eyebrow{
+    font-family:var(--font-heading); font-size:12.5px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px;
+  }
+  h1{
+    font-family:var(--font-heading); font-weight:800; letter-spacing:-0.01em;
+    font-size:clamp(26px,6.5vw,38px); line-height:1.15; margin:0 0 12px; color:var(--ink);
+  }
+  h2{
+    font-family:var(--font-heading); font-weight:800; letter-spacing:-0.01em;
+    font-size:clamp(21px,5vw,28px); line-height:1.2; margin:0 0 6px; color:var(--ink);
+  }
+  .lead{ font-size:16px; line-height:1.5; color:var(--ink-body); margin:0 0 28px; }
+  .sub{ font-size:14px; line-height:1.5; color:var(--ink-soft); margin:0 0 26px; }
+
+  /* ============ Persona cards (shared style) ============ */
+  .persona-grid{ display:flex; flex-direction:column; gap:12px; margin-bottom:22px; text-align:left; }
+  .persona-card{
+    display:flex; align-items:center; gap:14px;
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:18px;
+    padding:16px 18px; width:100%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.04);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .persona-card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.1); border-color:rgba(0,0,0,0.15); }
+  .persona-ic{
+    flex-shrink:0; width:46px; height:46px; border-radius:50%; color:#111;
+    background:var(--mustard-tint); display:flex; align-items:center; justify-content:center; font-size:21px;
+  }
+  .persona-ic svg{ width:22px; height:22px; }
+  .persona-copy{ flex:1; }
+  .persona-title{ font-family:var(--font-heading); font-weight:700; font-size:15.5px; color:#111; margin:0 0 2px; }
+  .persona-sub{ font-size:13px; color:#6b6555; line-height:1.35; margin:0; }
+  .persona-arrow{ flex-shrink:0; color:#111; opacity:0.35; }
+
+  /* ============ Progress ============ */
+  .progress-wrap{ margin-bottom:26px; }
+  .progress-track{ height:6px; background:rgba(255,255,255,0.55); border-radius:9999px; overflow:hidden; }
+  .progress-fill{ height:100%; background:var(--ink); border-radius:9999px; width:0%; transition:width .3s ease; }
+  .progress-label{ font-size:12.5px; font-weight:600; color:var(--ink-soft); margin-top:8px; }
+
+  /* ============ Icon choice grid ============ */
+  .pick-counter{
+    display:inline-block; font-size:12.5px; font-weight:700; color:#8a3b1a;
+    background:#fff; border-radius:9999px; padding:0.35em 0.9em; margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  }
+  .icon-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:26px;
+  }
+  @media (min-width:520px){ .icon-grid{ grid-template-columns:repeat(3,1fr); } }
+  .icon-card{
+    position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px; background:#fff; border:2px solid rgba(0,0,0,0.08); border-radius:18px;
+    padding:18px 8px; text-align:center; min-height:104px;
+    transition:transform .12s ease, border-color .12s ease, background-color .12s ease;
+  }
+  .icon-card .icon-svg{ width:26px; height:26px; color:#2b271d; transition:color .12s ease; }
+  .icon-card .lbl{ font-family:var(--font-heading); font-weight:600; font-size:12.5px; color:#2b271d; line-height:1.25; }
+  .icon-card:hover{ transform:translateY(-2px); border-color:rgba(0,0,0,0.25); }
+  .icon-card.selected{ border-color:#111; background:#111; }
+  .icon-card.selected .lbl{ color:#fff; }
+  .icon-card.selected .icon-svg{ color:#fff; }
+  .icon-card.disabled{ opacity:0.35; pointer-events:none; }
+  .icon-card{ animation:cardIn .3s ease backwards; }
+  @keyframes cardIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+  .icon-check{
+    position:absolute; top:6px; right:6px; width:20px; height:20px; border-radius:50%;
+    background:#fff; color:#111; display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:scale(0.6); transition:opacity .12s ease, transform .12s ease;
+  }
+  .icon-check svg{ width:11px; height:11px; }
+  .icon-card.selected .icon-check{ opacity:1; transform:scale(1); }
+
+  /* ============ Analyzing (loading) ============ */
+  #analyzingWrap{ padding-top:40px; }
+  .orb{ position:relative; width:120px; height:120px; margin:0 auto 34px; }
+  .orb-ring{
+    position:absolute; inset:0; border-radius:50%; border:2px solid rgba(17,17,17,0.12);
+    border-top-color:#111; animation:orbSpin 1.6s linear infinite;
+  }
+  .orb-ring-2{ inset:14px; border-top-color:transparent; border-right-color:#8a3b1a; animation-duration:2.2s; animation-direction:reverse; }
+  .orb-core{
+    position:absolute; inset:38px; border-radius:50%; background:#111;
+    animation:orbPulse 1.4s ease-in-out infinite;
+  }
+  @keyframes orbSpin{ to{ transform:rotate(360deg); } }
+  @keyframes orbPulse{ 0%,100%{ transform:scale(0.9); opacity:0.85; } 50%{ transform:scale(1.05); opacity:1; } }
+  .analyzing-title{ margin-bottom:10px; }
+  .analyzing-phrase{
+    font-size:14.5px; color:var(--ink-soft); min-height:22px; transition:opacity .25s ease;
+  }
+  .analyzing-dots{ display:flex; gap:7px; justify-content:center; margin-top:22px; }
+  .analyzing-dots span{
+    width:7px; height:7px; border-radius:50%; background:#111; opacity:0.25;
+    animation:dotBounce 1.2s ease-in-out infinite;
+  }
+  .analyzing-dots span:nth-child(2){ animation-delay:0.15s; }
+  .analyzing-dots span:nth-child(3){ animation-delay:0.3s; }
+  @keyframes dotBounce{ 0%,80%,100%{ transform:translateY(0); opacity:0.25; } 40%{ transform:translateY(-6px); opacity:1; } }
+
+  /* ============ Result reveal ============ */
+  .result-name{ animation:revealPop .5s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes revealPop{ from{ opacity:0; transform:scale(0.94) translateY(6px); } to{ opacity:1; transform:scale(1) translateY(0); } }
+  .chip-row{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:24px; }
+  .chip{
+    font-family:var(--font-heading); font-weight:600; font-size:12.5px; color:#2b271d;
+    background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:9999px; padding:0.5em 1em;
+  }
+  .chip-muted{ color:var(--ink-soft); background:rgba(255,255,255,0.4); border-style:dashed; }
+
+  @media (prefers-reduced-motion: reduce){
+    .icon-card, .result-name, .orb-ring, .orb-core, .analyzing-dots span{ animation:none !important; }
+  }
+
+  .quiz-nav{ display:flex; gap:10px; align-items:center; justify-content:center; }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600;
+    color:var(--ink-soft); background:none; border:none; padding:0.6em 0;
+  }
+  .back-link:hover{ color:var(--ink); }
+  .back-link:disabled{ opacity:0.3; pointer-events:none; }
+
+  .cta-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--ink); color:#fff; border-radius:9999px; border:none;
+    font-family:var(--font-heading); font-weight:700; font-size:17px;
+    padding:1em 1.5em; width:100%;
+    box-shadow:0 10px 30px rgba(0,0,0,0.28);
+    transition:opacity .2s ease;
+  }
+  .cta-btn:disabled{ opacity:0.35; box-shadow:none; }
+  .cta-btn:not(:disabled):hover{ opacity:0.88; }
+  .cta-sub{ font-size:13px; color:var(--ink-soft); margin-top:14px; }
+  .wa-reveal-btn{ margin-top:14px; }
+  .urgency{
+    display:inline-block; margin-top:22px; font-size:12.5px; font-weight:700;
+    color:#8a3b1a; background:#fff; border-radius:9999px; padding:0.4em 0.9em;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  /* ============ Results ============ */
+  .result-eyebrow{
+    font-family:var(--font-heading); font-size:12.5px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;
+  }
+  .result-name{ font-size:clamp(26px,6vw,36px); margin:0 0 10px; color:var(--ink); }
+  .result-oneliner{ font-size:16px; color:var(--ink-body); line-height:1.5; margin:0 0 28px; }
+  .result-block{ text-align:left; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:18px; padding:20px 20px; margin-bottom:16px; }
+  .result-block h3{ font-family:var(--font-heading); font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#8a3b1a; margin:0 0 10px; }
+  .result-block p{ font-size:14.5px; line-height:1.6; color:#2b271d; margin:0; }
+  .result-block.secondary h3{ color:#6b6555; }
+
+  .strength-card{ text-align:left; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:18px; padding:22px 20px; margin-bottom:16px; }
+  .strength-card h3{ font-family:var(--font-heading); font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:#8a3b1a; margin:0 0 4px; }
+  .strength-card .strength-sub{ font-size:13px; color:var(--ink-soft); margin:0 0 18px; line-height:1.5; }
+  .trait-row{ margin-bottom:13px; }
+  .trait-row:last-child{ margin-bottom:0; }
+  .trait-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; gap:10px; }
+  .trait-name{ font-family:var(--font-heading); font-weight:600; font-size:13.5px; color:#2b271d; }
+  .trait-pct{ font-size:12px; font-weight:700; color:var(--ink-soft); flex-shrink:0; }
+  .trait-track{ height:8px; background:rgba(0,0,0,0.07); border-radius:9999px; overflow:hidden; }
+  .trait-fill{ height:100%; background:linear-gradient(90deg, var(--mustard-deep), var(--ink)); border-radius:9999px; width:0%; transition:width .7s cubic-bezier(.2,.8,.2,1); }
+
+  .plan-includes{ list-style:none; margin:0 0 20px; padding:0; display:flex; flex-direction:column; gap:9px; }
+  .plan-includes li{ font-size:13.5px; color:#d8d4c8; display:flex; align-items:flex-start; gap:9px; line-height:1.45; }
+  .plan-includes li svg{ flex-shrink:0; margin-top:3px; color:#e0ab7c; }
+
+  .disclaimer{
+    text-align:left; background:rgba(255,255,255,0.4); border:1px dashed rgba(28,21,9,0.28); border-radius:14px;
+    padding:14px 16px; margin:6px 0 24px;
+  }
+  .disclaimer p{ font-size:12.5px; line-height:1.55; color:var(--ink-soft); margin:0; font-style:italic; }
+
+  .lock-card{
+    position:relative; text-align:left; background:#111; color:#fff; border-radius:22px;
+    padding:30px 22px 26px; margin-bottom:20px; overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+  }
+  .lock-badge{
+    position:absolute; top:-16px; right:20px; width:40px; height:40px; border-radius:50%;
+    background:#e0ab7c; color:#111; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 18px rgba(0,0,0,0.3);
+  }
+  .lock-badge svg{ width:18px; height:18px; }
+  .lock-eyebrow{ font-family:var(--font-heading); font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#e0ab7c; margin-bottom:10px; }
+  .lock-title{ font-family:var(--font-heading); font-size:20px; font-weight:800; line-height:1.25; margin:0 0 16px; }
+  .lock-sub{ font-size:14px; line-height:1.55; color:#d8d4c8; margin:0 0 20px; }
+  .lock-card .cta-btn{ background:#fff; color:#111; }
+  .lock-card .cta-sub{ color:#b9b4a4; }
+  .lock-card .urgency{ background:#3a2a1c; color:#f5c69a; }
+
+  .retake{ margin-top:6px; }
+  .retake button{ background:none; border:none; font-size:13px; font-weight:600; color:var(--ink-soft); text-decoration:underline; }
+  .retake button:hover{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="home-nav">
+  <a href="/index.html" class="home-btn" aria-label="Back to home">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 11l9-8 9 8"></path>
+      <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path>
+    </svg>
+  </a>
+  <a href="/index.html" class="home-label">thedayzero</a>
+</nav>
+
+<div class="lang-switch" id="langSwitch">
+  <button type="button" class="lang-btn" data-lang="en">EN</button>
+  <button type="button" class="lang-btn" data-lang="hi">हिं</button>
+  <button type="button" class="lang-btn" data-lang="ta">தமிழ்</button>
+</div>
+
+<!-- ================= FALLBACK PERSONA GATE ================= -->
+<div id="personaGate" class="wrap is-hidden">
+  <div class="eyebrow" id="gateEyebrow">Quick — one thing first</div>
+  <h1 id="gateH1">Who are you?</h1>
+  <p class="lead" id="gateLead">This just personalizes your result.</p>
+  <div id="personaGrid" class="persona-grid"></div>
+</div>
+
+<!-- ================= QUIZ ================= -->
+<div id="quizWrap" class="wrap is-hidden">
+  <div class="progress-wrap">
+    <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+    <div id="progressLabel" class="progress-label">Step 1 of 3</div>
+  </div>
+  <h2 id="screenTitle"></h2>
+  <p class="sub" id="screenSub"></p>
+  <div class="pick-counter" id="pickCounter"></div>
+  <div id="iconGrid" class="icon-grid"></div>
+  <div class="quiz-nav">
+    <button type="button" id="backQ" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      <span id="backLbl">Back</span>
+    </button>
+  </div>
+  <div style="margin-top:18px;">
+    <button type="button" id="nextQ" class="cta-btn" disabled>
+      <span id="nextLbl">Next</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ================= ANALYZING (rich loading transition) ================= -->
+<div id="analyzingWrap" class="wrap is-hidden">
+  <div class="orb" aria-hidden="true">
+    <div class="orb-ring"></div>
+    <div class="orb-ring orb-ring-2"></div>
+    <div class="orb-core"></div>
+  </div>
+  <h2 class="analyzing-title" id="analyzingTitle"></h2>
+  <p class="analyzing-phrase" id="analyzingPhrase" role="status" aria-live="polite"></p>
+  <div class="analyzing-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+</div>
+
+<!-- ================= COMMUNITY GATE (join before reveal) ================= -->
+<div id="communityGate" class="wrap is-hidden">
+  <div class="eyebrow" id="waGateEyebrow">One last step</div>
+  <h1 id="waGateH1">Be part of the cult to know your skill and business — before we reveal it.</h1>
+  <p class="lead" id="waGateLead">This test is free because guessing your own path shouldn't cost you years. Join the community first — then we'll show you exactly what you're built for.</p>
+
+  <a href="https://chat.whatsapp.com/D6XeJK0D8kD7zfMAJkAeda" target="_blank" rel="noopener" id="joinWaBtn" class="cta-btn">
+    <span id="joinWaBtnLbl">Join the WhatsApp Community</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+  </a>
+  <div class="cta-sub" id="joinWaNote">Opens WhatsApp — come back to this tab after joining.</div>
+
+  <button type="button" id="revealResultBtn" class="cta-btn wa-reveal-btn is-hidden">
+    <span id="revealResultBtnLbl">I've Joined — Show My Result</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+  </button>
+</div>
+
+<!-- ================= RESULTS (reveal) ================= -->
+<div id="resultsWrap" class="wrap is-hidden">
+  <div class="result-eyebrow" id="resultEyebrow">Your result</div>
+  <h1 class="result-name" id="resultName"></h1>
+  <p class="result-oneliner" id="resultOneliner"></p>
+
+  <div class="chip-row">
+    <span class="chip" id="whyChip"></span>
+    <span class="chip chip-muted" id="secondaryChip"></span>
+  </div>
+
+  <div class="strength-card" id="strengthCard">
+    <h3 id="strengthTitle">Your Ikigai Profile</h3>
+    <p class="strength-sub" id="strengthSub"></p>
+    <div id="strengthBars"></div>
+  </div>
+
+  <div class="result-block" id="whyBlock">
+    <h3 id="whyBlockLbl"></h3>
+    <p id="whyBlockText"></p>
+  </div>
+
+  <div class="result-block" id="gapBlock">
+    <h3 id="gapBlockLbl"></h3>
+    <p id="gapBlockText"></p>
+  </div>
+
+  <div class="result-block" id="edgeBlock">
+    <h3 id="edgeBlockLbl"></h3>
+    <p id="edgeBlockText"></p>
+  </div>
+
+  <div class="result-block secondary" id="secondaryBlock">
+    <h3 id="secondaryBlockLbl"></h3>
+    <p id="secondaryBlockText"></p>
+  </div>
+
+  <div class="lock-card">
+    <span class="lock-badge" id="lockBadge" aria-hidden="true"></span>
+    <div class="lock-eyebrow" id="lockEyebrow">Still hidden from you</div>
+    <h3 class="lock-title" id="lockTitle">What the top 1% are already fixing here</h3>
+    <p class="lock-sub" id="lockSub"></p>
+    <ul class="plan-includes" id="planIncludes"></ul>
+    <a href="/run-business-30-days.html" id="courseCta" class="cta-btn">
+      <span id="courseCtaLbl">Beat the Top 1% + Run It in 30 Days — ₹499</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+    <div class="cta-sub" id="courseCtaSub">Instant. Secure payment via Razorpay.</div>
+    <div class="urgency" id="courseUrgency">₹499 until 30 Sep 2026 — then ₹1,299</div>
+  </div>
+
+  <div class="retake"><button type="button" id="retakeBtn">Retake the test</button></div>
+  <div class="disclaimer"><p id="disclaimerText"></p></div>
+</div>
+
+<script>
+(function(){
+
+  /* ================= UI strings (EN / HI / TA) ================= */
+  var UI = {
+    en:{
+      gateEyebrow:'Quick — one thing first', gateH1:'Who are you?', gateLead:'This just personalizes your result.',
+      back:'Back', next:'Next', retake:'Retake the test',
+      roleTitle:'What do you spend most of your work time on today?', roleSub:'Pick up to 3. This helps us factor in what you can already get paid for.',
+      screen1Title:'What would you love doing most?', screen1Sub:'Pick up to 3. Just go with your gut.',
+      screen2Title:'What would you do even if nobody paid you?', screen2Sub:'Pick up to 3 — things you’d do for free, just because you enjoy them.',
+      screen3Title:'Which problems do you notice around you?', screen3Sub:'Pick up to 3 things people around you struggle with.',
+      pickCounter:function(n){ return n + ' of 3 selected'; },
+      resultEyebrowPrefix:'Your result',
+      waGateEyebrow:'One last step', waGateH1:'Be part of the cult to know your skill and business — before we reveal it.',
+      waGateLead:'This test is free because guessing your own path shouldn\u2019t cost you years. Join the community first — then we\u2019ll show you exactly what you\u2019re built for.',
+      joinWaBtnLbl:'Join the WhatsApp Community', joinWaNote:'Opens WhatsApp — come back to this tab after joining.',
+      revealResultBtnLbl:'I\u2019ve Joined — Show My Result',
+      lblWhy:'Why this fits you', lblSecondary:'You also lean toward', lblGap:'The gap nobody’s filling', lblEdge:'What the top 1% do differently',
+      lockEyebrow:'The insight is yours. Now execute it.', lockTitle:'Your 30-Day Plan To Actually Launch This',
+      lockSubTemplate:'You already know the gap and the edge for {biz}. What\u2019s still missing is the week-by-week playbook — sourcing, pricing, your first customers, and the one mistake that kills most first attempts.',
+      planIncludes:['Week-by-week roadmap, not just theory','Ready-to-use pricing, scripts & templates','How to land your first paying customers'],
+      strengthsTitle:'Your Ikigai Profile', strengthsSub:'Based only on what you picked \u2014 how your natural strengths stack up.',
+      courseCtaLbl:'Beat the Top 1% + Run It in 30 Days — ₹499', courseCtaSub:'Instant. Secure payment via Razorpay.', courseUrgency:'₹499 until 30 Sep 2026 — then ₹1,299',
+      secondaryPrefix:'Also strong in',
+      analyzingTitle:'Analyzing your answers…',
+      analyzingPhrases:['Reading what you love doing…','Comparing against 1,00,000+ real Indian businesses…','Matching your natural strengths…','Finding what the top 1% are missing…'],
+      disclaimer:'This result is based only on the answers you gave in this test. If it doesn’t match what you currently do for work, that isn’t the test being wrong — you may have chosen your current path because of family, money, or other outside reasons. This result simply shows what would naturally suit you and your life’s purpose, not what you’re doing today.',
+      progressStep:function(i,total){ return 'Step ' + i + ' of ' + total; }
+    },
+    hi:{
+      gateEyebrow:'पहले एक बात', gateH1:'आप कौन हैं?', gateLead:'इससे बस आपका परिणाम आपके अनुसार बनता है।',
+      back:'पीछे', next:'आगे', retake:'फिर से टेस्ट दें',
+      screen1Title:'आपको सबसे ज्यादा क्या करना पसंद है?', screen1Sub:'3 तक चुनें। बस अपने मन की सुनें।',
+      screen2Title:'अगर कोई पैसा न दे, तो भी आप क्या करेंगे?', screen2Sub:'3 तक चुनें — वो चीजें जो आप मुफ़्त में भी करेंगे, बस अच्छा लगता है इसलिए।',
+      screen3Title:'आपके आसपास लोगों को किन बातों से परेशानी होती है?', screen3Sub:'3 तक चुनें — आपके आसपास लोगों की आम परेशानियां।',
+      pickCounter:function(n){ return n + ' / 3 चुनी गईं'; },
+      resultEyebrowPrefix:'आपका परिणाम',
+      waGateEyebrow:'आखिरी कदम', waGateH1:'अपनी स्किल और बिज़नेस के बारे में जानने से पहले, कल्ट का हिस्सा बनें।',
+      waGateLead:'यह टेस्ट फ्री है क्योंकि अपना रास्ता खुद अंदाज़ा लगाने में आपके साल बर्बाद नहीं होने चाहिए। पहले कम्युनिटी जॉइन करें — फिर हम आपको बिल्कुल बताएंगे कि आप किसके लिए बने हैं।',
+      joinWaBtnLbl:'व्हाट्सएप कम्युनिटी जॉइन करें', joinWaNote:'व्हाट्सएप खुलेगा — जॉइन करने के बाद इस टैब पर वापस आएं।',
+      revealResultBtnLbl:'मैंने जॉइन कर लिया — मेरा रिजल्ट दिखाएं',
+      lblWhy:'यह आपके लिए क्यों सही है', lblSecondary:'आप इस ओर भी झुकाव रखते हैं', lblGap:'वह कमी जो अभी कोई नहीं भर रहा', lblEdge:'टॉप 1% अलग क्या करते हैं',
+      lockEyebrow:'सोच अब आपकी है। अब उसे अमल में लाएं।', lockTitle:'30 दिनों में इसे असल में शुरू करने का प्लान',
+      lockSubTemplate:'{biz} की कमी और बढ़त अब आप जानते हैं। बस बाकी है — हफ्ते-दर-हफ्ते प्लान — सोर्सिंग, कीमत, पहले ग्राहक, और वह गलती जो ज़्यादातर लोग पहली बार में करते हैं।',
+      planIncludes:['सिर्फ थ्योरी नहीं, हफ्ते-दर-हफ्ते रोडमैप','तैयार कीमत, स्क्रिप्ट और टेम्पलेट','अपने पहले पेइंग ग्राहक कैसे पाएं'],
+      courseCtaLbl:'टॉप 1% को हराएं + 30 दिन में शुरू करें — ₹499', courseCtaSub:'तुरंत। Razorpay से सुरक्षित भुगतान।', courseUrgency:'30 सितंबर 2026 तक ₹499 — फिर ₹1,299',
+      secondaryPrefix:'आप इसमें भी मजबूत हैं',
+      analyzingTitle:'आपके जवाबों का विश्लेषण हो रहा है…',
+      analyzingPhrases:['आपकी पसंद पढ़ी जा रही है…','1,00,000+ असली भारतीय बिज़नेस से तुलना हो रही है…','आपकी स्वाभाविक ताकत से मिलान हो रहा है…','टॉप 1% से जो छूट रहा है, वो ढूंढा जा रहा है…'],
+      disclaimer:'यह परिणाम केवल इस टेस्ट में आपके दिए गए जवाबों पर आधारित है। अगर यह आपके वर्तमान काम से मेल नहीं खाता, तो यह टेस्ट की गलती नहीं है — हो सकता है आपने अपना मौजूदा रास्ता परिवार, पैसे या किसी और बाहरी कारण से चुना हो। यह परिणाम केवल यह बताता है कि आपकी स्वाभाविक रुचि और जीवन के उद्देश्य के अनुसार आपके लिए क्या सबसे अच्छा रहेगा, न कि आप आज क्या कर रहे हैं।',
+      progressStep:function(i,total){ return 'चरण ' + i + ' / ' + total; }
+    },
+    ta:{
+      gateEyebrow:'முதலில், ஒரு கேள்வி', gateH1:'நீங்கள் யார்?', gateLead:'இது உங்கள் முடிவை தனிப்பயனாக்கும்.',
+      back:'பின்செல்', next:'அடுத்து', retake:'மீண்டும் சோதிக்க',
+      screen1Title:'நீங்கள் எதைச் செய்ய அதிகம் விரும்புவீர்கள்?', screen1Sub:'3 வரை தேர்ந்தெடுக்கவும். உங்கள் மனம் சொல்வதைக் கேளுங்கள்.',
+      screen2Title:'யாரும் பணம் தராவிட்டாலும் நீங்கள் என்ன செய்வீர்கள்?', screen2Sub:'இலவசமாகவே செய்ய விரும்பும் காரியங்களை 3 வரை தேர்ந்தெடுக்கவும்.',
+      screen3Title:'உங்களைச் சுற்றி என்ன பிரச்சனைகளைப் பார்க்கிறீர்கள்?', screen3Sub:'மக்கள் எதில் சிரமப்படுகிறார்கள் என 3 வரை தேர்ந்தெடுக்கவும்.',
+      pickCounter:function(n){ return n + ' / 3 தேர்ந்தெடுக்கப்பட்டது'; },
+      resultEyebrowPrefix:'உங்கள் முடிவு',
+      waGateEyebrow:'கடைசி படி', waGateH1:'உங்கள் திறமை மற்றும் தொழிலை வெளிப்படுத்தும் முன், கல்ட்டில் இணையுங்கள்.',
+      waGateLead:'இந்த டெஸ்ட் இலவசம், ஏனெனில் உங்கள் பாதையை யூகிப்பதில் உங்கள் ஆண்டுகள் வீணாகக் கூடாது. முதலில் கம்யூனிட்டியில் இணையுங்கள் — பிறகு நீங்கள் எதற்காக பொருத்தமானவர் என்பதை சரியாகக் காட்டுவோம்.',
+      joinWaBtnLbl:'வாட்ஸ்அப் கம்யூனிட்டியில் இணையுங்கள்', joinWaNote:'வாட்ஸ்அப் திறக்கும் — இணைந்த பிறகு இந்த டேபுக்கு திரும்பி வாருங்கள்.',
+      revealResultBtnLbl:'நான் இணைந்துவிட்டேன் — என் முடிவைக் காட்டு',
+      lblWhy:'இது ஏன் உங்களுக்குப் பொருந்துகிறது', lblSecondary:'நீங்கள் இதன் பக்கமும் சாய்கிறீர்கள்', lblGap:'யாரும் நிரப்பாத குறை', lblEdge:'சிறந்த 1% வேறுபட்டு செய்வது என்ன',
+      lockEyebrow:'நுண்ணறிவு உங்களிடம் உள்ளது. இப்போது செயல்படுத்துங்கள்.', lockTitle:'30 நாட்களில் இதை நிஜமாக தொடங்குவதற்கான திட்டம்',
+      lockSubTemplate:'{biz}க்கான குறையும் நுணுக்கமும் இப்போது உங்களுக்குத் தெரியும். இனி தேவை — வார வாரியான திட்டம் — மூலவளம், விலை, முதல் வாடிக்கையாளர்கள், மேலும் பெரும்பாலானோர் முதல் முயற்சியில் செய்யும் தவறு.',
+      planIncludes:['வெறும் தியரி அல்ல, வார வாரியான திட்டம்','தயார் விலை, ஸ்கிரிப்ட் & டெம்ப்ளேட்','உங்கள் முதல் பணம் தரும் வாடிக்கையாளர்களை பெறுவது எப்படி'],
+      courseCtaLbl:'சிறந்த 1%ஐ வெல்லுங்கள் + 30 நாட்களில் தொடங்குங்கள் — ₹499', courseCtaSub:'உடனடி. Razorpay மூலம் பாதுகாப்பான கட்டணம்.', courseUrgency:'30 செப்டம்பர் 2026 வரை ₹499 — பின்னர் ₹1,299',
+      secondaryPrefix:'இதிலும் நீங்கள் சிறந்தவர்',
+      analyzingTitle:'உங்கள் பதில்கள் ஆய்வு செய்யப்படுகிறது…',
+      analyzingPhrases:['நீங்கள் விரும்புவதைப் படிக்கிறோம்…','1,00,000+ உண்மையான இந்திய தொழில்களுடன் ஒப்பிடுகிறோம்…','உங்கள் இயல்பான பலத்துடன் பொருத்துகிறோம்…','சிறந்த 1% தவறவிடுவதை கண்டறிகிறோம்…'],
+      disclaimer:'இந்த முடிவு நீங்கள் இந்த சோதனையில் அளித்த பதில்களை மட்டுமே அடிப்படையாகக் கொண்டது. இது உங்கள் தற்போதைய வேலைக்குப் பொருந்தவில்லை எனில், அது இந்த சோதனையின் தவறு அல்ல — நீங்கள் குடும்பம், பணம் அல்லது வேறு காரணங்களால் உங்கள் தற்போதைய பாதையைத் தேர்ந்தெடுத்திருக்கலாம். இந்த முடிவு உங்கள் இயல்பான ஆர்வத்திற்கும் வாழ்க்கை நோக்கத்திற்கும் எது பொருந்தும் என்பதை மட்டுமே காட்டுகிறது, நீங்கள் இன்று என்ன செய்கிறீர்கள் என்பதை அல்ல.',
+      progressStep:function(i,total){ return 'படி ' + i + ' / ' + total; }
+    }
+  };
+
+  window.TDZ_UI = UI;
+
+  /* ================= Persona definitions ================= */
+  var PERSONAS = [
+    {
+      id:'it', icon:'💻',
+      en:{ title:'IT Pro Going Solo', sub:'You’ve got the skills. Ready to build something that’s actually yours.' },
+      hi:{ title:'आईटी प्रोफ़ेशनल, खुद का कुछ शुरू करना चाहते हैं', sub:'आपके पास हुनर है। अब अपना खुद का कुछ बनाने का समय आ गया है।' },
+      ta:{ title:'ஐடி நிபுணர், சொந்த தொழில் தொடங்க', sub:'உங்களிடம் திறமை உள்ளது. இப்போது உங்களுக்கே சொந்தமானதை உருவாக்கும் நேரம்.' }
+    },
+    {
+      id:'student', icon:'🎓',
+      en:{ title:'Student, Future Founder', sub:'Not looking for a job. Looking for the business that’s yours to build.' },
+      hi:{ title:'विद्यार्थी, भविष्य का फाउंडर', sub:'नौकरी नहीं, अपना खुद का बिज़नेस चाहिए।' },
+      ta:{ title:'மாணவர், எதிர்கால நிறுவனர்', sub:'வேலை தேடவில்லை. என் சொந்த தொழிலைத் தேடுகிறேன்.' }
+    },
+    {
+      id:'homemaker', icon:'🏡',
+      en:{ title:'Homemaker, Building Freedom', sub:'Your own income, on your own time — no permission needed.' },
+      hi:{ title:'गृहिणी, आर्थिक आज़ादी की ओर', sub:'अपनी कमाई, अपने समय पर — किसी से इजाजत की जरूरत नहीं।' },
+      ta:{ title:'இல்லத்தரசி, சுதந்திரத்தைக் கட்டுதல்', sub:'உங்கள் சொந்த வருமானம், உங்கள் நேரத்தில் — அனுமதி தேவையில்லை.' }
+    }
+  ];
+  window.TDZ_PERSONAS = PERSONAS;
+
+  /* ================= "What would you love doing" icons =================
+     Used for BOTH screen 1 (love doing) and screen 2 (would do unpaid).
+     traits feed the scoring engine; nothing shown to the user is jargon. */
+  var LOVE_ICONS = [
+    { id:'coding', emoji:'💻', en:'Coding / computers', hi:'कोडिंग / कंप्यूटर', ta:'கோடிங் / கணினி', traits:{SYSTEMS:2, ANALYSIS:1} },
+    { id:'cooking', emoji:'🍳', en:'Cooking / baking', hi:'खाना बनाना / बेकिंग', ta:'சமையல் / பேக்கிங்', traits:{CRAFT:2, CARE:1} },
+    { id:'checking', emoji:'🔍', en:'Checking things carefully', hi:'चीज़ों को बारीकी से जांचना', ta:'நுணுக்கமாகச் சரிபார்த்தல்', traits:{ANALYSIS:2, SYSTEMS:1} },
+    { id:'talking', emoji:'🗣️', en:'Talking / convincing / selling', hi:'बात करना / समझाना / बेचना', ta:'பேசுவது / விற்பனை', traits:{INFLUENCE:3} },
+    { id:'stitching', emoji:'🧵', en:'Stitching / tailoring', hi:'सिलाई / टेलरिंग', ta:'தையல் / டெய்லரிங்', traits:{CRAFT:3} },
+    { id:'makeup', emoji:'💄', en:'Makeup / beauty & styling', hi:'मेकअप / ब्यूटी और स्टाइलिंग', ta:'மேக்அப் / அழகுசாதனம்', traits:{CRAFT:2, INFLUENCE:1} },
+    { id:'painting', emoji:'🎨', en:'Painting / drawing / art', hi:'पेंटिंग / ड्रॉइंग / कला', ta:'ஓவியம் / கலை', traits:{CRAFT:3, AUTONOMY:1} },
+    { id:'mentoring', emoji:'🧑‍🏫', en:'Teaching / mentoring', hi:'पढ़ाना / मार्गदर्शन करना', ta:'கற்பித்தல் / வழிகாட்டுதல்', traits:{CARE:2, INFLUENCE:1} },
+    { id:'organizing', emoji:'🗂️', en:'Organizing / planning things', hi:'चीज़ों को व्यवस्थित / योजना बनाना', ta:'ஒழுங்குபடுத்துதல் / திட்டமிடல்', traits:{SYSTEMS:3} },
+    { id:'caring_people', emoji:'🤝', en:'Looking after people', hi:'लोगों की देखभाल करना', ta:'மக்களை கவனித்தல்', traits:{CARE:3} },
+    { id:'caring_animals', emoji:'🐾', en:'Looking after animals', hi:'जानवरों की देखभाल करना', ta:'விலங்குகளை கவனித்தல்', traits:{CARE:2, AUTONOMY:1} },
+    { id:'fixing', emoji:'🔧', en:'Fixing / building with your hands', hi:'हाथों से बनाना / ठीक करना', ta:'கைகளால் சரிசெய்தல் / கட்டுதல்', traits:{CRAFT:2, SYSTEMS:1} },
+    { id:'dancing', emoji:'💃', en:'Dancing / performing', hi:'नाचना / परफॉर्म करना', ta:'நடனம் / அரங்கேற்றம்', traits:{INFLUENCE:2, CRAFT:1} },
+    { id:'numbers', emoji:'🔢', en:'Numbers / accounts / money', hi:'नंबर / हिसाब-किताब / पैसा', ta:'எண்கள் / கணக்கு / பணம்', traits:{ANALYSIS:3} },
+    { id:'writing', emoji:'✍️', en:'Writing / storytelling', hi:'लिखना / कहानी कहना', ta:'எழுதுதல் / கதை சொல்லுதல்', traits:{INFLUENCE:1, CRAFT:2} },
+    { id:'photo', emoji:'📸', en:'Photography / video', hi:'फोटोग्राफी / वीडियो', ta:'புகைப்படம் / வீடியோ', traits:{CRAFT:2, INFLUENCE:1} }
+  ];
+  window.TDZ_LOVE_ICONS = LOVE_ICONS;
+
+  /* ================= Persona-specific question sets (EN only, v1) =================
+     These only replace the generic LOVE_ICONS/PROBLEM_ICONS flow when lang === 'en'.
+     For hi/ta, the app falls back to the original generic set above so nothing
+     breaks or shows mixed-language text until these get translated. */
+  function pickIcons(base, ids){
+    return ids.map(function(id){ return base.filter(function(i){ return i.id === id; })[0]; }).filter(Boolean);
+  }
+
+  /* ---- IT: "what do you do today" (role) screen — feeds the 'paid for' pillar ---- */
+  var ROLE_ICONS = [
+    { id:'dev', emoji:'💻', en:'Development / coding', hi:'Development / coding', ta:'Development / coding', bonus:{ 'productized-freelance':2, 'automation-consulting':1 } },
+    { id:'testing', emoji:'🔍', en:'Testing / QA', hi:'Testing / QA', ta:'Testing / QA', bonus:{ 'automation-consulting':2 } },
+    { id:'pm', emoji:'🗂️', en:'Project / Program Management', hi:'Project / Program Management', ta:'Project / Program Management', bonus:{ 'automation-consulting':1, 'productized-freelance':1 } },
+    { id:'config', emoji:'🔧', en:'Configuration / DevOps / Infra', hi:'Configuration / DevOps / Infra', ta:'Configuration / DevOps / Infra', bonus:{ 'automation-consulting':2 } },
+    { id:'data', emoji:'🔢', en:'Data / Analytics / Reporting', hi:'Data / Analytics / Reporting', ta:'Data / Analytics / Reporting', bonus:{ 'automation-consulting':2 } },
+    { id:'design', emoji:'🎨', en:'Design / UX', hi:'Design / UX', ta:'Design / UX', bonus:{ 'creator-brand':1, 'productized-freelance':1 } },
+    { id:'support', emoji:'🤝', en:'Support / Ops / Service delivery', hi:'Support / Ops / Service delivery', ta:'Support / Ops / Service delivery', bonus:{ 'hyperlocal-trust':1, 'automation-consulting':1 } },
+    { id:'ba', emoji:'🗣️', en:'Product / Business Analysis', hi:'Product / Business Analysis', ta:'Product / Business Analysis', bonus:{ 'automation-consulting':1, 'creator-brand':1 } }
+  ];
+  window.TDZ_ROLE_ICONS = ROLE_ICONS;
+
+  /* ---- IT: love-doing / would-do-unpaid icons ---- */
+  var IT_NEW_LOVE = [
+    { id:'automating', emoji:'⚙️', en:'Automating repetitive processes', hi:'Automating repetitive processes', ta:'Automating repetitive processes', traits:{SYSTEMS:3} },
+    { id:'building_products', emoji:'🚀', en:'Building your own tool / app / SaaS product', hi:'Building your own tool / app / SaaS product', ta:'Building your own tool / app / SaaS product', traits:{SYSTEMS:2, ANALYSIS:1, AUTONOMY:1} }
+  ];
+  var LOVE_ICONS_IT = pickIcons(LOVE_ICONS, ['coding','checking','organizing','mentoring','writing','numbers','photo','talking']).concat(IT_NEW_LOVE);
+  window.TDZ_LOVE_ICONS_IT = LOVE_ICONS_IT;
+
+  /* ---- Student: love-doing / would-do-unpaid icons, updated categories ---- */
+  var STUDENT_NEW_LOVE = [
+    { id:'robotics', emoji:'🤖', en:'Robotics / hardware / electronics tinkering', hi:'Robotics / hardware / electronics tinkering', ta:'Robotics / hardware / electronics tinkering', traits:{SYSTEMS:2, CRAFT:1} },
+    { id:'saas_curious', emoji:'📱', en:'Building software products / apps (SaaS)', hi:'Building software products / apps (SaaS)', ta:'Building software products / apps (SaaS)', traits:{SYSTEMS:2, ANALYSIS:1} },
+    { id:'community_building', emoji:'👥', en:'Building communities / clubs / events', hi:'Building communities / clubs / events', ta:'Building communities / clubs / events', traits:{INFLUENCE:2, CARE:1} },
+    { id:'fintech_interest', emoji:'💹', en:'Money, investing & financial planning', hi:'Money, investing & financial planning', ta:'Money, investing & financial planning', traits:{ANALYSIS:3} }
+  ];
+  var LOVE_ICONS_STUDENT = pickIcons(LOVE_ICONS, ['coding','mentoring','writing','photo','talking','painting','organizing','checking']).concat(STUDENT_NEW_LOVE);
+  window.TDZ_LOVE_ICONS_STUDENT = LOVE_ICONS_STUDENT;
+
+  /* ---- Homemaker: love-doing / would-do-unpaid icons, with the family-vs-scale split ---- */
+  var HOMEMAKER_NEW_LOVE = [
+    { id:'cooking_family', emoji:'🍳', en:'Cooking / baking for your own family', hi:'Cooking / baking for your own family', ta:'Cooking / baking for your own family', traits:{CRAFT:2, CARE:2} },
+    { id:'cooking_scale', emoji:'🍱', en:'Cooking to sell or cater for many people, not just family', hi:'Cooking to sell or cater for many people, not just family', ta:'Cooking to sell or cater for many people, not just family', traits:{CRAFT:2, INFLUENCE:1, CARE:1} }
+  ];
+  var LOVE_ICONS_HOMEMAKER = pickIcons(LOVE_ICONS, ['stitching','makeup','painting','mentoring','caring_people','caring_animals','organizing','numbers','writing']).concat(HOMEMAKER_NEW_LOVE);
+  window.TDZ_LOVE_ICONS_HOMEMAKER = LOVE_ICONS_HOMEMAKER;
+
+  /* ================= "Problems you notice" icons =================
+     Each maps directly (with a small bonus) to one or two business
+     archetypes — this is the "what the world needs" input, kept as
+     concrete, everyday observations rather than abstract market talk. */
+  var PROBLEM_ICONS = [
+    { id:'trust_help', emoji:'🛠️',
+      en:'People struggle to find reliable help for home repairs, tutoring or care',
+      hi:'लोगों को घर की मरम्मत, ट्यूशन या देखभाल के लिए भरोसेमंद मदद नहीं मिलती',
+      ta:'வீட்டு பழுது, டியூஷன் அல்லது கவனிப்புக்கு நம்பகமான உதவி கிடைப்பதில்லை',
+      bonus:{ 'hyperlocal-trust':3 } },
+    { id:'own_language', emoji:'🗣️',
+      en:'People want to learn in their own language, not just English',
+      hi:'लोग सिर्फ अंग्रेज़ी में नहीं, अपनी भाषा में सीखना चाहते हैं',
+      ta:'மக்கள் ஆங்கிலத்தில் மட்டுமல்ல, தங்கள் சொந்த மொழியில் கற்க விரும்புகிறார்கள்',
+      bonus:{ 'vernacular-edu':3 } },
+    { id:'shop_chaos', emoji:'📋',
+      en:'Small shops run on WhatsApp & memory — no simple system',
+      hi:'छोटी दुकानें व्हाट्सएप और याद्दाश्त पर चलती हैं — कोई आसान सिस्टम नहीं',
+      ta:'சிறு கடைகள் வாட்ஸ்அப் மற்றும் நினைவில் மட்டும் நடக்கின்றன — எளிய முறை இல்லை',
+      bonus:{ 'automation-consulting':3 } },
+    { id:'beauty_afford', emoji:'💅',
+      en:'People want to look and feel good but can’t find good, affordable options nearby',
+      hi:'लोग अच्छा दिखना चाहते हैं पर पास में अच्छा, किफायती विकल्प नहीं मिलता',
+      ta:'மக்கள் அழகாக இருக்க விரும்புகிறார்கள் ஆனால் அருகில் நல்ல, மலிவான வழி இல்லை',
+      bonus:{ 'home-skill':2, 'regional-d2c':1 } },
+    { id:'elder_pet', emoji:'🐕',
+      en:'Elderly parents or pets don’t have anyone reliable to look after them',
+      hi:'बुज़ुर्ग माता-पिता या पालतू जानवरों की देखभाल के लिए कोई भरोसेमंद व्यक्ति नहीं है',
+      ta:'முதியோர் பெற்றோர் அல்லது செல்லப்பிராணிகளை கவனிக்க நம்பகமானவர் இல்லை',
+      bonus:{ 'pet-elder-care':3 } },
+    { id:'local_product', emoji:'🛍️',
+      en:'People want good local/regional products, not generic mass ones',
+      hi:'लोग जेनेरिक चीज़ों की जगह अच्छे लोकल/क्षेत्रीय प्रोडक्ट चाहते हैं',
+      ta:'மக்கள் பொதுவான பொருட்கள் அல்ல, நல்ல உள்ளூர்/பிராந்திய பொருட்களை விரும்புகிறார்கள்',
+      bonus:{ 'regional-d2c':3 } },
+    { id:'mental_load', emoji:'🧘',
+      en:'People are stressed and have no affordable person to talk to',
+      hi:'लोग तनाव में हैं और बात करने के लिए कोई किफायती व्यक्ति नहीं है',
+      ta:'மக்கள் மன அழுத்தத்தில் உள்ளனர், பேச மலிவான ஆள் இல்லை',
+      bonus:{ 'wellness':3 } },
+    { id:'underpaid_skill', emoji:'💼',
+      en:'Skilled freelancers get paid too little for great work',
+      hi:'कुशल फ्रीलांसरों को अच्छे काम का भी बहुत कम भुगतान मिलता है',
+      ta:'திறமையான ஃப்ரீலான்சர்களுக்கு நல்ல வேலைக்கும் குறைவான ஊதியம் கிடைக்கிறது',
+      bonus:{ 'productized-freelance':3 } },
+    { id:'curation', emoji:'🧺',
+      en:'Good products from small sellers/makers are hard to find in one place',
+      hi:'छोटे विक्रेताओं/कारीगरों के अच्छे प्रोडक्ट एक जगह मिलना मुश्किल है',
+      ta:'சிறு விற்பனையாளர்/தயாரிப்பாளர்களின் நல்ல பொருட்கள் ஒரே இடத்தில் கிடைப்பதில்லை',
+      bonus:{ 'reselling-curation':3 } },
+    { id:'audience_product', emoji:'📱',
+      en:'People with an audience/followers don’t have their own product yet',
+      hi:'जिनके पास फॉलोअर्स हैं, उनके पास अभी अपना कोई प्रोडक्ट नहीं है',
+      ta:'பின்தொடர்பவர்கள் உள்ளவர்களுக்கு இன்னும் சொந்த தயாரிப்பு இல்லை',
+      bonus:{ 'creator-brand':3 } }
+  ];
+  window.TDZ_PROBLEM_ICONS = PROBLEM_ICONS;
+
+  /* ---- IT: problems screen ---- */
+  var IT_NEW_PROBLEMS = [
+    { id:'skill_gap', emoji:'🧩', en:'Companies can\u2019t find people who are actually job-ready in new tech (AI, cloud, data)', hi:'Companies can\u2019t find people who are actually job-ready in new tech (AI, cloud, data)', ta:'Companies can\u2019t find people who are actually job-ready in new tech (AI, cloud, data)', bonus:{ 'productized-freelance':2, 'automation-consulting':1 } },
+    { id:'inefficient_ops', emoji:'📋', en:'Teams waste hours on manual work that could easily be automated', hi:'Teams waste hours on manual work that could easily be automated', ta:'Teams waste hours on manual work that could easily be automated', bonus:{ 'automation-consulting':3 } }
+  ];
+  var PROBLEM_ICONS_IT = pickIcons(PROBLEM_ICONS, ['shop_chaos','underpaid_skill','audience_product']).concat(IT_NEW_PROBLEMS);
+  window.TDZ_PROBLEM_ICONS_IT = PROBLEM_ICONS_IT;
+
+  /* ---- Student: problems screen ---- */
+  var STUDENT_NEW_PROBLEMS = [
+    { id:'campus_prep', emoji:'🎓', en:'Students graduate without practical, job-ready skills', hi:'Students graduate without practical, job-ready skills', ta:'Students graduate without practical, job-ready skills', bonus:{ 'vernacular-edu':2, 'productized-freelance':1 } },
+    { id:'gig_discovery', emoji:'🔎', en:'Genuine part-time work or internships are hard to find', hi:'Genuine part-time work or internships are hard to find', ta:'Genuine part-time work or internships are hard to find', bonus:{ 'productized-freelance':2 } }
+  ];
+  var PROBLEM_ICONS_STUDENT = pickIcons(PROBLEM_ICONS, ['own_language','underpaid_skill','audience_product']).concat(STUDENT_NEW_PROBLEMS);
+  window.TDZ_PROBLEM_ICONS_STUDENT = PROBLEM_ICONS_STUDENT;
+
+  /* ---- Homemaker: problems screen ---- */
+  var HOMEMAKER_NEW_PROBLEMS = [
+    { id:'time_freedom', emoji:'⏰', en:'Women want their own income around family time, without asking permission', hi:'Women want their own income around family time, without asking permission', ta:'Women want their own income around family time, without asking permission', bonus:{ 'home-skill':2, 'hyperlocal-trust':1 } }
+  ];
+  var PROBLEM_ICONS_HOMEMAKER = pickIcons(PROBLEM_ICONS, ['trust_help','beauty_afford','elder_pet','local_product','shop_chaos','mental_load']).concat(HOMEMAKER_NEW_PROBLEMS);
+  window.TDZ_PROBLEM_ICONS_HOMEMAKER = PROBLEM_ICONS_HOMEMAKER;
+
+  /* ================= Business archetypes (trilingual) =================
+     weights on the 6 traits used for scoring; name/oneLiner/gap/edge are
+     shown to the user in their chosen language. */
+  var ARCHETYPES = {
+    'hyperlocal-trust': {
+      weights:{CARE:3, SYSTEMS:2, INFLUENCE:1, CRAFT:1, ANALYSIS:0, AUTONOMY:1},
+      en:{ name:'Hyperlocal Trust Services', oneLiner:'Home services, tutoring, elder or pet care — but properly organized, verified and branded for your city.',
+        gap:"Organized, verifiable service providers are still almost entirely a big-metro thing in India — home services, elder care and pet care all cluster in four or five cities, while everywhere else runs on word-of-mouth and luck. The gap isn't the service itself, it's trust: a verified, on-time, accountable version of what already exists informally.",
+        edge:"The operators winning here aren't the most skilled — they're the most consistent and the easiest to verify. A real phone number, a guarantee, and showing up on time beats cheaper-but-unreliable every single time." },
+      hi:{ name:'भरोसेमंद लोकल सर्विस', oneLiner:'घर की सर्विस, ट्यूशन, बुज़ुर्गों या पालतू जानवरों की देखभाल — पर सही तरीके से व्यवस्थित और भरोसेमंद ब्रांड के साथ।',
+        gap:'भारत में भरोसेमंद, वेरिफाइड सर्विस देने वाले सिर्फ 4-5 बड़े शहरों में ही मिलते हैं। बाकी जगह सब कुछ जान-पहचान और किस्मत पर चलता है। असली कमी सर्विस की नहीं, भरोसे की है — समय पर आना, जवाबदेही और एक असली फोन नंबर।',
+        edge:'यहां जीतने वाले सबसे ज़्यादा हुनरमंद नहीं होते — वे सबसे भरोसेमंद और लगातार अच्छा काम करने वाले होते हैं। समय पर आना और गारंटी देना, सस्ते-अनरिलायबल से हमेशा बेहतर होता है।' },
+      ta:{ name:'நம்பகமான உள்ளூர் சேவைகள்', oneLiner:'வீட்டு சேவைகள், டியூஷன், முதியோர்/செல்லப்பிராணி கவனிப்பு — ஒழுங்காக, சரிபார்க்கப்பட்டு, உங்கள் நகரத்திற்காக அமைக்கப்பட்டது.',
+        gap:'இந்தியாவில் நம்பகமான, சரிபார்க்கப்பட்ட சேவை வழங்குபவர்கள் 4-5 பெரிய நகரங்களில் மட்டுமே உள்ளனர். மற்ற இடங்களில் எல்லாம் வாய்வழி பேச்சு மற்றும் அதிர்ஷ்டத்தில் நடக்கிறது. உண்மையான குறை சேவையில் இல்லை, நம்பிக்கையில்தான் — சரியான நேரத்தில் வருதல், பொறுப்பு.',
+        edge:'இங்கு வெற்றி பெறுபவர்கள் மிகவும் திறமையானவர்கள் அல்ல — அவர்கள் மிகவும் நம்பகமானவர்கள் மற்றும் சீரானவர்கள். சரியான நேரத்தில் வருதல் மற்றும் உத்தரவாதம் தருதல், மலிவான-நம்பமுடியாததை விட எப்போதும் வெல்லும்.' }
+    },
+    'regional-d2c': {
+      weights:{CRAFT:3, INFLUENCE:2, ANALYSIS:1, SYSTEMS:1, CARE:0, AUTONOMY:1},
+      en:{ name:'Niche Regional D2C Brand', oneLiner:"A product brand built for a specific region's taste, not a diluted 'pan-India' one.",
+        gap:"Two out of three new online orders in India now come from tier-2 and tier-3 markets, but most organized D2C brands are still designed around metro tastes and price points. A brand that's unapologetically regional — in flavor, language or price — has almost no organized competition.",
+        edge:"Top operators pick one specific region and go deep before going wide, instead of trying to be 'for everyone' from day one." },
+      hi:{ name:'क्षेत्रीय D2C ब्रांड', oneLiner:'पूरे भारत के लिए नहीं, बल्कि एक खास क्षेत्र के स्वाद के लिए बना प्रोडक्ट ब्रांड।',
+        gap:'भारत में हर 3 में से 2 नए ऑनलाइन ऑर्डर अब टियर-2/3 शहरों से आते हैं, पर ज़्यादातर बड़े D2C ब्रांड अभी भी मेट्रो शहरों के हिसाब से बनते हैं। एक ऐसा ब्रांड जो पूरी तरह क्षेत्रीय हो — स्वाद, भाषा या कीमत में — उसे लगभग कोई संगठित प्रतियोगिता नहीं मिलती।',
+        edge:'यहां जीतने वाले एक खास क्षेत्र को चुनकर पहले वहां गहराई से काम करते हैं, "सबके लिए" बनने की कोशिश शुरू से नहीं करते।' },
+      ta:{ name:'பிராந்திய D2C பிராண்ட்', oneLiner:'முழு இந்தியாவிற்கும் அல்ல, ஒரு குறிப்பிட்ட பகுதியின் ரசனைக்காக உருவாக்கப்பட்ட தயாரிப்பு பிராண்ட்.',
+        gap:'இந்தியாவில் ஒவ்வொரு 3 புதிய ஆன்லைன் ஆர்டர்களில் 2 இப்போது டையர்-2/3 நகரங்களில் இருந்து வருகின்றன, ஆனால் பெரும்பாலான D2C பிராண்டுகள் இன்னும் மெட்ரோ நகரங்களுக்காக அமைக்கப்படுகின்றன. சுவை, மொழி அல்லது விலையில் முழுமையாக பிராந்தியமான ஒரு பிராண்டுக்கு எந்த போட்டியும் இல்லை.',
+        edge:'இங்கு வெற்றி பெறுபவர்கள் ஒரு குறிப்பிட்ட பகுதியைத் தேர்ந்தெடுத்து முதலில் ஆழமாகச் செல்கிறார்கள், தொடக்கத்திலிருந்தே "எல்லோருக்கும்" ஆக முயற்சிக்கவில்லை.' }
+    },
+    'vernacular-edu': {
+      weights:{CARE:3, INFLUENCE:2, ANALYSIS:1, CRAFT:0, SYSTEMS:1, AUTONOMY:1},
+      en:{ name:'Vernacular Coaching & EdTech', oneLiner:"Teaching or content in the learner's own language, not just English.",
+        gap:"About 70% of India's school-age population lives in tier-2 and tier-3 towns, yet almost all structured learning content is still built in Hindi or English for a metro audience. Anyone who can teach or explain well in a regional language has a huge, underserved audience.",
+        edge:"The winners don't just translate existing content — they rebuild the explanation from scratch for how people in that region actually think and talk." },
+      hi:{ name:'क्षेत्रीय भाषा में कोचिंग', oneLiner:'सिर्फ अंग्रेज़ी में नहीं, सीखने वाले की अपनी भाषा में पढ़ाना या कंटेंट बनाना।',
+        gap:'भारत की लगभग 70% स्कूली उम्र की आबादी टियर-2/3 शहरों में रहती है, फिर भी लगभग सारा स्ट्रक्चर्ड लर्निंग कंटेंट हिंदी या अंग्रेज़ी में मेट्रो दर्शकों के लिए बनता है। जो कोई भी क्षेत्रीय भाषा में अच्छे से पढ़ा या समझा सकता है, उसके पास एक बड़ा, कम-सेवा वाला बाज़ार है।',
+        edge:'जीतने वाले सिर्फ मौजूदा कंटेंट का अनुवाद नहीं करते — वे उस क्षेत्र के लोग जैसे सोचते और बात करते हैं, वैसे ही समझाना नए सिरे से बनाते हैं।' },
+      ta:{ name:'பிராந்திய மொழி பயிற்சி', oneLiner:'ஆங்கிலத்தில் மட்டுமல்ல, கற்பவரின் சொந்த மொழியில் கற்பித்தல் அல்லது உள்ளடக்கம்.',
+        gap:'இந்தியாவின் பள்ளி வயது மக்கள்தொகையில் 70% டையர்-2/3 நகரங்களில் வாழ்கின்றனர், ஆனாலும் அனைத்து கட்டமைக்கப்பட்ட கற்றல் உள்ளடக்கமும் இன்னும் மெட்ரோ பார்வையாளர்களுக்காக ஹிந்தி அல்லது ஆங்கிலத்தில் அமைக்கப்படுகிறது. பிராந்திய மொழியில் நன்றாக கற்பிக்க முடிபவருக்கு பெரிய, சேவை குறைவான பார்வையாளர்கள் உள்ளனர்.',
+        edge:'வெற்றி பெறுபவர்கள் இருக்கும் உள்ளடக்கத்தை மொழிபெயர்க்கவில்லை — அந்த பகுதி மக்கள் சிந்திக்கும், பேசும் விதத்திற்கு ஏற்ப விளக்கத்தை புதிதாக உருவாக்குகிறார்கள்.' }
+    },
+    'automation-consulting': {
+      weights:{SYSTEMS:3, ANALYSIS:3, INFLUENCE:1, CRAFT:1, CARE:0, AUTONOMY:1},
+      en:{ name:'Small-Business Systems & Automation', oneLiner:"Turning a small business's WhatsApp-and-Excel chaos into simple, working systems.",
+        gap:"Millions of small Indian businesses run entirely on WhatsApp groups, paper registers, and someone's memory. Almost nobody sells them the boring, essential fix — a ₹5,000-10,000/month system that just works — because it isn't glamorous enough for most tech people to bother with.",
+        edge:"The people who win this game don't sell 'technology' — they sell one specific headache going away, explained in plain language the owner already uses." },
+      hi:{ name:'छोटे बिज़नेस के लिए सिस्टम', oneLiner:'छोटे बिज़नेस के व्हाट्सएप और एक्सेल की अफरा-तफरी को आसान, काम करने वाले सिस्टम में बदलना।',
+        gap:'लाखों छोटे भारतीय बिज़नेस पूरी तरह व्हाट्सएप ग्रुप्स, कागज़ के रजिस्टर और किसी की याद्दाश्त पर चलते हैं। लगभग कोई भी उन्हें यह ज़रूरी, आसान फिक्स नहीं बेचता — ₹5,000-10,000/महीना का एक सिस्टम जो बस काम करे — क्योंकि यह ज़्यादातर टेक लोगों को दिलचस्प नहीं लगता।',
+        edge:'यहां जीतने वाले "टेक्नोलॉजी" नहीं बेचते — वे मालिक की अपनी भाषा में समझाकर एक खास सिरदर्द को दूर करना बेचते हैं।' },
+      ta:{ name:'சிறு தொழில் அமைப்புகள்', oneLiner:'சிறு தொழிலின் வாட்ஸ்அப் மற்றும் எக்செல் குழப்பத்தை எளிய, வேலை செய்யும் அமைப்பாக மாற்றுதல்.',
+        gap:'இந்தியாவின் மில்லியன் கணக்கான சிறு தொழில்கள் முழுவதுமாக வாட்ஸ்அப் குழுக்கள், காகித பதிவேடுகள் மற்றும் நினைவகத்தில் இயங்குகின்றன. கிட்டத்தட்ட யாரும் அவர்களுக்கு அந்த முக்கியமான, எளிய தீர்வை விற்பதில்லை — மாதம் ₹5,000-10,000 கொடுக்கும் ஒரு அமைப்பு — ஏனெனில் இது பெரும்பாலான டெக் நபர்களுக்கு ஈர்க்கக்கூடியதாக இல்லை.',
+        edge:'இங்கு வெற்றி பெறுபவர்கள் "தொழில்நுட்பத்தை" விற்பதில்லை — அவர்கள் உரிமையாளர் ஏற்கனவே பயன்படுத்தும் மொழியில் ஒரு குறிப்பிட்ட தலைவலியை போக்குவதை விற்கிறார்கள்.' }
+    },
+    'creator-brand': {
+      weights:{INFLUENCE:3, CRAFT:2, AUTONOMY:2, ANALYSIS:1, CARE:1, SYSTEMS:0},
+      en:{ name:'Personal Brand → Owned Product', oneLiner:"Turning an audience — even a small one — into your own product or service, not just brand deals.",
+        gap:"India's creator economy is booming, but most creators still monetize through brand deals and sponsorships — renting out someone else's audience trust to sell someone else's product. The real upside sits with the small percentage who convert their own audience into their own product.",
+        edge:"Creators who become founders start with something small and sellable early, instead of waiting for a 'big enough' audience first." },
+      hi:{ name:'पर्सनल ब्रांड से खुद का प्रोडक्ट', oneLiner:'अपने फॉलोअर्स को — चाहे कम ही हों — सिर्फ ब्रांड डील्स नहीं, अपने खुद के प्रोडक्ट या सर्विस में बदलना।',
+        gap:'भारत की क्रिएटर इकॉनमी तेज़ी से बढ़ रही है, पर ज़्यादातर क्रिएटर अभी भी ब्रांड डील्स और स्पॉन्सरशिप से कमाते हैं। असली फायदा उन थोड़े से लोगों को मिलता है जो अपने फॉलोअर्स को अपने खुद के प्रोडक्ट में बदल लेते हैं।',
+        edge:'फाउंडर बनने वाले क्रिएटर्स "बड़ा ऑडियंस" होने का इंतज़ार नहीं करते — वे जल्दी कुछ छोटा और बिकने लायक शुरू कर देते हैं।' },
+      ta:{ name:'தனிப்பட்ட பிராண்டிலிருந்து சொந்த தயாரிப்பு', oneLiner:'உங்கள் பின்தொடர்பவர்களை — சிறியதாக இருந்தாலும் — வெறும் பிராண்ட் ஒப்பந்தங்களாக அல்லாமல் உங்கள் சொந்த தயாரிப்பாக மாற்றுதல்.',
+        gap:'இந்தியாவின் கிரியேட்டர் பொருளாதாரம் வேகமாக வளர்கிறது, ஆனால் பெரும்பாலான கிரியேட்டர்கள் இன்னும் பிராண்ட் ஒப்பந்தங்கள் மூலமே சம்பாதிக்கின்றனர். உண்மையான லாபம் தங்கள் பின்தொடர்பவர்களை தங்கள் சொந்த தயாரிப்பாக மாற்றும் சிலருக்கே கிடைக்கிறது.',
+        edge:'நிறுவனராக மாறும் கிரியேட்டர்கள் "பெரிய பார்வையாளர்கள்" வரும் வரை காத்திருப்பதில்லை — அவர்கள் விரைவில் சிறியதாக, விற்கக்கூடியதாக தொடங்குகிறார்கள்.' }
+    },
+    'home-skill': {
+      weights:{CRAFT:3, CARE:2, SYSTEMS:1, INFLUENCE:0, ANALYSIS:0, AUTONOMY:1},
+      en:{ name:'Home-Based Skill Business', oneLiner:"Cooking, baking, tailoring, decor or tutoring — packaged and sold properly, not just done as favors.",
+        gap:"The skill is rarely the gap — most home-based providers in India are genuinely good at what they do. The real gap is packaging: a name, consistent pricing, a simple way to book, and a way for new customers — not just neighbours — to find and trust you.",
+        edge:"The ones who scale don't work harder — they systemize the boring parts (a menu or price list, a simple order flow, repeat bookings) early, instead of running everything from memory." },
+      hi:{ name:'घर से चलने वाला हुनर बिज़नेस', oneLiner:'खाना बनाना, बेकिंग, सिलाई, डेकोर या ट्यूशन — बस मुफ़्त में मदद के तौर पर नहीं, बल्कि सही तरीके से पैक करके बेचा जाए।',
+        gap:'यहां हुनर की कमी नहीं है — ज़्यादातर घर से काम करने वाले वाकई अच्छे होते हैं। असली कमी पैकेजिंग की है: एक नाम, तय कीमत, बुकिंग का आसान तरीका, और नए ग्राहकों तक पहुंचने का एक ज़रिया — सिर्फ पड़ोसियों तक नहीं।',
+        edge:'जो लोग आगे बढ़ते हैं वे ज़्यादा मेहनत नहीं करते — वे जल्दी ही उबाऊ हिस्सों को सिस्टम में बदल देते हैं, बजाय सब कुछ याद रखकर चलाने के।' },
+      ta:{ name:'வீட்டு அடிப்படை திறமை தொழில்', oneLiner:'சமையல், பேக்கிங், தையல், அலங்காரம் அல்லது டியூஷன் — உபகாரமாக அல்ல, சரியாக பேக் செய்து விற்பது.',
+        gap:'இங்கு திறமை குறைவாக இல்லை — வீட்டிலிருந்து பணிபுரியும் பெரும்பாலானவர்கள் நன்றாகவே செய்கிறார்கள். உண்மையான குறை பேக்கேஜிங்தான்: ஒரு பெயர், நிலையான விலை, முன்பதிவு செய்ய எளிய வழி, மற்றும் புதிய வாடிக்கையாளர்களை அடையும் வழி.',
+        edge:'முன்னேறுபவர்கள் அதிகம் உழைப்பதில்லை — அவர்கள் சலிப்பான பகுதிகளை (மெனு, எளிய ஆர்டர் முறை, மீண்டும் முன்பதிவு) விரைவில் அமைப்பாக மாற்றுகிறார்கள்.' }
+    },
+    'wellness': {
+      weights:{CARE:3, ANALYSIS:1, AUTONOMY:1, INFLUENCE:1, SYSTEMS:0, CRAFT:0},
+      en:{ name:'Affordable Everyday Wellness', oneLiner:"Accessible, non-clinical mental and emotional wellness support outside the big metros.",
+        gap:"The overwhelming majority of India's mental health professionals and wellness centres sit in the top eight metro areas. Outside them, there's real demand and almost no accessible, affordable, non-clinical support — coaching, groups, structured check-ins.",
+        edge:"What works isn't positioning yourself as a clinician — it's being the approachable, consistent presence people can actually afford and reach." },
+      hi:{ name:'किफायती रोज़मर्रा वेलनेस', oneLiner:'बड़े मेट्रो शहरों के बाहर, आसानी से मिलने वाला, गैर-क्लीनिकल मानसिक और भावनात्मक सहारा।',
+        gap:'भारत के ज़्यादातर मानसिक स्वास्थ्य पेशेवर और वेलनेस सेंटर टॉप 8 मेट्रो शहरों में ही हैं। बाकी जगह असली मांग है पर सस्ता, आसानी से मिलने वाला, गैर-क्लीनिकल सहारा लगभग है ही नहीं।',
+        edge:'यहां काम करता है — खुद को डॉक्टर की तरह पेश करना नहीं, बल्कि वह भरोसेमंद, आसानी से मिलने वाला व्यक्ति बनना जिसे लोग असल में पहुंच सकें और खर्च उठा सकें।' },
+      ta:{ name:'மலிவான அன்றாட ஆரோக்கியம்', oneLiner:'பெரிய மெட்ரோ நகரங்களுக்கு வெளியே, எளிதில் கிடைக்கும், மருத்துவமல்லாத மன மற்றும் உணர்ச்சி ஆதரவு.',
+        gap:'இந்தியாவின் பெரும்பாலான மனநல நிபுணர்கள் மற்றும் ஆரோக்கிய மையங்கள் மேல் 8 மெட்ரோ நகரங்களில் மட்டுமே உள்ளன. மற்ற இடங்களில் உண்மையான தேவை உள்ளது ஆனால் மலிவான, எளிதில் அணுகக்கூடிய, மருத்துவமல்லாத ஆதரவு கிட்டத்தட்ட இல்லை.',
+        edge:'இங்கு வேலை செய்வது — ஒரு மருத்துவரைப் போல தன்னை காட்டுவது அல்ல — மக்கள் உண்மையில் அணுகக்கூடிய, செலவு செய்யக்கூடிய நம்பகமான, சீரான நபராக இருப்பதுதான்.' }
+    },
+    'pet-elder-care': {
+      weights:{CARE:3, SYSTEMS:2, INFLUENCE:0, ANALYSIS:0, CRAFT:1, AUTONOMY:1},
+      en:{ name:'Pet & Elder Care Concierge', oneLiner:"Organized, reliable care services for pets or elderly family members.",
+        gap:"Organized pet care is concentrated in India's four or five largest cities despite pet ownership rising everywhere, and India's elderly population is heading toward 230 million by 2036 with care infrastructure still mostly metro-only. Reliable, vetted, on-call care in a mid-sized city is close to a blank slate.",
+        edge:"Winners build a small, trusted, background-checked team first — trust is the entire product here, not scale." },
+      hi:{ name:'पालतू और बुज़ुर्ग देखभाल सेवा', oneLiner:'पालतू जानवरों या घर के बुज़ुर्गों के लिए व्यवस्थित, भरोसेमंद देखभाल सेवा।',
+        gap:'पेट ओनरशिप हर जगह बढ़ रही है फिर भी संगठित पेट केयर भारत के सिर्फ 4-5 सबसे बड़े शहरों में है, और 2036 तक भारत की बुज़ुर्ग आबादी लगभग 23 करोड़ होने वाली है जबकि देखभाल का ढांचा अभी भी मेट्रो तक सीमित है। किसी मध्यम शहर में भरोसेमंद देखभाल लगभग खाली मैदान है।',
+        edge:'जीतने वाले पहले एक छोटी, भरोसेमंद, बैकग्राउंड-चेक की गई टीम बनाते हैं — यहां भरोसा ही पूरा प्रोडक्ट है, स्केल नहीं।' },
+      ta:{ name:'செல்லப்பிராணி & முதியோர் கவனிப்பு', oneLiner:'செல்லப்பிராணிகள் அல்லது வீட்டு முதியோருக்கான ஒழுங்கான, நம்பகமான கவனிப்பு சேவைகள்.',
+        gap:'செல்லப்பிராணி வளர்ப்பு எல்லா இடங்களிலும் அதிகரித்தாலும் ஒழுங்கமைக்கப்பட்ட செல்லப்பிராணி கவனிப்பு இந்தியாவின் 4-5 பெரிய நகரங்களில் மட்டுமே உள்ளது, மேலும் 2036க்குள் இந்தியாவின் முதியோர் மக்கள்தொகை 23 கோடியை நெருங்கும். நடுத்தர நகரத்தில் நம்பகமான கவனிப்பு கிட்டத்தட்ட காலியாக உள்ளது.',
+        edge:'வெற்றி பெறுபவர்கள் முதலில் ஒரு சிறிய, நம்பகமான, பின்னணி சரிபார்க்கப்பட்ட குழுவை உருவாக்குகிறார்கள் — இங்கு நம்பிக்கையே முழு தயாரிப்பு, அளவு அல்ல.' }
+    },
+    'reselling-curation': {
+      weights:{INFLUENCE:2, ANALYSIS:2, CRAFT:1, SYSTEMS:1, CARE:0, AUTONOMY:1},
+      en:{ name:'Sourcing & Curated Reselling', oneLiner:"Sourcing and curating products — from wholesale, artisans or local makers — with almost no upfront capital.",
+        gap:"This is one of the few genuinely low-capital paths into business, which is exactly why it's crowded with low-effort resellers. The real gap is curation and reliability — a specific taste, honest sourcing and consistent delivery — not just another reseller account.",
+        edge:"The ones who build something real pick a specific niche and become the trusted source for it, instead of reselling whatever's trending that week." },
+      hi:{ name:'सोर्सिंग और क्यूरेटेड रीसेलिंग', oneLiner:'थोक, कारीगरों या लोकल बनाने वालों से प्रोडक्ट लाकर, बिना ज़्यादा पूंजी के, चुन-चुनकर बेचना।',
+        gap:'यह उन कुछ रास्तों में से एक है जिसमें बहुत कम पूंजी चाहिए, इसलिए यह कम-मेहनत वाले रीसेलर्स से भरा हुआ है। असली कमी क्यूरेशन और भरोसे की है — एक खास पसंद, ईमानदार सोर्सिंग और लगातार डिलीवरी।',
+        edge:'जो लोग कुछ असली बनाते हैं वे एक खास क्षेत्र चुनकर उसके लिए भरोसेमंद स्रोत बन जाते हैं, बजाय उस हफ्ते जो ट्रेंड में हो उसे बेचने के।' },
+      ta:{ name:'மூலவளம் & தேர்ந்தெடுத்த மறுவிற்பனை', oneLiner:'மொத்த விற்பனையாளர்கள், கைவினைஞர்கள் அல்லது உள்ளூர் தயாரிப்பாளர்களிடமிருந்து பொருட்களை பெற்று, குறைந்த முதலீட்டில் தேர்ந்தெடுத்து விற்றல்.',
+        gap:'குறைந்த முதலீடு தேவைப்படும் சில வழிகளில் இதுவும் ஒன்று, அதனால்தான் இது குறைந்த முயற்சி கொண்ட மறுவிற்பனையாளர்களால் நிறைந்துள்ளது. உண்மையான குறை தேர்வு மற்றும் நம்பகத்தன்மையில்தான்.',
+        edge:'உண்மையானதை உருவாக்குபவர்கள் ஒரு குறிப்பிட்ட துறையைத் தேர்ந்தெடுத்து அதற்கான நம்பகமான மூலமாக மாறுகிறார்கள், அந்த வாரம் எது டிரெண்டிலோ அதை விற்பதற்குப் பதிலாக.' }
+    },
+    'productized-freelance': {
+      weights:{CRAFT:2, SYSTEMS:3, ANALYSIS:2, AUTONOMY:2, INFLUENCE:1, CARE:0},
+      en:{ name:'Productized Freelance Agency', oneLiner:"Packaging a skill — writing, design, dev, ops — into a fixed-scope service instead of billing by the hour.",
+        gap:"Most skilled freelancers in India still sell hours, which caps their income and turns every client relationship into a negotiation. Almost nobody productizes — fixed price, fixed scope, fixed turnaround — even though clients clearly prefer knowing the cost upfront.",
+        edge:"Top freelancers-turned-agencies stop selling time and start selling one named, fixed outcome — then systemize delivery so it doesn't depend entirely on them." },
+      hi:{ name:'प्रोडक्टाइज़्ड फ्रीलांस एजेंसी', oneLiner:'लेखन, डिज़ाइन, डेवलपमेंट या ऑप्स जैसे हुनर को घंटे के हिसाब से नहीं, बल्कि तय दायरे वाली सर्विस में पैक करना।',
+        gap:'भारत में ज़्यादातर कुशल फ्रीलांसर अभी भी घंटों के हिसाब से बेचते हैं, जिससे उनकी कमाई सीमित रहती है। लगभग कोई भी प्रोडक्टाइज़ नहीं करता — तय कीमत, तय दायरा, तय समय — जबकि क्लाइंट्स साफ तौर पर पहले से लागत जानना पसंद करते हैं।',
+        edge:'टॉप फ्रीलांसर-से-एजेंसी बनने वाले समय बेचना बंद कर देते हैं और एक तय, फिक्स्ड नतीजा बेचना शुरू करते हैं — फिर डिलीवरी को इस तरह सिस्टम बनाते हैं कि वह पूरी तरह उन पर निर्भर न रहे।' },
+      ta:{ name:'தயாரிப்பாக்கப்பட்ட ஃப்ரீலான்ஸ் ஏஜென்சி', oneLiner:'எழுத்து, வடிவமைப்பு, டெவலப்மென்ட் அல்லது ஆப்ஸ் போன்ற திறமையை மணி நேரக் கணக்கில் அல்லாமல் நிலையான வரம்புள்ள சேவையாக பேக் செய்தல்.',
+        gap:'இந்தியாவில் பெரும்பாலான திறமையான ஃப்ரீலான்சர்கள் இன்னும் மணி நேரக் கணக்கில் விற்கின்றனர். கிட்டத்தட்ட யாரும் தயாரிப்பாக்கவில்லை — நிலையான விலை, நிலையான வரம்பு, நிலையான நேரம்.',
+        edge:'சிறந்த ஃப்ரீலான்சர்-முதல்-ஏஜென்சிகள் நேரத்தை விற்பதை நிறுத்தி ஒரு நிலையான முடிவை விற்கத் தொடங்குகிறார்கள் — பின்னர் வழங்கலை தங்களைச் சார்ந்திராதவாறு அமைக்கிறார்கள்.' }
+    }
+  };
+  window.TDZ_ARCHETYPES = ARCHETYPES;
+
+  /* ================= Specific niches (narrow, not vague categories) =================
+     Each archetype maps to 2-4 concrete niche names, picked by which icons the
+     user actually chose, so "D2C" becomes "Regional Snacks & Pickle D2C Brand" etc. */
+  var NICHES = {
+    'hyperlocal-trust': { list:[
+        { match:['caring_people','caring_animals'], en:'Verified Elder & Pet Care Service', hi:'सत्यापित बुज़ुर्ग व पालतू देखभाल सेवा', ta:'சரிபார்க்கப்பட்ட முதியோர் & செல்லப்பிராணி கவனிப்பு சேவை' },
+        { match:['fixing','organizing'], en:'On-Demand Home Repair Service', hi:'ऑन-डिमांड होम रिपेयर सेवा', ta:'ஆன்-டிமாண்ட் வீட்டு பழுது சேவை' },
+        { match:['mentoring'], en:'Verified Home Tutoring Network', hi:'सत्यापित होम ट्यूशन नेटवर्क', ta:'சரிபார்க்கப்பட்ட வீட்டு டியூஷன் நெட்வொர்க்' }
+      ], def:{ en:'Verified Local Home-Services Startup', hi:'सत्यापित लोकल होम-सर्विस स्टार्टअप', ta:'சரிபார்க்கப்பட்ட உள்ளூர் வீட்டு சேவை ஸ்டார்ட்அப்' } },
+    'regional-d2c': { list:[
+        { match:['cooking','cooking_scale'], en:'Regional Snacks & Pickle D2C Brand', hi:'क्षेत्रीय स्नैक्स और अचार D2C ब्रांड', ta:'பிராந்திய சிற்றுண்டி & ஊறுகாய் D2C பிராண்ட்' },
+        { match:['stitching','painting'], en:'Regional Handloom & Textile Label', hi:'क्षेत्रीय हैंडलूम और टेक्सटाइल लेबल', ta:'பிராந்திய கைத்தறி & ஜவுளி லேபிள்' },
+        { match:['makeup'], en:'Regional Natural Beauty D2C Line', hi:'क्षेत्रीय नेचुरल ब्यूटी D2C लाइन', ta:'பிராந்திய இயற்கை அழகுசாதன D2C தயாரிப்பு' }
+      ], def:{ en:'Regional Specialty Product Brand', hi:'क्षेत्रीय स्पेशलिटी प्रोडक्ट ब्रांड', ta:'பிராந்திய சிறப்பு பொருள் பிராண்ட்' } },
+    'vernacular-edu': { list:[
+        { match:['numbers'], en:'Vernacular Exam-Coaching Academy', hi:'क्षेत्रीय भाषा में एग्ज़ाम-कोचिंग अकादमी', ta:'பிராந்திய மொழி தேர்வு பயிற்சி அகாடமி' },
+        { match:['writing','talking'], en:'Vernacular Content & Course Channel', hi:'क्षेत्रीय भाषा कंटेंट और कोर्स चैनल', ta:'பிராந்திய மொழி உள்ளடக்கம் & பாடநெறி சேனல்' },
+        { match:['mentoring'], en:'Vernacular Skill-Coaching Business', hi:'क्षेत्रीय भाषा स्किल-कोचिंग बिज़नेस', ta:'பிராந்திய மொழி திறன் பயிற்சி தொழில்' }
+      ], def:{ en:'Vernacular Coaching Business', hi:'क्षेत्रीय भाषा कोचिंग बिज़नेस', ta:'பிராந்திய மொழி பயிற்சி தொழில்' } },
+    'automation-consulting': { list:[
+        { match:['numbers'], en:'Billing & Accounts Fix for Local Shops', hi:'लोकल दुकानों के लिए बिलिंग व अकाउंट्स फिक्स', ta:'உள்ளூர் கடைகளுக்கான பில்லிங் & கணக்கு தீர்வு' },
+        { match:['organizing','checking'], en:'WhatsApp-to-System Setup Service', hi:'व्हाट्सएप-टू-सिस्टम सेटअप सेवा', ta:'வாட்ஸ்அப்-டு-சிஸ்டம் அமைப்பு சேவை' }
+      ], def:{ en:'Small-Business Systems Consultancy', hi:'छोटे बिज़नेस सिस्टम कंसल्टेंसी', ta:'சிறு தொழில் அமைப்பு ஆலோசனை' } },
+    'creator-brand': { list:[
+        { match:['photo','dancing'], en:'Creator-Led Merch & Product Line', hi:'क्रिएटर-लेड मर्च और प्रोडक्ट लाइन', ta:'கிரியேட்டர் தலைமையிலான தயாரிப்பு வரிசை' },
+        { match:['writing','talking','community_building'], en:'Signature Course From Your Content', hi:'अपने कंटेंट से बना सिग्नेचर कोर्स', ta:'உங்கள் உள்ளடக்கத்திலிருந்து சிக்னேச்சர் பாடநெறி' },
+        { match:['painting','makeup'], en:'Creator-Led Beauty or Art Product Line', hi:'क्रिएटर-लेड ब्यूटी या आर्ट प्रोडक्ट लाइन', ta:'கிரியேட்டர் தலைமையிலான அழகு/கலை தயாரிப்பு' }
+      ], def:{ en:'Own-Product Creator Business', hi:'खुद के प्रोडक्ट वाला क्रिएटर बिज़नेस', ta:'சொந்த தயாரிப்பு கிரியேட்டர் தொழில்' } },
+    'home-skill': { list:[
+        { match:['cooking','cooking_family','cooking_scale'], en:'Home Bakery or Tiffin Brand', hi:'होम बेकरी या टिफ़िन ब्रांड', ta:'வீட்டு பேக்கரி அல்லது டிபன் பிராண்ட்' },
+        { match:['stitching'], en:'Home Tailoring & Boutique Label', hi:'होम टेलरिंग और बुटीक लेबल', ta:'வீட்டு தையல் & பூட்டீக் லேபிள்' },
+        { match:['painting'], en:'Home Decor & Craft Business', hi:'होम डेकोर और क्राफ्ट बिज़नेस', ta:'வீட்டு அலங்காரம் & கைவினை தொழில்' }
+      ], def:{ en:'Packaged Home-Skill Business', hi:'पैक की गई होम-स्किल बिज़नेस', ta:'பேக் செய்யப்பட்ட வீட்டு திறமை தொழில்' } },
+    'wellness': { list:[
+        { match:['caring_people','mentoring'], en:'Affordable Wellness Coaching Practice', hi:'किफायती वेलनेस कोचिंग प्रैक्टिस', ta:'மலிவான ஆரோக்கிய பயிற்சி நடைமுறை' },
+        { match:['talking'], en:'Community Support-Circle Facilitator', hi:'कम्युनिटी सपोर्ट-सर्कल फैसिलिटेटर', ta:'சமூக ஆதரவு வட்ட வழிகாட்டி' }
+      ], def:{ en:'Non-Clinical Wellness Practice', hi:'गैर-क्लीनिकल वेलनेस प्रैक्टिस', ta:'மருத்துவமல்லாத ஆரோக்கிய நடைமுறை' } },
+    'pet-elder-care': { list:[
+        { match:['caring_animals'], en:'On-Call Pet Care Concierge', hi:'ऑन-कॉल पेट केयर कंसीयज', ta:'ஆன்-கால் செல்லப்பிராணி கவனிப்பு சேவை' },
+        { match:['caring_people'], en:'Trusted Elder Care Concierge', hi:'भरोसेमंद एल्डर केयर कंसीयज', ta:'நம்பகமான முதியோர் கவனிப்பு சேவை' }
+      ], def:{ en:'Pet & Elder Care Concierge', hi:'पेट व एल्डर केयर कंसीयज', ta:'செல்லப்பிராணி & முதியோர் கவனிப்பு சேவை' } },
+    'reselling-curation': { list:[
+        { match:['makeup','painting'], en:'Curated Artisan & Decor Store', hi:'क्यूरेटेड आर्टिज़न व डेकोर स्टोर', ta:'தேர்ந்தெடுத்த கைவினை & அலங்கார அங்காடி' },
+        { match:['cooking'], en:'Curated Regional Food Reselling Store', hi:'क्यूरेटेड क्षेत्रीय फूड रीसेलिंग स्टोर', ta:'தேர்ந்தெடுத்த பிராந்திய உணவு மறுவிற்பனை அங்காடி' }
+      ], def:{ en:'Curated Niche Reselling Business', hi:'क्यूरेटेड निश रीसेलिंग बिज़नेस', ta:'தேர்ந்தெடுத்த சிறப்பு மறுவிற்பனை தொழில்' } },
+    'productized-freelance': { list:[
+        { match:['coding','automating','building_products','saas_curious'], en:'Fixed-Price Tech/Dev Service Agency', hi:'फिक्स्ड-प्राइस टेक/डेव सर्विस एजेंसी', ta:'நிலையான விலை டெக்/டெவ் சேவை ஏஜென்சி' },
+        { match:['writing'], en:'Fixed-Price Content & Copy Agency', hi:'फिक्स्ड-प्राइस कंटेंट व कॉपी एजेंसी', ta:'நிலையான விலை உள்ளடக்க ஏஜென்சி' },
+        { match:['painting','photo'], en:'Fixed-Price Design/Creative Agency', hi:'फिक्स्ड-प्राइस डिज़ाइन/क्रिएटिव एजेंसी', ta:'நிலையான விலை வடிவமைப்பு ஏஜென்சி' }
+      ], def:{ en:'Productized Freelance Agency', hi:'प्रोडक्टाइज़्ड फ्रीलांस एजेंसी', ta:'தயாரிப்பாக்கப்பட்ட ஃப்ரீலான்ஸ் ஏஜென்சி' } }
+  };
+  window.TDZ_NICHES = NICHES;
+
+  /* ================= Inline SVG icon set (replaces emoji throughout) ================= */
+  var ICON_SVG = {
+    coding:'<path d="M9 8l-4 4 4 4"/><path d="M15 8l4 4-4 4"/>',
+    cooking:'<circle cx="9.5" cy="13.5" r="5.5"/><path d="M15 11.5h5.5"/>',
+    checking:'<circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20"/><path d="M7.5 10.5l1.8 1.8 3.4-3.6"/>',
+    talking:'<path d="M4 5h16v10H8l-4 4V5z"/>',
+    stitching:'<path d="M4 20L18 6"/><circle cx="19" cy="5" r="2"/><path d="M7 17c1-2 3-2 4 0s3 2 4 0"/>',
+    makeup:'<rect x="9" y="3" width="6" height="6" rx="1"/><path d="M9 9h6l-1.2 12H10.2L9 9z"/>',
+    painting:'<path d="M4 20l3.5-3.5"/><path d="M7.5 16.5l9-9c1-1 3 1 2 2l-9 9-3.5 1 1.5-3z"/>',
+    mentoring:'<path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1c2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v13"/>',
+    organizing:'<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/>',
+    caring_people:'<path d="M12 20s-7-4.35-9.5-8.5C1 8 3 5 6 5c2 0 4 1.5 6 4 2-2.5 4-4 6-4 3 0 5 3 3.5 6.5C19 15.65 12 20 12 20z"/>',
+    caring_animals:'<circle cx="7.5" cy="8" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="16.5" cy="8" r="1.6"/><path d="M7 14c0-2.2 2.2-3.5 5-3.5s5 1.3 5 3.5-2.2 5.5-5 5.5-5-3.3-5-5.5z"/>',
+    fixing:'<path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2 2.6-2.6z"/>',
+    dancing:'<path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2.2"/><circle cx="17" cy="16" r="2.2"/>',
+    numbers:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h2M12 12h2M16 12h2M8 16h2M12 16h2M16 16h2"/>',
+    writing:'<path d="M4 20l1-4L15.5 5.5l3 3L8 19l-4 1z"/>',
+    photo:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.3"/>',
+    trust_help:'<path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/><path d="M9.5 14.5l1.8 1.8 3.2-3.6"/>',
+    own_language:'<circle cx="12" cy="12" r="8"/><path d="M4 12h16"/><path d="M12 4c2.5 2.5 2.5 13.5 0 16M12 4c-2.5 2.5-2.5 13.5 0 16"/>',
+    shop_chaos:'<path d="M4 9l1-5h14l1 5"/><path d="M4 9v11h16V9"/><path d="M9.5 20v-6h5v6"/>',
+    beauty_afford:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/>',
+    elder_pet:'<path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/><path d="M9 11c0-1 1-2 3-1 2-1 3 0 3 1 0 1.5-3 3.5-3 3.5S9 12.5 9 11z"/>',
+    local_product:'<path d="M3 10l7-7h4l7 7-9 9-9-9z"/><circle cx="9" cy="9" r="1.4"/>',
+    mental_load:'<path d="M7 16a4 4 0 010-8 5 5 0 019.6-1.5A4.5 4.5 0 0117 16H7z"/>',
+    underpaid_skill:'<circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/>',
+    curation:'<path d="M4 10h16l-1.5 9h-13L4 10z"/><path d="M8 10l1-4h6l1 4"/>',
+    audience_product:'<path d="M4 10v4h3l6 4V6l-6 4H4z"/><path d="M17 9a4 4 0 010 6"/>',
+    it:'<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M2 19h20"/>',
+    student:'<path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/>',
+    homemaker:'<path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/>',
+    lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/>',
+    check:'<path d="M5 13l4 4L19 7"/>'
+  };
+  /* New persona-specific icon ids reuse existing glyphs (no new art needed for v1) */
+  ICON_SVG.dev = ICON_SVG.coding;
+  ICON_SVG.testing = ICON_SVG.checking;
+  ICON_SVG.pm = ICON_SVG.organizing;
+  ICON_SVG.config = ICON_SVG.fixing;
+  ICON_SVG.data = ICON_SVG.numbers;
+  ICON_SVG.design = ICON_SVG.painting;
+  ICON_SVG.support = ICON_SVG.caring_people;
+  ICON_SVG.ba = ICON_SVG.talking;
+  ICON_SVG.automating = ICON_SVG.organizing;
+  ICON_SVG.building_products = ICON_SVG.coding;
+  ICON_SVG.robotics = ICON_SVG.fixing;
+  ICON_SVG.saas_curious = ICON_SVG.coding;
+  ICON_SVG.community_building = ICON_SVG.caring_people;
+  ICON_SVG.fintech_interest = ICON_SVG.numbers;
+  ICON_SVG.cooking_family = ICON_SVG.cooking;
+  ICON_SVG.cooking_scale = ICON_SVG.cooking;
+  ICON_SVG.campus_prep = ICON_SVG.mentoring;
+  ICON_SVG.gig_discovery = ICON_SVG.checking;
+  ICON_SVG.skill_gap = ICON_SVG.organizing;
+  ICON_SVG.inefficient_ops = ICON_SVG.fixing;
+  ICON_SVG.time_freedom = ICON_SVG.caring_people;
+
+  window.TDZ_ICON_SVG = ICON_SVG;
+
+  function tdzSvg(id, size){
+    var inner = ICON_SVG[id] || '';
+    return '<svg viewBox="0 0 24 24" width="' + (size||24) + '" height="' + (size||24) + '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + '</svg>';
+  }
+  window.tdzSvg = tdzSvg;
+
+})();
+</script>
+<script>
+(function(){
+
+  var UI = window.TDZ_UI;
+  var PERSONAS = window.TDZ_PERSONAS;
+  var LOVE_ICONS = window.TDZ_LOVE_ICONS;
+  var PROBLEM_ICONS = window.TDZ_PROBLEM_ICONS;
+  var ARCHETYPES = window.TDZ_ARCHETYPES;
+  var NICHES = window.TDZ_NICHES;
+  var svg = window.tdzSvg;
+
+  var ROLE_ICONS = window.TDZ_ROLE_ICONS;
+  var LOVE_ICONS_IT = window.TDZ_LOVE_ICONS_IT;
+  var LOVE_ICONS_STUDENT = window.TDZ_LOVE_ICONS_STUDENT;
+  var LOVE_ICONS_HOMEMAKER = window.TDZ_LOVE_ICONS_HOMEMAKER;
+  var PROBLEM_ICONS_IT = window.TDZ_PROBLEM_ICONS_IT;
+  var PROBLEM_ICONS_STUDENT = window.TDZ_PROBLEM_ICONS_STUDENT;
+  var PROBLEM_ICONS_HOMEMAKER = window.TDZ_PROBLEM_ICONS_HOMEMAKER;
+
+  var WHY_TPL = {
+    en: function(loveList){ return 'You said you love ' + loveList + '.'; },
+    hi: function(loveList){ return 'आपने कहा कि आपको ' + loveList + ' पसंद है।'; },
+    ta: function(loveList){ return 'நீங்கள் ' + loveList + ' விரும்புவதாகக் கூறினீர்கள்.'; }
+  };
+
+  /* Plain-language names for the 6 scoring traits — EN only for v1, shown on
+     the results screen as a visible strength profile instead of raw jargon. */
+  var TRAIT_LABELS = {
+    INFLUENCE:'Selling & Influence',
+    CRAFT:'Making & Craft',
+    SYSTEMS:'Systems & Organizing',
+    CARE:'People & Trust',
+    ANALYSIS:'Analysis & Numbers',
+    AUTONOMY:'Independence'
+  };
+
+  /* Generic 3-screen flow — unchanged, used for hi/ta and as the safe fallback */
+  var LEGACY_SCREENS = [
+    { kind:'love', titleKey:'screen1Title', subKey:'screen1Sub', icons:LOVE_ICONS },
+    { kind:'unpaid', titleKey:'screen2Title', subKey:'screen2Sub', icons:LOVE_ICONS },
+    { kind:'problem', titleKey:'screen3Title', subKey:'screen3Sub', icons:PROBLEM_ICONS }
+  ];
+
+  /* Persona-tailored flow — English only for v1 (see PERSONA_SCREENS notes above) */
+  var PERSONA_SCREENS = {
+    it: [
+      { kind:'role', titleKey:'roleTitle', subKey:'roleSub', icons:ROLE_ICONS },
+      { kind:'love', titleKey:'screen1Title', subKey:'screen1Sub', icons:LOVE_ICONS_IT },
+      { kind:'unpaid', titleKey:'screen2Title', subKey:'screen2Sub', icons:LOVE_ICONS_IT },
+      { kind:'problem', titleKey:'screen3Title', subKey:'screen3Sub', icons:PROBLEM_ICONS_IT }
+    ],
+    student: [
+      { kind:'love', titleKey:'screen1Title', subKey:'screen1Sub', icons:LOVE_ICONS_STUDENT },
+      { kind:'unpaid', titleKey:'screen2Title', subKey:'screen2Sub', icons:LOVE_ICONS_STUDENT },
+      { kind:'problem', titleKey:'screen3Title', subKey:'screen3Sub', icons:PROBLEM_ICONS_STUDENT }
+    ],
+    homemaker: [
+      { kind:'love', titleKey:'screen1Title', subKey:'screen1Sub', icons:LOVE_ICONS_HOMEMAKER },
+      { kind:'unpaid', titleKey:'screen2Title', subKey:'screen2Sub', icons:LOVE_ICONS_HOMEMAKER },
+      { kind:'problem', titleKey:'screen3Title', subKey:'screen3Sub', icons:PROBLEM_ICONS_HOMEMAKER }
+    ]
+  };
+
+  function getScreens(personaId){
+    if(lang === 'en' && PERSONA_SCREENS[personaId]) return PERSONA_SCREENS[personaId];
+    return LEGACY_SCREENS;
+  }
+
+  var SCREENS = LEGACY_SCREENS;
+
+  /* ================= Elements ================= */
+  var langSwitch = document.getElementById('langSwitch');
+  var personaGate = document.getElementById('personaGate');
+  var personaGrid = document.getElementById('personaGrid');
+  var quizWrap = document.getElementById('quizWrap');
+  var analyzingWrap = document.getElementById('analyzingWrap');
+  var resultsWrap = document.getElementById('resultsWrap');
+  var communityGate = document.getElementById('communityGate');
+  var joinWaBtn = document.getElementById('joinWaBtn');
+  var revealResultBtn = document.getElementById('revealResultBtn');
+  var progressFill = document.getElementById('progressFill');
+  var progressLabel = document.getElementById('progressLabel');
+  var screenTitle = document.getElementById('screenTitle');
+  var screenSub = document.getElementById('screenSub');
+  var pickCounter = document.getElementById('pickCounter');
+  var iconGrid = document.getElementById('iconGrid');
+  var backQ = document.getElementById('backQ');
+  var backLbl = document.getElementById('backLbl');
+  var nextQ = document.getElementById('nextQ');
+  var nextLbl = document.getElementById('nextLbl');
+  var retakeBtn = document.getElementById('retakeBtn');
+  var analyzingTitleEl = document.getElementById('analyzingTitle');
+  var analyzingPhraseEl = document.getElementById('analyzingPhrase');
+  var lockBadge = document.getElementById('lockBadge');
+
+  /* ================= State ================= */
+  var lang = 'en';
+  var currentPersonaId = null;
+  var screenIndex = 0;
+  var selections = [[], [], []];
+  var analyzingTimer = null;
+  var lastPrimaryId = null;
+
+  function safeGet(key){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
+  function safeSet(key, val){ try{ localStorage.setItem(key, val); }catch(e){} }
+  function reducedMotion(){
+    try{ return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; }
+  }
+
+  function t(key){ return UI[lang][key]; }
+
+  function renderLangSwitch(){
+    Array.prototype.forEach.call(langSwitch.querySelectorAll('.lang-btn'), function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  function renderPersonaGate(){
+    document.getElementById('gateEyebrow').textContent = t('gateEyebrow');
+    document.getElementById('gateH1').textContent = t('gateH1');
+    document.getElementById('gateLead').textContent = t('gateLead');
+    personaGrid.innerHTML = '';
+    PERSONAS.forEach(function(p){
+      var copy = p[lang];
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'persona-card';
+      card.setAttribute('data-persona', p.id);
+      card.innerHTML =
+        '<span class="persona-ic">' + svg(p.id, 22) + '</span>' +
+        '<span class="persona-copy">' +
+          '<span class="persona-title">' + copy.title + '</span>' +
+          '<span class="persona-sub">' + copy.sub + '</span>' +
+        '</span>' +
+        '<svg class="persona-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>';
+      card.addEventListener('click', function(){ choosePersona(p); });
+      personaGrid.appendChild(card);
+    });
+  }
+
+  var WA_JOIN_KEY = 'tdz_wa_joined';
+  function hasJoinedCommunity(){ return safeGet(WA_JOIN_KEY) === '1'; }
+
+  function renderCommunityGate(){
+    document.getElementById('waGateEyebrow').textContent = t('waGateEyebrow');
+    document.getElementById('waGateH1').textContent = t('waGateH1');
+    document.getElementById('waGateLead').textContent = t('waGateLead');
+    document.getElementById('joinWaBtnLbl').textContent = t('joinWaBtnLbl');
+    document.getElementById('joinWaNote').textContent = t('joinWaNote');
+    document.getElementById('revealResultBtnLbl').textContent = t('revealResultBtnLbl');
+    /* Note: does not touch revealResultBtn's visibility — that state (has the
+       visitor clicked "join" in this session) is independent of language. */
+  }
+
+  function showPersonaGate(){
+    if(analyzingTimer){ clearTimeout(analyzingTimer); analyzingTimer = null; }
+    renderPersonaGate();
+    personaGate.classList.remove('is-hidden');
+    quizWrap.classList.add('is-hidden');
+    analyzingWrap.classList.add('is-hidden');
+    communityGate.classList.add('is-hidden');
+    resultsWrap.classList.add('is-hidden');
+    window.scrollTo(0, 0);
+  }
+
+  function choosePersona(p){
+    currentPersonaId = p.id;
+    safeSet('tdz_persona', p.id);
+    startQuiz();
+  }
+
+  function startQuiz(){
+    SCREENS = getScreens(currentPersonaId);
+    screenIndex = 0;
+    selections = SCREENS.map(function(){ return []; });
+    personaGate.classList.add('is-hidden');
+    resultsWrap.classList.add('is-hidden');
+    analyzingWrap.classList.add('is-hidden');
+    quizWrap.classList.remove('is-hidden');
+    renderScreen();
+    window.scrollTo(0, 0);
+  }
+
+  function renderScreen(){
+    var cfg = SCREENS[screenIndex];
+    screenTitle.textContent = UI[lang][cfg.titleKey];
+    screenSub.textContent = UI[lang][cfg.subKey];
+    pickCounter.textContent = UI[lang].pickCounter(selections[screenIndex].length);
+    progressFill.style.width = ((screenIndex) / SCREENS.length * 100) + '%';
+    progressLabel.textContent = UI[lang].progressStep(screenIndex + 1, SCREENS.length);
+    backLbl.textContent = t('back');
+    nextLbl.textContent = t('next');
+
+    iconGrid.innerHTML = '';
+    var picked = selections[screenIndex];
+    cfg.icons.forEach(function(icon, i){
+      var isSelected = picked.indexOf(icon.id) > -1;
+      var isDisabled = !isSelected && picked.length >= 3;
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'icon-card' + (isSelected ? ' selected' : '') + (isDisabled ? ' disabled' : '');
+      card.style.animationDelay = (i * 0.03) + 's';
+      card.innerHTML =
+        '<span class="icon-check">' + svg('check', 11) + '</span>' +
+        '<span class="icon-svg">' + svg(icon.id, 26) + '</span>' +
+        '<span class="lbl">' + icon[lang] + '</span>';
+      card.addEventListener('click', function(){ toggleIcon(icon.id); });
+      iconGrid.appendChild(card);
+    });
+
+    nextQ.disabled = selections[screenIndex].length === 0;
+  }
+
+  function toggleIcon(id){
+    var arr = selections[screenIndex];
+    var idx = arr.indexOf(id);
+    if(idx > -1){ arr.splice(idx, 1); }
+    else if(arr.length < 3){ arr.push(id); }
+    renderScreen();
+  }
+
+  /* ================= Analyzing (rich loading transition) ================= */
+  function runAnalyzing(onDone){
+    quizWrap.classList.add('is-hidden');
+    personaGate.classList.add('is-hidden');
+    resultsWrap.classList.add('is-hidden');
+    analyzingWrap.classList.remove('is-hidden');
+    window.scrollTo(0, 0);
+
+    analyzingTitleEl.textContent = t('analyzingTitle');
+    var phrases = UI[lang].analyzingPhrases;
+
+    if(reducedMotion()){
+      analyzingPhraseEl.textContent = phrases[0];
+      analyzingTimer = setTimeout(onDone, 700);
+      return;
+    }
+
+    var i = 0;
+    analyzingPhraseEl.style.opacity = '1';
+    analyzingPhraseEl.textContent = phrases[0];
+    var STEP = 850;
+
+    function nextPhrase(){
+      i++;
+      if(i >= phrases.length){
+        analyzingTimer = setTimeout(onDone, STEP);
+        return;
+      }
+      analyzingPhraseEl.style.opacity = '0';
+      analyzingTimer = setTimeout(function(){
+        analyzingPhraseEl.textContent = phrases[i];
+        analyzingPhraseEl.style.opacity = '1';
+        analyzingTimer = setTimeout(nextPhrase, STEP);
+      }, 220);
+    }
+    analyzingTimer = setTimeout(nextPhrase, STEP);
+  }
+
+  function pickNiche(archetypeId, selectedIconIds){
+    var cfg = NICHES[archetypeId];
+    if(!cfg) return null;
+    for(var i = 0; i < cfg.list.length; i++){
+      var niche = cfg.list[i];
+      for(var j = 0; j < niche.match.length; j++){
+        if(selectedIconIds.indexOf(niche.match[j]) > -1) return niche;
+      }
+    }
+    return cfg.def;
+  }
+
+  function computeAndRenderResults(){
+    var traits = { INFLUENCE:0, CRAFT:0, SYSTEMS:0, CARE:0, ANALYSIS:0, AUTONOMY:0 };
+    var bonusPool = {};
+    var loveIds = [];
+    var firstLove = null; /* { icons, ids } — for the "why this fits" chip */
+
+    SCREENS.forEach(function(cfg, idx){
+      var picked = selections[idx] || [];
+      if(cfg.kind === 'love' || cfg.kind === 'unpaid'){
+        var mult = cfg.kind === 'unpaid' ? 1.5 : 1;
+        picked.forEach(function(id){
+          var icon = cfg.icons.filter(function(i){ return i.id === id; })[0];
+          if(!icon || !icon.traits) return;
+          Object.keys(icon.traits).forEach(function(k){ traits[k] = (traits[k] || 0) + icon.traits[k] * mult; });
+        });
+        loveIds = loveIds.concat(picked);
+        if(!firstLove && picked.length){ firstLove = { icons:cfg.icons, ids:picked }; }
+      } else if(cfg.kind === 'problem' || cfg.kind === 'role'){
+        /* 'role' (IT's "what do you do today") feeds the same bonus pool as
+           'problem' (world-needs) — both are direct archetype signals rather
+           than trait signals. */
+        picked.forEach(function(id){
+          var item = cfg.icons.filter(function(i){ return i.id === id; })[0];
+          if(!item || !item.bonus) return;
+          Object.keys(item.bonus).forEach(function(k){ bonusPool[k] = (bonusPool[k] || 0) + item.bonus[k]; });
+        });
+      }
+    });
+
+    var BONUS_SCALE = 5;
+    var scored = Object.keys(ARCHETYPES).map(function(id){
+      var arc = ARCHETYPES[id];
+      var w = arc.weights;
+      var score = 0;
+      Object.keys(w).forEach(function(k){ score += (traits[k] || 0) * w[k]; });
+      score += (bonusPool[id] || 0) * BONUS_SCALE;
+      return { id:id, score:score };
+    });
+    scored.sort(function(a, b){ return b.score - a.score; });
+
+    var primaryId = scored[0].id;
+    var secondaryId = scored[1].id;
+    var primaryArc = ARCHETYPES[primaryId][lang];
+    var secondaryArc = ARCHETYPES[secondaryId][lang];
+
+    var uniqueLoveIds = loveIds.filter(function(v, i){ return loveIds.indexOf(v) === i; });
+    var niche = pickNiche(primaryId, uniqueLoveIds);
+    var secondaryNiche = pickNiche(secondaryId, uniqueLoveIds);
+
+    lastPrimaryId = primaryId;
+
+    function labelsFor(icons, ids){
+      return ids.slice(0, 2).map(function(id){
+        var icon = icons.filter(function(i){ return i.id === id; })[0];
+        return icon ? icon[lang] : id;
+      }).join(' & ');
+    }
+    var loveList = firstLove ? labelsFor(firstLove.icons, firstLove.ids) : '';
+
+    document.getElementById('resultEyebrow').textContent = UI[lang].resultEyebrowPrefix;
+    document.getElementById('resultName').textContent = niche[lang];
+    document.getElementById('resultOneliner').textContent = primaryArc.oneLiner;
+    document.getElementById('whyChip').textContent = WHY_TPL[lang](loveList || niche[lang]);
+    document.getElementById('secondaryChip').textContent = UI[lang].secondaryPrefix + ': ' + secondaryNiche[lang];
+
+    /* ---- Visible strength profile — EN only until trait labels are translated ---- */
+    var strengthCard = document.getElementById('strengthCard');
+    var topTraitLabel = null;
+    if(lang === 'en'){
+      var maxTrait = Math.max.apply(null, Object.keys(traits).map(function(k){ return traits[k]; }).concat([0.0001]));
+      var traitRows = Object.keys(TRAIT_LABELS)
+        .map(function(k){ return { key:k, label:TRAIT_LABELS[k], value:traits[k] || 0 }; })
+        .sort(function(a, b){ return b.value - a.value; });
+      topTraitLabel = traitRows[0] && traitRows[0].value > 0 ? traitRows[0].label : null;
+
+      document.getElementById('strengthTitle').textContent = UI.en.strengthsTitle;
+      document.getElementById('strengthSub').textContent = UI.en.strengthsSub;
+      var barsEl = document.getElementById('strengthBars');
+      barsEl.innerHTML = '';
+      traitRows.forEach(function(row){
+        var pct = Math.round((row.value / maxTrait) * 100);
+        var wrap = document.createElement('div');
+        wrap.className = 'trait-row';
+        wrap.innerHTML =
+          '<div class="trait-top"><span class="trait-name">' + row.label + '</span><span class="trait-pct">' + pct + '%</span></div>' +
+          '<div class="trait-track"><div class="trait-fill" style="width:' + pct + '%"></div></div>';
+        barsEl.appendChild(wrap);
+      });
+      strengthCard.classList.remove('is-hidden');
+    } else {
+      strengthCard.classList.add('is-hidden');
+    }
+
+    /* ---- Full "why / gap / edge / secondary" analysis — no longer blurred or gated ---- */
+    document.getElementById('whyBlockLbl').textContent = UI[lang].lblWhy;
+    var whyText = WHY_TPL[lang](loveList || niche[lang]);
+    if(topTraitLabel){ whyText += ' Your profile also shows real strength in ' + topTraitLabel + ', which lines up directly with this path.'; }
+    document.getElementById('whyBlockText').textContent = whyText;
+
+    document.getElementById('gapBlockLbl').textContent = UI[lang].lblGap;
+    document.getElementById('gapBlockText').textContent = primaryArc.gap;
+
+    document.getElementById('edgeBlockLbl').textContent = UI[lang].lblEdge;
+    document.getElementById('edgeBlockText').textContent = primaryArc.edge;
+
+    document.getElementById('secondaryBlockLbl').textContent = UI[lang].lblSecondary + ': ' + secondaryNiche[lang];
+    document.getElementById('secondaryBlockText').textContent = secondaryArc.oneLiner;
+
+    document.getElementById('lockEyebrow').textContent = UI[lang].lockEyebrow;
+    document.getElementById('lockTitle').textContent = UI[lang].lockTitle;
+    document.getElementById('lockSub').textContent = UI[lang].lockSubTemplate.replace('{biz}', niche[lang]);
+    var planEl = document.getElementById('planIncludes');
+    planEl.innerHTML = '';
+    UI[lang].planIncludes.forEach(function(line){
+      var li = document.createElement('li');
+      li.innerHTML = svg('check', 14) + '<span>' + line + '</span>';
+      planEl.appendChild(li);
+    });
+    lockBadge.innerHTML = svg('lock', 18);
+    document.getElementById('courseCtaLbl').textContent = UI[lang].courseCtaLbl;
+    document.getElementById('courseCtaSub').textContent = UI[lang].courseCtaSub;
+    document.getElementById('courseUrgency').textContent = UI[lang].courseUrgency;
+    document.getElementById('disclaimerText').textContent = UI[lang].disclaimer;
+    retakeBtn.textContent = t('retake');
+
+    safeSet('tdz_biz', primaryId);
+    safeSet('tdz_niche_' + lang, niche[lang]);
+    try{
+      var url = new URL('/run-business-30-days.html', window.location.href);
+      url.searchParams.set('biz', primaryId);
+      url.searchParams.set('lang', lang);
+      url.searchParams.set('niche', niche.en);
+      document.getElementById('courseCta').setAttribute('href', url.pathname + url.search);
+    }catch(e){}
+
+    quizWrap.classList.add('is-hidden');
+    personaGate.classList.add('is-hidden');
+    analyzingWrap.classList.add('is-hidden');
+    if(hasJoinedCommunity()){
+      communityGate.classList.add('is-hidden');
+      resultsWrap.classList.remove('is-hidden');
+    } else {
+      resultsWrap.classList.add('is-hidden');
+      renderCommunityGate();
+      communityGate.classList.remove('is-hidden');
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function isResultsVisible(){ return !resultsWrap.classList.contains('is-hidden'); }
+  function isQuizVisible(){ return !quizWrap.classList.contains('is-hidden'); }
+  function isAnalyzingVisible(){ return !analyzingWrap.classList.contains('is-hidden'); }
+  function isCommunityGateVisible(){ return !communityGate.classList.contains('is-hidden'); }
+
+  /* ================= Events ================= */
+  Array.prototype.forEach.call(langSwitch.querySelectorAll('.lang-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      lang = btn.getAttribute('data-lang');
+      safeSet('tdz_lang', lang);
+      renderLangSwitch();
+      if(isResultsVisible()){ computeAndRenderResults(); }
+      else if(isCommunityGateVisible()){ renderCommunityGate(); }
+      else if(isQuizVisible()){ startQuiz(); }
+      else if(!isAnalyzingVisible()){ renderPersonaGate(); }
+    });
+  });
+
+  joinWaBtn.addEventListener('click', function(){
+    /* We can't verify WhatsApp membership from a static page — there's no
+       public API for that. This is a self-report gate: clicking "Join"
+       reveals the "I've joined" button, which is the honest, standard
+       pattern for this kind of unlock. */
+    revealResultBtn.classList.remove('is-hidden');
+  });
+
+  revealResultBtn.addEventListener('click', function(){
+    safeSet(WA_JOIN_KEY, '1');
+    communityGate.classList.add('is-hidden');
+    resultsWrap.classList.remove('is-hidden');
+    window.scrollTo(0, 0);
+  });
+
+  nextQ.addEventListener('click', function(){
+    if(screenIndex < SCREENS.length - 1){
+      screenIndex++;
+      renderScreen();
+      window.scrollTo(0, 0);
+    } else {
+      runAnalyzing(computeAndRenderResults);
+    }
+  });
+
+  backQ.addEventListener('click', function(){
+    if(screenIndex > 0){
+      screenIndex--;
+      renderScreen();
+      window.scrollTo(0, 0);
+    } else {
+      showPersonaGate();
+    }
+  });
+
+  retakeBtn.addEventListener('click', function(){
+    showPersonaGate();
+  });
+
+  /* ================= Init ================= */
+  lang = safeGet('tdz_lang') || 'en';
+  renderLangSwitch();
+
+  var savedPersona = safeGet('tdz_persona');
+  if(savedPersona && PERSONAS.some(function(p){ return p.id === savedPersona; })){
+    currentPersonaId = savedPersona;
+    startQuiz();
+  } else {
+    showPersonaGate();
+  }
+
+})();
+</script>
+</body>
+</html>
