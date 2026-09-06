@@ -17,6 +17,32 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://thedayzero.in/">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "thedayzero",
+  "url": "https://thedayzero.in/",
+  "logo": "https://thedayzero.in/assets/logo-og.png",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "TheKahaaniya"
+  },
+  "sameAs": [
+    "https://www.instagram.com/the.kahaaniya/",
+    "https://chat.whatsapp.com/D6XeJK0D8kD7zfMAJkAeda"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "thedayzero",
+  "url": "https://thedayzero.in/"
+}
+</script>
+
 <link rel="icon" type="image/png" href="https://thedayzero.in/assets/favicon.png">
 <link rel="apple-touch-icon" href="https://thedayzero.in/assets/favicon.png">
 
@@ -235,6 +261,11 @@
     .pill-outline{ font-size:14px; padding:0.5em 1.1rem; gap:0.75rem; }
   }
 
+  .hero-microcopy{
+    margin:14px 0 0; font-size:12.5px; color:rgba(255,255,255,0.82);
+    text-shadow:0 1px 8px rgba(0,0,0,0.5);
+  }
+
   /* ============ lead capture popup ============ */
   .leadmodal-overlay{
     position:fixed; inset:0; z-index:100;
@@ -352,8 +383,7 @@
     <a href="find-business.html">Find your skill</a><span>,</span>
     <a href="run-business-30-days.html">Convert skill as business</a><span>,</span>
     <a href="founder.html">Meet The Founder</a><span>,</span>
-    <a href="story.html">Read Our Story</a><span>,</span>
-    <a href="story.html">About</a>
+    <a href="story.html">Read Our Story</a>
   </div>
 
   <div class="navbar-right">
@@ -385,7 +415,6 @@
   <a href="run-business-30-days.html">Convert skill as business</a>
   <a href="founder.html">Meet The Founder</a>
   <a href="story.html">Read Our Story</a>
-  <a href="story.html">About</a>
   <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="underline-link">Get in touch</a>
   <a href="https://www.instagram.com/the.kahaaniya/" target="_blank" rel="noopener" class="mobile-overlay-social">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -433,6 +462,7 @@
         <a href="founder.html" class="pill-secondary">Meet The Founder</a>
         <a href="story.html" class="pill-secondary">Read Our Story</a>
       </div>
+      <p class="hero-microcopy">Free quiz. Takes 3 clicks. No signup required.</p>
     </div>
   </div>
 </section>
@@ -641,8 +671,15 @@
 (function(){
   var WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyjjwBTV5jqUnAirtxvlGuImVplCd5EWx6qvRXxnLExYsDt4WzbQDeqQZf2jCE5hzx4/exec';
 
-  // Any link on the page pointing to these two pages opens the popup first.
-  var GATED_PAGES = ['find-business.html', 'run-business-30-days.html'];
+  // CRO FIX (Sep 2026): GA4 showed only 17% of visitors even started this form,
+  // and only 2.5% ever reached a quiz question — this popup was gating BOTH the
+  // free quiz and the paid offer page behind a mandatory Name/WhatsApp/Email
+  // form before visitors could see either one, directly contradicting
+  // find-business.html's own "Free — no card, no signup" promise. GATED_PAGES is
+  // now empty so every CTA/nav link goes straight through with zero friction.
+  // The modal + Apps Script webhook below are left fully intact and working —
+  // add a page path back into this array to re-gate it in the future.
+  var GATED_PAGES = [];
 
   var overlay = document.getElementById('leadModalOverlay');
   var form = document.getElementById('leadForm');

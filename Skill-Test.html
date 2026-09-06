@@ -12,24 +12,24 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Take The Quick Start Quiz — thedayzero</title>
-<meta name="description" content="A simple, click-based business-fit test. ₹99. 5 minutes.">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://thedayzero.in/quick-start/">
+<title>Find Your Business-Fit Skill — Free Test — thedayzero</title>
+<meta name="description" content="A researched, psychometric-style business-fit test. Find the skill and business that actually suits you. Free. 10 minutes. No signup required.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://thedayzero.in/Skill-Test.html">
 
 <link rel="icon" type="image/png" href="https://thedayzero.in/assets/favicon.png">
 <link rel="apple-touch-icon" href="https://thedayzero.in/assets/favicon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://thedayzero.in/quick-start/">
-<meta property="og:title" content="Take The Quick Start Quiz — thedayzero">
-<meta property="og:description" content="A simple, click-based business-fit test. ₹99. 5 minutes.">
+<meta property="og:url" content="https://thedayzero.in/Skill-Test.html">
+<meta property="og:title" content="Find Your Business-Fit Skill — Free Test — thedayzero">
+<meta property="og:description" content="A researched, psychometric-style business-fit test. Find the skill and business that actually suits you. Free. 10 minutes. No signup required.">
 <meta property="og:site_name" content="thedayzero by TheKahaaniya">
 <meta property="og:image" content="https://thedayzero.in/assets/logo-og.png">
 <meta property="og:image:alt" content="thedayzero by TheKahaaniya">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Take The Quick Start Quiz — thedayzero">
-<meta name="twitter:description" content="A simple, click-based business-fit test. ₹99. 5 minutes.">
+<meta name="twitter:title" content="Find Your Business-Fit Skill — Free Test — thedayzero">
+<meta name="twitter:description" content="A researched, psychometric-style business-fit test. Find the skill and business that actually suits you. Free. 10 minutes. No signup required.">
 <meta name="twitter:image" content="https://thedayzero.in/assets/logo-og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -203,6 +203,23 @@
   }
   .chip-muted{ color:var(--ink-soft); background:rgba(255,255,255,0.4); border-style:dashed; }
 
+  .community-invite{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
+    text-align:left; background:rgba(255,255,255,0.55); border:1px dashed rgba(28,21,9,0.25);
+    border-radius:16px; padding:14px 16px; margin-bottom:22px;
+  }
+  .community-invite-copy{ flex:1 1 220px; }
+  .community-invite-title{ font-family:var(--font-heading); font-weight:700; font-size:13.5px; color:var(--ink); margin:0 0 2px; }
+  .community-invite-sub{ font-size:12.5px; color:var(--ink-soft); margin:0; line-height:1.4; }
+  .community-invite-btn{
+    display:inline-flex; align-items:center; gap:7px; flex-shrink:0;
+    background:#111; color:#fff; border-radius:9999px;
+    font-family:var(--font-heading); font-weight:700; font-size:12.5px;
+    padding:0.65em 1.1em; white-space:nowrap; transition:opacity .2s ease;
+  }
+  .community-invite-btn:hover{ opacity:0.85; }
+  @media (max-width:480px){ .community-invite-btn{ width:100%; justify-content:center; } }
+
   @media (prefers-reduced-motion: reduce){
     .icon-card, .result-name, .orb-ring, .orb-core, .analyzing-dots span{ animation:none !important; }
   }
@@ -226,7 +243,6 @@
   .cta-btn:disabled{ opacity:0.35; box-shadow:none; }
   .cta-btn:not(:disabled):hover{ opacity:0.88; }
   .cta-sub{ font-size:13px; color:var(--ink-soft); margin-top:14px; }
-  .wa-reveal-btn{ margin-top:14px; }
   .urgency{
     display:inline-block; margin-top:22px; font-size:12.5px; font-weight:700;
     color:#8a3b1a; background:#fff; border-radius:9999px; padding:0.4em 0.9em;
@@ -351,25 +367,7 @@
   <div class="analyzing-dots" aria-hidden="true"><span></span><span></span><span></span></div>
 </div>
 
-<!-- ================= COMMUNITY GATE (join before reveal) ================= -->
-<div id="communityGate" class="wrap is-hidden">
-  <div class="eyebrow" id="waGateEyebrow">One last step</div>
-  <h1 id="waGateH1">Be part of the cult to know your skill and business — before we reveal it.</h1>
-  <p class="lead" id="waGateLead">This test is free because guessing your own path shouldn't cost you years. Join the community first — then we'll show you exactly what you're built for.</p>
-
-  <a href="https://chat.whatsapp.com/D6XeJK0D8kD7zfMAJkAeda" target="_blank" rel="noopener" id="joinWaBtn" class="cta-btn">
-    <span id="joinWaBtnLbl">Join the WhatsApp Community</span>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-  </a>
-  <div class="cta-sub" id="joinWaNote">Opens WhatsApp — come back to this tab after joining.</div>
-
-  <button type="button" id="revealResultBtn" class="cta-btn wa-reveal-btn is-hidden">
-    <span id="revealResultBtnLbl">I've Joined — Show My Result</span>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-  </button>
-</div>
-
-<!-- ================= RESULTS (reveal) ================= -->
+<!-- ================= RESULTS (shown immediately — no gate) ================= -->
 <div id="resultsWrap" class="wrap is-hidden">
   <div class="result-eyebrow" id="resultEyebrow">Your result</div>
   <h1 class="result-name" id="resultName"></h1>
@@ -378,6 +376,23 @@
   <div class="chip-row">
     <span class="chip" id="whyChip"></span>
     <span class="chip chip-muted" id="secondaryChip"></span>
+  </div>
+
+  <!-- Non-blocking community invite. Previously this was a hard gate that hid
+       the result until a visitor clicked "join" — GA4 showed this cost real
+       completions after people had already finished the whole quiz. The
+       result now always shows immediately; this is just an honest, optional
+       invite alongside it. Same WhatsApp community link as everywhere else
+       on the site. -->
+  <div class="community-invite" id="communityInvite">
+    <div class="community-invite-copy">
+      <p class="community-invite-title" id="communityInviteTitle">Want to build this alongside other people?</p>
+      <p class="community-invite-sub" id="communityInviteSub">Join the free WhatsApp community — real people, same stage as you.</p>
+    </div>
+    <a href="https://chat.whatsapp.com/D6XeJK0D8kD7zfMAJkAeda" target="_blank" rel="noopener" id="joinWaBtn" class="community-invite-btn">
+      <span id="joinWaBtnLbl">Join the WhatsApp Community</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
   </div>
 
   <div class="strength-card" id="strengthCard">
@@ -441,7 +456,8 @@
       waGateEyebrow:'One last step', waGateH1:'Be part of the cult to know your skill and business — before we reveal it.',
       waGateLead:'This test is free because guessing your own path shouldn\u2019t cost you years. Join the community first — then we\u2019ll show you exactly what you\u2019re built for.',
       joinWaBtnLbl:'Join the WhatsApp Community', joinWaNote:'Opens WhatsApp — come back to this tab after joining.',
-      revealResultBtnLbl:'I\u2019ve Joined — Show My Result',
+      communityInviteTitle:'Want to build this alongside other people?',
+      communityInviteSub:'Join the free WhatsApp community — real people, same stage as you.',
       lblWhy:'Why this fits you', lblSecondary:'You also lean toward', lblGap:'The gap nobody’s filling', lblEdge:'What the top 1% do differently',
       lockEyebrow:'The insight is yours. Now execute it.', lockTitle:'Your 30-Day Plan To Actually Launch This',
       lockSubTemplate:'You already know the gap and the edge for {biz}. What\u2019s still missing is the week-by-week playbook — sourcing, pricing, your first customers, and the one mistake that kills most first attempts.',
@@ -465,7 +481,8 @@
       waGateEyebrow:'आखिरी कदम', waGateH1:'अपनी स्किल और बिज़नेस के बारे में जानने से पहले, कल्ट का हिस्सा बनें।',
       waGateLead:'यह टेस्ट फ्री है क्योंकि अपना रास्ता खुद अंदाज़ा लगाने में आपके साल बर्बाद नहीं होने चाहिए। पहले कम्युनिटी जॉइन करें — फिर हम आपको बिल्कुल बताएंगे कि आप किसके लिए बने हैं।',
       joinWaBtnLbl:'व्हाट्सएप कम्युनिटी जॉइन करें', joinWaNote:'व्हाट्सएप खुलेगा — जॉइन करने के बाद इस टैब पर वापस आएं।',
-      revealResultBtnLbl:'मैंने जॉइन कर लिया — मेरा रिजल्ट दिखाएं',
+      communityInviteTitle:'क्या आप दूसरों के साथ मिलकर इसे बनाना चाहते हैं?',
+      communityInviteSub:'फ्री व्हाट्सएप कम्युनिटी जॉइन करें — आपके जैसे ही लोग, जो अपना अनुभव साझा करते हैं।',
       lblWhy:'यह आपके लिए क्यों सही है', lblSecondary:'आप इस ओर भी झुकाव रखते हैं', lblGap:'वह कमी जो अभी कोई नहीं भर रहा', lblEdge:'टॉप 1% अलग क्या करते हैं',
       lockEyebrow:'सोच अब आपकी है। अब उसे अमल में लाएं।', lockTitle:'30 दिनों में इसे असल में शुरू करने का प्लान',
       lockSubTemplate:'{biz} की कमी और बढ़त अब आप जानते हैं। बस बाकी है — हफ्ते-दर-हफ्ते प्लान — सोर्सिंग, कीमत, पहले ग्राहक, और वह गलती जो ज़्यादातर लोग पहली बार में करते हैं।',
@@ -488,7 +505,8 @@
       waGateEyebrow:'கடைசி படி', waGateH1:'உங்கள் திறமை மற்றும் தொழிலை வெளிப்படுத்தும் முன், கல்ட்டில் இணையுங்கள்.',
       waGateLead:'இந்த டெஸ்ட் இலவசம், ஏனெனில் உங்கள் பாதையை யூகிப்பதில் உங்கள் ஆண்டுகள் வீணாகக் கூடாது. முதலில் கம்யூனிட்டியில் இணையுங்கள் — பிறகு நீங்கள் எதற்காக பொருத்தமானவர் என்பதை சரியாகக் காட்டுவோம்.',
       joinWaBtnLbl:'வாட்ஸ்அப் கம்யூனிட்டியில் இணையுங்கள்', joinWaNote:'வாட்ஸ்அப் திறக்கும் — இணைந்த பிறகு இந்த டேபுக்கு திரும்பி வாருங்கள்.',
-      revealResultBtnLbl:'நான் இணைந்துவிட்டேன் — என் முடிவைக் காட்டு',
+      communityInviteTitle:'மற்றவர்களுடன் சேர்ந்து இதை உருவாக்க விரும்புகிறீர்களா?',
+      communityInviteSub:'இலவச வாட்ஸ்அப் கம்யூனிட்டியில் இணையுங்கள் — உங்களைப் போன்றவர்கள் இங்கு உள்ளனர்.',
       lblWhy:'இது ஏன் உங்களுக்குப் பொருந்துகிறது', lblSecondary:'நீங்கள் இதன் பக்கமும் சாய்கிறீர்கள்', lblGap:'யாரும் நிரப்பாத குறை', lblEdge:'சிறந்த 1% வேறுபட்டு செய்வது என்ன',
       lockEyebrow:'நுண்ணறிவு உங்களிடம் உள்ளது. இப்போது செயல்படுத்துங்கள்.', lockTitle:'30 நாட்களில் இதை நிஜமாக தொடங்குவதற்கான திட்டம்',
       lockSubTemplate:'{biz}க்கான குறையும் நுணுக்கமும் இப்போது உங்களுக்குத் தெரியும். இனி தேவை — வார வாரியான திட்டம் — மூலவளம், விலை, முதல் வாடிக்கையாளர்கள், மேலும் பெரும்பாலானோர் முதல் முயற்சியில் செய்யும் தவறு.',
@@ -1002,9 +1020,7 @@
   var quizWrap = document.getElementById('quizWrap');
   var analyzingWrap = document.getElementById('analyzingWrap');
   var resultsWrap = document.getElementById('resultsWrap');
-  var communityGate = document.getElementById('communityGate');
   var joinWaBtn = document.getElementById('joinWaBtn');
-  var revealResultBtn = document.getElementById('revealResultBtn');
   var progressFill = document.getElementById('progressFill');
   var progressLabel = document.getElementById('progressLabel');
   var screenTitle = document.getElementById('screenTitle');
@@ -1065,18 +1081,10 @@
     });
   }
 
-  var WA_JOIN_KEY = 'tdz_wa_joined';
-  function hasJoinedCommunity(){ return safeGet(WA_JOIN_KEY) === '1'; }
-
-  function renderCommunityGate(){
-    document.getElementById('waGateEyebrow').textContent = t('waGateEyebrow');
-    document.getElementById('waGateH1').textContent = t('waGateH1');
-    document.getElementById('waGateLead').textContent = t('waGateLead');
+  function renderCommunityInvite(){
+    document.getElementById('communityInviteTitle').textContent = t('communityInviteTitle');
+    document.getElementById('communityInviteSub').textContent = t('communityInviteSub');
     document.getElementById('joinWaBtnLbl').textContent = t('joinWaBtnLbl');
-    document.getElementById('joinWaNote').textContent = t('joinWaNote');
-    document.getElementById('revealResultBtnLbl').textContent = t('revealResultBtnLbl');
-    /* Note: does not touch revealResultBtn's visibility — that state (has the
-       visitor clicked "join" in this session) is independent of language. */
   }
 
   function showPersonaGate(){
@@ -1085,7 +1093,6 @@
     personaGate.classList.remove('is-hidden');
     quizWrap.classList.add('is-hidden');
     analyzingWrap.classList.add('is-hidden');
-    communityGate.classList.add('is-hidden');
     resultsWrap.classList.add('is-hidden');
     window.scrollTo(0, 0);
   }
@@ -1334,21 +1341,20 @@
     quizWrap.classList.add('is-hidden');
     personaGate.classList.add('is-hidden');
     analyzingWrap.classList.add('is-hidden');
-    if(hasJoinedCommunity()){
-      communityGate.classList.add('is-hidden');
-      resultsWrap.classList.remove('is-hidden');
-    } else {
-      resultsWrap.classList.add('is-hidden');
-      renderCommunityGate();
-      communityGate.classList.remove('is-hidden');
-    }
+    /* CRO FIX (Sep 2026): the result used to stay hidden behind a WhatsApp
+       "join the community first" gate — visitors who finished the entire
+       quiz could still be blocked from ever seeing their own result. The
+       result now always renders immediately; renderCommunityInvite() below
+       just fills in the wording of the optional, non-blocking invite card
+       that sits inside the results view. */
+    renderCommunityInvite();
+    resultsWrap.classList.remove('is-hidden');
     window.scrollTo(0, 0);
   }
 
   function isResultsVisible(){ return !resultsWrap.classList.contains('is-hidden'); }
   function isQuizVisible(){ return !quizWrap.classList.contains('is-hidden'); }
   function isAnalyzingVisible(){ return !analyzingWrap.classList.contains('is-hidden'); }
-  function isCommunityGateVisible(){ return !communityGate.classList.contains('is-hidden'); }
 
   /* ================= Events ================= */
   Array.prototype.forEach.call(langSwitch.querySelectorAll('.lang-btn'), function(btn){
@@ -1357,25 +1363,9 @@
       safeSet('tdz_lang', lang);
       renderLangSwitch();
       if(isResultsVisible()){ computeAndRenderResults(); }
-      else if(isCommunityGateVisible()){ renderCommunityGate(); }
       else if(isQuizVisible()){ startQuiz(); }
       else if(!isAnalyzingVisible()){ renderPersonaGate(); }
     });
-  });
-
-  joinWaBtn.addEventListener('click', function(){
-    /* We can't verify WhatsApp membership from a static page — there's no
-       public API for that. This is a self-report gate: clicking "Join"
-       reveals the "I've joined" button, which is the honest, standard
-       pattern for this kind of unlock. */
-    revealResultBtn.classList.remove('is-hidden');
-  });
-
-  revealResultBtn.addEventListener('click', function(){
-    safeSet(WA_JOIN_KEY, '1');
-    communityGate.classList.add('is-hidden');
-    resultsWrap.classList.remove('is-hidden');
-    window.scrollTo(0, 0);
   });
 
   nextQ.addEventListener('click', function(){
