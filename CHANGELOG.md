@@ -105,3 +105,32 @@ The following files were intentionally **not modified**:
 - **`Day0-Landing-SalesPage.html`** — confirmed orphaned (zero references anywhere else in the repo), but left in place rather than deleted, for the same "might still have external traffic" reason as `quick-start/`.
 
 No tracking, analytics, payment, or WhatsApp integration code was touched in any file.
+
+---
+
+# Round 2 — Header consistency + guarantee (Sep 2026)
+
+Follow-up round, made after Round 1 was deployed to production. Scope: two specific, user-directed fixes — a header/footer branding inconsistency on `day4-30/index.html`, and a real refund guarantee on `run-business-30-days.html` to address "people take the free quiz but don't buy the ₹499 course."
+
+## `day4-30/index.html`
+
+**What changed:**
+- Replaced the embedded base64 PNG wordmark logo (a custom cursive "the day zero" image, ~13.7KB inline, plus a "by TheKahaaniya" subtitle) in the page header (`.brand-mini`) with the same plain-text treatment used on the homepage and every other marketing page: `thedayzero` in Poppins 800 weight, plus the ✳︎ mark glyph. Same fix applied a second time to an identical logo image found in the page footer (`.fname`).
+- This was scoped narrowly and deliberately: only the two self-contained logo/wordmark blocks (header + footer) were touched. The page's course-delivery logic, i18n system, day-unlock state, Calendly integration, and AI assistant — all previously flagged as high-risk — were not read or modified.
+- File size dropped from ~208KB to ~176KB as a side effect of removing two duplicate base64 images (this was not the goal, just a byproduct of the fix).
+
+**Why:** the user noticed the logo/header on this page didn't match the homepage and asked for it to be fixed. Confirmed by direct comparison — `day4-30/index.html` was the only page still using the old image wordmark; every other page (`index.html`, `find-business.html`, `run-business-30-days.html`, `story.html`, `founder.html`) already uses the plain-text `thedayzero` + ✳︎ treatment. Standardizing removes a visual inconsistency that's most visible at exactly the moment a paying customer lands on the product they just bought — a bad first impression right after checkout.
+
+**What was preserved unchanged:** every other element on the page — course content, day-unlock logic, language switcher, Calendly booking, AI assistant, all JS and i18n strings, the founder-avatar image (a separate, unrelated base64 image, left untouched), all fonts/colors/layout outside the two logo blocks.
+
+---
+
+## `run-business-30-days.html`
+
+**What changed:**
+- Added a real **7-Day Guarantee**: a badge on the offer page ("Not right for you? Message Noor on WhatsApp within 7 days of paying and get a full refund — no forms, no questions") plus a matching new FAQ entry and a matching new `Question` entry in the existing `FAQPage` JSON-LD. The refund path uses the same real WhatsApp number already used everywhere else on the site (`wa.me/919629843122`) — no new form, webhook, or third-party tool was introduced; refunds are handled personally, the same way the founder already handles every other customer conversation.
+- No fake urgency, fake scarcity, or fabricated social proof (e.g., a "45+ bought today 🔥" counter, or a buyer count designed to change every day) was added. See `CONVERSION_REPORT.md` Round 2 section for the full reasoning.
+
+**Why:** the user asked directly what would help convert quiz-takers into ₹499 buyers, and specifically floated a live/varying buyer-count widget. A real guarantee is the evidence-backed, honest way to reduce the biggest remaining objection on a page that asks someone to pay before they've experienced the product — it directly answers "what if this isn't for me," without inventing any number, review, or countdown that doesn't reflect reality.
+
+**What was preserved unchanged:** both "Start Now — ₹499" buttons still link to `https://rzp.io/rzp/xaRyRIP` (verified count unchanged: 2), the existing real ₹499→₹1,299 deadline (30 Sept 2026, untouched), all previously-added Day 1 preview / founder-credibility / FAQ content from Round 1, the `Product` JSON-LD block (untouched — only `FAQPage` gained one entry).

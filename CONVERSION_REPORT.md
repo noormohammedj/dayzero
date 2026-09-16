@@ -69,3 +69,29 @@ The audit and the task brief both call for a guarantee, testimonials, and social
 ## Explicitly out of scope
 
 `day4-30/index.html` (the post-purchase product), `quick-start/index.html` (legacy page, only its in-scope reference was fixed), `agenda/index.html`, `unlearn/index.html`, and `Day0-Landing-SalesPage.html` were left untouched. See `CHANGELOG.md` for the full reasoning on each.
+
+---
+
+# Round 2 (Sep 2026) — "People take the free quiz but aren't buying ₹499"
+
+This round was triggered by a direct question after Round 1 shipped: the free quiz is now working (frictionless, as designed), but few of those quiz-takers are converting to the ₹499 course. Two specific ideas were raised to fix this — a "45+ bought today 🔥" counter, and a buyer count that changes every day — plus a general request for what else would help.
+
+## What was proposed but NOT built, and why
+
+**A "45+ buy today 🔥" counter, and any buyer count designed to vary day to day.** This was not implemented. Both ideas are fake social proof by construction: a number whose entire purpose is to *look* like real-time activity, shown to every visitor regardless of what's actually happening, that changes on a schedule rather than in response to real purchases. This is precisely what "never use fake urgency, never use fake scarcity, never use misleading claims" (the standing rule for this whole project) rules out — and it's also a real business risk independent of that rule: the first visitor who checks back tomorrow and sees "47 bought today" again, or notices the number never goes below some floor, stops trusting *every* other claim on the page, including the real ones (the actual price deadline, the actual course content). Fake proof doesn't just risk a policy violation — it's a bad trade even purely commercially, because it's a one-time trick that costs long-term trust the moment anyone catches it.
+
+**The honest alternative that was available and unused: a real purchase counter.** If Razorpay purchase data can be exposed (even something as simple as a manually-updated total, or a small script reading actual order counts), a genuine "X people have started their 30 days" counter is a strong, legitimate proof element — and it's a small follow-up if the user wants it, once there's a real number to show.
+
+## What was built instead: a 7-Day Guarantee
+
+A guarantee attacks the same problem — hesitation before paying — through a route that's both honest and, per general e-commerce and course-selling evidence, typically more effective than a live counter anyway: it reduces the buyer's perceived risk directly, rather than trying to create social pressure. Terms (chosen on the user's behalf, since none existed yet): 7 days from payment, full refund, no form or justification required, fulfilled personally over WhatsApp using the number already published everywhere else on the site. This is deliberately simple to keep it a promise the business can actually keep — no automated refund system, no dispute process, nothing that could quietly go unhonored.
+
+**No testimonials were added.** Confirmed directly with the user: there are no paying customers yet. `story.html` already states this honestly ("we'd rather tell you that plainly than dress up a page with reviews that don't exist yet"), and Round 1 preserved that position. This should be revisited the moment real customers exist — even one or two real, attributable quotes (with permission) would outperform any fabricated set.
+
+## What's still needed to actually diagnose "no one is buying"
+
+Round 1 and Round 2 both improved the offer page, but neither is based on current funnel data for `run-business-30-days.html` specifically — the original audit's GA4 numbers predate the Round 1 changes (removing the lead-gate, unlocking quiz results). To prioritize correctly, the next step should be pulling, from GA4, for `run-business-30-days.html` over the period since Round 1 deployed: page views, clicks on either "Start Now — ₹499" button (`buy_click` or equivalent), and completed Razorpay payments. That breaks the funnel into two very different problems with very different fixes — (a) visitors aren't clicking buy at all (a page/offer/trust problem, which this round targets) versus (b) visitors click buy but abandon at Razorpay (a checkout-friction or payment-trust problem, which would need a different fix entirely, such as visible payment-security badges near the button or reducing a possible price-shock at checkout). Without that split, further changes to the offer page are a reasonable bet, not a confirmed fix.
+
+## A further honest lever, not yet built
+
+`Skill-Test.html`'s results page already has a dormant Apps Script webhook (used elsewhere on the site) that could capture an optional, non-blocking "send my result + a reminder to WhatsApp" opt-in — letting the business follow up with quiz-completers who don't buy immediately, without gating the result or requiring anything. This is a plausible next-highest-leverage change but was not built in this round since it's a new feature (not a fix) and worth confirming with the user first.
