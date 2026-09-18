@@ -411,8 +411,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="navbar-links">
-    <a href="find-business.html">Find your skill</a><span>,</span>
-    <a href="run-business-30-days.html">Convert skill as business</a><span>,</span>
+    <a href="find-business/">Find your skill</a><span>,</span>
+    <a href="run-business-30-days/">Convert skill as business</a><span>,</span>
     <a href="founder.html">Meet The Founder</a><span>,</span>
     <a href="story.html">Read Our Story</a>
   </div>
@@ -442,8 +442,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ================= MOBILE OVERLAY MENU ================= -->
 <div id="mobileOverlay" class="mobile-overlay">
-  <a href="find-business.html">Find your skill</a>
-  <a href="run-business-30-days.html">Convert skill as business</a>
+  <a href="find-business/">Find your skill</a>
+  <a href="run-business-30-days/">Convert skill as business</a>
   <a href="founder.html">Meet The Founder</a>
   <a href="story.html">Read Our Story</a>
   <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="underline-link">Get in touch</a>
@@ -480,11 +480,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- 3. Action pills -->
     <div id="pillContainer" class="hero-pills">
       <div class="cta-primary-row">
-        <a href="find-business.html" class="cta-primary">
+        <a href="find-business/" class="cta-primary">
           Find your skill
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
         </a>
-        <a href="run-business-30-days.html" class="cta-primary">
+        <a href="run-business-30-days/" class="cta-primary">
           Convert skill as business
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
         </a>
@@ -500,8 +500,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ================= LEAD CAPTURE POPUP =================
      Opens when a visitor clicks either primary CTA (or the matching links in
-     the navbar / mobile menu) that point to find-business.html or
-     run-business-30-days.html. Collects name, WhatsApp number and email,
+     the navbar / mobile menu) that point to find-business/ or
+     run-business-30-days/. Collects name, WhatsApp number and email,
      sends them to the Apps Script Web App (see WEBAPP_URL below), then
      continues on to whichever page they originally clicked. -->
 <div id="leadModalOverlay" class="leadmodal-overlay" aria-hidden="true">
@@ -706,10 +706,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // and only 2.5% ever reached a quiz question — this popup was gating BOTH the
   // free quiz and the paid offer page behind a mandatory Name/WhatsApp/Email
   // form before visitors could see either one, directly contradicting
-  // find-business.html's own "Free — no card, no signup" promise. GATED_PAGES is
+  // find-business/'s own "Free — no card, no signup" promise. GATED_PAGES is
   // now empty so every CTA/nav link goes straight through with zero friction.
-  // The modal + Apps Script webhook below are left fully intact and working —
-  // add a page path back into this array to re-gate it in the future.
+  // The modal + Apps Script webhook below are left fully intact — but with
+  // GATED_PAGES empty, isGatedLink() never matches, so openModal() (and the
+  // fetch() to WEBAPP_URL inside its submit handler) never runs. That is WHY
+  // the lead-capture Google Sheet stopped getting new rows once this shipped
+  // — see RAZORPAY-REDIRECT-SETUP.md's sibling doc, LEAD-CAPTURE-STATUS.md,
+  // for the fix options. To re-gate a page (paths now match the folder
+  // structure, e.g. 'find-business/', 'run-business-30-days/'), add its path
+  // back into this array — that alone also brings the webhook back to life.
   var GATED_PAGES = [];
 
   var overlay = document.getElementById('leadModalOverlay');
