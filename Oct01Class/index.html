@@ -64,11 +64,12 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Improve Your Business with AI — Live Online Workshop",
-  "startDate": "2026-10-10T00:00:00+05:30",
+  "startDate": "2026-10-10T11:00:00+05:30",
+  "endDate": "2026-10-10T13:00:00+05:30",
   "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
   "eventStatus": "https://schema.org/EventScheduled",
   "location": { "@type": "VirtualLocation", "url": "https://thedayzero.in/ai-workshop/" },
-  "description": "A live 2-hour online workshop on using AI tools like ChatGPT and Claude to improve productivity, automate repetitive work, create content, build websites and grow a business.",
+  "description": "A live 2-hour online workshop on using AI tools like ChatGPT and Claude to automate Instagram chat, create reels content, write viral reel scripts, and build a business website — no coding required.",
   "organizer": { "@type": "Organization", "name": "thedayzero", "url": "https://thedayzero.in/" },
   "offers": {
     "@type": "Offer",
@@ -88,17 +89,22 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     {
       "@type": "Question",
       "name": "How do I pay, and when do I get the Meet link?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Pay ₹799 via UPI, Google Pay, PhonePe, Paytm or bank transfer, then fill the registration form with your transaction ID (and a screenshot, if you have one). Once payment is verified, you'll get the Google Meet link by email." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Pay ₹799 instantly through Razorpay's secure checkout. You'll get a confirmation right away, and the Google Meet link by email before the session." }
     },
     {
       "@type": "Question",
       "name": "Is this workshop live or recorded?",
-      "acceptedAnswer": { "@type": "Answer", "text": "It's a live 2-hour session on Google Meet on 10 October 2026 — not a pre-recorded course." }
+      "acceptedAnswer": { "@type": "Answer", "text": "It's a live 2-hour session on Google Meet, 10 October 2026, 11:00 AM to 1:00 PM IST — not a pre-recorded course. We work on one real business live, on the call." }
     },
     {
       "@type": "Question",
-      "name": "Do I need any prior AI experience?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. It's built for anyone from someone who has never used AI to someone using it daily — small business owners, students, housewives, freelancers, working professionals and entrepreneurs are all welcome." }
+      "name": "Do I need any prior AI or tech experience?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Everything shown — Instagram automation, reels content, website building — needs zero coding or technical skill. It's built for anyone from someone who has never used AI to someone using it daily." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can someone from my team attend instead of me?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Send anyone — a receptionist, an office assistant, any team member. What they learn helps your business regardless of who's on the call." }
     },
     {
       "@type": "Question",
@@ -119,6 +125,7 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     --mustard-light:#f0c875; --mustard:#d9a441; --mustard-deep:#b9832a; --mustard-tint:#f7e8c2;
     --ink:#1c1509; --ink-body:rgba(28,21,9,0.86); --ink-soft:rgba(28,21,9,0.62);
+    --whatsapp:#25D366;
   }
   *{ box-sizing:border-box; }
   html{ -webkit-text-size-adjust:100%; }
@@ -127,10 +134,11 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     background:linear-gradient(160deg, var(--mustard-light) 0%, var(--mustard) 45%, var(--mustard-deep) 100%);
     color:var(--ink);
     -webkit-font-smoothing:antialiased; min-height:100vh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:88px 20px 40px;
+    padding:88px 20px 60px;
   }
   a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  .is-hidden{ display:none !important; }
 
   .home-nav{ position:fixed; top:16px; left:16px; z-index:20; display:flex; align-items:center; gap:10px; }
   @media (min-width:640px){ .home-nav{ top:24px; left:24px; } }
@@ -151,7 +159,25 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   }
   @media (min-width:640px){ .home-label{ display:inline-block; } }
 
-  .wrap{ max-width:34rem; width:100%; text-align:center; }
+  /* ============ sticky language toggle ============ */
+  .lang-toggle{
+    position:fixed; top:16px; right:16px; z-index:30;
+    display:flex; background:#fff; border-radius:9999px; padding:3px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.12); border:1px solid rgba(0,0,0,0.08);
+  }
+  @media (min-width:640px){ .lang-toggle{ top:24px; right:24px; } }
+  .lang-btn{
+    font-family:var(--font-heading); font-weight:700; font-size:12.5px;
+    padding:0.5em 0.9em; border-radius:9999px; color:var(--ink-soft);
+    transition:background-color .15s ease, color .15s ease;
+  }
+  .lang-btn.active{ background:var(--ink); color:#fff; }
+
+  .wrap{ max-width:34rem; margin:0 auto; text-align:center; }
+
+  /* ============ logo ============ */
+  .logo-card{ text-align:center; margin-bottom:24px; }
+  .logo-card img{ width:100%; max-width:320px; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.14); }
 
   .eyebrow{
     font-family:var(--font-heading); font-size:12.5px; font-weight:700; letter-spacing:0.06em;
@@ -196,31 +222,68 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     box-shadow:0 2px 10px rgba(0,0,0,0.08);
   }
 
-  /* ============ what you'll learn ============ */
-  .learn-block{ text-align:left; margin-top:44px; }
+  /* ============ session-structure block ============ */
+  .session-block{
+    text-align:left; background:var(--ink); color:#fff; border-radius:18px;
+    padding:22px 22px; margin-top:44px;
+  }
+  .session-block .tag{
+    display:inline-block; font-family:var(--font-heading); font-weight:700; font-size:11.5px;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--mustard-light); margin-bottom:10px;
+  }
+  .session-block h2{ font-family:var(--font-heading); font-weight:800; font-size:18px; margin:0 0 10px; color:#fff; }
+  .session-block p{ font-size:14px; line-height:1.65; color:rgba(255,255,255,0.82); margin:0; }
+  .session-block strong{ color:#fff; }
+
+  /* ============ no-code skills grid ============ */
+  .learn-block{ text-align:left; margin-top:40px; }
   .learn-heading{
     font-family:var(--font-heading); font-weight:800; font-size:clamp(19px,4.5vw,24px);
-    color:var(--ink); margin:0 0 14px;
+    color:var(--ink); margin:0 0 4px;
   }
-  .learn-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  @media (max-width:420px){ .learn-grid{ grid-template-columns:1fr; } }
+  .learn-sub{ font-size:13.5px; color:var(--ink-soft); margin:0 0 16px; font-weight:600; }
+  .learn-grid{ display:grid; grid-template-columns:1fr; gap:10px; }
   .learn-item{
-    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:12px;
-    padding:12px 14px; font-size:13.5px; font-weight:600; color:var(--ink-body);
-    display:flex; align-items:center; gap:8px;
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:14px;
+    padding:14px 16px; display:flex; gap:12px; align-items:flex-start;
   }
-  .learn-item svg{ flex-shrink:0; color:#8a3b1a; }
+  .learn-item svg{ flex-shrink:0; color:#8a3b1a; margin-top:2px; }
+  .learn-item-title{ font-family:var(--font-heading); font-weight:700; font-size:14.5px; color:var(--ink); margin:0 0 3px; }
+  .learn-item-sub{ font-size:12.5px; line-height:1.5; color:var(--ink-body); margin:0; }
 
-  /* ============ founder credibility strip ============ */
+  /* ============ savings comparison ============ */
+  .savings-block{
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:18px;
+    padding:22px; margin-top:40px; text-align:left;
+  }
+  .savings-heading{ font-family:var(--font-heading); font-weight:800; font-size:17px; color:var(--ink); margin:0 0 14px; }
+  .savings-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0; border-bottom:1px dashed rgba(28,21,9,0.15); }
+  .savings-row:last-of-type{ border-bottom:none; }
+  .savings-lbl{ font-size:13.5px; color:var(--ink-body); }
+  .savings-val{ font-family:var(--font-heading); font-weight:800; font-size:15.5px; color:var(--ink); white-space:nowrap; }
+  .savings-val.crossed{ color:#8a3b1a; }
+  .savings-val.good{ color:#1f7a3d; }
+  .savings-note{ font-size:12.5px; line-height:1.6; color:var(--ink-soft); margin:14px 0 0; }
+
+  /* ============ founder credibility card ============ */
   .founder-strip{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    background:rgba(255,255,255,0.6); border:1px dashed rgba(28,21,9,0.25); border-radius:14px;
-    padding:14px 18px; margin-top:40px; text-align:left; transition:background-color .15s ease;
+    display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.65);
+    border:1px dashed rgba(28,21,9,0.25); border-radius:14px;
+    padding:14px 16px; margin-top:40px; text-align:left; transition:background-color .15s ease;
   }
   .founder-strip:hover{ background:rgba(255,255,255,0.85); }
-  .founder-strip-copy{ font-size:13.5px; line-height:1.4; color:var(--ink-body); }
-  .founder-strip-copy strong{ color:var(--ink); font-family:var(--font-heading); }
-  .founder-strip svg{ flex-shrink:0; color:var(--ink-soft); }
+  .founder-strip img{ width:52px; height:52px; border-radius:50%; object-fit:cover; object-position:top center; flex-shrink:0; border:2px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+  .founder-strip-copy{ font-size:13.5px; line-height:1.4; color:var(--ink-body); flex:1; }
+  .founder-strip-copy strong{ color:var(--ink); font-family:var(--font-heading); display:block; }
+  .founder-strip svg.arrow{ flex-shrink:0; color:var(--ink-soft); }
+
+  /* ============ can't attend block ============ */
+  .team-block{
+    background:var(--mustard-tint); border:1px solid rgba(28,21,9,0.12); border-radius:14px;
+    padding:16px 18px; margin-top:16px; text-align:left;
+  }
+  .team-block-title{ font-family:var(--font-heading); font-weight:800; font-size:14.5px; color:var(--ink); margin:0 0 6px; }
+  .team-block p{ font-size:13px; line-height:1.55; color:var(--ink-body); margin:0; }
 
   /* ============ FAQ ============ */
   .faq-block{ text-align:left; margin-top:40px; }
@@ -245,6 +308,30 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   .faq-link{ text-decoration:underline; text-underline-offset:2px; }
 
   .cta-btn-repeat{ margin-top:36px; }
+
+  /* ============ sticky WhatsApp button + arrow callout ============ */
+  .wa-dock{
+    position:fixed; bottom:20px; right:20px; z-index:30;
+    display:flex; align-items:center; gap:6px;
+  }
+  .wa-callout{
+    display:flex; flex-direction:column; align-items:flex-end; margin-right:2px;
+  }
+  .wa-callout-text{
+    font-family:var(--font-heading); font-weight:700; font-size:11.5px; color:var(--ink);
+    background:#fff; border-radius:9999px; padding:0.45em 0.9em; box-shadow:0 4px 14px rgba(0,0,0,0.14);
+    white-space:nowrap; margin-bottom:2px;
+  }
+  .wa-callout svg{ color:var(--ink); transform:rotate(-10deg); }
+  .wa-fab{
+    display:flex; align-items:center; justify-content:center;
+    width:52px; height:52px; flex-shrink:0;
+    background:var(--whatsapp); color:#fff; border-radius:50%;
+    box-shadow:0 8px 22px rgba(0,0,0,0.28);
+    transition:opacity .2s ease;
+  }
+  .wa-fab:hover{ opacity:0.9; }
+  @media (max-width:380px){ .wa-callout-text{ font-size:10.5px; padding:0.4em 0.7em; } }
 </style>
 </head>
 <body>
@@ -263,101 +350,318 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="/index.html" class="home-label">thedayzero</a>
 </nav>
 
-<div class="wrap">
-  <div class="eyebrow">Live 2-Hour Workshop · Google Meet</div>
-  <h1>Improve Your Business With AI</h1>
-  <p class="lead">Learn how to use ChatGPT, Claude and modern AI tools to save time, automate repetitive work, create content, build simple websites and market what you sell — live, in one focused session.</p>
-
-  <div class="facts-card">
-    <div class="fact"><span class="fact-lbl">Date</span><span class="fact-val">10 Oct 2026</span></div>
-    <div class="fact"><span class="fact-lbl">Duration</span><span class="fact-val">2 Hours</span></div>
-    <div class="fact"><span class="fact-lbl">Mode</span><span class="fact-val">Online — Google Meet</span></div>
-    <div class="fact"><span class="fact-lbl">Fee</span><span class="fact-val">₹799</span></div>
-  </div>
-
-  <!--
-    ============================================================
-    REGISTRATION FORM LINK — REPLACE BEFORE PUBLISHING
-    Run create-ai-workshop-form.gs once (script.google.com), then
-    paste the "Share link" it logs into BOTH anchors below,
-    replacing FORM_URL_PLACEHOLDER.
-    ============================================================
-  -->
-  <a href="https://rzp.io/rzp/EECpbtVA" class="cta-btn" id="ctaTop">
-    Pay ₹799 — Register Now
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-  </a>
-  <div class="cta-sub">UPI / Google Pay / PhonePe / Paytm / Bank Transfer. Meet link sent after payment is verified.</div>
-  <div class="urgency">₹799 if you register by 1 Oct 2026 — then ₹1,499</div>
-
-  <div class="who-list">
-    <span class="who-chip">Small Business Owners</span>
-    <span class="who-chip">Students</span>
-    <span class="who-chip">Housewives</span>
-    <span class="who-chip">Freelancers</span>
-    <span class="who-chip">Working Professionals</span>
-    <span class="who-chip">Entrepreneurs</span>
-  </div>
-
-  <!-- ================= WHAT YOU'LL LEARN ================= -->
-  <div class="learn-block">
-    <h2 class="learn-heading">What you'll walk away with</h2>
-    <div class="learn-grid">
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>AI for your business</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>AI marketing</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Building AI websites</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>AI content creation</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>AI social media</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>AI automation</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Prompt engineering</div>
-      <div class="learn-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Starting an AI-powered side income</div>
-    </div>
-  </div>
-
-  <!-- ================= FOUNDER CREDIBILITY ================= -->
-  <a href="/founder.html" class="founder-strip">
-    <span class="founder-strip-copy">
-      <strong>Hosted by Noor Mohammed J</strong> — 16 years in tech, 4 live ventures running right now.
-    </span>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-  </a>
-
-  <!-- ================= FAQ ================= -->
-  <div class="faq-block">
-    <h2 class="faq-heading">Before you register</h2>
-
-    <details class="faq-item">
-      <summary>How do I pay, and when do I get the Meet link?</summary>
-      <p>Pay ₹799 via UPI, Google Pay, PhonePe, Paytm or bank transfer, then fill the registration form with your transaction ID (and a screenshot, if you have one). Once payment is verified, you'll get the Google Meet link by email.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>Is this workshop live or recorded?</summary>
-      <p>It's a live 2-hour session on Google Meet on 10 October 2026 — not a pre-recorded course.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>Do I need any prior AI experience?</summary>
-      <p>No. It's built for anyone from someone who has never used AI to someone using it daily — small business owners, students, housewives, freelancers, working professionals and entrepreneurs are all welcome.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>What if I register after 1 October 2026?</summary>
-      <p>The ₹799 rate is only for registrations completed by 1 October 2026. After that the fee moves to ₹1,499 for the same 10 October session.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>Something not covered here?</summary>
-      <p>Message us directly on <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="faq-link">WhatsApp</a> — you'll reach the team personally, not a support queue.</p>
-    </details>
-  </div>
-
-  <a href="https://rzp.io/rzp/EECpbtVA" class="cta-btn cta-btn-repeat" id="ctaBottom">
-    Pay ₹799 — Register Now
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-  </a>
-  <div class="cta-sub">₹799 if you register by 1 Oct 2026 — then ₹1,499.</div>
+<div class="lang-toggle">
+  <button type="button" class="lang-btn active" data-lang="en">EN</button>
+  <button type="button" class="lang-btn" data-lang="ta">தமிழ்</button>
 </div>
+
+<div class="wa-dock">
+  <div class="wa-callout">
+    <span class="wa-callout-text">Got questions?</span>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6c0 8 4 12 12 12"></path><path d="M12 14l4 4 4-4"></path></svg>
+  </div>
+  <a href="https://wa.me/919629843122?text=Hi%2C%20I'm%20interested%20in%20the%20AI%20workshop%20on%20Oct%2010%2C%20I%20have%20a%20few%20questions%20before%20registering" target="_blank" rel="noopener" class="wa-fab" aria-label="WhatsApp the founder">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.35c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.28.86 5.84 2.42a8.17 8.17 0 0 1 2.41 5.83c0 4.55-3.7 8.2-8.26 8.2zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.16 1.73 2.64 4.19 3.7.59.25 1.05.4 1.4.51.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+  </a>
+</div>
+
+<div class="wrap">
+
+  <div class="logo-card">
+    <img src="/assets/ai-workshop-logo-card.webp" alt="thedayzero — Before Day 1, there's Day 0.">
+  </div>
+
+  <!-- ================= EN ================= -->
+  <div class="lang-block lang-en">
+    <div class="eyebrow">Live 2-Hour Workshop · Google Meet</div>
+    <h1>Improve Your Business With AI</h1>
+    <p class="lead">Learn how to use ChatGPT, Claude and modern AI tools to save time, automate repetitive work, create content, build a real website and market what you sell — live, in one focused session.</p>
+
+    <div class="facts-card">
+      <div class="fact"><span class="fact-lbl">Date</span><span class="fact-val">10 Oct 2026</span></div>
+      <div class="fact"><span class="fact-lbl">Time</span><span class="fact-val">11 AM – 1 PM IST</span></div>
+      <div class="fact"><span class="fact-lbl">Mode</span><span class="fact-val">Online — Google Meet</span></div>
+      <div class="fact"><span class="fact-lbl">Fee</span><span class="fact-val">₹799</span></div>
+    </div>
+
+    <a href="https://rzp.io/rzp/EECpbtVA" class="cta-btn" id="ctaTop">
+      Pay ₹799 — Register Now
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+    <div class="cta-sub">Instant. Secure payment via Razorpay.</div>
+    <div class="urgency">₹799 if you register by 1 Oct 2026 — then ₹1,499</div>
+
+    <div class="who-list" style="margin-top:28px;">
+      <span class="who-chip">Small Business Owners</span>
+      <span class="who-chip">Students</span>
+      <span class="who-chip">Housewives</span>
+      <span class="who-chip">Freelancers</span>
+      <span class="who-chip">Working Professionals</span>
+      <span class="who-chip">Entrepreneurs</span>
+    </div>
+
+    <!-- ================= WHAT ACTUALLY HAPPENS ================= -->
+    <div class="session-block">
+      <span class="tag">How the 2 hours work</span>
+      <h2>One real business. Built live, on the call.</h2>
+      <p>This isn't a generic AI talk. On <strong>10 October, 11:00 AM – 1:00 PM</strong>, we'll take one real business — it could be yours — and use AI on it live: writing content, automating chat, building a website, right there on the call. You watch exactly how it's done, then do the same for your own business afterwards.</p>
+    </div>
+
+    <!-- ================= NO-CODE SKILLS ================= -->
+    <div class="learn-block">
+      <h2 class="learn-heading">What you'll actually be able to do</h2>
+      <p class="learn-sub">No coding. No tech skills. Just AI tools anyone can use.</p>
+      <div class="learn-grid">
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <div><p class="learn-item-title">Automate your Instagram chat</p><p class="learn-item-sub">Reply to DMs and comments automatically — without hiring anyone or writing a line of code.</p></div>
+        </div>
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+          <div><p class="learn-item-title">Create Reels content</p><p class="learn-item-sub">Turn one idea into a week of Reels — hooks, visuals, captions — using AI, not a content team.</p></div>
+        </div>
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 13h6M9 17h6"></path></svg>
+          <div><p class="learn-item-title">Write a viral Reels script</p><p class="learn-item-sub">The exact script structure we use, so you can write scroll-stopping reels yourself.</p></div>
+        </div>
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"></path></svg>
+          <div><p class="learn-item-title">Build a website for your business</p><p class="learn-item-sub">A real, working website — built in minutes. No developer, no code.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SAVINGS COMPARISON ================= -->
+    <div class="savings-block">
+      <h2 class="savings-heading">What this usually costs you</h2>
+      <div class="savings-row">
+        <span class="savings-lbl">Marketing agency + website team (typical monthly spend)</span>
+        <span class="savings-val crossed">₹50,000+</span>
+      </div>
+      <div class="savings-row">
+        <span class="savings-lbl">This session, one-time</span>
+        <span class="savings-val good">₹799</span>
+      </div>
+      <p class="savings-note">Many small businesses pay ₹50,000 or more every month for a marketing agency and a website team — for exactly the things this session teaches you to do yourself: content, reels, chat replies, and the website itself.</p>
+    </div>
+
+    <!-- ================= FOUNDER CREDIBILITY ================= -->
+    <a href="/founder.html" class="founder-strip">
+      <img src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J">
+      <span class="founder-strip-copy">
+        <strong>Hosted by Noor Mohammed J</strong>16 years in tech, 4 live ventures running right now.
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+
+    <!-- ================= CAN'T ATTEND? ================= -->
+    <div class="team-block">
+      <p class="team-block-title">Can't attend yourself?</p>
+      <p>Send any team member instead — a receptionist, an office assistant, anyone. They'll walk away with a real skill that helps your business save money, even if you can't be there.</p>
+    </div>
+
+    <!-- ================= FAQ ================= -->
+    <div class="faq-block">
+      <h2 class="faq-heading">Before you register</h2>
+
+      <details class="faq-item">
+        <summary>How do I pay, and when do I get the Meet link?</summary>
+        <p>Pay ₹799 instantly through Razorpay's secure checkout. You'll get a confirmation right away, and the Google Meet link by email before the session.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this workshop live or recorded?</summary>
+        <p>It's a live 2-hour session on Google Meet, 10 October 2026, 11:00 AM to 1:00 PM IST — not a pre-recorded course. We work on one real business live, on the call.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do I need any prior AI or tech experience?</summary>
+        <p>No. Everything shown — Instagram automation, reels content, website building — needs zero coding or technical skill.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can someone from my team attend instead of me?</summary>
+        <p>Yes. Send anyone — a receptionist, an office assistant, any team member. What they learn helps your business regardless of who's on the call.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if I register after 1 October 2026?</summary>
+        <p>The ₹799 rate is only for registrations completed by 1 October 2026. After that the fee moves to ₹1,499 for the same 10 October session.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Something not covered here?</summary>
+        <p>Message us directly on <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="faq-link">WhatsApp</a> — you'll reach the founder personally, not a support queue.</p>
+      </details>
+    </div>
+
+    <a href="https://rzp.io/rzp/EECpbtVA" class="cta-btn cta-btn-repeat" id="ctaBottom">
+      Pay ₹799 — Register Now
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+    <div class="cta-sub">₹799 if you register by 1 Oct 2026 — then ₹1,499.</div>
+  </div>
+
+  <!-- ================= TA ================= -->
+  <div class="lang-block lang-ta is-hidden">
+    <div class="eyebrow">Live 2-Hour Workshop · Google Meet</div>
+    <h1>AI வச்சு உங்க Business-ஐ மேம்படுத்துங்க</h1>
+    <p class="lead">ChatGPT, Claude மாதிரி AI Tools வச்சு நேரத்தை Save பண்றது, Repetitive Work-ஐ Automate பண்றது, Content Create பண்றது, ஒரு உண்மையான Website Build பண்றது, மற்றும் உங்க Products/Services-ஐ Market பண்றது எப்படின்னு — நேரடியா, ஒரே Session-ல் கத்துக்கோங்க.</p>
+
+    <div class="facts-card">
+      <div class="fact"><span class="fact-lbl">தேதி</span><span class="fact-val">10 அக்டோபர் 2026</span></div>
+      <div class="fact"><span class="fact-lbl">நேரம்</span><span class="fact-val">காலை 11 – மதியம் 1 (IST)</span></div>
+      <div class="fact"><span class="fact-lbl">முறை</span><span class="fact-val">Online — Google Meet</span></div>
+      <div class="fact"><span class="fact-lbl">Fee</span><span class="fact-val">₹799</span></div>
+    </div>
+
+    <a href="https://rzp.io/rzp/EECpbtVA" class="cta-btn" id="ctaTopTa">
+      ₹799 Pay பண்ணி Register பண்ணுங்க
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+    <div class="cta-sub">உடனடி. Razorpay மூலம் பாதுகாப்பான Payment.</div>
+    <div class="urgency">அக்டோபர் 1, 2026-க்குள் Register பண்ணா ₹799 — அப்புறம் ₹1,499</div>
+
+    <div class="who-list" style="margin-top:28px;">
+      <span class="who-chip">Small Business Owners</span>
+      <span class="who-chip">Students</span>
+      <span class="who-chip">Housewives</span>
+      <span class="who-chip">Freelancers</span>
+      <span class="who-chip">Working Professionals</span>
+      <span class="who-chip">Entrepreneurs</span>
+    </div>
+
+    <!-- ================= WHAT ACTUALLY HAPPENS (TA) ================= -->
+    <div class="session-block">
+      <span class="tag">2 Hours எப்படி Work ஆகும்</span>
+      <h2>ஒரு உண்மையான Business. நேரடியா, Call-லயே Build பண்றோம்.</h2>
+      <p>இது ஒரு Generic AI பேச்சு இல்ல. <strong>அக்டோபர் 10, காலை 11:00 – மதியம் 1:00</strong>-க்கு, நாங்க ஒரு உண்மையான Business-ஐ (அது உங்களுடையதா கூட இருக்கலாம்) எடுத்துக்கிட்டு, AI-ஐ நேரடியா அதுல Use பண்ணி காமிக்கறோம் — Content எழுதுறது, Chat Automate பண்றது, Website Build பண்றது, எல்லாம் Call-லயே. நீங்க அது எப்படி பண்றோம்னு பாத்துட்டு, அப்புறம் உங்க Business-க்கும் அதே மாதிரி பண்ணலாம்.</p>
+    </div>
+
+    <!-- ================= NO-CODE SKILLS (TA) ================= -->
+    <div class="learn-block">
+      <h2 class="learn-heading">நீங்க என்ன Real-ஆ பண்ண முடியும்</h2>
+      <p class="learn-sub">Coding வேணாம். Tech Skill வேணாம். யாரும் Use பண்ணக்கூடிய AI Tools மட்டும்.</p>
+      <div class="learn-grid">
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <div><p class="learn-item-title">உங்க Instagram Chat-ஐ Automate பண்ணுங்க</p><p class="learn-item-sub">யாரையும் Hire பண்ணாம, ஒரு Code Line கூட எழுதாம — DM/Comment-க்கு தானாகவே Reply பண்ணுங்க.</p></div>
+        </div>
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+          <div><p class="learn-item-title">Reels Content Create பண்ணுங்க</p><p class="learn-item-sub">ஒரு Idea-ஐ ஒரு வாரத்துக்கான Reels ஆக்குங்க — Hooks, Visuals, Captions எல்லாம் AI வச்சு, Content Team இல்லாம.</p></div>
+        </div>
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 13h6M9 17h6"></path></svg>
+          <div><p class="learn-item-title">Viral Reels Script எழுதுங்க</p><p class="learn-item-sub">நாங்க Use பண்றே Exact Script Structure-ஐ கத்துக்கோங்க, நீங்களே Scroll-Stopping Reels எழுதலாம்.</p></div>
+        </div>
+        <div class="learn-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"></path></svg>
+          <div><p class="learn-item-title">உங்க Business-க்கு Website Build பண்ணுங்க</p><p class="learn-item-sub">நிமிடங்களில் ஒரு உண்மையான, Work ஆகுற Website. Developer வேணாம், Code வேணாம்.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SAVINGS COMPARISON (TA) ================= -->
+    <div class="savings-block">
+      <h2 class="savings-heading">இது Usually உங்களுக்கு எவ்வளவு செலவு</h2>
+      <div class="savings-row">
+        <span class="savings-lbl">Marketing Agency + Website Team (Typical Monthly செலவு)</span>
+        <span class="savings-val crossed">₹50,000+</span>
+      </div>
+      <div class="savings-row">
+        <span class="savings-lbl">இந்த Session, ஒரே தடவை</span>
+        <span class="savings-val good">₹799</span>
+      </div>
+      <p class="savings-note">நிறைய Small Business-கள் மாசம்தோறும் ₹50,000 அல்லது அதுக்கு மேல Marketing Agency-க்கும் Website Team-க்கும் செலவு பண்றாங்க — Content, Reels, Chat Reply, Website எல்லாத்துக்கும். இந்த Session இதையெல்லாம் நீங்களே பண்ணக் கத்துக்குடும்.</p>
+    </div>
+
+    <!-- ================= FOUNDER CREDIBILITY (TA) ================= -->
+    <a href="/founder.html" class="founder-strip">
+      <img src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J">
+      <span class="founder-strip-copy">
+        <strong>நடத்துறது Noor Mohammed J</strong>Tech-ல் 16 வருடம், இப்போ 4 Ventures நடத்திண்டு இருக்காரு.
+      </span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+
+    <!-- ================= CAN'T ATTEND? (TA) ================= -->
+    <div class="team-block">
+      <p class="team-block-title">நீங்களா Attend பண்ண முடியலையா?</p>
+      <p>உங்க Team Member-ஐ அனுப்புங்க — Receptionist, Office Assistant, யாரா இருந்தாலும் பரவாயில்ல. நீங்க இல்லாட்டி கூட, அவங்க ஒரு Real Skill கத்துக்குவாங்க, அது உங்க Business-க்கு பணம் Save பண்ண உதவும்.</p>
+    </div>
+
+    <!-- ================= FAQ (TA) ================= -->
+    <div class="faq-block">
+      <h2 class="faq-heading">Register பண்றதுக்கு முன்ன</h2>
+
+      <details class="faq-item">
+        <summary>Payment எப்படி பண்றது, Meet Link எப்போ கிடைக்கும்?</summary>
+        <p>Razorpay-ன் Secure Checkout மூலம் ₹799-ஐ உடனடியா Pay பண்ணுங்க. உடனே Confirmation கிடைக்கும், Session-க்கு முன்னாடி Google Meet Link Email-ல் வரும்.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>இது Live-ஆ இருக்குமா அல்லது Recorded-ஆ?</summary>
+        <p>இது Google Meet-ல ஒரு Live 2-Hour Session, அக்டோபர் 10, 2026, காலை 11:00 முதல் மதியம் 1:00 வரை IST — Pre-Recorded Course இல்ல. நாங்க ஒரு Real Business-ஐ Live-ஆ, Call-லயே Work பண்றோம்.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>எனக்கு முன்பே AI அல்லது Tech Experience வேணுமா?</summary>
+        <p>வேணாம். Instagram Automation, Reels Content, Website Building — இதுல எதுக்கும் Coding அல்லது Technical Skill தேவையில்ல.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>என் Team-ல இருந்து யாராவது என் Place-ல Attend பண்ணலாமா?</summary>
+        <p>ஆமா. யாரையும் அனுப்புங்க — Receptionist, Office Assistant, எந்த Team Member-ஆ இருந்தாலும். Call-ல யார் இருந்தாலும், அவங்க கத்துக்குறது உங்க Business-க்கு உதவும்.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>அக்டோபர் 1, 2026-க்கு அப்புறம் Register பண்ணா என்ன ஆகும்?</summary>
+        <p>₹799 Rate அக்டோபர் 1, 2026-க்குள் Register பண்றவங்களுக்கு மட்டும்தான். அப்புறம் இதே அக்டோபர் 10 Session-க்கு ₹1,499 ஆகிடும்.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>இங்க Cover ஆகாத வேற Question இருக்கா?</summary>
+        <p><a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="faq-link">WhatsApp</a>-ல நேரடியா Message பண்ணுங்க — Founder-ஐ நேரடியா Reach பண்ணுவீங்க, Support Queue இல்ல.</p>
+      </details>
+    </div>
+
+    <a href="https://rzp.io/rzp/EECpbtVA" class="cta-btn cta-btn-repeat" id="ctaBottomTa">
+      ₹799 Pay பண்ணி Register பண்ணுங்க
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+    </a>
+    <div class="cta-sub">அக்டோபர் 1, 2026-க்குள் Register பண்ணா ₹799 — அப்புறம் ₹1,499.</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  function safeGet(key){ try{ return localStorage.getItem(key); }catch(e){ return null; } }
+  function safeSet(key, val){ try{ localStorage.setItem(key, val); }catch(e){} }
+
+  /* language toggle — shares the tdz_lang key with Skill-Test.html and the thank-you page */
+  var langButtons = document.querySelectorAll('.lang-btn');
+  var blocks = { en: document.querySelector('.lang-en'), ta: document.querySelector('.lang-ta') };
+
+  function setLang(lang){
+    if(lang !== 'en' && lang !== 'ta') lang = 'en';
+    Object.keys(blocks).forEach(function(key){
+      blocks[key].classList.toggle('is-hidden', key !== lang);
+    });
+    langButtons.forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    safeSet('tdz_lang', lang);
+  }
+
+  langButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang')); });
+  });
+
+  setLang(safeGet('tdz_lang') === 'ta' ? 'ta' : 'en');
+})();
+</script>
 
 </body>
 </html>
