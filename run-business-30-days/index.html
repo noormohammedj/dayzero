@@ -72,7 +72,14 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     "priceCurrency": "INR",
     "price": "499",
     "priceValidUntil": "2026-09-30",
-    "availability": "https://schema.org/InStock"
+    "availability": "https://schema.org/InStock",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "IN",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 7,
+      "returnFees": "https://schema.org/FreeReturn"
+    }
   }
 }
 </script>
@@ -85,6 +92,11 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
       "@type": "Question",
       "name": "Is it really ₹499 with no hidden costs?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes — one payment of ₹499 through Razorpay's secure checkout gets you the full 30-day plan. The price moves to ₹1,299 after 30 September 2026." }
+    },
+    {
+      "@type": "Question",
+      "name": "What if it's not right for me?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You're covered by a 7-day guarantee. Message Noor directly on WhatsApp within 7 days of paying and you'll get a full refund — no forms, no back-and-forth." }
     },
     {
       "@type": "Question",
@@ -105,6 +117,11 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
       "@type": "Question",
       "name": "Who actually built this?",
       "acceptedAnswer": { "@type": "Answer", "text": "Noor Mohammed J — 16 years in tech, currently running four live ventures including TheKahaaniya and Murugaaa.in. This plan is the same method used to build those." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens right after I pay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You land straight on a confirmation page with your Day 1 task already unlocked — no waiting, no separate email login. The plan itself is available in English, Hindi and Tamil, and stays accessible in your browser for you to work through at your own pace." }
     }
   ]
 }
@@ -169,13 +186,140 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   }
   @media (max-width:420px){ .steps{ grid-template-columns:repeat(5,1fr); gap:6px; } }
   .step{
-    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:12px;
-    padding:10px 4px; display:flex; flex-direction:column; align-items:center; gap:4px;
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-top:3px solid var(--accent, rgba(28,21,9,0.1));
+    border-radius:12px; padding:12px 4px 10px; display:flex; flex-direction:column; align-items:center; gap:4px;
+    transition:opacity .5s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background-color .15s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  /* pop-on-interaction, modeled on the reference the user pointed to
+     (studios.digitalhere.in's hover card lift) — .pressed is the touch
+     equivalent, added/removed by JS below since :hover alone is unreliable
+     on mobile, which is 100% of this page's traffic */
+  .step:hover, .step.pressed{
+    transform:translateY(-6px) scale(1.045);
+    box-shadow:0 12px 24px rgba(28,21,9,0.16);
+    border-color:var(--accent, rgba(28,21,9,0.3));
+  }
+
+  /* ============ hero founder video ============ */
+  .video-frame{
+    /* Real file spec confirmed: 720x1280 (9:16 portrait), H.264. Still a
+       true 9:16 box via aspect-ratio (exact match to the source, so
+       object-fit:cover below never actually crops anything) — what
+       changed here is the SIZE, not the ratio. A flat "max-width:380px"
+       produced a ~676px-tall box, which read as too long/dominant on a
+       phone screen and pushed the steps/CTA further down. width is now
+       the smallest of: 280px, 62% of viewport width, or whatever width
+       keeps the box's height at/under 56% of viewport height — so it
+       shrinks itself on short viewports (landscape, small phones) instead
+       of always maxing out. Border/glow + hover lift borrow the same card
+       language as the reworked step tiles below, so the page reads as one
+       system rather than two different treatments bolted together. */
+    position:relative; width:min(280px, 62vw, 31.5vh);
+    margin:22px auto 6px;
+    aspect-ratio:9/16; border-radius:20px; overflow:hidden;
+    background:#000; border:1px solid rgba(230,184,94,0.35);
+    box-shadow:0 14px 34px rgba(28,21,9,0.22), 0 0 0 4px rgba(230,184,94,0.08);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  /* CSS-only (no JS press-state): the frame also hosts native video
+     controls, so we don't want a pointerdown handler fighting a visitor's
+     tap on the scrubber/play button. Mouse hover still gets the full pop. */
+  .video-frame:hover{
+    transform:translateY(-4px) scale(1.015);
+    border-color:rgba(230,184,94,0.7);
+    box-shadow:0 20px 40px rgba(28,21,9,0.28), 0 0 0 4px rgba(230,184,94,0.16);
+  }
+  .founder-video{ display:block; width:100%; height:100%; object-fit:cover; background:#000; }
+  .video-caption{ font-size:12px; color:var(--ink-soft); margin:0 0 28px; }
+  /* icon-only badge, not a text pill: at the frame's new, smaller size
+     (fit-to-resolution instead of a flat max-width — see .video-frame) a
+     "FOUNDER INTRO" text pill collided with the "Tap for sound" pill on
+     the same corner row. The name/context is already in .video-caption
+     right below the frame, so this only needs to read as "this is a
+     video", not repeat the text. */
+  .video-tag{
+    position:absolute; top:10px; left:10px; z-index:2;
+    width:24px; height:24px; display:flex; align-items:center; justify-content:center;
+    font-size:12px; line-height:1;
+    background:rgba(20,15,6,0.6); border:1px solid rgba(230,184,94,0.45);
+    border-radius:50%; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+    pointer-events:none;
+  }
+  .video-unmute{
+    position:absolute; top:12px; right:12px; z-index:2; display:flex; align-items:center; gap:6px;
+    background:rgba(20,15,6,0.72); color:#fff; border:none; border-radius:9999px;
+    padding:0.5em 0.85em; font-family:var(--font-heading); font-weight:700; font-size:11.5px;
+    cursor:pointer; -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  }
+  .video-unmute.hidden{ display:none; }
+  .step-icon{
+    width:26px; height:26px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--accent-tint, rgba(28,21,9,0.08)); color:var(--accent, var(--ink-soft));
+    margin-bottom:2px;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  /* gentle idle bob so the row reads as "alive" even before anyone
+     touches it — same spirit as the reference's auto-scrolling cards,
+     scaled down to something that doesn't fight the tap targets. Gated
+     behind .steps.js-anim.in-view (JS-only, IntersectionObserver-checked
+     below) so it never runs without JS support, and paused the instant a
+     tile is hovered/pressed/open so the pop transform below can take over
+     cleanly. */
+  @keyframes stepIconFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-3px); } }
+  .steps.js-anim.in-view .step-icon{ animation:stepIconFloat 2.8s ease-in-out infinite; }
+  .steps.js-anim.in-view .step:nth-child(3n+1) .step-icon{ animation-delay:0s; }
+  .steps.js-anim.in-view .step:nth-child(3n+2) .step-icon{ animation-delay:.35s; animation-duration:3.1s; }
+  .steps.js-anim.in-view .step:nth-child(3n) .step-icon{ animation-delay:.7s; animation-duration:2.6s; }
+  .step:hover .step-icon, .step.pressed .step-icon, .step.open .step-icon{
+    animation:none; transform:scale(1.15);
   }
   .step .days{ font-family:var(--font-heading); font-weight:800; font-size:12.5px; color:var(--ink); }
   .step .lbl{ font-size:9.5px; font-weight:600; color:var(--ink-soft); line-height:1.2; }
-  .step.done{ background:var(--ink); }
+  .step.done{ background:var(--ink); border-top-color:transparent; }
   .step.done .days, .step.done .lbl{ color:#fff; }
+  .step.done .step-icon{ background:rgba(255,255,255,0.16); color:#fff; }
+
+  /* per-stage accent progression — light (Day 1) to deep (Day 30), a visual sense of the journey */
+  .steps .step:nth-child(1){ --accent:#f3d38c; --accent-tint:rgba(243,211,140,0.3); }
+  .steps .step:nth-child(2){ --accent:#eec876; --accent-tint:rgba(238,200,118,0.3); }
+  .steps .step:nth-child(3){ --accent:#e6b85e; --accent-tint:rgba(230,184,94,0.3); }
+  .steps .step:nth-child(4){ --accent:#dda647; --accent-tint:rgba(221,166,71,0.3); }
+  .steps .step:nth-child(5){ --accent:#d39a3d; --accent-tint:rgba(211,154,61,0.3); }
+  .steps .step:nth-child(6){ --accent:#c38934; --accent-tint:rgba(195,137,52,0.3); }
+  .steps .step:nth-child(7){ --accent:#b47b2d; --accent-tint:rgba(180,123,45,0.3); }
+  .steps .step:nth-child(8){ --accent:#a06b28; --accent-tint:rgba(160,107,40,0.3); }
+  .steps .step:nth-child(9){ --accent:#8a5a22; --accent-tint:rgba(138,90,34,0.3); }
+
+  /* scroll-triggered stagger reveal — only engages once JS confirms support;
+     .step is fully visible by default so nothing regresses without JS */
+  .steps.js-anim .step{ opacity:0; transform:translateY(14px); }
+  .steps.js-anim.in-view .step{ opacity:1; transform:translateY(0); }
+  .steps.js-anim.in-view .step:nth-child(1){ transition-delay:.02s; }
+  .steps.js-anim.in-view .step:nth-child(2){ transition-delay:.07s; }
+  .steps.js-anim.in-view .step:nth-child(3){ transition-delay:.12s; }
+  .steps.js-anim.in-view .step:nth-child(4){ transition-delay:.17s; }
+  .steps.js-anim.in-view .step:nth-child(5){ transition-delay:.22s; }
+  .steps.js-anim.in-view .step:nth-child(6){ transition-delay:.27s; }
+  .steps.js-anim.in-view .step:nth-child(7){ transition-delay:.32s; }
+  .steps.js-anim.in-view .step:nth-child(8){ transition-delay:.37s; }
+  .steps.js-anim.in-view .step:nth-child(9){ transition-delay:.42s; }
+  .steps.js-anim.in-view .step:nth-child(10){ transition-delay:.47s; }
+  /* .steps.js-anim.in-view .step (above) matches the pop-transform's
+     specificity, and appears later in the cascade, so without this
+     override the reveal rule's resting transform:translateY(0) silently
+     wins over .step:hover's pop once a tile has scrolled into view —
+     re-declared here at equal specificity, after it, so hover/press wins. */
+  .steps.js-anim.in-view .step:hover, .steps.js-anim.in-view .step.pressed{
+    transform:translateY(-6px) scale(1.045);
+  }
+  @media (prefers-reduced-motion:reduce){
+    .steps.js-anim .step{ opacity:1; transform:none; transition:none; }
+    .step:hover, .step.pressed{ transform:none; }
+    .step-icon{ animation:none !important; transition:none; }
+    .step:hover .step-icon, .step.pressed .step-icon, .step.open .step-icon{ transform:none; }
+    .video-frame, .video-frame:hover{ transform:none; transition:none; }
+  }
 
   .religiously{
     display:inline-flex; align-items:center; gap:7px; font-family:var(--font-heading);
@@ -247,6 +391,134 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   .faq-link{ text-decoration:underline; text-underline-offset:2px; }
 
   .cta-btn-repeat{ margin-top:36px; }
+
+  /* ============ deadline chip (hero) ============ */
+  .deadline-chip{
+    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-heading);
+    font-weight:700; font-size:12.5px; color:#8a3b1a; background:#fff;
+    border-radius:9999px; padding:0.4em 0.9em; margin-bottom:16px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  /* ============ what-you-get block ============ */
+  .whatyouget{
+    text-align:left; background:rgba(255,255,255,0.6); border:1px solid rgba(28,21,9,0.1);
+    border-radius:18px; padding:18px 20px; margin-top:20px;
+  }
+  .whatyouget-title{
+    font-family:var(--font-heading); font-weight:800; font-size:14px; color:var(--ink);
+    margin:0 0 10px; text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .whatyouget ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .whatyouget li{
+    display:flex; align-items:flex-start; gap:8px; font-size:13.5px; line-height:1.5; color:var(--ink-body);
+  }
+  .whatyouget li svg{ flex-shrink:0; margin-top:2px; color:#3a7d4f; }
+
+  /* ============ trust badge row ============ */
+  .trust-row{
+    display:flex; align-items:center; justify-content:center; gap:14px; margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .trust-badge{
+    display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:600;
+    color:var(--ink-soft); background:rgba(255,255,255,0.7); border-radius:9999px;
+    padding:0.35em 0.8em;
+  }
+  .trust-badge svg{ flex-shrink:0; }
+  .trust-badge-guarantee{ color:#8a3b1a; font-weight:700; background:#fff; }
+
+  /* ============ curriculum tap-to-reveal ============ */
+  .step{ cursor:pointer; transition:background-color .15s ease, transform .1s ease; }
+  .step:active{ transform:scale(0.96); }
+  .step.open{ background:var(--mustard-tint); border-color:var(--mustard-deep); }
+  .step-detail{
+    display:none; text-align:left; background:#fff; border:1px solid rgba(28,21,9,0.1);
+    border-radius:14px; padding:14px 16px; margin:-24px 0 36px; font-size:13.5px;
+    line-height:1.55; color:var(--ink-body);
+  }
+  .step-detail.visible{ display:block; }
+  .step-detail strong{ font-family:var(--font-heading); color:var(--ink); display:block; margin-bottom:4px; }
+
+  /* ============ language availability ============ */
+  .lang-note{
+    display:flex; align-items:center; justify-content:center; gap:8px; margin-top:14px;
+    font-size:12.5px; font-weight:600; color:var(--ink-soft);
+  }
+  .lang-note .lang-pill{
+    background:#fff; border-radius:9999px; padding:0.25em 0.7em; font-family:var(--font-heading);
+    font-weight:700; font-size:11px; color:var(--ink);
+  }
+
+  /* ============ founder photo strip ============ */
+  .founder-strip{ align-items:center; }
+  .founder-photo{
+    width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0;
+    border:2px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .founder-strip-copy .ventures{
+    display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-weight:500;
+  }
+
+  /* ============ sticky mobile CTA bar ============ */
+  .sticky-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:30;
+    display:flex; align-items:center; gap:12px;
+    background:#fff; border-top:1px solid rgba(28,21,9,0.12);
+    padding:10px 14px; padding-bottom:calc(10px + env(safe-area-inset-bottom));
+    box-shadow:0 -6px 24px rgba(0,0,0,0.12);
+    transform:translateY(110%); transition:transform .25s ease;
+  }
+  .sticky-cta.visible{ transform:translateY(0); }
+  .sticky-cta-price{ font-family:var(--font-heading); font-weight:800; font-size:15px; color:var(--ink); flex-shrink:0; }
+  .sticky-cta-price span{ display:block; font-size:10px; font-weight:600; color:var(--ink-soft); }
+  .sticky-cta-btn{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--ink); color:#fff; border-radius:9999px; font-family:var(--font-heading);
+    font-weight:700; font-size:14.5px; padding:0.85em 1em;
+  }
+
+  /* ============ lead-capture popup ============ */
+  .lead-overlay{
+    position:fixed; inset:0; z-index:40; background:rgba(28,21,9,0.55);
+    display:none; align-items:center; justify-content:center; padding:20px;
+  }
+  .lead-overlay.visible{ display:flex; }
+  .lead-modal{
+    background:#fff; border-radius:20px; max-width:400px; width:100%;
+    padding:28px 24px 24px; text-align:left; position:relative;
+    box-shadow:0 24px 60px rgba(0,0,0,0.3);
+  }
+  .lead-close{
+    position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; background:rgba(28,21,9,0.06);
+    color:var(--ink-soft); font-size:16px; line-height:1;
+  }
+  .lead-title{ font-family:var(--font-heading); font-weight:800; font-size:19px; color:var(--ink); margin:0 0 8px; padding-right:28px; }
+  .lead-sub{ font-size:13.5px; line-height:1.5; color:var(--ink-body); margin:0 0 18px; }
+  .lead-field{ margin-bottom:12px; }
+  .lead-field label{ display:block; font-size:12px; font-weight:700; color:var(--ink-soft); margin-bottom:5px; }
+  .lead-field input{
+    width:100%; font-family:var(--font-body); font-size:14.5px; padding:0.75em 0.9em;
+    border:1px solid rgba(28,21,9,0.18); border-radius:10px; background:#fff; color:var(--ink);
+  }
+  .lead-field input:focus{ outline:2px solid var(--mustard-deep); outline-offset:1px; }
+  .lead-error{ font-size:11.5px; color:#b3261e; margin-top:4px; display:none; }
+  .lead-error.visible{ display:block; }
+  .lead-actions{ display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+  .lead-submit{
+    background:var(--ink); color:#fff; border:none; border-radius:9999px; font-family:var(--font-heading);
+    font-weight:700; font-size:14.5px; padding:0.9em 1em; width:100%; cursor:pointer;
+  }
+  .lead-submit:disabled{ opacity:0.6; cursor:default; }
+  .lead-later{
+    background:none; border:none; color:var(--ink-soft); font-size:13px; font-weight:600;
+    padding:0.4em; cursor:pointer; text-align:center;
+  }
+  .lead-thanks{ display:none; text-align:center; padding:8px 0 4px; }
+  .lead-thanks.visible{ display:block; }
+  .lead-thanks svg{ margin-bottom:10px; }
+  .lead-thanks p{ font-family:var(--font-heading); font-weight:700; font-size:15.5px; color:var(--ink); margin:0; }
 </style>
 </head>
 <body>
@@ -266,32 +538,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <div class="wrap">
+  <div class="deadline-chip" id="deadlineChip">⏳ ₹499 price ends in <span id="deadlineDays">6 days</span></div>
   <div class="eyebrow" id="pageEyebrow">₹499 · 30 days · Self-paced</div>
   <h1 id="pageH1">From idea to your first paying customer. In 30 days.</h1>
   <p class="lead" id="pageLead">One focused task a day. No live calls, no cohort to keep up with — just today's step.</p>
 
-  <div class="steps">
-    <div class="step"><div class="days">1–3</div><div class="lbl">Discover</div></div>
-    <div class="step"><div class="days">4–6</div><div class="lbl">Test</div></div>
-    <div class="step"><div class="days">7–9</div><div class="lbl">Build</div></div>
-    <div class="step"><div class="days">10–12</div><div class="lbl">Feedback</div></div>
-    <div class="step"><div class="days">13–15</div><div class="lbl">Adjust</div></div>
-    <div class="step"><div class="days">16–18</div><div class="lbl">Retest</div></div>
-    <div class="step"><div class="days">19–21</div><div class="lbl">Rebuild</div></div>
-    <div class="step"><div class="days">22–24</div><div class="lbl">Adjust</div></div>
-    <div class="step"><div class="days">25–30</div><div class="lbl">Outreach</div></div>
-    <div class="step done"><div class="days">30</div><div class="lbl">Live</div></div>
+  <!-- ================= FOUNDER VIDEO =================
+       Real file: 720x1280 portrait (9:16), H.264, 37s. Every visitor here
+       is on mobile, so the frame (see .video-frame CSS) is a true 9:16
+       vertical card sized to fit the viewport (not a flat max-width that
+       runs too tall) rather than a generic flexible box.
+       Autoplays muted on load (required by every browser's autoplay policy)
+       with native controls so a visitor can pause/replay/scrub freely, plus
+       an explicit "tap for sound" pill since a muted autoplaying video gives
+       no visual cue that it has audio. Skips autoplay entirely for
+       prefers-reduced-motion visitors — they get the poster frame and start
+       it themselves via the native play button.
+       File size: 720x1280 + H.264 is a normal, mobile-friendly web export —
+       much lighter than the earlier ~40Mbps raw file this replaces. Worth
+       one quick check before upload: the actual .mp4 should land in the
+       low tens of MB (well under 50MB) for a 37s clip, not hundreds. -->
+  <div class="video-frame" id="videoFrame">
+    <span class="video-tag" aria-hidden="true">🎥</span>
+    <video id="founderVideo" class="founder-video" muted playsinline autoplay preload="auto" controls
+      poster="/assets/ai-workshop-founder.webp"
+      aria-label="37-second introduction from Noor Mohammed J, the founder">
+      <source src="/assets/run-business-30-days-founder-video.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="video-unmute" id="videoUnmute" aria-label="Turn on sound">🔊 Tap for sound</button>
   </div>
+  <p class="video-caption">37 seconds from Noor — what this actually is, and who it's for.</p>
+
+  <div class="steps" id="stepsGrid">
+    <div class="step" data-detail="detail-discover">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"></circle><path d="M20 20l-5-5"></path></svg></div>
+      <div class="days">1–3</div><div class="lbl">Discover</div>
+    </div>
+    <div class="step" data-detail="detail-test1">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6L3.5 19a2 2 0 0 0 1.8 3h13.4a2 2 0 0 0 1.8-3L15 8V2"></path><path d="M9 2h6"></path><path d="M6.5 15h11"></path></svg></div>
+      <div class="days">4–6</div><div class="lbl">Test</div>
+    </div>
+    <div class="step" data-detail="detail-build1">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 1 1-5.4 5.4L4 17v3h3l5.3-5.3"></path><path d="M17 3l4 4-2.5 2.5-4-4z"></path></svg></div>
+      <div class="days">7–9</div><div class="lbl">Build</div>
+    </div>
+    <div class="step" data-detail="detail-feedback1">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.3 8.3 0 0 1-3.8-.9L3 21l1.9-5.8a8.3 8.3 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"></path></svg></div>
+      <div class="days">10–12</div><div class="lbl">Feedback</div>
+    </div>
+    <div class="step" data-detail="detail-adjust1">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21v-7"></path><path d="M5 10V3"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M19 21v-5"></path><path d="M19 12V3"></path><path d="M2 14h6"></path><path d="M9 8h6"></path><path d="M16 16h6"></path></svg></div>
+      <div class="days">13–15</div><div class="lbl">Adjust</div>
+    </div>
+    <div class="step" data-detail="detail-test2">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></div>
+      <div class="days">16–18</div><div class="lbl">Retest</div>
+    </div>
+    <div class="step" data-detail="detail-build2">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+      <div class="days">19–21</div><div class="lbl">Rebuild</div>
+    </div>
+    <div class="step" data-detail="detail-feedback2">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></div>
+      <div class="days">22–24</div><div class="lbl">Adjust</div>
+    </div>
+    <div class="step" data-detail="detail-outreach">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14"></path><path d="M21 3 14 21l-4-8-8-4z"></path></svg></div>
+      <div class="days">25–30</div><div class="lbl">Outreach</div>
+    </div>
+    <div class="step done">
+      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"></path><path d="M4 4h14l-3 5 3 5H4"></path></svg></div>
+      <div class="days">30</div><div class="lbl">Live</div>
+    </div>
+  </div>
+  <div class="step-detail" id="stepDetailBox"></div>
+  <div style="margin-top:-8px; margin-bottom:20px; font-size:11.5px; color:var(--ink-soft);">Tap a step above to see exactly what that stretch of days is for.</div>
 
   <div class="religiously">🔥 Works if you follow it daily</div>
   <br>
 
-  <a href="https://rzp.io/rzp/xaRyRIP" class="cta-btn">
+  <a href="https://rzp.io/rzp/xaRyRIP" class="cta-btn" id="ctaTop">
     Start Now — ₹499
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
   </a>
   <div class="cta-sub">Instant. Secure payment via Razorpay.</div>
   <div class="urgency">₹499 until 30 Sep 2026 — then ₹1,299</div>
+  <div class="trust-row">
+    <span class="trust-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Secured by Razorpay</span>
+    <span class="trust-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"></path></svg> Instant access</span>
+    <span class="trust-badge trust-badge-guarantee"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> 7-day money-back guarantee</span>
+  </div>
+
+  <div class="whatyouget">
+    <div class="whatyouget-title">What you actually get</div>
+    <ul>
+      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Instant access right after payment — your Day 1 task is unlocked immediately, no waiting for an email.</li>
+      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> A day-by-day plan in your browser — complete today's task to unlock tomorrow's. No app to install.</li>
+      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Available in English, Hindi and Tamil — switch anytime.</li>
+      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> Direct WhatsApp access to the founder if you get stuck on any day.</li>
+      <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg> 7-day money-back guarantee — message Noor on WhatsApp if it's not for you, no forms.</li>
+    </ul>
+  </div>
+  <div class="lang-note"><span class="lang-pill">EN</span><span class="lang-pill">हिंदी</span><span class="lang-pill">தமிழ்</span> available inside the plan</div>
 
   <!-- ================= SAMPLE DAY 1 (real, unlocked preview — not a mockup) ================= -->
   <div class="sample-card">
@@ -303,8 +651,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ================= FOUNDER CREDIBILITY (real facts, from founder.html) ================= -->
   <a href="/founder.html" class="founder-strip">
+    <img src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J, founder" class="founder-photo" loading="lazy">
     <span class="founder-strip-copy">
-      <strong>Built by Noor Mohammed J</strong> — 16 years in tech, 4 live ventures running right now.
+      <strong>Built by Noor Mohammed J</strong> — 16 years in tech.
+      <span class="ventures">TheKahaaniya (28 kids, 2 events, profitable) · Murugaaa.in (built on ₹0, breakeven Month 5)</span>
     </span>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
   </a>
@@ -316,6 +666,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <details class="faq-item">
       <summary>Is it really ₹499 with no hidden costs?</summary>
       <p>Yes — one payment of ₹499 through Razorpay's secure checkout gets you the full 30-day plan. The price moves to ₹1,299 after 30 September 2026.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What if it's not right for me?</summary>
+      <p>You're covered by a 7-day guarantee. Message Noor directly on <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="faq-link">WhatsApp</a> within 7 days of paying and you'll get a full refund — no forms, no back-and-forth.</p>
     </details>
 
     <details class="faq-item">
@@ -339,16 +694,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </details>
 
     <details class="faq-item">
+      <summary>What happens right after I pay?</summary>
+      <p>You land straight on a confirmation page with Day 1 already unlocked — no waiting, no separate login email. The plan works in your browser and is available in English, Hindi and Tamil.</p>
+    </details>
+
+    <details class="faq-item">
       <summary>Something not covered here?</summary>
       <p>Message the founder directly on <a href="https://wa.me/919629843122" target="_blank" rel="noopener" class="faq-link">WhatsApp</a> — you'll reach Noor personally, not a support queue.</p>
     </details>
   </div>
 
-  <a href="https://rzp.io/rzp/xaRyRIP" class="cta-btn cta-btn-repeat">
+  <a href="https://rzp.io/rzp/xaRyRIP" class="cta-btn cta-btn-repeat" id="ctaBottom">
     Start Now — ₹499
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
   </a>
   <div class="cta-sub">Instant. Secure payment via Razorpay.</div>
+</div>
+
+<!-- ================= STICKY MOBILE CTA ================= -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-price">₹499<span>until 30 Sep</span></div>
+  <a href="https://rzp.io/rzp/xaRyRIP" class="sticky-cta-btn" id="ctaSticky">Start Now</a>
+</div>
+
+<!-- ================= LEAD CAPTURE POPUP ================= -->
+<div class="lead-overlay" id="leadOverlay">
+  <div class="lead-modal">
+    <button type="button" class="lead-close" id="leadClose" aria-label="Close">✕</button>
+    <div id="leadFormWrap">
+      <h2 class="lead-title">What's stopping you from buying this course?</h2>
+      <p class="lead-sub">We'd love to help. Tell us how to reach you and we'll personally connect with you.</p>
+      <form id="leadForm" novalidate>
+        <div class="lead-field">
+          <label for="leadName">Full Name</label>
+          <input type="text" id="leadName" name="name" autocomplete="name">
+          <div class="lead-error" id="leadNameError">Please enter your name.</div>
+        </div>
+        <div class="lead-field">
+          <label for="leadEmail">Email Address</label>
+          <input type="email" id="leadEmail" name="email" autocomplete="email">
+          <div class="lead-error" id="leadEmailError">Please enter a valid email address.</div>
+        </div>
+        <div class="lead-field">
+          <label for="leadPhone">WhatsApp Number</label>
+          <input type="tel" id="leadPhone" name="whatsapp" autocomplete="tel" placeholder="10-digit mobile number">
+          <div class="lead-error" id="leadPhoneError">Please enter a valid 10-digit Indian mobile number.</div>
+        </div>
+        <div class="lead-actions">
+          <button type="submit" class="lead-submit" id="leadSubmit">Get Personal Guidance</button>
+          <button type="button" class="lead-later" id="leadLater">Maybe Later</button>
+        </div>
+      </form>
+    </div>
+    <div class="lead-thanks" id="leadThanks">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3a7d4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9 12l2 2 4-4"></path></svg>
+      <p>Thank you! We'll connect with you shortly.</p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -401,6 +803,314 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if(h1) h1.textContent = 'Run your ' + displayName + '. Step by step.';
     if(lead) lead.textContent = 'One task a day for 30 days — starting with ' + b.focus + ', through to your first paying customer.';
   }
+})();
+</script>
+
+<script>
+(function(){
+  function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function safeSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+
+  function track(eventName, params){
+    try{
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: eventName }, params || {}));
+    }catch(e){}
+    try{
+      if(typeof gtag === 'function') gtag('event', eventName, params || {});
+    }catch(e){}
+  }
+
+  /* ================= founder video ================= */
+  (function(){
+    var vid = document.getElementById('founderVideo');
+    var unmuteBtn = document.getElementById('videoUnmute');
+    if(!vid) return;
+
+    var reduceMotion = false;
+    try{ reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+
+    if(reduceMotion){
+      // Don't force motion on a visitor who's asked for less of it — show the
+      // poster frame and native controls, let them start it themselves.
+      vid.removeAttribute('autoplay');
+      if(unmuteBtn) unmuteBtn.classList.add('hidden');
+    }else{
+      // Defensive: a few browsers reject play() even with autoplay set.
+      // Never let that throw or block the rest of the page.
+      try{
+        var playPromise = vid.play();
+        if(playPromise && typeof playPromise.catch === 'function') playPromise.catch(function(){});
+      }catch(e){}
+    }
+
+    if(unmuteBtn){
+      unmuteBtn.addEventListener('click', function(){
+        vid.muted = false;
+        unmuteBtn.classList.add('hidden');
+        track('video_unmuted', {});
+      });
+      vid.addEventListener('volumechange', function(){
+        if(!vid.muted) unmuteBtn.classList.add('hidden');
+      });
+    }
+    vid.addEventListener('play', function(){ track('video_play', {}); });
+    vid.addEventListener('pause', function(){ track('video_pause', {}); });
+    vid.addEventListener('ended', function(){ track('video_ended', {}); });
+  })();
+
+  /* ================= deadline day-count (real date, no fake reset) ================= */
+  (function(){
+    var el = document.getElementById('deadlineDays');
+    if(!el) return;
+    // 30 Sep 2026, 23:59:59 IST — matches the price stated in the visible copy and JSON-LD.
+    var deadline = new Date('2026-09-30T23:59:59+05:30').getTime();
+    var now = Date.now();
+    var msLeft = deadline - now;
+    if(msLeft <= 0){
+      var chip = document.getElementById('deadlineChip');
+      if(chip) chip.style.display = 'none';
+      return;
+    }
+    var days = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
+    el.textContent = days === 1 ? '1 day' : (days + ' days');
+  })();
+
+  /* ================= curriculum tap-to-reveal (real copy, sourced from day4-30) ================= */
+  var STEP_DETAIL = {
+    'detail-discover': { name:'Discover Your Skill (Days 1–3)', text:'Practice the skill you found in your Ikigai zone — for real, for three days straight. This isn’t about being ready. It’s about finding out if it’s actually you.' },
+    'detail-test1': { name:'Market Test (Days 4–6)', text:'Before you build anything, find out if anyone actually wants it. A 5-minute survey beats months of guessing.' },
+    'detail-build1': { name:'Build The System (Days 7–9)', text:'Time to build the smallest real version of what you’re offering — not the perfect version, the provable one. One dish, one class, one small batch, or one session.' },
+    'detail-feedback1': { name:'Collect Feedback (Days 10–12)', text:'Go back to the people who experienced it and ask what they really thought — not what they think you want to hear.' },
+    'detail-adjust1': { name:'Adjust For Fit (Days 13–15)', text:'This is where most people quit. Don’t. Adjust instead — this is the whole point of testing early.' },
+    'detail-test2': { name:'Retest, Round 2 (Days 16–18)', text:'Same test, sharper offer. This time you already know what people want — a Social Media checklist unlocks alongside it too.' },
+    'detail-build2': { name:'Rebuild, Round 2 (Days 19–21)', text:'Deliver the improved version and watch closely for what’s different this time.' },
+    'detail-feedback2': { name:'Feedback + Adjust, Round 2 (Days 22–24)', text:'One more honest look before you lock in what you’re actually selling.' },
+    'detail-outreach': { name:'Outreach To Targeted Clients (Days 25–30)', text:'Stop waiting for people to find you. Go find them — this is how every real business gets its first paying customer.' }
+  };
+
+  var grid = document.getElementById('stepsGrid');
+  var box = document.getElementById('stepDetailBox');
+  if(grid && box){
+    grid.addEventListener('click', function(e){
+      var stepEl = e.target.closest('.step');
+      if(!stepEl || !stepEl.dataset.detail) return;
+      var key = stepEl.dataset.detail;
+      var wasOpen = stepEl.classList.contains('open');
+      grid.querySelectorAll('.step.open').forEach(function(s){ s.classList.remove('open'); });
+      if(wasOpen){
+        box.classList.remove('visible');
+        box.innerHTML = '';
+        return;
+      }
+      stepEl.classList.add('open');
+      var d = STEP_DETAIL[key];
+      if(d){
+        box.innerHTML = '<strong>' + d.name + '</strong>' + d.text;
+        box.classList.add('visible');
+      }
+    });
+
+    /* ================= touch "pop" feedback =================
+       CSS :hover alone barely fires on mobile (and this page is 100%
+       mobile traffic per Noor), so the tile lift/scale from the CSS above
+       is driven here via Pointer Events, which fire consistently for
+       touch, mouse and pen alike. Purely visual (adds/removes a class) —
+       never calls preventDefault, so it can't interfere with the tap
+       handler above or with scrolling. */
+    grid.addEventListener('pointerdown', function(e){
+      var stepEl = e.target.closest('.step');
+      if(stepEl) stepEl.classList.add('pressed');
+    });
+    var clearPressedSteps = function(){
+      grid.querySelectorAll('.step.pressed').forEach(function(s){ s.classList.remove('pressed'); });
+    };
+    grid.addEventListener('pointerup', clearPressedSteps);
+    grid.addEventListener('pointercancel', clearPressedSteps);
+    document.addEventListener('pointerup', clearPressedSteps);
+  }
+
+  /* ================= curriculum scroll-triggered reveal =================
+     Progressive enhancement only: the .js-anim class (which is what makes
+     the tiles start invisible) is added here, in JS, only when
+     IntersectionObserver exists and the visitor hasn't asked for reduced
+     motion. If this script fails to run at all, .step never gets hidden by
+     CSS in the first place — the grid just renders normally, no regression. */
+  if(grid && 'IntersectionObserver' in window){
+    var reduceMotion = false;
+    try{ reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+    if(!reduceMotion){
+      grid.classList.add('js-anim');
+      var stepsObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            grid.classList.add('in-view');
+            stepsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      stepsObserver.observe(grid);
+    }
+  }
+
+  /* ================= sticky mobile CTA ================= */
+  var stickyCta = document.getElementById('stickyCta');
+  var ctaTop = document.getElementById('ctaTop');
+  var ctaBottom = document.getElementById('ctaBottom');
+  if(stickyCta && ctaTop && ctaBottom && 'IntersectionObserver' in window){
+    var topVisible = true, bottomVisible = false;
+    function updateSticky(){
+      var shouldShow = !topVisible && !bottomVisible;
+      stickyCta.classList.toggle('visible', shouldShow);
+    }
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ topVisible = en.isIntersecting; });
+      updateSticky();
+    }, { threshold: 0 }).observe(ctaTop);
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ bottomVisible = en.isIntersecting; });
+      updateSticky();
+    }, { threshold: 0 }).observe(ctaBottom);
+  }
+
+  /* ================= lead capture popup ================= */
+  var POPUP_KEY = 'tdz_lead_popup_v1';
+  var POPUP_EXPIRY_DAYS = 30;
+
+  function popupState(){
+    try{
+      var raw = safeGet(POPUP_KEY);
+      if(!raw) return null;
+      var state = JSON.parse(raw);
+      if(state.expires && Date.now() > state.expires) return null;
+      return state;
+    }catch(e){ return null; }
+  }
+  function setPopupState(status){
+    safeSet(POPUP_KEY, JSON.stringify({ status: status, expires: Date.now() + POPUP_EXPIRY_DAYS * 24 * 60 * 60 * 1000 }));
+  }
+
+  var overlay = document.getElementById('leadOverlay');
+  var formWrap = document.getElementById('leadFormWrap');
+  var thanksBox = document.getElementById('leadThanks');
+  var leadForm = document.getElementById('leadForm');
+  var popupShown = false;
+  var formStartedFired = false;
+  var purchaseAfterPopupFired = false;
+
+  function openPopup(){
+    if(!overlay || popupShown) return;
+    var existing = popupState();
+    if(existing) return;
+    popupShown = true;
+    overlay.classList.add('visible');
+    track('popup_shown', { popup_name: 'lead_capture_scroll' });
+  }
+  function closePopup(status){
+    if(!overlay) return;
+    overlay.classList.remove('visible');
+    setPopupState(status);
+    if(status === 'dismissed') track('popup_dismissed', { popup_name: 'lead_capture_scroll' });
+  }
+
+  if(overlay){
+    document.getElementById('leadClose').addEventListener('click', function(){ closePopup('dismissed'); });
+    document.getElementById('leadLater').addEventListener('click', function(){ closePopup('dismissed'); });
+    overlay.addEventListener('click', function(e){ if(e.target === overlay) closePopup('dismissed'); });
+  }
+
+  // 90-95% scroll trigger, shown at most once per visitor (respects existing dismissal/submission).
+  if(overlay && !popupState()){
+    window.addEventListener('scroll', function(){
+      var scrolled = window.scrollY + window.innerHeight;
+      var full = document.documentElement.scrollHeight;
+      if(full > 0 && (scrolled / full) >= 0.92){
+        openPopup();
+      }
+    }, { passive: true });
+  }
+
+  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function isValidIndianMobile(v){ return /^[6-9]\d{9}$/.test(v.replace(/[^0-9]/g, '').replace(/^91/, '')); }
+
+  if(leadForm){
+    ['leadName','leadEmail','leadPhone'].forEach(function(id){
+      document.getElementById(id).addEventListener('input', function(){
+        if(!formStartedFired){ formStartedFired = true; track('form_started', { form_name: 'lead_capture' }); }
+      });
+    });
+
+    leadForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('leadName').value.trim();
+      var email = document.getElementById('leadEmail').value.trim();
+      var phone = document.getElementById('leadPhone').value.trim();
+      var ok = true;
+
+      var nameErr = document.getElementById('leadNameError');
+      var emailErr = document.getElementById('leadEmailError');
+      var phoneErr = document.getElementById('leadPhoneError');
+      nameErr.classList.remove('visible'); emailErr.classList.remove('visible'); phoneErr.classList.remove('visible');
+
+      if(!name){ nameErr.classList.add('visible'); ok = false; }
+      if(!isValidEmail(email)){ emailErr.classList.add('visible'); ok = false; }
+      if(!isValidIndianMobile(phone)){ phoneErr.classList.add('visible'); ok = false; }
+      if(!ok) return;
+
+      var submitBtn = document.getElementById('leadSubmit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      var params = new URLSearchParams(window.location.search);
+      var utm = {};
+      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){
+        var v = params.get(k);
+        if(v) utm[k] = v;
+      });
+
+      var payload = new URLSearchParams({
+        name: name,
+        email: email,
+        whatsapp: phone,
+        pageUrl: window.location.href,
+        timestamp: new Date().toISOString(),
+        referrer: document.referrer || '',
+        utm: JSON.stringify(utm)
+      });
+
+      // Apps Script Web App endpoint — see google-apps-script-lead-capture.gs for the
+      // script to deploy; paste the resulting /exec URL here once deployed.
+      var WEBHOOK_URL = 'WEBHOOK_URL_PLACEHOLDER';
+
+      function showThanks(){
+        formWrap.style.display = 'none';
+        thanksBox.classList.add('visible');
+        setPopupState('submitted');
+        track('form_submitted', { form_name: 'lead_capture' });
+      }
+
+      if(WEBHOOK_URL && WEBHOOK_URL.indexOf('PLACEHOLDER') === -1){
+        fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', body: payload })
+          .then(showThanks)
+          .catch(showThanks); // never block the user on a network failure
+      }else{
+        // Webhook not wired up yet — still confirm to the visitor and log locally
+        // so the submission isn't silently lost once you deploy the script.
+        try{ console.warn('Lead capture: WEBHOOK_URL not configured yet — submission not sent.', payload.toString()); }catch(e){}
+        showThanks();
+      }
+    });
+  }
+
+  /* purchase click after the popup was ever shown this visit */
+  document.querySelectorAll('#ctaTop, #ctaBottom, #ctaSticky').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(popupShown && !purchaseAfterPopupFired){
+        purchaseAfterPopupFired = true;
+        track('purchase_cta_clicked_after_popup', { cta_id: btn.id });
+      }
+    });
+  });
 })();
 </script>
 
