@@ -129,7 +129,18 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://connect.facebook.net">
+<!-- Task 3 (mobile performance): the Google Fonts stylesheet is otherwise a
+     render-blocking request on the critical path. Loaded async here
+     (preload as style, swap to stylesheet on load) so first paint isn't
+     held up by it — text renders in the fallback stack immediately and
+     swaps to the webfont once it arrives (font-display:swap already
+     covers the swap itself). noscript keeps the normal blocking link for
+     the no-JS case so nothing regresses there. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap"></noscript>
 
 <style>
   :root{
@@ -179,15 +190,26 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     font-family:var(--font-heading); font-weight:800; letter-spacing:-0.01em;
     font-size:clamp(26px,6.5vw,38px); line-height:1.12; margin:0 0 12px; color:var(--ink);
   }
-  .lead{ font-size:16px; line-height:1.5; color:var(--ink-body); margin:0 0 32px; }
+  .lead{ font-size:16px; line-height:1.5; color:var(--ink-body); margin:0 0 10px; }
+  .hero-audience{ font-size:12.5px; font-weight:600; color:var(--ink-soft); margin:0 0 32px; }
 
-  .steps{
-    display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:36px;
+  .section-h2{
+    font-family:var(--font-heading); font-weight:800; font-size:clamp(19px,4.5vw,24px);
+    color:var(--ink); margin:0 0 14px; text-align:center;
   }
-  @media (max-width:420px){ .steps{ grid-template-columns:repeat(5,1fr); gap:6px; } }
+  /* 7 day-markers (Day 1/5/10/15/20/25/30, see data-detail on each .step)
+     read as achievement sentences now rather than one-word labels, so the
+     tile switched from the original 5-across icon-on-top grid to a
+     2-across horizontal row: icon stays put on the left, the day + what
+     was achieved by then stack to the right where there's room to read. */
+  .steps{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:36px;
+  }
+  @media (max-width:380px){ .steps{ grid-template-columns:1fr; gap:6px; } }
   .step{
-    background:#fff; border:1px solid rgba(28,21,9,0.1); border-top:3px solid var(--accent, rgba(28,21,9,0.1));
-    border-radius:12px; padding:12px 4px 10px; display:flex; flex-direction:column; align-items:center; gap:4px;
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-left:3px solid var(--accent, rgba(28,21,9,0.1));
+    border-radius:12px; padding:12px 12px; display:flex; flex-direction:row; align-items:center; gap:10px;
+    text-align:left;
     transition:opacity .5s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background-color .15s ease, box-shadow .3s ease, border-color .3s ease;
   }
   /* pop-on-interaction, modeled on the reference the user pointed to
@@ -253,12 +275,12 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   }
   .video-unmute.hidden{ display:none; }
   .step-icon{
-    width:26px; height:26px; border-radius:50%; flex-shrink:0;
+    width:34px; height:34px; border-radius:50%; flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
     background:var(--accent-tint, rgba(28,21,9,0.08)); color:var(--accent, var(--ink-soft));
-    margin-bottom:2px;
     transition:transform .3s cubic-bezier(.34,1.56,.64,1);
   }
+  .step-body{ min-width:0; }
   /* gentle idle bob so the row reads as "alive" even before anyone
      touches it — same spirit as the reference's auto-scrolling cards,
      scaled down to something that doesn't fight the tap targets. Gated
@@ -274,37 +296,32 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   .step:hover .step-icon, .step.pressed .step-icon, .step.open .step-icon{
     animation:none; transform:scale(1.15);
   }
-  .step .days{ font-family:var(--font-heading); font-weight:800; font-size:12.5px; color:var(--ink); }
-  .step .lbl{ font-size:9.5px; font-weight:600; color:var(--ink-soft); line-height:1.2; }
-  .step.done{ background:var(--ink); border-top-color:transparent; }
+  .step .days{ font-family:var(--font-heading); font-weight:800; font-size:13.5px; color:var(--ink); margin-bottom:1px; }
+  .step .lbl{ font-size:11.5px; font-weight:600; color:var(--ink-soft); line-height:1.28; }
+  .step.done{ background:var(--ink); border-left-color:transparent; }
   .step.done .days, .step.done .lbl{ color:#fff; }
   .step.done .step-icon{ background:rgba(255,255,255,0.16); color:#fff; }
 
   /* per-stage accent progression — light (Day 1) to deep (Day 30), a visual sense of the journey */
   .steps .step:nth-child(1){ --accent:#f3d38c; --accent-tint:rgba(243,211,140,0.3); }
-  .steps .step:nth-child(2){ --accent:#eec876; --accent-tint:rgba(238,200,118,0.3); }
-  .steps .step:nth-child(3){ --accent:#e6b85e; --accent-tint:rgba(230,184,94,0.3); }
-  .steps .step:nth-child(4){ --accent:#dda647; --accent-tint:rgba(221,166,71,0.3); }
-  .steps .step:nth-child(5){ --accent:#d39a3d; --accent-tint:rgba(211,154,61,0.3); }
-  .steps .step:nth-child(6){ --accent:#c38934; --accent-tint:rgba(195,137,52,0.3); }
-  .steps .step:nth-child(7){ --accent:#b47b2d; --accent-tint:rgba(180,123,45,0.3); }
-  .steps .step:nth-child(8){ --accent:#a06b28; --accent-tint:rgba(160,107,40,0.3); }
-  .steps .step:nth-child(9){ --accent:#8a5a22; --accent-tint:rgba(138,90,34,0.3); }
+  .steps .step:nth-child(2){ --accent:#eac07a; --accent-tint:rgba(234,192,122,0.3); }
+  .steps .step:nth-child(3){ --accent:#e0ac66; --accent-tint:rgba(224,172,102,0.3); }
+  .steps .step:nth-child(4){ --accent:#d39a3d; --accent-tint:rgba(211,154,61,0.3); }
+  .steps .step:nth-child(5){ --accent:#c38934; --accent-tint:rgba(195,137,52,0.3); }
+  .steps .step:nth-child(6){ --accent:#b0722c; --accent-tint:rgba(176,114,44,0.3); }
+  .steps .step:nth-child(7){ --accent:#8a5a22; --accent-tint:rgba(138,90,34,0.3); }
 
   /* scroll-triggered stagger reveal — only engages once JS confirms support;
      .step is fully visible by default so nothing regresses without JS */
   .steps.js-anim .step{ opacity:0; transform:translateY(14px); }
   .steps.js-anim.in-view .step{ opacity:1; transform:translateY(0); }
   .steps.js-anim.in-view .step:nth-child(1){ transition-delay:.02s; }
-  .steps.js-anim.in-view .step:nth-child(2){ transition-delay:.07s; }
-  .steps.js-anim.in-view .step:nth-child(3){ transition-delay:.12s; }
-  .steps.js-anim.in-view .step:nth-child(4){ transition-delay:.17s; }
-  .steps.js-anim.in-view .step:nth-child(5){ transition-delay:.22s; }
-  .steps.js-anim.in-view .step:nth-child(6){ transition-delay:.27s; }
-  .steps.js-anim.in-view .step:nth-child(7){ transition-delay:.32s; }
-  .steps.js-anim.in-view .step:nth-child(8){ transition-delay:.37s; }
-  .steps.js-anim.in-view .step:nth-child(9){ transition-delay:.42s; }
-  .steps.js-anim.in-view .step:nth-child(10){ transition-delay:.47s; }
+  .steps.js-anim.in-view .step:nth-child(2){ transition-delay:.08s; }
+  .steps.js-anim.in-view .step:nth-child(3){ transition-delay:.14s; }
+  .steps.js-anim.in-view .step:nth-child(4){ transition-delay:.20s; }
+  .steps.js-anim.in-view .step:nth-child(5){ transition-delay:.26s; }
+  .steps.js-anim.in-view .step:nth-child(6){ transition-delay:.32s; }
+  .steps.js-anim.in-view .step:nth-child(7){ transition-delay:.38s; }
   /* .steps.js-anim.in-view .step (above) matches the pop-transform's
      specificity, and appears later in the cascade, so without this
      override the reveal rule's resting transform:translateY(0) silently
@@ -460,23 +477,131 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     display:block; font-size:12px; color:var(--ink-soft); margin-top:3px; font-weight:500;
   }
 
+  /* ============ Task 8: who this is for ============ */
+  .audience-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:36px; }
+  @media (max-width:380px){ .audience-grid{ grid-template-columns:repeat(2,1fr); } }
+  .audience-card{
+    background:rgba(255,255,255,0.6); border:1px solid rgba(28,21,9,0.1); border-radius:14px;
+    padding:14px 8px; display:flex; flex-direction:column; align-items:center; gap:7px;
+  }
+  .audience-icon{
+    width:30px; height:30px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--mustard-tint); color:#8a3b1a;
+  }
+  .audience-lbl{ font-family:var(--font-heading); font-weight:700; font-size:11.5px; color:var(--ink); line-height:1.25; }
+
+  /* ============ Task 6: founder section (expanded) ============ */
+  .founder-section{
+    text-align:left; background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:20px;
+    padding:22px 22px 20px; margin-bottom:36px; box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  }
+  .founder-section-head{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .founder-section-photo{
+    width:64px; height:64px; border-radius:50%; object-fit:cover; flex-shrink:0;
+    border:2px solid var(--mustard-tint); box-shadow:0 2px 10px rgba(0,0,0,0.12);
+  }
+  .founder-section-name{ font-family:var(--font-heading); font-weight:800; font-size:16.5px; color:var(--ink); }
+  .founder-section-cred{ font-size:12px; color:var(--ink-soft); margin-top:2px; }
+  .founder-section-bio{ font-size:14px; line-height:1.6; color:var(--ink-body); margin:0 0 12px; }
+  .founder-section-bio strong{ color:var(--ink); font-family:var(--font-heading); }
+  .founder-section-ventures{
+    display:flex; flex-direction:column; gap:6px; margin-bottom:14px;
+  }
+  .founder-section-venture{
+    display:flex; align-items:baseline; gap:6px; font-size:12.5px; color:var(--ink-body);
+  }
+  .founder-section-venture strong{ font-family:var(--font-heading); font-weight:700; color:var(--ink); flex-shrink:0; }
+  .founder-section-link{
+    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-heading);
+    font-weight:700; font-size:13px; color:#8a3b1a; text-decoration:underline; text-underline-offset:2px;
+  }
+
+  /* ============ Task 5: why people trust ============ */
+  .trust-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:36px; }
+  .trust-card{
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:16px; padding:16px 14px;
+    text-align:left; box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  }
+  .trust-card-icon{
+    width:32px; height:32px; border-radius:10px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--mustard-tint); color:#8a3b1a; margin-bottom:10px;
+  }
+  .trust-card-title{ font-family:var(--font-heading); font-weight:800; font-size:13px; color:var(--ink); margin-bottom:4px; }
+  .trust-card-desc{ font-size:11.5px; line-height:1.45; color:var(--ink-soft); }
+
+  /* ============ Task 10: by day 30 outcomes ============ */
+  .outcome-grid{ display:flex; flex-direction:column; gap:8px; margin-bottom:36px; }
+  .outcome-card{
+    display:flex; align-items:flex-start; gap:12px; text-align:left;
+    background:var(--ink); color:#fff; border-radius:16px; padding:14px 16px;
+  }
+  .outcome-card-icon{
+    width:30px; height:30px; border-radius:50%; flex-shrink:0; margin-top:1px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.14); color:var(--mustard-light);
+  }
+  .outcome-card-title{ font-family:var(--font-heading); font-weight:800; font-size:13.5px; margin-bottom:2px; }
+  .outcome-card-desc{ font-size:12px; line-height:1.5; color:rgba(255,255,255,0.72); }
+
+  /* ============ Task 11: social proof (reusable, hidden with no data) ============ */
+  .social-proof{ margin-bottom:36px; }
+  .social-proof-grid{ display:flex; flex-direction:column; gap:10px; }
+  .social-proof-card{
+    background:#fff; border:1px solid rgba(28,21,9,0.1); border-radius:16px; padding:16px 18px;
+    text-align:left; box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  }
+  .social-proof-stars{ color:var(--mustard-deep); font-size:14px; letter-spacing:2px; margin-bottom:6px; }
+  .social-proof-text{ font-size:13.5px; line-height:1.55; color:var(--ink-body); margin:0 0 8px; font-style:italic; }
+  .social-proof-name{ font-family:var(--font-heading); font-weight:700; font-size:12.5px; color:var(--ink); }
+  .social-proof-media{ width:100%; border-radius:10px; display:block; margin-bottom:8px; }
+
+  /* ============ Task 12: refund guarantee box ============ */
+  .refund-box{
+    text-align:left; background:linear-gradient(135deg, var(--mustard-tint), #fff);
+    border:1px solid var(--mustard); border-radius:20px; padding:22px 22px 20px; margin-bottom:36px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  }
+  .refund-box-head{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .refund-box-icon{
+    width:36px; height:36px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:#fff; color:#8a3b1a; box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+  .refund-box-title{ font-family:var(--font-heading); font-weight:800; font-size:16px; color:var(--ink); }
+  .refund-box-desc{ font-size:13.5px; line-height:1.6; color:var(--ink-body); margin:0 0 14px; }
+  .refund-box-steps{ display:flex; flex-direction:column; gap:8px; }
+  .refund-box-step{ display:flex; align-items:baseline; gap:8px; font-size:12.5px; color:var(--ink-body); }
+  .refund-box-step-num{
+    font-family:var(--font-heading); font-weight:800; font-size:11px; color:#8a3b1a;
+    background:#fff; border-radius:50%; width:18px; height:18px; flex-shrink:0;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+
   /* ============ sticky mobile CTA bar ============ */
   .sticky-cta{
     position:fixed; left:0; right:0; bottom:0; z-index:30;
-    display:flex; align-items:center; gap:12px;
+    display:flex; align-items:center;
     background:#fff; border-top:1px solid rgba(28,21,9,0.12);
     padding:10px 14px; padding-bottom:calc(10px + env(safe-area-inset-bottom));
     box-shadow:0 -6px 24px rgba(0,0,0,0.12);
     transform:translateY(110%); transition:transform .25s ease;
   }
   .sticky-cta.visible{ transform:translateY(0); }
-  .sticky-cta-price{ font-family:var(--font-heading); font-weight:800; font-size:15px; color:var(--ink); flex-shrink:0; }
-  .sticky-cta-price span{ display:block; font-size:10px; font-weight:600; color:var(--ink-soft); }
   .sticky-cta-btn{
-    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
     background:var(--ink); color:#fff; border-radius:9999px; font-family:var(--font-heading);
-    font-weight:700; font-size:14.5px; padding:0.85em 1em;
+    font-weight:700; font-size:14.5px; padding:0.9em 1em; text-align:center;
+    transition:transform .15s ease;
   }
+  .sticky-cta-btn:active{ transform:scale(0.97); }
+  /* mobile only — desktop already has ctaTop/ctaBottom in view most of the
+     time on a wider viewport, and this page's whole audience is mobile
+     anyway, but the task calls for scoping it explicitly rather than
+     relying on that. Same 640px breakpoint already used elsewhere on this
+     page (.home-nav/.home-label). */
+  @media (min-width:640px){ .sticky-cta{ display:none; } }
 
   /* ============ lead-capture popup ============ */
   .lead-overlay{
@@ -540,8 +665,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
   <div class="deadline-chip" id="deadlineChip">⏳ ₹499 price ends in <span id="deadlineDays">6 days</span></div>
   <div class="eyebrow" id="pageEyebrow">₹499 · 30 days · Self-paced</div>
-  <h1 id="pageH1">From idea to your first paying customer. In 30 days.</h1>
+  <h1 id="pageH1">From idea to your first paying customer — in 30 days</h1>
   <p class="lead" id="pageLead">One focused task a day. No live calls, no cohort to keep up with — just today's step.</p>
+  <p class="hero-audience">For students, employees, homemakers, freelancers &amp; first-time founders</p>
 
   <!-- ================= FOUNDER VIDEO =================
        Real file: 720x1280 portrait (9:16), H.264, 37s. Every visitor here
@@ -557,10 +683,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        File size: 720x1280 + H.264 is a normal, mobile-friendly web export —
        much lighter than the earlier ~40Mbps raw file this replaces. Worth
        one quick check before upload: the actual .mp4 should land in the
-       low tens of MB (well under 50MB) for a 37s clip, not hundreds. -->
+       low tens of MB (well under 50MB) for a 37s clip, not hundreds.
+       Task 3 (mobile performance): preload is "metadata", not "auto" — a
+       muted autoplay video still autoplays fine with this hint (that's
+       standard browser behavior, not something preload controls), but
+       "auto" was telling mobile browsers to eagerly buffer the whole file
+       on load, competing for bandwidth with everything else on the page
+       on a slow connection. "metadata" only fetches enough to know
+       duration/dimensions up front, then streams the rest as it plays. -->
   <div class="video-frame" id="videoFrame">
     <span class="video-tag" aria-hidden="true">🎥</span>
-    <video id="founderVideo" class="founder-video" muted playsinline autoplay preload="auto" controls
+    <video id="founderVideo" class="founder-video" muted playsinline autoplay preload="metadata" controls
       poster="/assets/ai-workshop-founder.webp"
       aria-label="37-second introduction from Noor Mohammed J, the founder">
       <source src="/assets/run-business-30-days-founder-video.mp4" type="video/mp4">
@@ -569,50 +702,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <p class="video-caption">37 seconds from Noor — what this actually is, and who it's for.</p>
 
+  <h2 class="section-h2">What you'll have achieved, day by day</h2>
   <div class="steps" id="stepsGrid">
-    <div class="step" data-detail="detail-discover">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"></circle><path d="M20 20l-5-5"></path></svg></div>
-      <div class="days">1–3</div><div class="lbl">Discover</div>
+    <div class="step" data-detail="detail-day1">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"></circle><path d="M20 20l-5-5"></path></svg></div>
+      <div class="step-body"><div class="days">Day 1</div><div class="lbl">Skill practice starts</div></div>
     </div>
-    <div class="step" data-detail="detail-test1">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6L3.5 19a2 2 0 0 0 1.8 3h13.4a2 2 0 0 0 1.8-3L15 8V2"></path><path d="M9 2h6"></path><path d="M6.5 15h11"></path></svg></div>
-      <div class="days">4–6</div><div class="lbl">Test</div>
+    <div class="step" data-detail="detail-day5">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6L3.5 19a2 2 0 0 0 1.8 3h13.4a2 2 0 0 0 1.8-3L15 8V2"></path><path d="M9 2h6"></path><path d="M6.5 15h11"></path></svg></div>
+      <div class="step-body"><div class="days">Day 5</div><div class="lbl">Idea tested on real people</div></div>
     </div>
-    <div class="step" data-detail="detail-build1">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 1 1-5.4 5.4L4 17v3h3l5.3-5.3"></path><path d="M17 3l4 4-2.5 2.5-4-4z"></path></svg></div>
-      <div class="days">7–9</div><div class="lbl">Build</div>
+    <div class="step" data-detail="detail-day10">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.3 8.3 0 0 1-3.8-.9L3 21l1.9-5.8a8.3 8.3 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"></path></svg></div>
+      <div class="step-body"><div class="days">Day 10</div><div class="lbl">Real feedback collected</div></div>
     </div>
-    <div class="step" data-detail="detail-feedback1">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.3 8.3 0 0 1-3.8-.9L3 21l1.9-5.8a8.3 8.3 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"></path></svg></div>
-      <div class="days">10–12</div><div class="lbl">Feedback</div>
+    <div class="step" data-detail="detail-day15">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21v-7"></path><path d="M5 10V3"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M19 21v-5"></path><path d="M19 12V3"></path><path d="M2 14h6"></path><path d="M9 8h6"></path><path d="M16 16h6"></path></svg></div>
+      <div class="step-body"><div class="days">Day 15</div><div class="lbl">Offer adjusted for fit</div></div>
     </div>
-    <div class="step" data-detail="detail-adjust1">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21v-7"></path><path d="M5 10V3"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M19 21v-5"></path><path d="M19 12V3"></path><path d="M2 14h6"></path><path d="M9 8h6"></path><path d="M16 16h6"></path></svg></div>
-      <div class="days">13–15</div><div class="lbl">Adjust</div>
+    <div class="step" data-detail="detail-day20">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+      <div class="step-body"><div class="days">Day 20</div><div class="lbl">Round 2, rebuilt sharper</div></div>
     </div>
-    <div class="step" data-detail="detail-test2">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></div>
-      <div class="days">16–18</div><div class="lbl">Retest</div>
+    <div class="step" data-detail="detail-day25">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14"></path><path d="M21 3 14 21l-4-8-8-4z"></path></svg></div>
+      <div class="step-body"><div class="days">Day 25</div><div class="lbl">Direct outreach begins</div></div>
     </div>
-    <div class="step" data-detail="detail-build2">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
-      <div class="days">19–21</div><div class="lbl">Rebuild</div>
-    </div>
-    <div class="step" data-detail="detail-feedback2">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></div>
-      <div class="days">22–24</div><div class="lbl">Adjust</div>
-    </div>
-    <div class="step" data-detail="detail-outreach">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14"></path><path d="M21 3 14 21l-4-8-8-4z"></path></svg></div>
-      <div class="days">25–30</div><div class="lbl">Outreach</div>
-    </div>
-    <div class="step done">
-      <div class="step-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"></path><path d="M4 4h14l-3 5 3 5H4"></path></svg></div>
-      <div class="days">30</div><div class="lbl">Live</div>
+    <div class="step done" data-detail="detail-day30">
+      <div class="step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"></path><path d="M4 4h14l-3 5 3 5H4"></path></svg></div>
+      <div class="step-body"><div class="days">Day 30</div><div class="lbl">Live, and selling</div></div>
     </div>
   </div>
   <div class="step-detail" id="stepDetailBox"></div>
-  <div style="margin-top:-8px; margin-bottom:20px; font-size:11.5px; color:var(--ink-soft);">Tap a step above to see exactly what that stretch of days is for.</div>
+  <div style="margin-top:-8px; margin-bottom:20px; font-size:11.5px; color:var(--ink-soft);">Tap a day above to see exactly what you'll have done by then.</div>
 
   <div class="religiously">🔥 Works if you follow it daily</div>
   <br>
@@ -649,15 +771,132 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sample-note">This is the actual Day 1 task from inside the course. Day 2 unlocks once you complete it — no skipping ahead, no overwhelm. Just today's task.</div>
   </div>
 
-  <!-- ================= FOUNDER CREDIBILITY (real facts, from founder.html) ================= -->
-  <a href="/founder.html" class="founder-strip">
-    <img src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J, founder" class="founder-photo" loading="lazy">
-    <span class="founder-strip-copy">
-      <strong>Built by Noor Mohammed J</strong> — 16 years in tech.
-      <span class="ventures">TheKahaaniya (28 kids, 2 events, profitable) · Murugaaa.in (built on ₹0, breakeven Month 5)</span>
-    </span>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
-  </a>
+  <!-- ================= TASK 8: WHO THIS IS FOR ================= -->
+  <h2 class="section-h2">Who this is for</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"></path></svg></div>
+      <div class="audience-lbl">Students</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+      <div class="audience-lbl">Employees</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5"></path><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path></svg></div>
+      <div class="audience-lbl">Homemakers</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"></rect><path d="M2 20h20"></path><path d="M8 20l1-4h6l1 4"></path></svg></div>
+      <div class="audience-lbl">Freelancers</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div>
+      <div class="audience-lbl">Creators</div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></div>
+      <div class="audience-lbl">Aspiring Founders</div>
+    </div>
+  </div>
+
+  <!-- ================= TASK 6: FOUNDER (expanded, real facts from founder.html) ================= -->
+  <div class="founder-section">
+    <div class="founder-section-head">
+      <img src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J, founder" class="founder-section-photo" loading="lazy">
+      <div>
+        <div class="founder-section-name">Noor Mohammed J</div>
+        <div class="founder-section-cred">16 years in tech · 4 live ventures · Coimbatore</div>
+      </div>
+    </div>
+    <p class="founder-section-bio"><strong>I build real businesses. Now I help you build yours.</strong> After 16 years in tech and building 4 ventures that are running right now, I broke down what actually worked into one task a day — so you don't have to figure it out alone.</p>
+    <div class="founder-section-ventures">
+      <div class="founder-section-venture"><strong>TheKahaaniya</strong> — storytelling for kids, 28 kids, 2 events, profitable</div>
+      <div class="founder-section-venture"><strong>Murugaaa.in</strong> — temple-tech platform, built on ₹0, breakeven by Month 5</div>
+      <div class="founder-section-venture"><strong>Mentell Community</strong> — a cohort-based mental wellness community</div>
+    </div>
+    <a href="/founder.html" class="founder-section-link">Read the full story <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+  </div>
+
+  <!-- ================= TASK 5: WHY PEOPLE TRUST THEDAYZERO ================= -->
+  <h2 class="section-h2">Why People Trust TheDayZero</h2>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
+      <div class="trust-card-title">Beginner Friendly</div>
+      <div class="trust-card-desc">No jargon, no assumed experience — every task is explained in plain language.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></div>
+      <div class="trust-card-title">Step-by-Step</div>
+      <div class="trust-card-desc">One clear task at a time — never an overwhelming to-do list to figure out.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></div>
+      <div class="trust-card-title">Daily Tasks</div>
+      <div class="trust-card-desc">Tomorrow unlocks only once today's task is done, so you always know what's next.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+      <div class="trust-card-title">7-Day Refund</div>
+      <div class="trust-card-desc">Not for you? Message Noor on WhatsApp within 7 days for a full refund, no forms.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 15l2 2 4-4"></path></svg></div>
+      <div class="trust-card-title">Practical</div>
+      <div class="trust-card-desc">Every day ends with something you did, not just something you watched.</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path><path d="M9 9l1.5 1.5L15 6"></path></svg></div>
+      <div class="trust-card-title">No Experience Needed</div>
+      <div class="trust-card-desc">Built for a first-time founder, not someone who's already run a company.</div>
+    </div>
+  </div>
+
+  <!-- ================= TASK 10: BY DAY 30 YOU WILL HAVE ================= -->
+  <h2 class="section-h2">By Day 30 You Will Have</h2>
+  <div class="outcome-grid">
+    <div class="outcome-card">
+      <div class="outcome-card-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></div>
+      <div><div class="outcome-card-title">A Validated Business Idea</div><div class="outcome-card-desc">Tested on real people, not guessed — you'll know it works because someone told you.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-card-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></div>
+      <div><div class="outcome-card-title">A Tested, Rebuilt Offer</div><div class="outcome-card-desc">Adjusted once already based on real feedback, so it fits what people actually want.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-card-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></div>
+      <div><div class="outcome-card-title">Direct Outreach Experience</div><div class="outcome-card-desc">You'll have gone straight to real people asking for their business, not waited for them to find you.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-card-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></div>
+      <div><div class="outcome-card-title">A Growing Social Presence</div><div class="outcome-card-desc">Built alongside the outreach, so people can find and trust you beyond Day 30.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-card-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></div>
+      <div><div class="outcome-card-title">A Repeatable Process</div><div class="outcome-card-desc">The same test → feedback → adjust cycle, ready to run again any time you want to grow further.</div></div>
+    </div>
+  </div>
+
+  <!-- ================= TASK 11: SOCIAL PROOF (reusable — stays hidden until SOCIAL_PROOF below has entries) ================= -->
+  <div class="social-proof" id="socialProof" style="display:none">
+    <h2 class="section-h2">What students are saying</h2>
+    <div class="social-proof-grid" id="socialProofGrid"></div>
+  </div>
+
+  <!-- ================= TASK 12: REFUND GUARANTEE ================= -->
+  <div class="refund-box">
+    <div class="refund-box-head">
+      <div class="refund-box-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+      <div class="refund-box-title">7-Day Money-Back Guarantee</div>
+    </div>
+    <p class="refund-box-desc">Try the first few days. If it's genuinely not for you, you get every rupee back — no forms, no 20 questions, no waiting on a support ticket.</p>
+    <div class="refund-box-steps">
+      <div class="refund-box-step"><span class="refund-box-step-num">1</span> Message Noor directly on WhatsApp, any time in your first 7 days.</div>
+      <div class="refund-box-step"><span class="refund-box-step-num">2</span> Tell him it's not working for you — that's the whole explanation needed.</div>
+      <div class="refund-box-step"><span class="refund-box-step-num">3</span> Your ₹499 is refunded. Risk-free by design.</div>
+    </div>
+  </div>
 
   <!-- ================= FAQ / OBJECTION HANDLING ================= -->
   <div class="faq-block">
@@ -713,8 +952,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ================= STICKY MOBILE CTA ================= -->
 <div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-price">₹499<span>until 30 Sep</span></div>
-  <a href="https://rzp.io/rzp/xaRyRIP" class="sticky-cta-btn" id="ctaSticky">Start Now</a>
+  <a href="https://rzp.io/rzp/xaRyRIP" class="sticky-cta-btn" id="ctaSticky">🚀 Start Business Today – ₹499</a>
 </div>
 
 <!-- ================= LEAD CAPTURE POPUP ================= -->
@@ -821,6 +1059,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }catch(e){}
   }
 
+  /* ================= course identity + live price, for tracking ================= *
+   * Single source of truth so InitiateCheckout/begin_checkout always send the
+   * price actually shown on the page — 499 today, 1299 automatically once the
+   * same 30 Sep deadline used by the countdown chip above passes. Avoids a
+   * second hardcoded "499" going stale if this page is still live after the
+   * price change. */
+  var COURSE_NAME = 'Run Any Business In 30 Days';
+  var COURSE_ID = 'day_zero_30day';
+  var CURRENCY = 'INR';
+  var PRICE_DEADLINE = new Date('2026-09-30T23:59:59+05:30').getTime();
+  function getCoursePrice(){
+    return Date.now() > PRICE_DEADLINE ? 1299 : 499;
+  }
+
   /* ================= founder video ================= */
   (function(){
     var vid = document.getElementById('founderVideo');
@@ -876,17 +1128,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el.textContent = days === 1 ? '1 day' : (days + ' days');
   })();
 
+  /* ================= Task 11: social proof (reusable, hidden until populated) =================
+     No real testimonials/screenshots/ratings exist yet for this course — verified against the
+     repo, nothing fabricated here. The section (see .social-proof in CSS) stays hidden until
+     this array actually has entries. To add proof later, push objects shaped like:
+       { type:'quote',  name:'Priya S.', role:'Freelancer', text:'...' }
+       { type:'rating', name:'Arun K.',  rating:5, text:'...' }
+       { type:'image',  name:'Divya R.', src:'/assets/testimonial-1.webp', alt:'WhatsApp message from a student' }
+       { type:'video',  name:'Karthik M.', src:'/assets/testimonial-1.mp4' }
+     and this same code renders and reveals the section automatically. */
+  var SOCIAL_PROOF = [];
+  (function(){
+    var wrap = document.getElementById('socialProof');
+    var grid = document.getElementById('socialProofGrid');
+    if(!wrap || !grid || !SOCIAL_PROOF.length) return;
+    SOCIAL_PROOF.forEach(function(item){
+      var card = document.createElement('div');
+      card.className = 'social-proof-card';
+      if(item.type === 'image' || item.type === 'video'){
+        var media = document.createElement(item.type === 'video' ? 'video' : 'img');
+        media.className = 'social-proof-media';
+        media.src = item.src;
+        if(item.alt) media.alt = item.alt;
+        if(item.type === 'video'){ media.controls = true; media.playsInline = true; media.muted = true; }
+        card.appendChild(media);
+      } else {
+        if(item.rating){
+          var stars = document.createElement('div');
+          stars.className = 'social-proof-stars';
+          stars.textContent = '★★★★★'.slice(0, Math.max(0, Math.min(5, item.rating)));
+          card.appendChild(stars);
+        }
+        if(item.text){
+          var text = document.createElement('p');
+          text.className = 'social-proof-text';
+          text.textContent = '“' + item.text + '”';
+          card.appendChild(text);
+        }
+      }
+      if(item.name){
+        var who = document.createElement('div');
+        who.className = 'social-proof-name';
+        who.textContent = item.name + (item.role ? ' · ' + item.role : '');
+        card.appendChild(who);
+      }
+      grid.appendChild(card);
+    });
+    wrap.style.display = '';
+  })();
+
   /* ================= curriculum tap-to-reveal (real copy, sourced from day4-30) ================= */
   var STEP_DETAIL = {
-    'detail-discover': { name:'Discover Your Skill (Days 1–3)', text:'Practice the skill you found in your Ikigai zone — for real, for three days straight. This isn’t about being ready. It’s about finding out if it’s actually you.' },
-    'detail-test1': { name:'Market Test (Days 4–6)', text:'Before you build anything, find out if anyone actually wants it. A 5-minute survey beats months of guessing.' },
-    'detail-build1': { name:'Build The System (Days 7–9)', text:'Time to build the smallest real version of what you’re offering — not the perfect version, the provable one. One dish, one class, one small batch, or one session.' },
-    'detail-feedback1': { name:'Collect Feedback (Days 10–12)', text:'Go back to the people who experienced it and ask what they really thought — not what they think you want to hear.' },
-    'detail-adjust1': { name:'Adjust For Fit (Days 13–15)', text:'This is where most people quit. Don’t. Adjust instead — this is the whole point of testing early.' },
-    'detail-test2': { name:'Retest, Round 2 (Days 16–18)', text:'Same test, sharper offer. This time you already know what people want — a Social Media checklist unlocks alongside it too.' },
-    'detail-build2': { name:'Rebuild, Round 2 (Days 19–21)', text:'Deliver the improved version and watch closely for what’s different this time.' },
-    'detail-feedback2': { name:'Feedback + Adjust, Round 2 (Days 22–24)', text:'One more honest look before you lock in what you’re actually selling.' },
-    'detail-outreach': { name:'Outreach To Targeted Clients (Days 25–30)', text:'Stop waiting for people to find you. Go find them — this is how every real business gets its first paying customer.' }
+    'detail-day1': { name:'Day 1 — Skill Practice Starts', text:'You practice the skill you found in your Ikigai zone — for real, not in theory. This isn’t about being ready. It’s about finding out if it’s actually you.' },
+    'detail-day5': { name:'Day 5 — Idea Tested On Real People', text:'Before building anything, you find out if anyone actually wants it. A 5-minute survey to real people beats months of guessing alone.' },
+    'detail-day10': { name:'Day 10 — Real Feedback Collected', text:'You go back to the people who experienced your smallest real version and ask what they really thought — not what they think you want to hear.' },
+    'detail-day15': { name:'Day 15 — Offer Adjusted For Fit', text:'This is where most people quit. You don’t — you adjust instead. This is the whole point of testing early, and most students are still here on Day 15.' },
+    'detail-day20': { name:'Day 20 — Round 2, Rebuilt Sharper', text:'Same test, sharper offer. You retest with what you learned, then rebuild the improved version and watch closely for what’s different this time.' },
+    'detail-day25': { name:'Day 25 — Direct Outreach Begins', text:'You stop waiting for people to find you and start going to find them — this is how every real business gets its first paying customer.' },
+    'detail-day30': { name:'Day 30 — Live, And Selling', text:'30 days in, you have a tested offer, real feedback behind it, and you’re actively reaching paying customers instead of waiting on luck.' }
   };
 
   var grid = document.getElementById('stepsGrid');
@@ -1079,7 +1378,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
 
       // Apps Script Web App endpoint — see google-apps-script-lead-capture.gs for the
-      // script to deploy; paste the resulting /exec URL here once deployed.
+      // script this deploys. Live as of the "Leads" sheet deployment on 24 Sep 2026.
       var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
 
       function showThanks(){
@@ -1102,9 +1401,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }
 
-  /* purchase click after the popup was ever shown this visit */
+  /* ================= checkout funnel: InitiateCheckout (Meta) + begin_checkout (GA4) =================
+   * Fires on every "Start Now" tap, before the browser follows the link out to
+   * Razorpay. fbq()/gtag() send as non-blocking beacon requests, so this never
+   * delays or risks the actual navigation — confirmed via Playwright request
+   * interception (see tracking-checklist.md). Meta's InitiateCheckout has no
+   * standard "page URL" field, so it's passed as a custom parameter alongside
+   * the standard ones, satisfying the requirement without inventing a
+   * non-existent standard field. */
   document.querySelectorAll('#ctaTop, #ctaBottom, #ctaSticky').forEach(function(btn){
     btn.addEventListener('click', function(){
+      var price = getCoursePrice();
+      try{
+        if(typeof fbq === 'function'){
+          fbq('track', 'InitiateCheckout', {
+            content_name: COURSE_NAME,
+            content_category: 'Course',
+            content_ids: [COURSE_ID],
+            value: price,
+            currency: CURRENCY,
+            page_url: window.location.href
+          });
+        }
+      }catch(e){}
+      track('begin_checkout', {
+        currency: CURRENCY,
+        value: price,
+        items: [{ item_id: COURSE_ID, item_name: COURSE_NAME, price: price, quantity: 1 }]
+      });
+
+      /* purchase click after the popup was ever shown this visit */
       if(popupShown && !purchaseAfterPopupFired){
         purchaseAfterPopupFired = true;
         track('purchase_cta_clicked_after_popup', { cta_id: btn.id });
@@ -1113,5 +1439,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 })();
 </script>
+
 </body>
 </html>
