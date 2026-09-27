@@ -70,7 +70,9 @@
     padding:14px 22px;background:rgba(244,241,231,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
   .brand-mini{display:flex;align-items:center;gap:8px;}
   .brand-mini .bm-text{font-family:'Poppins',sans-serif;font-weight:800;font-size:19px;letter-spacing:-0.01em;color:var(--ink);}
-  .brand-mini .bm-mark{font-size:20px;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+  .brand-mini .bm-mark{font-size:20px;color:var(--ink);letter-spacing:-0.02em;line-height:1;
+    display:inline-block;transition:transform .5s cubic-bezier(.34,1.56,.64,1);}
+  .brand-mini:hover .bm-mark{transform:rotate(90deg);}
   .top-chrome-right{display:flex;align-items:center;gap:10px;}
   .identity-badge{border:1.5px solid var(--line);background:var(--white);color:var(--ink-soft);font-weight:700;font-size:12px;padding:7px 13px;border-radius:20px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .identity-badge.has-name{color:var(--sage-deep);border-color:var(--sage-bright);background:var(--panel-mint);}
@@ -81,18 +83,32 @@
 
   /* ============ HERO ============ */
   .hero{padding:44px 0 30px 0;}
-  .hero-eyebrow{color:rgba(20,26,19,0.62);}
-  .hero h1{font-size:clamp(28px,5vw,42px);margin-top:10px;}
-  .hero-lead{margin-top:12px;color:var(--ink-soft);font-size:16.5px;max-width:560px;line-height:1.55;}
-  .hero-actions{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap;}
-  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:13px 22px;border-radius:12px;border:none;text-decoration:none;transition:transform .15s ease,background .15s ease;}
-  .btn-primary{background:var(--ink);color:var(--white);}
-  .btn-primary:hover{background:var(--sage-deep);transform:translateY(-2px);}
+  .hero-eyebrow{color:rgba(20,26,19,0.62);
+    animation:d0Reveal .6s cubic-bezier(.16,1,.3,1) .05s both;}
+  .hero h1{font-size:clamp(28px,5vw,42px);margin-top:10px;
+    animation:d0Reveal .6s cubic-bezier(.16,1,.3,1) .12s both;}
+  .hero-lead{margin-top:12px;color:var(--ink-soft);font-size:16.5px;max-width:560px;line-height:1.55;
+    animation:d0Reveal .6s cubic-bezier(.16,1,.3,1) .2s both;}
+  .hero-actions{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap;
+    animation:d0Reveal .6s cubic-bezier(.16,1,.3,1) .28s both;}
+  /* REDESIGN LAYER (Sep 2026): one-time load entrance, pure CSS keyframe with
+     animation-fill-mode:both — same reasoning as the homepage's hero reveal:
+     it always resolves fully visible even if the animation never runs, and it
+     is automatically neutralized by the existing html.reduce-motion rule
+     above (animation-duration:0.01ms !important) with zero extra overrides. */
+  @keyframes d0Reveal{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:13px 22px;border-radius:12px;border:none;text-decoration:none;
+    transition:transform .25s cubic-bezier(.16,1,.3,1),background .15s ease,box-shadow .25s cubic-bezier(.16,1,.3,1);will-change:transform;}
+  .btn-primary{background:var(--ink);color:var(--white);box-shadow:0 6px 18px rgba(20,26,19,0.18);}
+  .btn-primary:hover{background:var(--sage-deep);transform:translateY(-2px);box-shadow:0 10px 26px rgba(20,26,19,0.28);}
+  .btn-primary:active{transform:scale(0.97) !important;transition-duration:.1s;}
   .btn-ghost{background:transparent;color:var(--ink);border:2px solid rgba(20,26,19,0.25);}
-  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .btn-ghost:active{transform:scale(0.97) !important;}
   .btn-sm{padding:9px 16px;font-size:12.5px;}
 
-  .progress-hero{display:flex;align-items:center;gap:18px;margin-top:26px;background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:18px 22px;}
+  .progress-hero{display:flex;align-items:center;gap:18px;margin-top:26px;background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:18px 22px;
+    animation:d0Reveal .6s cubic-bezier(.16,1,.3,1) .36s both;}
   .progress-ring{width:64px;height:64px;flex-shrink:0;}
   .progress-hero-text .ptitle{font-weight:700;font-size:15px;color:var(--ink);}
   .progress-hero-text .psub{font-size:12.5px;color:var(--ink-soft);margin-top:3px;}
@@ -144,10 +160,68 @@
   .day-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:10px;}
   .day-complete-check{display:flex;align-items:center;gap:10px;}
   .day-checkbox{width:24px;height:24px;border-radius:7px;border:2px solid var(--sage);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .2s ease;}
-  .day-checkbox.checked{background:var(--sage);}
+  .day-checkbox.checked{background:var(--sage);animation:checkPop .35s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes checkPop{0%{transform:scale(1);}45%{transform:scale(1.25);}100%{transform:scale(1);}}
   .day-checkbox svg{width:13px;height:13px;opacity:0;transition:opacity .15s ease;}
   .day-checkbox.checked svg{opacity:1;}
   .day-complete-label{font-size:15px;font-weight:600;color:var(--ink);}
+
+  /* ============ JOURNEY RAIL (all 30 days, one glance) ============ */
+  .journey-rail{margin-top:22px;}
+  .rail-track{display:flex;gap:8px;overflow-x:auto;padding:4px 3px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+  .rail-pip{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:var(--white);
+    color:var(--ink-soft);font-family:'Poppins',sans-serif;font-weight:800;font-size:12px;display:flex;align-items:center;
+    justify-content:center;transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease;}
+  .rail-pip svg{width:14px;height:14px;}
+  .rail-pip.done{background:var(--sage-deep);border-color:var(--sage-deep);color:#fff;}
+  .rail-pip.current{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 0 0 4px rgba(20,26,19,0.22);animation:railPulse 2s ease-in-out infinite;}
+  .rail-pip.locked{background:rgba(255,253,247,0.55);border-color:rgba(20,26,19,0.18);color:rgba(20,26,19,0.4);opacity:1;cursor:default;}
+  .rail-pip.locked svg{width:12px;height:12px;}
+  .rail-pip:not(.locked){cursor:pointer;}
+  .rail-pip.done:hover,.rail-pip.current:hover{transform:translateY(-2px) scale(1.08);}
+  @keyframes railPulse{0%,100%{box-shadow:0 0 0 4px rgba(20,26,19,0.22);}50%{box-shadow:0 0 0 9px rgba(20,26,19,0.08);}}
+  html.reduce-motion .rail-pip.current{animation:none;}
+  .rail-hint{font-size:11.5px;color:var(--ink-soft);text-align:center;margin-top:-4px;opacity:0.75;}
+
+  /* ============ STAGE CARD (the single active day — everything else stays hidden) ============ */
+  .stage-wrap{margin-top:20px;scroll-margin-top:76px;}
+  .stage-back-btn{display:inline-flex;align-items:center;gap:4px;background:none;border:none;font-family:'Quicksand',sans-serif;
+    font-weight:700;font-size:12.5px;color:var(--sage-deep);cursor:pointer;padding:4px 2px;margin-bottom:10px;
+    text-decoration:underline;text-underline-offset:2px;}
+  .stage-back-btn:hover{color:var(--ink);}
+  .stage-back-btn.on-dark{color:var(--sage-bright);}
+  .stage-back-btn.on-dark:hover{color:var(--white);}
+  .stage-phase-tag{display:inline-flex;align-items:center;gap:6px;font-family:'Quicksand',sans-serif;font-weight:700;
+    font-size:11.5px;letter-spacing:0.4px;text-transform:uppercase;color:var(--sage-deep);background:var(--panel-mint);
+    padding:5px 12px;border-radius:9999px;margin-bottom:12px;}
+  .stage-phase-mission{font-size:13.5px;color:var(--ink-soft);background:var(--bg-cream);border-radius:12px;
+    padding:12px 14px;margin-bottom:16px;line-height:1.55;}
+  .stage-card{background:var(--white);border:1.5px solid var(--sage-bright);border-radius:var(--radius-lg);
+    padding:24px 24px 22px;box-shadow:var(--shadow-card);}
+  .stage-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+  .stage-num{width:46px;height:46px;border-radius:50%;background:var(--panel-mint);color:var(--sage-deep);
+    display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;
+    font-size:16px;flex-shrink:0;}
+  .stage-title{font-size:18.5px;font-weight:800;color:var(--ink);font-family:'Poppins',sans-serif;line-height:1.25;}
+  .stage-of{font-size:12px;font-weight:600;color:var(--sage-deep);margin-top:2px;}
+  .stage-task{font-size:16px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px;}
+  .stage-submit-btn{width:100%;justify-content:center;margin-top:6px;}
+  .stage-submit-btn:disabled{opacity:0.4;cursor:not-allowed;}
+  .stage-submit-btn:disabled:hover{background:var(--ink);transform:none;}
+  .stage-unlock-hint{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:9px;}
+
+  /* ============ completed-day popover (tap a done pip on the rail) ============ */
+  .day-popover-overlay{position:fixed;inset:0;background:rgba(20,26,19,0.45);display:none;align-items:center;
+    justify-content:center;z-index:920;padding:20px;}
+  .day-popover-overlay.show{display:flex;}
+  .day-popover{background:var(--white);border-radius:18px;padding:24px 24px 20px;max-width:400px;width:100%;
+    box-shadow:var(--shadow-pop);animation:modalIn .3s ease;}
+  .day-popover .label{color:var(--sage);}
+  .day-popover h4{font-size:17px;margin-top:6px;color:var(--ink);}
+  .day-popover .dp-proof-label{font-size:12px;font-weight:700;color:var(--sage-deep);margin-top:14px;margin-bottom:5px;}
+  .day-popover .dp-proof{font-size:13.5px;color:var(--ink-soft);background:var(--panel-mint);border-radius:10px;
+    padding:10px 12px;line-height:1.5;word-break:break-word;}
+  .day-popover .dp-close{margin-top:18px;width:100%;}
 
   /* Day 3 decision widget */
   .decision-box{background:var(--panel-mint);border-radius:14px;padding:18px 20px;margin-top:16px;}
@@ -192,7 +266,7 @@
   .social-handle .proof-sent-indicator{color:var(--sage-bright);display:block;margin-top:7px;}
 
   /* ============ MILESTONE ============ */
-  .milestone-card{margin-top:20px;background:var(--ink);color:var(--white);border-radius:var(--radius-lg);padding:28px 26px;text-align:center;display:none;}
+  .milestone-card{margin-top:20px;background:var(--ink);color:var(--white);border-radius:var(--radius-lg);padding:28px 26px;text-align:center;display:none;scroll-margin-top:76px;}
   .milestone-card.show{display:block;}
   .milestone-card h3{font-size:22px;margin-top:6px;}
   .milestone-card p{font-size:15.5px;color:#c8d1c6;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.55;}
@@ -219,7 +293,9 @@
   footer .fwrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:820px;margin:0 auto;padding:0 24px;}
   footer .fname{display:flex;align-items:center;gap:7px;}
   footer .fname .footer-text{font-family:'Poppins',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.01em;color:var(--ink);}
-  footer .fname .footer-mark{font-size:15px;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+  footer .fname .footer-mark{font-size:15px;color:var(--ink);letter-spacing:-0.02em;line-height:1;
+    display:inline-block;transition:transform .5s cubic-bezier(.34,1.56,.64,1);}
+  footer .fname:hover .footer-mark{transform:rotate(90deg);}
   footer .fname .fby{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.3px;text-transform:none;color:var(--ink-soft);font-size:12px;margin-left:2px;}
   footer .flinks{font-size:12.5px;color:var(--ink-soft);text-decoration:underline;}
 
@@ -229,8 +305,19 @@
   @keyframes wa-pulse{0%,100%{box-shadow:0 6px 20px rgba(0,0,0,0.25),0 0 0 0 rgba(37,211,102,0.5);}50%{box-shadow:0 6px 20px rgba(0,0,0,0.25),0 0 0 10px rgba(37,211,102,0);}}
   @media(max-width:600px){.wa-sticky{width:50px;height:50px;bottom:16px;right:16px;}.wa-sticky svg{width:25px;height:25px;}}
 
+  .wa-tooltip{position:fixed;bottom:92px;right:14px;z-index:899;max-width:200px;background:var(--ink);color:var(--white);
+    font-family:'Inter',sans-serif;font-size:13px;font-weight:600;line-height:1.4;padding:10px 28px 10px 14px;
+    border-radius:14px;box-shadow:0 8px 24px rgba(20,26,19,0.28);opacity:0;transform:translateY(8px) scale(0.96);
+    pointer-events:none;transition:opacity .35s ease,transform .35s ease;}
+  .wa-tooltip.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+  .wa-tooltip-arrow{position:absolute;bottom:-7px;right:29px;width:16px;height:8px;fill:var(--ink);}
+  .wa-tooltip-close{position:absolute;top:3px;right:6px;background:none;border:none;color:rgba(255,253,247,0.7);
+    font-size:16px;line-height:1;cursor:pointer;padding:5px;}
+  .wa-tooltip-close:hover{color:var(--white);}
+  @media(max-width:600px){.wa-tooltip{bottom:78px;right:10px;max-width:170px;font-size:12.5px;}.wa-tooltip-arrow{right:23px;}}
+
   .help-sticky{position:fixed;bottom:22px;left:22px;z-index:900;display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--white);text-decoration:none;border:none;font-family:inherit;cursor:pointer;padding:12px 18px 12px 14px;border-radius:24px;box-shadow:0 6px 20px rgba(20,26,19,0.28);transition:transform .2s ease,background .2s ease;max-width:min(72vw,260px);text-align:left;}
-  .help-sticky:hover{transform:translateY(-2px);background:var(--sage-deep);}
+  .help-sticky:hover{transform:translateY(-2px);background:var(--sage-deep);box-shadow:0 10px 26px rgba(20,26,19,0.38);}
   .help-sticky-icon{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
   .help-sticky-icon svg{width:20px;height:20px;}
   .help-sticky-text{font-size:13px;font-weight:700;white-space:normal;line-height:1.25;}
@@ -245,11 +332,18 @@
 
   .modal-overlay{position:fixed;inset:0;background:rgba(20,26,19,0.55);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px;}
   .modal-overlay.show{display:flex;}
-  .modal-box{background:var(--white);border-radius:20px;max-width:460px;width:100%;padding:32px 30px 26px 30px;position:relative;box-shadow:var(--shadow-pop);max-height:88vh;overflow-y:auto;animation:modalIn .35s ease;}
+  .modal-box{background:var(--white);border-radius:20px;max-width:460px;width:100%;padding:32px 30px 26px 30px;position:relative;box-shadow:var(--shadow-pop);max-height:88vh;overflow-y:auto;animation:modalIn .35s cubic-bezier(.16,1,.3,1);}
   .calendly-modal-box{max-width:640px;}
   .calendly-modal-box .calendly-inline-widget{border-radius:14px;overflow:hidden;border:1.5px solid var(--line);margin-top:18px;}
   @media(max-width:600px){.calendly-modal-box .calendly-inline-widget{height:520px !important;}}
   @keyframes modalIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  /* REDESIGN LAYER (Sep 2026): brief shake for an invalid identity-form submit
+     (see the 'invalid' listener near identityFormEl below) — same pattern as
+     the homepage's lead-modal shake. Overrides the .modal-box animation
+     property only while .shake is present; modalIn has already finished
+     playing by the time a submit could fail, so nothing is lost. */
+  @keyframes formShake{10%,90%{transform:translateX(-1px);}20%,80%{transform:translateX(2px);}30%,50%,70%{transform:translateX(-4px);}40%,60%{transform:translateX(4px);}}
+  .modal-box.shake{animation:formShake .5s cubic-bezier(.36,.07,.19,.97) both;}
   .modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;color:var(--ink-soft);width:30px;height:30px;}
   .modal-box .label{color:var(--sage);}
   .modal-box h3{font-size:21px;margin-top:8px;color:var(--ink);}
@@ -361,6 +455,11 @@
   </div>
 </footer>
 
+<div class="wa-tooltip" id="waTooltip" role="status">
+  <button type="button" class="wa-tooltip-close" id="waTooltipCloseBtn" aria-label="Dismiss">&times;</button>
+  <span data-i18n="sticky.wa_tooltip"></span>
+  <svg class="wa-tooltip-arrow" viewBox="0 0 20 10" aria-hidden="true"><path d="M0 0 L10 10 L20 0 Z"/></svg>
+</div>
 <a href="https://wa.me/919629843122?text=Hi!%20I'm%20working%20through%20the%2030-day%20plan%20and%20have%20a%20question." class="wa-sticky" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.83 14.09c-.25.7-1.23 1.28-2.02 1.45-.55.12-1.26.21-3.66-.78-3.07-1.27-5.05-4.39-5.2-4.59-.15-.2-1.25-1.66-1.25-3.17s.79-2.24 1.07-2.55c.28-.3.61-.38.82-.38.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.85 2.08.93 2.23.08.15.13.32.03.52-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.36 1.46.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.75.83 2.05.98.3.15.5.22.58.35.07.13.07.75-.18 1.45z"/></svg>
 </a>
@@ -420,6 +519,16 @@
   </div>
 </div>
 
+<div class="day-popover-overlay" id="dayPopoverOverlay">
+  <div class="day-popover">
+    <div class="label" data-i18n="day.completed_tag">COMPLETED</div>
+    <h4 id="dayPopoverTitle"></h4>
+    <div class="dp-proof-label" id="dayPopoverProofLabel"></div>
+    <div class="dp-proof" id="dayPopoverProof"></div>
+    <button type="button" class="btn btn-ghost dp-close clickable" id="dayPopoverCloseBtn" data-i18n="day.popover_close"></button>
+  </div>
+</div>
+
 <script>
 window.I18N = {
   en: {
@@ -438,7 +547,7 @@ window.I18N = {
   "guide.title": "How This 30-Day Plan Works",
   "guide.subtitle": "Read this once — then just show up daily.",
   "guide.step1": "The plan is split into 9 short phases, each 3-6 days long. You only ever see today's task.",
-  "guide.step2": "Complete a day's task and check it off to unlock the next day. You can't skip ahead — that's on purpose.",
+  "guide.step2": "Complete a day's task and submit your proof to unlock the next day. You can't skip ahead — that's on purpose.",
   "guide.step3": "On Day 3, you'll decide honestly if the skill you're practicing is really you. If not, you can go redefine it on the Quick Start tool and come back.",
   "guide.step4": "From Day 16, a parallel Social Media checklist unlocks too — build it alongside your daily task, at your own pace.",
   "guide.step5": "At a few key milestones, you'll get the option to book a free 15-minute session with Noor to work through it together.",
@@ -446,16 +555,22 @@ window.I18N = {
 
   "day.note_label": "Your note (optional)",
   "day.note_placeholder": "Anything worth remembering about today...",
-  "day.complete_btn": "Mark Day {n} Complete",
+  "day.complete_btn": "Submit Proof & Continue",
+  "day.unlock_hint": "This unlocks Day {n}",
+  "day.popover_close": "Close",
+  "day.all_done_caption": "🎉 All 30 days complete — scroll down for what's next.",
   "day.completed_tag": "Completed",
   "day.locked_tag": "Locked — finish Day {n} first",
   "day.today_tag": "Today",
-  "day.proof_label": "Add proof (optional)",
+  "day.proof_label": "Your proof (required to unlock the next day)",
   "day.proof_placeholder": "Paste a link, a screenshot URL, or write a quick note...",
-  "day.proof_hint": "This goes straight to our team, so we know it's really happening — not just a box you're ticking.",
+  "day.proof_hint": "This goes straight to our team, so we know it's really happening — not just a box you're ticking. Add anything here and tap submit to move to the next day.",
   "day.proof_saved": "Sent ✓",
+  "day.back_to": "‹ Back to Day {n}",
+  "day.rail_hint": "Tap any completed day above to look back at it",
 
   "sticky.help_cta": "Stuck? Book free help",
+  "sticky.wa_tooltip": "I'm here, ping me anytime!",
 
   "calendly_modal.label": "Book a session",
   "calendly_modal.title": "Grab a free 15 minutes with Noor",
@@ -642,7 +757,7 @@ window.I18N = {
   "guide.title": "यह 30-दिन प्लान कैसे काम करता है",
   "guide.subtitle": "इसे एक बार पढ़ें — फिर बस रोज़ आते रहें।",
   "guide.step1": "यह प्लान 9 छोटे फ़ेज़ में बंटा है, हर एक 3-6 दिन का। आपको हमेशा सिर्फ़ आज का काम दिखेगा।",
-  "guide.step2": "किसी दिन का काम पूरा करें और उसे चेक करें ताकि अगला दिन अनलॉक हो। आप आगे नहीं कूद सकते — यह जानबूझकर है।",
+  "guide.step2": "किसी दिन का काम पूरा करें और प्रूफ़ सबमिट करें ताकि अगला दिन अनलॉक हो। आप आगे नहीं कूद सकते — यह जानबूझकर है।",
   "guide.step3": "डे 3 पर, आप ईमानदारी से तय करेंगे कि जो हुनर आप प्रैक्टिस कर रहे हैं वो सच में आप ही हैं या नहीं। अगर नहीं, तो आप क्विक स्टार्ट टूल पर जाकर उसे फिर से तय कर सकते हैं और वापस आ सकते हैं।",
   "guide.step4": "डे 16 से, नीचे एक पैरेलल सोशल मीडिया चेकलिस्ट भी अनलॉक होती है। इसे अपने डेली टास्क के साथ-साथ, अपनी रफ़्तार से करें।",
   "guide.step5": "कुछ ज़रूरी माइलस्टोन पर, आपको नूर के साथ मुफ़्त 15-मिनट सेशन बुक करने का विकल्प मिलेगा ताकि साथ मिलकर आगे बढ़ें।",
@@ -650,16 +765,22 @@ window.I18N = {
 
   "day.note_label": "आपका नोट (वैकल्पिक)",
   "day.note_placeholder": "आज के बारे में कुछ भी जो याद रखने लायक हो...",
-  "day.complete_btn": "डे {n} पूरा किया",
+  "day.complete_btn": "प्रूफ़ सबमिट करें",
+  "day.unlock_hint": "इससे डे {n} अनलॉक होगा",
+  "day.popover_close": "बंद करें",
+  "day.all_done_caption": "🎉 सभी 30 दिन पूरे हुए — आगे क्या है, नीचे देखें।",
   "day.completed_tag": "पूरा हुआ",
   "day.locked_tag": "लॉक्ड — पहले डे {n} पूरा करें",
   "day.today_tag": "आज",
-  "day.proof_label": "प्रूफ़ जोड़ें (वैकल्पिक)",
+  "day.proof_label": "आपका प्रूफ़ (अगला दिन खोलने के लिए ज़रूरी)",
   "day.proof_placeholder": "एक लिंक, स्क्रीनशॉट URL पेस्ट करें, या एक छोटा नोट लिखें...",
-  "day.proof_hint": "यह सीधे हमारी टीम के पास जाता है, ताकि हमें पता चले कि यह सच में हो रहा है — सिर्फ़ एक बॉक्स टिक करना नहीं।",
+  "day.proof_hint": "यह सीधे हमारी टीम के पास जाता है, ताकि हमें पता चले कि यह सच में हो रहा है — सिर्फ़ एक बॉक्स टिक करना नहीं। कुछ भी लिखें और अगले दिन के लिए सबमिट करें।",
   "day.proof_saved": "भेज दिया ✓",
+  "day.back_to": "‹ डे {n} पर वापस जाएं",
+  "day.rail_hint": "ऊपर किसी भी पूरे हुए दिन पर टैप करके उसे फिर से देखें",
 
   "sticky.help_cta": "अटक गए? मुफ़्त मदद लें",
+  "sticky.wa_tooltip": "मैं यहाँ हूं, कभी भी पिंग करें!",
 
   "calendly_modal.label": "सेशन बुक करें",
   "calendly_modal.title": "नूर के साथ मुफ़्त 15 मिनट पाएं",
@@ -846,7 +967,7 @@ window.I18N = {
   "guide.title": "இந்த 30-நாள் திட்டம் எப்படி வேலை செய்கிறது",
   "guide.subtitle": "இதை ஒருமுறை படியுங்கள் — பிறகு தினமும் வாருங்கள்.",
   "guide.step1": "இந்த திட்டம் 9 சிறிய கட்டங்களாக பிரிக்கப்பட்டுள்ளது, ஒவ்வொன்றும் 3-6 நாட்கள். உங்களுக்கு எப்போதும் இன்றைய பணி மட்டுமே தெரியும்.",
-  "guide.step2": "ஒரு நாளின் பணியை முடித்து, அடுத்த நாளைத் திறக்க அதைச் சரிபார்க்கவும். நீங்கள் முன்னேறிக் குதிக்க முடியாது — இது வேண்டுமென்றே செய்யப்பட்டது.",
+  "guide.step2": "ஒரு நாளின் பணியை முடித்து, ஆதாரத்தை சமர்ப்பித்து அடுத்த நாளைத் திறக்கவும். நீங்கள் முன்னேறிக் குதிக்க முடியாது — இது வேண்டுமென்றே செய்யப்பட்டது.",
   "guide.step3": "நாள் 3 அன்று, நீங்கள் பயிற்சி செய்யும் திறமை உண்மையில் நீங்கள்தானா என்பதை நேர்மையாக முடிவு செய்வீர்கள். இல்லையென்றால், குயிக் ஸ்டார்ட் டூலுக்குச் சென்று அதை மீண்டும் வரையறுத்து திரும்பி வரலாம்.",
   "guide.step4": "நாள் 16 முதல், கீழே ஒரு இணையான சோஷியல் மீடியா செக்லிஸ்டும் திறக்கும். உங்கள் தினசரி பணியுடன் சேர்த்து, உங்கள் வேகத்தில் அதை செய்யுங்கள்.",
   "guide.step5": "சில முக்கியமான மைல்கல்களில், நூருடன் ஒன்றாக வேலை செய்ய இலவச 15-நிமிட அமர்வை பதிவு செய்யும் வாய்ப்பு கிடைக்கும்.",
@@ -854,16 +975,22 @@ window.I18N = {
 
   "day.note_label": "உங்கள் குறிப்பு (விருப்பத்தேர்வு)",
   "day.note_placeholder": "இன்று பற்றி நினைவில் வைக்க வேண்டியது ஏதேனும்...",
-  "day.complete_btn": "நாள் {n} முடிந்தது என குறிக்கவும்",
+  "day.complete_btn": "ஆதாரத்தை சமர்ப்பிக்கவும்",
+  "day.unlock_hint": "இது நாள் {n}-ஐ திறக்கும்",
+  "day.popover_close": "மூடு",
+  "day.all_done_caption": "🎉 அனைத்து 30 நாட்களும் முடிந்தது — அடுத்து என்ன என்பதைக் கீழே பாருங்கள்.",
   "day.completed_tag": "முடிந்தது",
   "day.locked_tag": "பூட்டப்பட்டது — முதலில் நாள் {n} முடிக்கவும்",
   "day.today_tag": "இன்று",
-  "day.proof_label": "ஆதாரம் சேர்க்கவும் (விருப்பத்தேர்வு)",
+  "day.proof_label": "உங்கள் ஆதாரம் (அடுத்த நாளைத் திறக்க அவசியம்)",
   "day.proof_placeholder": "ஒரு இணைப்பு, ஸ்க்ரீன்ஷாட் URL ஒட்டவும், அல்லது ஒரு குறிப்பு எழுதவும்...",
-  "day.proof_hint": "இது நேரடியாக எங்கள் அணிக்குச் செல்கிறது, இது உண்மையில் நடக்கிறது என்பதை நாங்கள் அறிய — வெறும் பெட்டியை டிக் செய்வது அல்ல.",
+  "day.proof_hint": "இது நேரடியாக எங்கள் அணிக்குச் செல்கிறது, இது உண்மையில் நடக்கிறது என்பதை நாங்கள் அறிய — வெறும் பெட்டியை டிக் செய்வது அல்ல. ஏதேனும் எழுதி அடுத்த நாளுக்கு சமர்ப்பிக்கவும்.",
   "day.proof_saved": "அனுப்பப்பட்டது ✓",
+  "day.back_to": "‹ நாள் {n}-க்குத் திரும்பு",
+  "day.rail_hint": "மேலே முடிந்த எந்த நாளையும் தட்டி மீண்டும் பாருங்கள்",
 
   "sticky.help_cta": "சிக்கலா? இலவச உதவி பெறுங்கள்",
+  "sticky.wa_tooltip": "நான் இங்கே இருக்கிறேன், எப்போது வேண்டுமானாலும் பிங் செய்யுங்கள்!",
 
   "calendly_modal.label": "அமர்வு பதிவு செய்யவும்",
   "calendly_modal.title": "நூருடன் இலவச 15 நிமிடம் பெறுங்கள்",
@@ -1051,6 +1178,31 @@ window.I18N = {
   try{ prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   if(prefersReducedMotion){ document.documentElement.classList.add('reduce-motion'); }
 
+  /* ================= REDESIGN LAYER (Sep 2026): magnetic primary buttons =================
+     Delegated on document (not bound per-button) because .btn-primary elements
+     are constantly re-created via innerHTML as the course re-renders (stage
+     submit button, day-3 decision button, etc.) -- delegation means every one
+     of them gets the effect with no rebinding needed after each render.
+     Desktop-only by nature (needs mousemove); skipped entirely under
+     prefers-reduced-motion. */
+  if(!prefersReducedMotion){
+    var MAGNET_STRENGTH = 10;
+    var magnetActiveEl = null;
+    document.addEventListener('mousemove', function(e){
+      var el = e.target && e.target.closest ? e.target.closest('.btn.btn-primary') : null;
+      if(el && !el.disabled){
+        var rect = el.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width - 0.5;
+        var relY = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = 'translate(' + (relX * MAGNET_STRENGTH).toFixed(1) + 'px, ' + (relY * MAGNET_STRENGTH * 0.6 - 2).toFixed(1) + 'px)';
+        magnetActiveEl = el;
+      } else if(magnetActiveEl){
+        magnetActiveEl.style.transform = '';
+        magnetActiveEl = null;
+      }
+    });
+  }
+
   /* ================= Data model ================= */
   var PHASES = [
     { key:'discover',  days:[1,2,3],             howto:null,     milestoneAfter:null },
@@ -1123,8 +1275,13 @@ window.I18N = {
       source: eventType,
       page: proofText || '(no proof added)'
     };
+    // Pre-existing gap fixed here: fetch() rejects asynchronously on a real network
+    // failure (patchy mobile data, DNS hiccup) — a bare try/catch only guards the
+    // synchronous call itself, not that rejection, so it was surfacing as an unhandled
+    // promise rejection. A day's progress is already saved locally regardless of
+    // whether this row makes it to the sheet, so failure here is silent by design.
     try{
-      fetch(PROGRESS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) });
+      fetch(PROGRESS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) }).catch(function(){});
     }catch(e){}
   }
 
@@ -1189,22 +1346,52 @@ window.I18N = {
     return PHASES.findIndex(function(p){ return p.key === phaseKey; }) + 1;
   }
 
-  function dayCardHtml(n){
-    var complete = isComplete(n);
-    var unlocked = isUnlocked(n);
-    var isToday = unlocked && !complete;
-    var classes = ['day-card'];
-    if(!unlocked) classes.push('locked');
-    if(complete) classes.push('completed');
-    if(isToday) classes.push('today');
-    var note = (state.days[n] && state.days[n].note) || '';
+  /* ================= Journey rail — all 30 days at a glance, one active stage below ================= */
+  function journeyRailHtml(activeN){
+    var pips = '';
+    var hasCompleted = false;
+    for(var i=1;i<=TOTAL_DAYS;i++){
+      var cls = ['rail-pip'];
+      var inner, aria;
+      if(isComplete(i)){
+        hasCompleted = true;
+        cls.push('done');
+        inner = '<svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        aria = t('day.completed_tag') + ' — Day ' + i;
+      } else if(i === activeN){
+        cls.push('current');
+        inner = i;
+        aria = t('day.today_tag') + ' — Day ' + i;
+      } else {
+        cls.push('locked');
+        inner = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+        aria = tf('day.locked_tag', {n:i-1});
+      }
+      pips += '<button type="button" class="' + cls.join(' ') + '" data-rail-day="' + i + '" aria-label="' + escapeHtml(aria) + '">' + inner + '</button>';
+    }
+    // A completed day is tappable (opens a read-only review of that day's task/note/proof) —
+    // this hint is what makes that discoverable, since a small rail pip alone wasn't obvious enough.
+    var hint = hasCompleted ? '<p class="rail-hint">' + escapeHtml(t('day.rail_hint')) + '</p>' : '';
+    return '<div class="journey-rail"><div class="rail-track" id="railTrack">' + pips + '</div>' + hint + '</div>';
+  }
 
-    var tag = complete ? t('day.completed_tag') : (unlocked ? t('day.today_tag') : tf('day.locked_tag', {n:n-1}));
+  /* One card at a time: only the current day (or a milestone/decision moment) is ever
+     shown here — the rail above is what gives the sense of the whole 30-day arc, so this
+     page never turns into one long scroll of 30 cards. */
+  function stageCardHtml(n){
+    var phase = PHASES.find(function(p){ return p.days.indexOf(n) !== -1; });
+    var isFirstOfPhase = phase && phase.days[0] === n;
+    // n-1 is always complete here (that's what unlocked n), so this is always safe —
+    // reuses the same [data-rail-day] click handler the rail pips use, which opens
+    // the read-only review popover for a completed day.
+    var backBtn = (n > 1) ? ('<button type="button" class="stage-back-btn clickable" data-rail-day="' + (n-1) + '">' + escapeHtml(tf('day.back_to', {n:n-1})) + '</button>') : '';
+    var phaseTag = phase ? ('<div class="stage-phase-tag">' + escapeHtml(t('phase.'+phase.key+'.range')) + ' · ' + escapeHtml(t('phase.'+phase.key+'.name')) + '</div>') : '';
+    var missionBlock = (isFirstOfPhase && phase) ? ('<p class="stage-phase-mission">' + escapeHtml(t('phase.'+phase.key+'.mission')) + '</p>') : '';
+    var howto = (phase && phase.howto === 'survey') ? howtoSurveyHtml() : '';
 
     var bodyInner = '';
     if(n === 3){
-      var noteVisible = false;
-      bodyInner += '<p class="day-task">' + escapeHtml(t('day.'+n+'.task')) + '</p>';
+      bodyInner += '<p class="stage-task">' + escapeHtml(t('day.'+n+'.task')) + '</p>';
       bodyInner += '<div class="decision-box">' +
         '<div class="decision-q">' + escapeHtml(t('day3.decision.question')) + '</div>' +
         '<div class="decision-actions">' +
@@ -1214,8 +1401,11 @@ window.I18N = {
         '<div class="decision-no-note" id="decisionNoNote">' + escapeHtml(t('day3.decision.no_note')) + '</div>' +
       '</div>';
     } else {
+      var note = (state.days[n] && state.days[n].note) || '';
       var proof = (state.days[n] && state.days[n].proof) || '';
-      bodyInner += '<p class="day-task">' + escapeHtml(t('day.'+n+'.task')) + '</p>';
+      var hasProof = proof.trim().length > 0;
+      bodyInner += '<p class="stage-task">' + escapeHtml(t('day.'+n+'.task')) + '</p>';
+      bodyInner += howto;
       bodyInner += '<div class="day-note">' +
         '<label>' + escapeHtml(t('day.note_label')) + '</label>' +
         '<textarea data-note-day="' + n + '" placeholder="' + escapeHtml(t('day.note_placeholder')) + '">' + escapeHtml(note) + '</textarea>' +
@@ -1225,26 +1415,25 @@ window.I18N = {
         '<input type="text" data-proof-day="' + n + '" placeholder="' + escapeHtml(t('day.proof_placeholder')) + '" value="' + escapeHtml(proof) + '">' +
         '<p class="proof-hint">' + escapeHtml(t('day.proof_hint')) + '</p>' +
       '</div>';
-      bodyInner += '<div class="day-footer">' +
-        '<div class="day-complete-check clickable" data-toggle-day="' + n + '">' +
-          '<div class="day-checkbox' + (complete ? ' checked' : '') + '"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
-          '<span class="day-complete-label">' + escapeHtml(tf('day.complete_btn', {n:n})) + '</span>' +
-        '</div>' +
-        '<span class="proof-sent-indicator" data-proof-sent="' + n + '">' + (complete ? escapeHtml(t('day.proof_saved')) : '') + '</span>' +
-      '</div>';
+      bodyInner += '<button type="button" class="btn btn-primary stage-submit-btn clickable" id="stageSubmitBtn" data-submit-day="' + n + '"' + (hasProof ? '' : ' disabled') + '>' + escapeHtml(t('day.complete_btn')) + '</button>';
+      if(n < TOTAL_DAYS){
+        bodyInner += '<div class="stage-unlock-hint">' + escapeHtml(tf('day.unlock_hint', {n:n+1})) + '</div>';
+      }
     }
 
     return (
-      '<div class="' + classes.join(' ') + '" data-day-card="' + n + '">' +
-        '<div class="day-head" data-day-toggle="' + n + '">' +
-          '<div class="day-num">' + n + '</div>' +
-          '<div class="day-titlewrap">' +
-            '<div class="day-title">' + escapeHtml(t('day.'+n+'.title')) + '</div>' +
-            '<div class="day-tag">' + escapeHtml(tag) + '</div>' +
+      '<div class="stage-wrap" id="stageWrap" data-day-card="' + n + '">' +
+        backBtn + phaseTag + missionBlock +
+        '<div class="stage-card">' +
+          '<div class="stage-head">' +
+            '<div class="stage-num">' + n + '</div>' +
+            '<div>' +
+              '<div class="stage-title">' + escapeHtml(t('day.'+n+'.title')) + '</div>' +
+              '<div class="stage-of">' + t('day.today_tag') + ' — ' + n + '/' + TOTAL_DAYS + '</div>' +
+            '</div>' +
           '</div>' +
-          '<svg class="day-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+          bodyInner +
         '</div>' +
-        '<div class="day-body">' + bodyInner + '</div>' +
       '</div>'
     );
   }
@@ -1318,11 +1507,15 @@ window.I18N = {
   }
 
   function milestoneHtml(key){
-    var dismissedKey = MILESTONE_DISMISS_PREFIX + key;
-    var dayTrigger = key === 'day15' ? 15 : 24;
-    var visible = isComplete(dayTrigger) && !safeGet(dismissedKey);
+    // Only ever called from renderCourse() when this milestone is the current stage,
+    // so it's always the thing on screen — no separate visibility check needed here.
+    // The milestone always follows immediately after completing day 15 or day 24,
+    // so that's always the day to offer a way back to.
+    var prevDay = (key === 'day15') ? 15 : 24;
+    var backBtn = '<button type="button" class="stage-back-btn on-dark clickable" data-rail-day="' + prevDay + '">' + escapeHtml(tf('day.back_to', {n:prevDay})) + '</button>';
     return (
-      '<div class="milestone-card' + (visible ? ' show' : '') + '" id="milestone_' + key + '" data-milestone="' + key + '">' +
+      '<div class="milestone-card show" id="milestone_' + key + '" data-milestone="' + key + '">' +
+        backBtn +
         '<div class="label" style="color:var(--sage-bright);">' + escapeHtml(t('milestone.cta')).split(' ')[0] + '</div>' +
         '<h3>' + escapeHtml(t('milestone.'+key+'.title')) + '</h3>' +
         '<p>' + escapeHtml(t('milestone.'+key+'.body')) + '</p>' +
@@ -1334,34 +1527,63 @@ window.I18N = {
     );
   }
 
+  /* Decides what single "stage" belongs on screen right now: the final block (day 30
+     done, handled separately below), a milestone interstitial (day 15 / day 24, shown
+     once and dismissed before the next day appears), or the next incomplete day. */
+  function currentStageInfo(){
+    if(isComplete(TOTAL_DAYS)) return {type:'done'};
+    var n = firstIncompleteDay();
+    if(n === 16 && isComplete(15) && !safeGet(MILESTONE_DISMISS_PREFIX + 'day15')) return {type:'milestone', key:'day15', railActive:16};
+    if(n === 25 && isComplete(24) && !safeGet(MILESTONE_DISMISS_PREFIX + 'day24')) return {type:'milestone', key:'day24', railActive:25};
+    return {type:'day', day:n, railActive:n};
+  }
+
   function renderCourse(){
-    var html = '';
-    PHASES.forEach(function(phase, idx){
-      html += '<div class="phase-block" data-phase="' + phase.key + '">';
-      html += '<div class="phase-head"><div class="phase-num">' + t('phase.'+phase.key+'.range') + '</div><h2>' + escapeHtml(t('phase.'+phase.key+'.name')) + '</h2></div>';
-      html += '<p class="phase-mission">' + escapeHtml(t('phase.'+phase.key+'.mission')) + '</p>';
-      if(phase.howto === 'survey') html += howtoSurveyHtml();
-      phase.days.forEach(function(n){ html += dayCardHtml(n); });
-      if(phase.milestoneAfter) html += milestoneHtml(phase.milestoneAfter);
-      if(phase.socialAfter) html += socialBlockHtml();
-      html += '</div>';
-    });
+    var info = currentStageInfo();
+    var html = journeyRailHtml(info.railActive || TOTAL_DAYS);
+    if(info.type === 'day'){
+      html += stageCardHtml(info.day);
+    } else if(info.type === 'milestone'){
+      html += milestoneHtml(info.key);
+    } else if(info.type === 'done'){
+      html += '<div style="text-align:center;margin-top:14px;">' +
+        '<button type="button" class="stage-back-btn clickable" data-rail-day="' + TOTAL_DAYS + '">' + escapeHtml(tf('day.back_to', {n:TOTAL_DAYS})) + '</button>' +
+        '<p style="font-weight:700;color:var(--sage-deep);margin-top:8px;font-size:15px;">' + escapeHtml(t('day.all_done_caption')) + '</p>' +
+      '</div>';
+    }
+    if(isUnlocked(16)) html += socialBlockHtml();
     courseBody.innerHTML = html;
     bindCourseEvents();
     updateProgressUI();
     updateFinalBlock();
+    animateStage();
+  }
+
+  /* ================= Motion (GSAP where available, always respecting reduced-motion) ================= */
+  function animateStage(){
+    if(prefersReducedMotion || !window.gsap) return;
+    var stage = document.getElementById('stageWrap');
+    if(stage) gsap.fromTo(stage, {y:22, opacity:0}, {y:0, opacity:1, duration:0.5, ease:'power2.out'});
+    var milestone = courseBody.querySelector('.milestone-card');
+    if(milestone) gsap.fromTo(milestone, {scale:0.94, opacity:0}, {scale:1, opacity:1, duration:0.5, ease:'back.out(1.6)'});
+    gsap.fromTo('.rail-pip', {scale:0, opacity:0}, {scale:1, opacity:1, duration:0.28, stagger:0.012, ease:'back.out(2)'});
+  }
+
+  function scrollToStageTop(){
+    var el = document.getElementById('stageWrap') || courseBody.querySelector('.milestone-card');
+    if(el) el.scrollIntoView({behavior: prefersReducedMotion ? 'auto' : 'smooth', block:'start'});
+  }
+
+  function pulseRailPip(n){
+    var pip = document.querySelector('[data-rail-day="' + n + '"]');
+    if(pip) pip.animate(
+      [{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],
+      {duration: prefersReducedMotion ? 1 : 380, easing:'ease-out'}
+    );
   }
 
   /* ================= Events (delegated after each render) ================= */
   function bindCourseEvents(){
-    courseBody.querySelectorAll('[data-day-toggle]').forEach(function(el){
-      el.addEventListener('click', function(){
-        var n = parseInt(el.getAttribute('data-day-toggle'), 10);
-        if(!isUnlocked(n)) return;
-        var card = courseBody.querySelector('[data-day-card="'+n+'"]');
-        card.classList.toggle('expanded');
-      });
-    });
     courseBody.querySelectorAll('[data-note-day]').forEach(function(ta){
       var timer = null;
       ta.addEventListener('input', function(){
@@ -1378,6 +1600,31 @@ window.I18N = {
         state.days[n].proof = input.value;
         clearTimeout(timer);
         timer = setTimeout(saveState, 400);
+        // Evidence is what unlocks the next day now — the submit button stays
+        // disabled until there's actually something here.
+        var btn = document.getElementById('stageSubmitBtn');
+        if(btn) btn.disabled = input.value.trim().length === 0;
+      });
+    });
+    courseBody.querySelectorAll('[data-submit-day]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var n = parseInt(btn.getAttribute('data-submit-day'), 10);
+        var proof = (state.days[n] && state.days[n].proof) || '';
+        if(!proof.trim()) return; // guard — button should already be disabled
+        completeDay(n);
+      });
+    });
+    courseBody.querySelectorAll('[data-rail-day]').forEach(function(el){
+      el.addEventListener('click', function(){
+        var n = parseInt(el.getAttribute('data-rail-day'), 10);
+        if(isComplete(n)){
+          openDayPopover(n);
+        } else if(!isUnlocked(n)){
+          el.animate(
+            [{transform:'translateX(0)'},{transform:'translateX(-3px)'},{transform:'translateX(3px)'},{transform:'translateX(0)'}],
+            {duration: prefersReducedMotion ? 1 : 260, easing:'ease-in-out'}
+          );
+        }
       });
     });
     courseBody.querySelectorAll('[data-social-handle]').forEach(function(input){
@@ -1399,12 +1646,6 @@ window.I18N = {
           if(indicator) indicator.textContent = t('social.handle_saved');
           if(window.gtag) gtag('event','social_handle_saved',{'event_category':'engagement','event_label':p});
         });
-      });
-    });
-    courseBody.querySelectorAll('[data-toggle-day]').forEach(function(el){
-      el.addEventListener('click', function(){
-        var n = parseInt(el.getAttribute('data-toggle-day'), 10);
-        completeDay(n);
       });
     });
     courseBody.querySelectorAll('[data-decision]').forEach(function(btn){
@@ -1441,8 +1682,8 @@ window.I18N = {
       btn.addEventListener('click', function(){
         var key = btn.getAttribute('data-milestone-dismiss');
         safeSet(MILESTONE_DISMISS_PREFIX + key, '1');
-        var card = document.getElementById('milestone_' + key);
-        if(card) card.classList.remove('show');
+        renderCourse(); // the next day's stage takes the milestone's place
+        setTimeout(scrollToStageTop, 50);
       });
     });
     courseBody.querySelectorAll('[data-milestone-book]').forEach(function(btn){
@@ -1461,27 +1702,45 @@ window.I18N = {
     return 'Day ' + n + ' of ' + TOTAL_DAYS + ' — ' + phaseName + ' — ' + dayTitle;
   }
 
+  // One-way now: a day is marked complete by submitting real evidence, not by a
+  // checkbox you can flip back — the redo banner (days 1-3 only) is the one deliberate
+  // exception, and it resets state.days directly rather than going through here.
   function completeDay(n){
-    var wasComplete = isComplete(n);
-    state.days[n].complete = !wasComplete;
+    if(isComplete(n)) return;
+    state.days[n].complete = true;
     saveState();
-    if(!wasComplete){
-      if(window.gtag) gtag('event','day_complete',{'event_category':'funnel','event_label':'day_'+n});
-      if(n === 15 || n === 24 || n === 30){ fireConfetti(); }
-      var proofText = (state.days[n] && state.days[n].proof) || '';
-      promptIdentityIfMissing(function(){
-        submitProgressRow('day_complete', dayLabelEn(n), proofText);
-      });
-    }
+    if(window.gtag) gtag('event','day_complete',{'event_category':'funnel','event_label':'day_'+n});
+    if(n === 15 || n === 24 || n === 30){ fireConfetti(); }
+    var proofText = (state.days[n] && state.days[n].proof) || '';
+    promptIdentityIfMissing(function(){
+      submitProgressRow('day_complete', dayLabelEn(n), proofText);
+    });
+    pulseRailPip(n);
     renderCourse();
-    // scroll to the newly unlocked day for continuity
-    if(!wasComplete && n < TOTAL_DAYS){
-      setTimeout(function(){
-        var nextCard = courseBody.querySelector('[data-day-card="'+(n+1)+'"]');
-        if(nextCard) nextCard.scrollIntoView({behavior: prefersReducedMotion ? 'auto' : 'smooth', block:'center'});
-      }, 200);
-    }
+    setTimeout(scrollToStageTop, 200);
   }
+
+  /* ================= Completed-day popover (tap a done pip on the rail) ================= */
+  var dayPopoverOverlay = document.getElementById('dayPopoverOverlay');
+  function openDayPopover(n){
+    document.getElementById('dayPopoverTitle').textContent = 'Day ' + n + ' — ' + t('day.'+n+'.title');
+    var proof = (state.days[n] && state.days[n].proof) || '';
+    var proofLabelEl = document.getElementById('dayPopoverProofLabel');
+    var proofEl = document.getElementById('dayPopoverProof');
+    if(proof.trim()){
+      proofLabelEl.style.display = '';
+      proofEl.style.display = '';
+      proofEl.textContent = proof;
+      proofLabelEl.textContent = t('day.proof_label');
+    } else {
+      proofLabelEl.style.display = 'none';
+      proofEl.style.display = 'none';
+    }
+    dayPopoverOverlay.classList.add('show');
+  }
+  function closeDayPopover(){ dayPopoverOverlay.classList.remove('show'); }
+  document.getElementById('dayPopoverCloseBtn').addEventListener('click', closeDayPopover);
+  dayPopoverOverlay.addEventListener('click', function(e){ if(e.target === dayPopoverOverlay) closeDayPopover(); });
 
   /* ================= Progress / hero ================= */
   var circumference = 264;
@@ -1645,6 +1904,18 @@ window.I18N = {
     maybeShowGuide();
   });
   identityOverlay.addEventListener('click', function(e){ if(e.target === identityOverlay){ safeSet(IDENTITY_PROMPTED_KEY, '1'); closeIdentity(); maybeShowGuide(); } });
+  // REDESIGN LAYER (Sep 2026): brief shake on a native HTML5 validation
+  // failure (e.g. the required name field left empty). 'invalid' doesn't
+  // bubble, so this listens in the capture phase on the form itself, which
+  // still sees it fire on the input. Doesn't change what's required or how.
+  identityFormEl.addEventListener('invalid', function(){
+    var box = identityOverlay.querySelector('.modal-box');
+    if(box){
+      box.classList.remove('shake');
+      void box.offsetWidth;
+      box.classList.add('shake');
+    }
+  }, true);
   identityFormEl.addEventListener('submit', function(e){
     e.preventDefault();
     var name = identityNameInput.value.trim();
@@ -1664,6 +1935,24 @@ window.I18N = {
       if(window.gtag) gtag('event','sticky_help_click',{'event_category':'conversion'});
       openCalendlyModal('sticky');
     });
+  }
+
+  /* ================= WhatsApp tooltip bubble ================= */
+  // A small "I'm here, ping me anytime" callout that points at the WhatsApp
+  // button — fades in shortly after load, fades itself out after a while so
+  // it never permanently blocks content, and can be dismissed early.
+  var waTooltip = document.getElementById('waTooltip');
+  if(waTooltip){
+    var waTooltipShowTimer = setTimeout(function(){ waTooltip.classList.add('show'); }, 1200);
+    var waTooltipHideTimer = setTimeout(function(){ waTooltip.classList.remove('show'); }, 9000);
+    var waTooltipCloseBtn = document.getElementById('waTooltipCloseBtn');
+    if(waTooltipCloseBtn){
+      waTooltipCloseBtn.addEventListener('click', function(){
+        clearTimeout(waTooltipShowTimer);
+        clearTimeout(waTooltipHideTimer);
+        waTooltip.classList.remove('show');
+      });
+    }
   }
 
   /* ================= Init ================= */
