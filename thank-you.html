@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6VT4XMLT0Q');
-  gtag('config', 'G-P0HDFRFHP1');
+  // G-P0HDFRFHP1 removed 12 Oct 2026 — one GA4 property (G-6VT4XMLT0Q) site-wide.
 </script>
 
 <!-- Meta Pixel Code -->
@@ -280,7 +280,7 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
 
     <div class="guarantee-note">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path><path d="M9 12l2 2 4-4"></path></svg>
-      <span>And if you start and it's genuinely not for you — message Noor directly in the support group above within 7 days of paying and you'll get a full refund. No forms, no questions.</span>
+      <span><strong>Your 30-Day Action Guarantee:</strong> complete all 30 daily tasks and contact at least 20 potential customers along the way (keep a simple list of who and when). If you still haven't landed your first paying client, message Noor on WhatsApp within 7 days of finishing Day 30 (and within 60 days of payment) with your progress screen and outreach list, and your ₹499 is refunded.</span>
     </div>
   </div>
 
@@ -308,17 +308,38 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   // status param is present at all) treat it as a genuine purchase.
   var isConfirmedFailure = linkStatus !== '' && linkStatus.toLowerCase() !== 'paid';
 
+  // Fire Purchase ONCE per payment (12 Oct 2026). Before this, every refresh or
+  // revisit of this page fired another Purchase (GA4 logged 6 purchases from 3
+  // buyers) and a visitor with no payment id at all still counted as a sale.
+  // - Same flag the landing page's on-page checkout sets (tdz_purchase_<id>),
+  //   so a payment it already counted is not counted again here.
+  // - Meta eventID = payment id, matching the server-side Conversions API
+  //   event, so Meta deduplicates browser + server.
+  // - No payment id (rzp.io redirect without params): counted once per
+  //   browser, with a stable id, instead of once per page load.
+  function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function safeSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
   if(!isConfirmedFailure){
-    if(window.fbq){
-      fbq('track', 'Purchase', { value: 499.00, currency: 'INR' });
+    var txId = paymentId;
+    if(!txId){
+      txId = safeGet('tdz_purchase_anon_id');
+      if(!txId){ txId = 'tdz_' + Date.now(); safeSet('tdz_purchase_anon_id', txId); }
     }
-    if(window.gtag){
-      gtag('event', 'purchase', {
-        transaction_id: paymentId || ('tdz_' + Date.now()),
-        value: 499.00,
-        currency: 'INR',
-        items: [{ item_id: 'day_zero_30day_499', item_name: '30-Day Business Builder', price: 499.00, quantity: 1 }]
-      });
+    var flag = 'tdz_purchase_' + txId;
+    if(!safeGet(flag)){
+      safeSet(flag, '1');
+      if(window.fbq){
+        fbq('track', 'Purchase', { value: 499.00, currency: 'INR', content_ids: ['day_zero_30day'], content_type: 'product' }, { eventID: txId });
+      }
+      if(window.gtag){
+        gtag('event', 'purchase', {
+          transaction_id: txId,
+          value: 499.00,
+          currency: 'INR',
+          items: [{ item_id: 'day_zero_30day', item_name: '30-Day Business Action Program', price: 499.00, quantity: 1 }]
+        });
+      }
     }
   }
 
