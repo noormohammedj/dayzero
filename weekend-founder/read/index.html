@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NDMD8T3C');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6VT4XMLT0Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6VT4XMLT0Q');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1441746631134656');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Weekend Founder OS — Reader</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="https://thedayzero.in/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:ital,wght@1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0B1B3F; --ink-2:#2A3A5E; --slate:#5B6478; --line:#E3E7EF;
+  --paper:#FFFFFF; --mist:#F4F6FA; --sky:#2F7BF6; --sky-ink:#1F5FD1; --sky-tint:#E7F0FF;
+  --mustard:#E8B23A; --mustard-ink:#9A6A00; --butter:#FDF4DD; --coral:#E5484D; --coral-tint:#FDECEC;
+  --sage:#2F9E6B; --graphite:#111827; --fog:#E5E7EB;
+  --side:300px; --bar:60px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'IBM Plex Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--sky-ink)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px;border-radius:6px}
+[hidden]{display:none!important}
+
+/* Top bar */
+.bar{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 16px}
+.bar .menu{display:none;width:40px;height:40px;border:0;background:none;border-radius:10px;cursor:pointer;color:var(--ink)}
+.bar .menu svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.bar .title{font-weight:600;font-size:15.5px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .title a{text-decoration:none;color:inherit}
+.bar .title span{color:var(--slate);font-weight:400}
+.tbtn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:9px 16px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;background:var(--mist);color:var(--ink);text-decoration:none;white-space:nowrap}
+.tbtn:hover{background:#E8ECF4}
+.tbtn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tbtn.dark{background:var(--ink);color:#fff}
+.tbtn.dark:hover{background:#13275a}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--sky);width:0;transition:width .2s}
+
+/* Sidebar TOC */
+.side{position:fixed;top:var(--bar);bottom:0;left:0;width:var(--side);border-right:1px solid var(--line);background:#fff;overflow-y:auto;padding:20px 12px 40px;z-index:30;overscroll-behavior:contain}
+.side .part{margin:18px 10px 6px;font-size:13px;color:var(--slate);font-weight:500}
+.side .part:first-child{margin-top:0}
+.side a{display:grid;grid-template-columns:32px 1fr 16px;gap:4px;align-items:start;padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--ink-2);font-size:15px;line-height:1.35}
+.side a:hover{background:var(--mist)}
+.side a.on{background:var(--sky-tint);color:var(--ink);font-weight:600}
+.side a .n{color:var(--slate);font-variant-numeric:tabular-nums;font-weight:500}
+.side a .seen{width:14px;height:14px;margin-top:3px;border-radius:50%;opacity:0}
+.side a .seen{width:8px;height:8px;margin-top:7px}
+.side a.read .seen{opacity:1;background:var(--sage)}
+.side .upsell{margin:18px 10px 0;padding:16px;border-radius:14px;background:var(--ink);color:#fff;font-size:14.5px}
+.side .upsell a{display:inline-flex;margin-top:10px;background:#fff;color:var(--ink);font-weight:600;padding:8px 14px;border-radius:999px;grid-template-columns:none}
+.scrim{display:none}
+
+/* Main column */
+main{margin-left:var(--side);padding:calc(var(--bar) + 40px) 24px 120px}
+.page{max-width:700px;margin:0 auto}
+.crumb{font-size:14px;color:var(--sky-ink);font-weight:600;margin-bottom:8px}
+.page h1{font-size:clamp(32px,5vw,46px);line-height:1.1;letter-spacing:-0.025em;font-weight:600;margin-bottom:14px}
+.page .promise{font-size:20px;color:var(--ink-2);line-height:1.5;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.body h3{font-size:24px;letter-spacing:-0.015em;line-height:1.25;font-weight:600;margin:44px 0 12px}
+.body h4{font-size:17px;font-weight:600;margin:22px 0 6px}
+.body p{margin:0 0 16px}
+.body ul,.body ol{margin:0 0 18px 22px}
+.body li{margin:0 0 8px}
+.body strong{font-weight:600}
+.body code{font:0.88em 'IBM Plex Mono',monospace;background:var(--mist);padding:2px 6px;border-radius:5px}
+.body pre:not(.p){font:14px/1.6 'IBM Plex Mono',monospace;background:var(--mist);padding:16px 18px;border-radius:12px;overflow-x:auto;margin:0 0 20px;white-space:pre-wrap}
+.body pre:not(.p) code{background:none;padding:0}
+.tbl{overflow-x:auto;margin:0 0 24px;border:1px solid var(--line);border-radius:12px}
+.body table{border-collapse:collapse;width:100%;font-size:15.5px;line-height:1.45}
+.body th,.body td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.body th{background:var(--mist);font-weight:600;font-size:14.5px}
+.body tr:last-child td{border-bottom:0}
+
+/* Callouts */
+.callout{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:18px 20px;border-radius:14px;margin:26px 0}
+.callout svg{width:26px;height:26px;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.callout .lbl{display:block;font-weight:600;font-size:14.5px;margin-bottom:4px}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.insight{background:var(--sky-tint);box-shadow:inset 4px 0 0 var(--sky)}
+.insight svg{stroke:var(--sky-ink)}
+.insight .lbl{color:var(--sky-ink)}
+.mistake{background:#fff;box-shadow:inset 0 0 0 1.5px #F3B5B7}
+.mistake svg{stroke:var(--coral)}
+.mistake .lbl{color:#B4232A}
+.note{background:var(--mist);font-size:16px}
+.note svg{stroke:var(--slate)}
+.pull{margin:40px 0;padding:0 0 0 22px;border-left:3px solid var(--sky)}
+.pull p{font-family:'IBM Plex Serif',Georgia,serif;font-style:italic;font-size:clamp(22px,3vw,27px);line-height:1.4;color:var(--ink)}
+
+/* Prompt */
+.prompt{margin:22px 0 26px;background:var(--graphite);border-radius:14px;overflow:hidden;color:var(--fog)}
+.prompt figcaption{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ptool{font-size:12.5px;font-weight:500;background:rgba(47,123,246,.22);color:#9CC1FF;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.ptitle{flex:1;font-size:14.5px;font-weight:500;color:#fff;min-width:0}
+.prompt .copy{border:0;border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font:500 13px 'IBM Plex Sans',sans-serif;padding:7px 14px;cursor:pointer;min-height:34px}
+.prompt .copy:hover{background:rgba(255,255,255,.18)}
+.prompt .copy.ok{background:var(--sage)}
+.prompt pre{font:14px/1.65 'IBM Plex Mono',monospace;white-space:pre-wrap;word-break:break-word;padding:16px 18px 18px;margin:0}
+.prompt mark{background:none;color:#7DD3FC}
+
+/* Diagrams */
+.flow{list-style:none;margin:24px 0!important;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0;counter-reset:f}
+.flow li{margin:0!important;display:flex;align-items:center;font-size:15px;font-weight:500}
+.flow li:before{counter-increment:f;content:counter(f);display:none}
+.flow li{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px}
+.flow li:not(:last-child){margin-right:26px!important;position:relative}
+.flow li:not(:last-child):after{content:"";position:absolute;right:-19px;top:50%;width:12px;height:12px;border-top:2px solid var(--sky);border-right:2px solid var(--sky);transform:translateY(-50%) rotate(45deg) scale(.7)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.compare .col{background:var(--mist);border-radius:14px;padding:18px 20px}
+.compare .win{background:#fff;box-shadow:inset 0 0 0 2px var(--sky)}
+.compare h5{font-size:16px;font-weight:600;margin-bottom:10px}
+.compare ul{list-style:none;margin:0!important}
+.compare li{font-size:15.5px;padding:8px 0;border-top:1px solid var(--line);margin:0!important}
+.compare li:first-child{border-top:0}
+@media (max-width:560px){.compare{grid-template-columns:1fr}}
+.tree{list-style:none;margin:24px 0!important;border-left:2px solid var(--sky);padding-left:0}
+.tree li{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:12px 0 12px 20px;margin:0!important;border-bottom:1px solid var(--line);position:relative;font-size:15.5px}
+.tree li:before{content:"";position:absolute;left:-6px;top:20px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--sky)}
+.tree .q{color:var(--ink-2)}
+.tree .a{font-weight:600}
+@media (max-width:560px){.tree li{grid-template-columns:1fr;gap:2px}}
+.steps{list-style:none;margin:20px 0 24px!important;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 18px 48px;margin:0!important}
+.steps li:before{content:counter(s);position:absolute;left:0;top:-1px;width:32px;height:32px;border-radius:50%;background:var(--ink);color:#fff;font-size:15px;font-weight:600;display:grid;place-items:center}
+.steps li:not(:last-child):after{content:"";position:absolute;left:15px;top:34px;bottom:2px;width:2px;background:var(--line)}
+.checklist{list-style:none;margin:18px 0 24px!important}
+li.task{list-style:none;display:flex;gap:12px;align-items:flex-start;margin-left:-22px!important}
+.checklist li.task{margin-left:0!important}
+.tick{flex:none;width:20px;height:20px;border-radius:6px;box-shadow:inset 0 0 0 1.8px var(--ink);margin-top:4px}
+.legend{list-style:none;margin:16px 0 24px!important;display:grid;gap:10px}
+.legend li{display:flex;align-items:center;gap:12px;margin:0!important;font-size:16px}
+.sw{width:30px;height:20px;border-radius:6px;flex:none}
+.sw-insight{background:var(--sky-tint);box-shadow:inset 3px 0 0 var(--sky)}
+.sw-mistake{background:#fff;box-shadow:inset 0 0 0 1.5px var(--coral)}
+.sw-prompt{background:var(--graphite)}
+.sw-action{background:var(--butter);box-shadow:inset 0 0 0 1.5px var(--mustard)}
+.sw-milestone{background:var(--mustard)}
+.venn{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center;margin:24px 0}
+.venn .circles{position:relative;width:150px;height:140px}
+.venn .circles i{position:absolute;width:86px;height:86px;border-radius:50%;border:2px solid var(--sky);background:rgba(47,123,246,.08)}
+.venn .circles i:nth-child(1){left:12px;top:0}.venn .circles i:nth-child(2){left:52px;top:0}.venn .circles i:nth-child(3){left:32px;top:46px}
+.venn ul{list-style:none;margin:0!important}
+.venn li{margin:0 0 12px!important;font-size:15.5px}
+.venn li strong{display:block}
+@media (max-width:560px){.venn{grid-template-columns:1fr}}
+.ladder{list-style:none;margin:24px 0!important;display:grid;gap:8px}
+.ladder li{margin:0!important;width:var(--w);min-width:62%;background:var(--sky-tint);border-radius:10px;padding:11px 16px;font-size:15.5px}
+.ladder li:first-child{background:var(--ink);color:#fff}
+.funnel{list-style:none;margin:24px 0!important;display:grid;gap:12px}
+.funnel li{margin:0!important;display:grid;grid-template-columns:140px 1fr 56px;gap:12px;align-items:center;font-size:15.5px}
+.fb{height:28px;background:var(--mist);border-radius:6px;overflow:hidden}
+.fb b{display:block;height:100%;background:var(--ink);border-radius:6px}
+.funnel li:last-child .fb b{background:var(--sky)}
+.fv{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:480px){.funnel li{grid-template-columns:96px 1fr 40px}}
+.rings{list-style:none;margin:24px 0!important;display:grid;gap:6px}
+.rings li{margin:0!important;padding:10px 16px;border-radius:999px;font-size:15.5px;margin-left:calc(var(--i) * 14px)!important;background:color-mix(in srgb, var(--sky) calc(90% - var(--i) * 15%), white);color:#fff}
+.rings li:nth-child(n+4){color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.stat{background:var(--mist);border-radius:14px;padding:16px}
+.stat b{display:block;font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1.1}
+.stat span{font-size:14px;color:var(--slate)}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}}
+.osgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:24px 0}
+.osb{border:1.5px solid var(--line);border-radius:14px;padding:16px}
+.osb strong{display:block;margin-bottom:4px}
+.osb span{font-size:15px;color:var(--ink-2)}
+@media (max-width:560px){.osgrid{grid-template-columns:1fr}}
+
+/* Action + milestone */
+.action{background:var(--butter);border-radius:20px;padding:26px 26px 12px;margin:48px 0 20px}
+.action>.lbl{display:inline-block;font-size:14px;font-weight:600;color:var(--mustard-ink);margin-bottom:6px}
+.action h4{margin-top:18px}
+.action h4:first-of-type{margin-top:4px}
+.milestone{display:grid;grid-template-columns:30px 1fr;gap:14px;margin:36px 0;padding:22px;border-radius:18px;background:#fff;box-shadow:inset 0 0 0 2px var(--mustard)}
+.milestone svg{width:28px;height:28px;stroke:var(--mustard-ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.milestone .lbl{display:block;font-weight:600;color:var(--mustard-ink);font-size:14.5px}
+.milestone p{margin:4px 0 12px}
+.track{display:flex;gap:5px}
+.track i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.track i.on{background:var(--mustard)}
+
+/* Prev / next */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
+.pager a{display:block;padding:16px 18px;border-radius:14px;border:1.5px solid var(--line);text-decoration:none;color:var(--ink)}
+.pager a:hover{border-color:var(--ink)}
+.pager a small{display:block;font-size:13px;color:var(--slate)}
+.pager a b{font-weight:600;font-size:16px;line-height:1.3}
+.pager .next{text-align:right;grid-column:2}
+.sample-end{margin-top:48px;padding:28px;border-radius:20px;background:var(--ink);color:#fff}
+.sample-end h3{font-size:26px;margin-bottom:8px}
+.sample-end p{color:#C9D3EA;margin-bottom:18px}
+.sample-end a{display:inline-flex;background:#fff;color:var(--ink);font-weight:600;padding:13px 22px;border-radius:999px;text-decoration:none}
+
+/* Gate screens */
+.gate{min-height:100vh;display:grid;place-items:center;padding:96px 20px 40px}
+.gate .box{width:100%;max-width:440px}
+.gate h1{font-size:32px;line-height:1.15;letter-spacing:-0.02em;font-weight:600;margin-bottom:10px}
+.gate p{color:var(--ink-2);margin-bottom:22px}
+.gate label{display:block;font-size:14.5px;font-weight:600;margin:0 0 6px}
+.gate input{width:100%;font:16px 'IBM Plex Sans',sans-serif;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;margin-bottom:16px;color:var(--ink)}
+.gate input:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px var(--sky-tint)}
+.gate .go{width:100%;border:0;border-radius:999px;background:var(--ink);color:#fff;font:600 16px 'IBM Plex Sans',sans-serif;padding:15px;cursor:pointer;min-height:52px}
+.gate .go:disabled{opacity:.6;cursor:default}
+.gate .err{color:#B4232A;font-size:15px;margin:-4px 0 16px}
+.gate .alt{margin-top:22px;font-size:15px;color:var(--slate)}
+.spinner{width:36px;height:36px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--sky);animation:spin 0.9s linear infinite;margin:0 auto 18px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spinner{animation-duration:3s}}
+.center{text-align:center}
+
+/* Mobile */
+@media (max-width:960px){
+  .bar .menu{display:inline-flex;align-items:center;justify-content:center}
+  .side{transform:translateX(-105%);transition:transform .25s ease;width:min(86vw,340px);box-shadow:0 0 40px rgba(11,27,63,.15)}
+  body.toc-open .side{transform:none}
+  body.toc-open .scrim{display:block;position:fixed;inset:var(--bar) 0 0 0;background:rgba(11,27,63,.3);z-index:25}
+  main{margin-left:0;padding:calc(var(--bar) + 28px) 18px 100px}
+  .tbtn .lbl-long{display:none}
+  body{font-size:17px}
+}
+
+/* Print / Save as PDF */
+#printBook{display:none}
+@page{size:A4;margin:18mm 16mm 20mm}
+@media print{
+  body{font-size:11pt;line-height:1.55}
+  .bar,.side,.scrim,main,.gate{display:none!important}
+  #printBook{display:block}
+  .pb-cover{height:250mm;display:flex;flex-direction:column;justify-content:center;page-break-after:always;break-after:page}
+  .pb-cover h1{font-size:38pt;line-height:1.05;letter-spacing:-0.02em;margin-bottom:14pt}
+  .pb-cover p{font-size:15pt;color:var(--ink-2);max-width:120mm}
+  .pb-cover .meta{margin-top:40pt;font-size:11pt;color:var(--slate)}
+  .pb-toc{page-break-after:always;break-after:page}
+  .pb-toc h2{font-size:22pt;margin-bottom:12pt}
+  .pb-toc .tp{font-weight:600;margin:10pt 0 3pt;font-size:11.5pt}
+  .pb-toc .tc{font-size:10.5pt;color:var(--ink-2);margin-left:8mm}
+  .pb-ch{page-break-before:always;break-before:page}
+  .pb-part{page-break-before:always;break-before:page;height:240mm;display:flex;flex-direction:column;justify-content:center;background:var(--sky-tint);padding:20mm;border-radius:6mm}
+  .pb-part .pn{font-size:60pt;font-weight:600;color:var(--sky);line-height:1}
+  .pb-part h2{font-size:32pt;margin:8pt 0}
+  .pb-part p{font-size:14pt;color:var(--ink-2)}
+  .page{max-width:none}
+  .page h1{font-size:24pt}
+  .page .promise{font-size:13pt;margin-bottom:18pt;padding-bottom:12pt}
+  .body h3{font-size:15pt;margin:20pt 0 6pt;break-after:avoid;page-break-after:avoid}
+  .body h4{break-after:avoid;page-break-after:avoid}
+  .callout,.prompt,.compare,.tree li,.milestone,.stat,.osb,.funnel,.tbl,.steps li,.flow{break-inside:avoid;page-break-inside:avoid}
+  .action{break-inside:auto}
+  .prompt{background:#F3F5F9;color:var(--ink);box-shadow:inset 0 0 0 1px #D5DAE4}
+  .prompt figcaption{border-bottom-color:#D5DAE4}
+  .ptitle{color:var(--ink)}
+  .ptool{background:var(--sky-tint);color:var(--sky-ink)}
+  .prompt mark{color:var(--sky-ink);font-weight:500}
+  .prompt .copy{display:none}
+  .prompt pre{font-size:9.5pt}
+  .pager,.sample-end{display:none}
+  a{color:var(--ink);text-decoration:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDMD8T3C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="bar">
+  <button class="menu" id="menuBtn" type="button" aria-label="Open contents" aria-expanded="false" hidden>
+    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <div class="title"><a href="/weekend-founder/">The Weekend Founder OS</a> <span id="modeLbl"></span></div>
+  <button class="tbtn" id="pdfBtn" type="button" hidden><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>Save as PDF</span></button>
+  <a class="tbtn dark" id="buyTop" href="https://rzp.io/rzp/UQYIUZL" hidden>Get the full OS — ₹1,999</a>
+  <div class="prog" id="prog"></div>
+</header>
+
+<nav class="side" id="side" aria-label="Contents" hidden></nav>
+<div class="scrim" id="scrim"></div>
+
+<main id="main" hidden><article class="page" id="page"></article></main>
+
+<!-- Gate: unlocking -->
+<section class="gate" id="gateLoading" hidden>
+  <div class="box center"><div class="spinner" aria-hidden="true"></div><h1 id="loadingTitle">Opening your book…</h1><p id="loadingText">This takes a few seconds the first time.</p></div>
+</section>
+
+<!-- Gate: unlock form -->
+<section class="gate" id="gateForm" hidden>
+  <div class="box">
+    <h1>Unlock your book</h1>
+    <p>Enter the email and phone number you used when you paid on Razorpay. You only need to do this once on each device.</p>
+    <form id="unlockForm" novalidate>
+      <label for="em">Email</label>
+      <input id="em" type="email" autocomplete="email" inputmode="email" required>
+      <label for="ph">Phone number</label>
+      <input id="ph" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile number" required>
+      <p class="err" id="formErr" role="alert" hidden></p>
+      <button class="go" type="submit" id="goBtn">Unlock the book</button>
+    </form>
+    <p class="alt">Haven't bought it yet? <a href="/weekend-founder/">See what's inside</a> or <a href="/weekend-founder/read/?sample=1">read Chapter 1 free</a>.<br>Paid but can't get in? <a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20paid%20for%20the%20Weekend%20Founder%20OS%20but%20can%27t%20unlock%20it." target="_blank" rel="noopener">Message Noor on WhatsApp</a>.</p>
+  </div>
+</section>
+
+<!-- Gate: error -->
+<section class="gate" id="gateError" hidden>
+  <div class="box">
+    <h1 id="errTitle">We couldn't open the book</h1>
+    <p id="errText"></p>
+    <button class="go" type="button" id="retryBtn">Try again</button>
+    <p class="alt">Still stuck? <a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20can%27t%20open%20the%20Weekend%20Founder%20OS." target="_blank" rel="noopener">Message Noor on WhatsApp</a> with your payment reference.</p>
+  </div>
+</section>
+
+<div id="printBook" aria-hidden="true"></div>
+
+<script>
+(function(){
+  'use strict';
+  /* ------------------------------------------------------------------
+     CONFIG — paste the Apps Script web app URL (ends in /exec) here.
+     Until it's set, the reader can only show the free sample.
+     ------------------------------------------------------------------ */
+  var BACKEND_URL = 'https://script.google.com/macros/s/AKfycbykVERAyJ93gIC-X1ArlXXDbfZc1X5i_9z5lfRm869sHhgsa_ut-KVcggjBokDX3ySl/exec';
+  var PRICE = 1999;
+  var BUY_URL = 'https://rzp.io/rzp/UQYIUZL';
+  var K = { token:'wfos_token', book:'wfos_book', last:'wfos_last', read:'wfos_read', name:'wfos_name' };
+  var BOOK_MAX_AGE = 12 * 3600 * 1000; // refresh the cached book after 12 hours
+
+  var $ = function(id){ return document.getElementById(id); };
+  function get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function set(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+  function del(k){ try{ localStorage.removeItem(k); }catch(e){} }
+  function backendReady(){ return BACKEND_URL && BACKEND_URL.indexOf('PASTE_') !== 0; }
+
+  var params = new URLSearchParams(location.search);
+  var isSample = params.has('sample');
+  var book = null, flat = [], current = -1;
+
+  function show(id){
+    ['gateLoading','gateForm','gateError','main'].forEach(function(x){ $(x).hidden = (x !== id); });
+    var reading = id === 'main';
+    $('side').hidden = !reading; $('menuBtn').hidden = !reading;
+    $('pdfBtn').hidden = !reading || isSample;
+    $('buyTop').hidden = !(reading && isSample);
+  }
+  function fail(title, text){
+    $('errTitle').textContent = title; $('errText').textContent = text; show('gateError');
+  }
+
+  function api(params){
+    var q = Object.keys(params).map(function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]); }).join('&');
+    return fetch(BACKEND_URL + (BACKEND_URL.indexOf('?') > -1 ? '&' : '?') + q, { method:'GET', redirect:'follow' })
+      .then(function(r){ if(!r.ok) throw new Error('http_' + r.status); return r.json(); });
+  }
+
+  var ERR = {
+    bad_payment_id:'That payment reference doesn\'t look right. Try unlocking with your email and phone instead.',
+    payment_not_found:'We couldn\'t find that payment. If you paid just now, wait a minute and try again.',
+    payment_not_valid:'This payment isn\'t a completed ₹1,999 purchase (it may have failed or been refunded).',
+    need_email_and_phone:'Enter the email and the 10-digit phone number you used on Razorpay.',
+    too_many_attempts:'Too many attempts for this email. Wait an hour, or message Noor on WhatsApp.',
+    no_matching_payment:'No completed purchase matches that email and phone. Check they\'re exactly what you entered on Razorpay.',
+    bad_token:'Your access on this device has expired. Unlock again with your email and phone.',
+    server_error:'Something went wrong on our side. Try again in a minute.'
+  };
+
+  /* ---------------- Purchase tracking (once per payment) ---------------- */
+  function trackPurchase(pid){
+    if(!pid) return;
+    var flag = 'wfos_purchase_' + pid;
+    if(get(flag)) return;
+    set(flag, '1');
+    try{ if(window.fbq) fbq('track','Purchase',{ value:PRICE, currency:'INR', content_ids:['weekend_founder_os'], content_type:'product' },{ eventID:pid }); }catch(e){}
+    try{ if(window.gtag) gtag('event','purchase',{ transaction_id:pid, value:PRICE, currency:'INR', items:[{ item_id:'weekend_founder_os', item_name:'The Weekend Founder OS', price:PRICE, quantity:1 }] }); }catch(e){}
+  }
+
+  /* ---------------- Boot ---------------- */
+  function boot(){
+    if(isSample){
+      $('modeLbl').textContent = '· Free sample';
+      show('gateLoading');
+      fetch('sample.json', { cache:'no-cache' }).then(function(r){ return r.json(); })
+        .then(function(b){ open(b); })
+        .catch(function(){ fail('The sample didn\'t load', 'Check your connection and try again.'); });
+      return;
+    }
+    var pid = params.get('razorpay_payment_id') || params.get('payment_id') || '';
+    var status = (params.get('razorpay_payment_link_status') || params.get('status') || '').toLowerCase();
+    if(pid && status && status !== 'paid' && status !== 'captured'){
+      fail('Your payment didn\'t go through', 'Razorpay reported the payment as "' + status + '". No money should have been taken. You can try again from the sales page.');
+      return;
+    }
+    if(!backendReady()){
+      fail('The reader isn\'t connected yet', 'Book access is being set up. Please message Noor on WhatsApp with your payment reference and you\'ll get access right away.');
+      return;
+    }
+    if(pid){
+      show('gateLoading');
+      $('loadingTitle').textContent = 'Confirming your payment…';
+      api({ action:'unlock', pid:pid }).then(function(res){
+        if(!res.ok){
+          // Payment pages can redirect before the capture is visible; fall back to the form.
+          $('formErr').textContent = ERR[res.error] || ERR.server_error; $('formErr').hidden = false;
+          show('gateForm'); return;
+        }
+        set(K.token, res.token); if(res.name) set(K.name, res.name);
+        trackPurchase(res.pid || pid);
+        history.replaceState(null, '', location.pathname);
+        loadBook(true);
+      }).catch(function(){ fail('We couldn\'t confirm your payment', ERR.server_error); });
+      return;
+    }
+    if(get(K.token)){ loadBook(false); return; }
+    show('gateForm');
+  }
+
+  function loadBook(force){
+    var cached = null;
+    try{ cached = JSON.parse(get(K.book) || 'null'); }catch(e){ cached = null; }
+    if(cached && !force && (Date.now() - cached.savedAt) < BOOK_MAX_AGE){ open(cached.book); return; }
+    show('gateLoading');
+    $('loadingTitle').textContent = 'Opening your book…';
+    api({ action:'book', token:get(K.token) }).then(function(res){
+      if(!res.ok){
+        if(res.error === 'bad_token' || res.error === 'payment_not_valid'){ del(K.token); del(K.book); }
+        if(res.error === 'bad_token'){ show('gateForm'); return; }
+        fail('We couldn\'t open the book', ERR[res.error] || ERR.server_error); return;
+      }
+      set(K.book, JSON.stringify({ savedAt:Date.now(), book:res.book }));
+      open(res.book);
+    }).catch(function(){
+      if(cached){ open(cached.book); return; } // offline: use the copy on this device
+      fail('We couldn\'t open the book', 'Check your internet connection and try again.');
+    });
+  }
+
+  /* ---------------- Unlock form ---------------- */
+  $('unlockForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var em = $('em').value.trim(), ph = $('ph').value.replace(/\D/g,'').slice(-10);
+    var err = $('formErr');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) || ph.length !== 10){ err.textContent = ERR.need_email_and_phone; err.hidden = false; return; }
+    if(!backendReady()){ err.textContent = 'Book access is being set up. Please message Noor on WhatsApp.'; err.hidden = false; return; }
+    err.hidden = true; $('goBtn').disabled = true; $('goBtn').textContent = 'Checking your payment…';
+    api({ action:'lookup', email:em, phone:ph }).then(function(res){
+      $('goBtn').disabled = false; $('goBtn').textContent = 'Unlock the book';
+      if(!res.ok){ err.textContent = ERR[res.error] || ERR.server_error; err.hidden = false; return; }
+      set(K.token, res.token); if(res.name) set(K.name, res.name);
+      loadBook(true);
+    }).catch(function(){
+      $('goBtn').disabled = false; $('goBtn').textContent = 'Unlock the book';
+      err.textContent = ERR.server_error; err.hidden = false;
+    });
+  });
+  $('retryBtn').addEventListener('click', function(){ location.reload(); });
+
+  /* ---------------- Reader ---------------- */
+  function open(b){
+    book = b; flat = [];
+    b.parts.forEach(function(p, pi){ p.chapters.forEach(function(c){ flat.push({ part:p, pi:pi, ch:c }); }); });
+    buildToc();
+    show('main');
+    var want = location.hash.slice(1);
+    var idx = indexOf(want);
+    if(idx < 0){ idx = indexOf(get(K.last)); }
+    go(idx < 0 ? 0 : idx, false);
+  }
+  function indexOf(id){ for(var i=0;i<flat.length;i++){ if(flat[i].ch.id === id) return i; } return -1; }
+  function partLabel(p){
+    if(/^\d+$/.test(p.num)) return 'Part ' + p.num + ' · ' + p.title;
+    return p.title;
+  }
+  function chLabel(c){ return /^\d+$/.test(c.num) ? 'Chapter ' + c.num : (c.num === '0' ? '' : ''); }
+  function readSet(){ try{ return JSON.parse(get(K.read) || '{}'); }catch(e){ return {}; } }
+
+  function buildToc(){
+    var side = $('side'), html = '', read = readSet(), lastPart = null;
+    flat.forEach(function(f, i){
+      if(f.part !== lastPart){ html += '<div class="part">' + esc(partLabel(f.part)) + '</div>'; lastPart = f.part; }
+      var n = /^\d+$/.test(f.ch.num) && f.ch.num !== '0' ? f.ch.num : '';
+      html += '<a href="#' + f.ch.id + '" data-i="' + i + '" class="' + (read[f.ch.id] ? 'read' : '') + '"><span class="n">' + esc(n) + '</span><span>' + esc(f.ch.title) + '</span><span class="seen" aria-hidden="true"></span></a>';
+    });
+    if(book.sample){
+      html += '<div class="upsell">This sample has the intro and Chapter 1. The full OS has 32 chapters, 3 case studies and 154 prompts.<br><a href="' + BUY_URL + '" class="buy-link">Get it — ₹1,999</a></div>';
+    }
+    side.innerHTML = html;
+  }
+
+  function go(i, scroll){
+    if(i < 0 || i >= flat.length) return;
+    current = i;
+    var f = flat[i], c = f.ch, page = $('page');
+    var crumb = partLabel(f.part) + (/^\d+$/.test(c.num) && c.num !== '0' ? ' · Chapter ' + c.num : '');
+    var html = '<div class="crumb">' + esc(crumb) + '</div><h1>' + esc(c.title) + '</h1><p class="promise">' + esc(c.promise) + '</p><div class="body">' + c.html + '</div>';
+    if(book.sample && i === flat.length - 1){
+      html += '<div class="sample-end"><h3>That\'s the free sample.</h3><p>The full OS continues with 31 more chapters: your AI studio, finding and proving an idea, building and deploying, selling on Instagram and WhatsApp, and three case studies with real numbers.</p><a href="' + BUY_URL + '" class="buy-link">Get the full OS — ₹1,999</a></div>';
+    }
+    html += '<nav class="pager">';
+    if(i > 0) html += '<a class="prev" href="#' + flat[i-1].ch.id + '"><small>Previous</small><b>' + esc(flat[i-1].ch.title) + '</b></a>';
+    if(i < flat.length - 1) html += '<a class="next" href="#' + flat[i+1].ch.id + '"><small>Next</small><b>' + esc(flat[i+1].ch.title) + '</b></a>';
+    html += '</nav>';
+    page.innerHTML = html;
+    decorate(page);
+    Array.prototype.forEach.call($('side').querySelectorAll('a[data-i]'), function(a){
+      var on = Number(a.getAttribute('data-i')) === i; a.classList.toggle('on', on);
+      if(on) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    if(location.hash.slice(1) !== c.id) history.replaceState(null, '', '#' + c.id);
+    if(!book.sample) set(K.last, c.id);
+    var r = readSet(); r[c.id] = 1; set(K.read, JSON.stringify(r));
+    var link = $('side').querySelector('a[data-i="' + i + '"]'); if(link) link.classList.add('read');
+    document.body.classList.remove('toc-open'); $('menuBtn').setAttribute('aria-expanded','false');
+    window.scrollTo(0, 0);
+    document.title = c.title + ' — The Weekend Founder OS';
+    updateProg();
+    if(link && scroll !== false){ link.scrollIntoView({ block:'nearest' }); }
+  }
+
+  function decorate(root){
+    Array.prototype.forEach.call(root.querySelectorAll('.track[data-done]'), function(t){
+      var n = Number(t.getAttribute('data-done')) || 0, s = '';
+      for(var k=1;k<=12;k++) s += '<i class="' + (k <= n ? 'on' : '') + '"></i>';
+      t.innerHTML = s; t.setAttribute('role','img'); t.setAttribute('aria-label', n + ' of 12 milestones complete');
+    });
+  }
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); }
+
+  window.addEventListener('hashchange', function(){
+    var i = indexOf(location.hash.slice(1)); if(i > -1 && i !== current) go(i);
+  });
+
+  // Copy buttons (delegated)
+  document.addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('.prompt .copy');
+    if(b){
+      var text = b.closest('.prompt').querySelector('pre').innerText;
+      var ok = function(){ b.textContent = 'Copied'; b.classList.add('ok'); setTimeout(function(){ b.textContent = 'Copy'; b.classList.remove('ok'); }, 1600); };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(ok, function(){ fallbackCopy(text); ok(); }); }
+      else { fallbackCopy(text); ok(); }
+      try{ if(window.gtag) gtag('event','prompt_copy',{ prompt: b.parentNode.querySelector('.ptitle').textContent }); }catch(err){}
+      return;
+    }
+    var buy = e.target.closest && e.target.closest('.buy-link, #buyTop');
+    if(buy){
+      try{ if(window.gtag) gtag('event','begin_checkout',{ currency:'INR', value:PRICE, location:'reader_sample', items:[{ item_id:'weekend_founder_os', item_name:'The Weekend Founder OS', price:PRICE, quantity:1 }] }); }catch(err){}
+      try{ if(window.fbq) fbq('track','InitiateCheckout',{ value:PRICE, currency:'INR', content_ids:['weekend_founder_os'] }); }catch(err){}
+    }
+  });
+  function fallbackCopy(text){
+    var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly',''); t.style.position='fixed'; t.style.opacity='0';
+    document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); }catch(e){} t.remove();
+  }
+
+  // Mobile contents drawer
+  $('menuBtn').addEventListener('click', function(){
+    var open = !document.body.classList.contains('toc-open');
+    document.body.classList.toggle('toc-open', open); this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(open){ var on = $('side').querySelector('a.on'); if(on) on.scrollIntoView({ block:'center' }); }
+  });
+  $('scrim').addEventListener('click', function(){ document.body.classList.remove('toc-open'); $('menuBtn').setAttribute('aria-expanded','false'); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ document.body.classList.remove('toc-open'); }
+    if($('main').hidden || /input|textarea/i.test((e.target.tagName||''))) return;
+    if(e.key === 'ArrowRight' && e.altKey) go(current + 1);
+    if(e.key === 'ArrowLeft' && e.altKey) go(current - 1);
+  });
+
+  // Reading progress bar
+  function updateProg(){
+    var h = document.documentElement.scrollHeight - innerHeight;
+    $('prog').style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 100) + '%';
+  }
+  window.addEventListener('scroll', updateProg, { passive:true });
+
+  /* ---------------- Save as PDF ---------------- */
+  function buildPrint(){
+    var pb = $('printBook'), out = '';
+    out += '<section class="pb-cover"><h1>' + esc(book.title) + '</h1><p>' + esc(book.subtitle) + '</p><div class="meta">' + esc(book.author) + ' · ' + esc(book.edition) + '<br>thedayzero.in</div></section>';
+    out += '<section class="pb-toc"><h2>Contents</h2>';
+    book.parts.forEach(function(p){
+      out += '<div class="tp">' + esc(partLabel(p)) + '</div>';
+      p.chapters.forEach(function(c){ out += '<div class="tc">' + (/^\d+$/.test(c.num) && c.num !== '0' ? esc(c.num) + '. ' : '') + esc(c.title) + '</div>'; });
+    });
+    out += '</section>';
+    book.parts.forEach(function(p){
+      if(/^\d+$/.test(p.num)){
+        out += '<section class="pb-part"><div class="pn">' + esc(p.num) + '</div><h2>' + esc(p.title) + '</h2><p>' + esc(p.promise) + '</p></section>';
+      }
+      p.chapters.forEach(function(c){
+        var crumb = partLabel(p) + (/^\d+$/.test(c.num) && c.num !== '0' ? ' · Chapter ' + c.num : '');
+        out += '<section class="pb-ch page"><div class="crumb">' + esc(crumb) + '</div><h1>' + esc(c.title) + '</h1><p class="promise">' + esc(c.promise) + '</p><div class="body">' + c.html + '</div></section>';
+      });
+    });
+    pb.innerHTML = out;
+    decorate(pb);
+  }
+  $('pdfBtn').addEventListener('click', function(){
+    buildPrint();
+    try{ if(window.gtag) gtag('event','save_pdf',{ item_id:'weekend_founder_os' }); }catch(e){}
+    var t = document.title; document.title = 'The Weekend Founder OS';
+    setTimeout(function(){ window.print(); document.title = t; }, 60);
+  });
+  window.addEventListener('afterprint', function(){ $('printBook').innerHTML = ''; });
+
+  boot();
+})();
+</script>
+</body>
+</html>
