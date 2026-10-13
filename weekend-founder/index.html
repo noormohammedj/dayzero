@@ -235,6 +235,27 @@ section{padding:clamp(64px,9vw,112px) 0}
 .author blockquote{font-family:'IBM Plex Serif',Georgia,serif;font-style:italic;font-size:clamp(22px,2.6vw,28px);line-height:1.4;margin-bottom:20px;max-width:34ch}
 @media (max-width:720px){.author{grid-template-columns:1fr}.author .ph{max-width:240px}}
 
+/* Proof */
+.sites{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.site{display:block;text-decoration:none;color:inherit}
+.shot{aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--mist);box-shadow:0 0 0 1px var(--line);position:relative;margin-bottom:16px;transition:box-shadow .15s}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.shot .fallback{display:none}
+.shot.no-img .fallback{display:grid;position:absolute;inset:0;place-items:center;font-weight:600;font-size:22px;color:var(--sky-ink);background:var(--sky-tint)}
+.site:hover .shot{box-shadow:0 0 0 2px var(--ink)}
+.site p{font-size:15.5px;color:var(--ink-2);margin:2px 0 8px}
+.site .visit{font-weight:600;color:var(--sky-ink);font-size:15px;text-decoration:underline;text-underline-offset:3px}
+.evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;padding-top:44px;border-top:1px solid var(--line);align-items:start}
+.ev img{width:100%;height:auto;border-radius:16px;box-shadow:0 0 0 1px var(--line);background:#0b141a}
+.ev figcaption{font-size:15px;color:var(--ink-2);margin-top:14px}
+.ev figcaption b{display:block;color:var(--ink);font-size:16.5px;margin-bottom:4px}
+.proof-note{font-size:13.5px;color:var(--slate);margin-top:28px}
+@media (max-width:880px){
+  .sites{grid-template-columns:repeat(3,minmax(240px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-right:calc(var(--gut) * -1);padding-right:var(--gut)}
+  .site{scroll-snap-align:start}
+  .evidence{grid-template-columns:1fr;gap:40px}
+}
+
 /* Price */
 .buy{background:var(--ink);color:#fff;border-radius:28px;padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
 .buy h2{color:#fff}
@@ -387,7 +408,7 @@ Before any change to the website, list what must not break: <mark>[TRACKING IDS,
       </ul>
       <p class="fineprint">TheDayZero ₹499 course page, GA4, 1 Sep – 12 Oct 2026, during about ₹60,000 of Meta ads. Chapter 22 and Field Notes B break it down.</p>
       <div class="ventures">
-        <div><b>Murugaaa.in</b><span>Temple-booking platform for Marudhamalai. Built on ₹0, breakeven in month 5.</span></div>
+        <div><b>Murugaaa.in</b><span>Temple-booking platform for Marudhamalai. Built on ₹0, breakeven in month 5, close to ₹50,000 earned so far.</span></div>
         <div><b>TheDayZero</b><span>Free business-fit quiz, a ₹499 30-day course and a live AI workshop.</span></div>
         <div><b>Mentell</b><span>Nutrition and habit coaching around South Indian food. Three websites before a steady paying customer — Chapter 13 explains why that was the wrong order.</span></div>
       </div>
@@ -420,6 +441,49 @@ Explain the likely cause in plain English first, then give me the fix as exact s
       <li><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg><div><h3>One-tap copy on every prompt</h3><p>No retyping from a screenshot. Copy, paste into Claude or ChatGPT, replace the brackets.</p></div></li>
       <li><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><div><h3>Updated as the tools change</h3><p>Claude and ChatGPT change every month. Chapters are corrected in place, and your access includes the updates.</p></div></li>
     </ul>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <h2>Built, live and paid for. Check it yourself.</h2>
+    <p class="lead">These aren't mockups. Open each site, and look at the screenshots behind the numbers. Customer names and phone numbers are hidden.</p>
+    <div class="sites">
+      <a class="site" href="https://murugaaa.in" target="_blank" rel="noopener" data-site="murugaaa.in">
+        <div class="shot"><img src="/assets/proof-site-murugaaa.jpg" alt="murugaaa.in on a phone" loading="lazy" onerror="this.parentNode.classList.add('no-img');this.remove();"><span class="fallback">murugaaa.in</span></div>
+        <h3>Murugaaa.in</h3>
+        <p>Pooja booking, live crowd status and visit planning for Marudhamalai temple, in Tamil, English and Hindi.</p>
+        <span class="visit">Visit murugaaa.in</span>
+      </a>
+      <a class="site" href="https://mentell.co.in" target="_blank" rel="noopener" data-site="mentell.co.in">
+        <div class="shot"><img src="/assets/proof-site-mentell.jpg" alt="mentell.co.in on a phone" loading="lazy" onerror="this.parentNode.classList.add('no-img');this.remove();"><span class="fallback">mentell.co.in</span></div>
+        <h3>Mentell</h3>
+        <p>A wellness brand built around South Indian life, with a free Lifestyle Leak Calculator that brings in enquiries.</p>
+        <span class="visit">Visit mentell.co.in</span>
+      </a>
+      <a class="site" href="https://thedayzero.in/run-business-30-days/" target="_blank" rel="noopener" data-site="thedayzero.in">
+        <div class="shot"><img src="/assets/proof-site-thedayzero.webp" alt="thedayzero.in 30-day course page on a phone" width="600" height="1298" loading="lazy" onerror="this.parentNode.classList.add('no-img');this.remove();"><span class="fallback">thedayzero.in</span></div>
+        <h3>TheDayZero</h3>
+        <p>A free business-fit quiz, a ₹499 30-day action course, a live AI workshop — and this book.</p>
+        <span class="visit">Visit thedayzero.in</span>
+      </a>
+    </div>
+
+    <div class="evidence">
+      <figure class="ev">
+        <img src="/assets/proof-razorpay.webp" alt="Razorpay dashboard showing ₹5.76K earnings from 13 Sep to 12 Oct, up 285.67% on the previous month" width="738" height="405" loading="lazy">
+        <figcaption><b>₹5,760 through Razorpay in 30 days</b>My Razorpay account across all my products, 13 Sep – 12 Oct 2026 — up 286% on the 30 days before.</figcaption>
+      </figure>
+      <figure class="ev">
+        <img src="/assets/proof-murugaaa-booking.webp" alt="WhatsApp message from a Murugaaa client confirming a taxi and temple visit on 15 November, paying ₹5,000 for the service and ₹1,000 to the priest" width="700" height="677" loading="lazy">
+        <figcaption><b>Murugaaa: a real temple-visit booking</b>A client confirming pickup, prayers at Marudhamalai and drop-off: ₹5,000 for the service, plus ₹1,000 to the priest. Murugaaa.in has earned close to ₹50,000 so far, mostly from offline bookings like this one.</figcaption>
+      </figure>
+      <figure class="ev">
+        <img src="/assets/proof-mentell-enquiries.webp" alt="Four WhatsApp enquiries to Mentell after using the free Leak Calculator, each asking about the 90-day programme" width="532" height="873" loading="lazy">
+        <figcaption><b>Mentell: four enquiries from one free tool</b>Messages people sent after using Mentell's free Lifestyle Leak Calculator, asking about the 90-day programme. These are enquiries, not sales — Chapter 26 covers what to do with them.</figcaption>
+      </figure>
+    </div>
+    <p class="proof-note">Screenshots shared with customer details hidden. Murugaaa's earnings figure is from my own records; most offline payments don't go through Razorpay.</p>
   </div>
 </section>
 
@@ -503,6 +567,10 @@ Explain the likely cause in plain English first, then give me the fix as exact s
   });
   Array.prototype.forEach.call(document.querySelectorAll('[data-track="sample"]'), function(a){
     a.addEventListener('click', function(){ track('sample_open', { item_id:'weekend_founder_os' }, 'ViewContent', { content_ids:['weekend_founder_os_sample'] }); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.site[data-site]'), function(a){
+    a.addEventListener('click', function(){ track('proof_site_click', { site:a.getAttribute('data-site') }); });
   });
 
   // Header border + sticky CTA once the hero is out of view.
