@@ -203,6 +203,15 @@ section{padding:clamp(64px,9vw,112px) 0}
 .funnel .bar b{display:block;height:100%;background:var(--ink);border-radius:6px}
 .funnel li:nth-child(3) .bar b{background:var(--sky)}
 .funnel .v{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.tally{margin-top:32px}
+.tally .big{font-size:clamp(72px,9vw,104px);font-weight:600;letter-spacing:-0.045em;line-height:.95;color:var(--ink)}
+.tally .big-lbl{font-size:17px;color:var(--ink-2);margin:6px 0 20px}
+.tally table{width:100%;border-collapse:collapse;font-size:15.5px;margin-bottom:12px}
+.tally th{font-size:13px;font-weight:500;color:var(--slate);text-align:left;padding:0 0 8px;border-bottom:1px solid var(--line)}
+.tally td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.tally th:nth-child(n+2),.tally td:nth-child(n+2){text-align:right;padding-left:12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tally tfoot td{font-weight:600;border-bottom:0;border-top:2px solid var(--ink)}
+.funnel-ttl{font-size:18px;margin-bottom:16px}
 .fineprint{font-size:13.5px;color:var(--slate)}
 .ventures{display:grid;gap:0;margin-top:28px;border-top:1px solid var(--line)}
 .ventures div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15.5px}
@@ -398,9 +407,24 @@ Before any change to the website, list what must not break: <mark>[TRACKING IDS,
   <div class="wrap numbers">
     <div>
       <h2>The real numbers, including the bad ones.</h2>
-      <p class="lead">Most AI-business products show you their best screenshot. This one shows you the funnel that cost me ₹60,000 to learn — and what it taught me about where the money actually leaks.</p>
+      <p class="lead">Most AI-business products show you their best screenshot. Here's the whole picture: what has sold, and the course funnel that cost me ₹60,000 to learn.</p>
+      <div class="tally">
+        <div class="big">57</div>
+        <p class="big-lbl">paid sales so far, across three offers</p>
+        <table>
+          <thead><tr><th>Offer</th><th>Sales</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Murugaaa.in temple-visit bookings</td><td>~12</td><td>≈ ₹50,000</td></tr>
+            <tr><td>₹99 entry offer</td><td>43</td><td>₹4,257</td></tr>
+            <tr><td>₹499 30-day course</td><td>2</td><td>₹998</td></tr>
+          </tbody>
+          <tfoot><tr><td>Total</td><td>57</td><td>≈ ₹55,000</td></tr></tfoot>
+        </table>
+        <p class="fineprint">As of 13 Oct 2026. ₹99 and ₹499 sales went through Razorpay; Murugaaa bookings were mostly paid offline, from my own records.</p>
+      </div>
     </div>
     <div>
+      <h3 class="funnel-ttl">Where the ₹499 course leaked</h3>
       <ul class="funnel" aria-label="TheDayZero ₹499 course funnel">
         <li><span>Page visitors</span><span class="bar"><b style="width:100%"></b></span><span class="v">430</span></li>
         <li><span>Started checkout</span><span class="bar"><b style="width:2.8%"></b></span><span class="v">12</span></li>
