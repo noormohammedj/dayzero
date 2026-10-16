@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NDMD8T3C');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6VT4XMLT0Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6VT4XMLT0Q');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1441746631134656');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build your portfolio website with AI — free, in one evening — thedayzero</title>
+<meta name="description" content="A free, step-by-step guide: build a one-page personal portfolio website with Claude or ChatGPT in about an hour. Copy-paste prompts, no coding, no payment.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://thedayzero.in/weekend-founder/free-website/">
+<link rel="icon" type="image/png" href="https://thedayzero.in/assets/favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thedayzero.in/weekend-founder/free-website/">
+<meta property="og:title" content="Build your portfolio website with AI — free">
+<meta property="og:description" content="Copy-paste prompts for Claude or ChatGPT. One evening, no coding, no payment.">
+<meta property="og:image" content="https://thedayzero.in/assets/weekend-founder-vsl-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Build a one-page portfolio website with Claude or ChatGPT",
+  "description": "A free guide to building a personal portfolio website as a single HTML file using AI, without coding.",
+  "totalTime": "PT60M",
+  "estimatedCost": { "@type": "MonetaryAmount", "currency": "INR", "value": "0" },
+  "tool": [{ "@type": "HowToTool", "name": "Claude or ChatGPT (free plan)" }, { "@type": "HowToTool", "name": "A phone or laptop" }],
+  "step": [
+    { "@type": "HowToStep", "name": "Write your notes", "text": "Fill in the profile template: name, role, skills, three things you have done and how to reach you." },
+    { "@type": "HowToStep", "name": "Run the build prompt", "text": "Paste the build prompt with your notes into Claude or ChatGPT." },
+    { "@type": "HowToStep", "name": "Open your site", "text": "Open the preview in Claude or ChatGPT, or save the code as an .html file and open it in your browser." },
+    { "@type": "HowToStep", "name": "Polish it", "text": "Run the four polish prompts to improve design, mobile layout, photo and wording." },
+    { "@type": "HowToStep", "name": "Check it", "text": "Go through the finish checklist on a real phone." }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0B1B3F; --ink-2:#2A3A5E; --slate:#5B6478; --line:#E3E7EF;
+  --paper:#FFFFFF; --mist:#F4F6FA; --sky:#2F7BF6; --sky-ink:#1F5FD1; --sky-tint:#E7F0FF;
+  --mustard:#E8B23A; --butter:#FDF4DD; --graphite:#111827; --fog:#E5E7EB; --green:#1f7a45; --green-ink:#14532d;
+  --gut:clamp(16px,4vw,32px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'IBM Plex Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
+.wrap{max-width:760px;margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{font-weight:600;letter-spacing:-0.02em;line-height:1.15}
+h1{font-size:clamp(34px,6vw,52px);margin-bottom:16px}
+h2{font-size:clamp(24px,3.6vw,32px);margin-bottom:12px}
+h3{font-size:19px;margin-bottom:6px}
+p{margin-bottom:12px}
+.lead{font-size:clamp(18px,2.2vw,20px);color:var(--ink-2)}
+.muted{color:var(--slate)}
+
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1000px}
+.brand{font-weight:600;text-decoration:none;display:flex;gap:8px;align-items:center}
+.brand .mark{color:var(--sky)}
+.top a.back{font-size:14.5px;color:var(--ink-2);text-decoration:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;font:600 16px/1 'IBM Plex Sans',sans-serif;text-decoration:none;cursor:pointer;padding:16px 24px;min-height:52px}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-green{background:var(--green);color:#fff}
+
+.hero{padding:clamp(36px,7vw,72px) 0 28px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eaf7ef;color:var(--green-ink);font-weight:600;font-size:14px;border-radius:999px;padding:6px 14px;margin-bottom:18px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;margin:18px 0 0;font-size:15px;color:var(--slate)}
+.meta li:before{content:"✓ ";color:var(--green);font-weight:700}
+
+.progress{position:sticky;top:60px;z-index:15;background:#fff;border-bottom:1px solid var(--line)}
+.progress .wrap{display:flex;gap:6px;padding-top:10px;padding-bottom:10px;align-items:center}
+.progress span{flex:1;height:6px;border-radius:3px;background:var(--line);transition:background .3s}
+.progress span.done{background:var(--green)}
+.progress b{font-size:13px;color:var(--slate);font-weight:500;margin-left:8px;white-space:nowrap}
+
+.step{padding:40px 0;border-bottom:1px solid var(--line)}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:15px;margin-bottom:12px}
+.step.is-done .step-num{background:var(--green)}
+.time{font-size:14px;color:var(--slate);margin-bottom:12px}
+.tip{background:var(--butter);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink-2);margin:14px 0}
+.tip b{color:var(--ink)}
+ol.plain,ul.plain{padding-left:22px;margin:8px 0 12px;color:var(--ink-2)}
+ol.plain li,ul.plain li{margin-bottom:6px}
+
+.prompt{background:var(--graphite);color:var(--fog);border-radius:16px;overflow:hidden;margin:16px 0}
+.prompt .ph{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;color:#9CA3AF}
+.prompt .ttl{color:#fff;font-weight:500;flex:1}
+.prompt button{font:600 13.5px 'IBM Plex Sans',sans-serif;color:var(--ink);background:#fff;border:0;border-radius:999px;padding:8px 16px;cursor:pointer;min-height:36px}
+.prompt button.copied{background:#bbf7d0}
+.prompt pre{font:13.5px/1.65 'IBM Plex Mono',monospace;white-space:pre-wrap;word-break:break-word;padding:16px 18px 18px;margin:0}
+.prompt mark{background:none;color:#7DD3FC}
+
+.done-btn{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font:600 15px 'IBM Plex Sans',sans-serif;background:#fff;color:var(--green-ink);border:1.5px solid var(--green);border-radius:999px;padding:10px 18px;cursor:pointer;min-height:44px}
+.step.is-done .done-btn{background:var(--green);color:#fff}
+
+.check{list-style:none;margin:12px 0}
+.check li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}
+.check input{width:22px;height:22px;margin-top:3px;accent-color:var(--green);flex:none}
+
+.next{background:var(--ink);color:#fff;border-radius:24px;padding:clamp(26px,5vw,44px);margin:44px 0}
+.next h2{color:#fff}
+.next p{color:#C9D3EA}
+.next ul{list-style:none;margin:16px 0 22px;display:grid;gap:10px}
+.next li{color:#E4E9F5;padding-left:26px;position:relative}
+.next li:before{content:"→";position:absolute;left:0;color:var(--mustard);font-weight:700}
+.next .g{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin:0 0 18px;color:#fff;font-size:15px}
+.next .g b{color:#86efac}
+.next .row{display:flex;flex-wrap:wrap;gap:12px}
+.next .btn-primary{background:#fff;color:var(--ink)}
+.next .btn-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+
+.feedback{background:var(--mist);border-radius:20px;padding:clamp(22px,4vw,34px);margin-bottom:56px}
+.feedback label{display:block;font-size:14px;font-weight:600;color:var(--ink-2);margin:12px 0 6px}
+.feedback input{width:100%;font:16px 'IBM Plex Sans',sans-serif;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.feedback input:focus{border-color:var(--sky);outline:none}
+.feedback .err{display:none;color:#b3261e;font-size:13px;margin-top:4px}
+.feedback .err.on{display:block}
+.feedback .btn{margin-top:18px;width:100%}
+.feedback .thanks{display:none;font-weight:600;color:var(--green-ink)}
+
+footer{padding:30px 0 60px;border-top:1px solid var(--line);font-size:14px;color:var(--slate)}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDMD8T3C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><span>thedayzero</span><span class="mark" aria-hidden="true">✳︎</span></a>
+    <a class="back" href="/weekend-founder/">Weekend Founder OS →</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge">Free · Step 1 of the Weekend Founder OS</span>
+      <h1>Build your own portfolio website tonight, with AI.</h1>
+      <p class="lead">One page about you — what you do, what you've done and how to reach you — written and designed by Claude or ChatGPT from your notes. You don't write code. You copy, paste and check.</p>
+      <ul class="meta">
+        <li>Free, no sign-up</li>
+        <li>About 60 minutes</li>
+        <li>Phone or laptop</li>
+        <li>Free Claude or ChatGPT plan is enough</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="progress" aria-label="Your progress">
+    <div class="wrap"><span></span><span></span><span></span><span></span><span></span><b id="progTxt">0 of 5 done</b></div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- STEP 1 -->
+    <section class="step" id="s1" data-step="1">
+      <span class="step-num">1</span>
+      <h2>Write your notes</h2>
+      <p class="time">10 minutes · in your phone's notes app</p>
+      <p>AI can only write about you from what you give it. Fill this in first — short answers are fine. Don't worry about making it sound good; that comes in step 4.</p>
+      <div class="prompt">
+        <div class="ph"><span class="ttl">Your profile notes</span><button type="button" data-copy="notes">Copy</button></div>
+<pre id="notes">Name: <mark>[YOUR NAME]</mark>
+What I do: <mark>[ROLE, e.g. QA engineer at a product company]</mark>
+City: <mark>[CITY]</mark>
+What I want to be known for, in one line: <mark>[e.g. I make software releases calm and predictable]</mark>
+3 skills: <mark>[SKILL 1]</mark>, <mark>[SKILL 2]</mark>, <mark>[SKILL 3]</mark>
+3 things I've done (projects, results, certificates):
+1. <mark>[THING 1, with a number if you have one]</mark>
+2. <mark>[THING 2]</mark>
+3. <mark>[THING 3]</mark>
+Email: <mark>[EMAIL]</mark>
+WhatsApp (with 91): <mark>[91XXXXXXXXXX]</mark>
+LinkedIn: <mark>[LINKEDIN URL or leave blank]</mark></pre>
+      </div>
+      <div class="tip"><b>Tip:</b> numbers make a profile believable. "Cut regression testing from 3 days to 1" beats "worked on testing".</div>
+      <button type="button" class="done-btn" data-done="1">✓ Mark step 1 done</button>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step" id="s2" data-step="2">
+      <span class="step-num">2</span>
+      <h2>Run the build prompt</h2>
+      <p class="time">5 minutes · in Claude or ChatGPT</p>
+      <ol class="plain">
+        <li>Open <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> or <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> (free account is fine) and start a new chat.</li>
+        <li>Copy the prompt below and paste it.</li>
+        <li>Replace the line <mark style="background:var(--sky-tint);color:var(--sky-ink);padding:0 4px;border-radius:4px">[PASTE YOUR NOTES HERE]</mark> with your notes from step 1. Send.</li>
+      </ol>
+      <div class="prompt">
+        <div class="ph"><span class="ttl">Build prompt</span><button type="button" data-copy="build">Copy</button></div>
+<pre id="build">Build me a one-page personal portfolio website as a single HTML file.
+
+About me:
+<mark>[PASTE YOUR NOTES HERE]</mark>
+
+Rules:
+- One file only. All CSS inside a &lt;style&gt; tag. No frameworks, no external images. One Google Font is allowed.
+- Mobile first: it must look great on a phone, then on a laptop.
+- Sections, in this order: a hero with my name, role and one-line pitch; About; Skills; What I've done (as cards); Contact.
+- Contact buttons: Email (mailto: link) and WhatsApp (https://wa.me/ link with my number).
+- Clean and modern: plenty of white space, one accent colour, large readable text.
+- Never invent facts about me. If something is missing, leave a clearly marked [placeholder].
+
+Give me the complete code in one block. Then, in 3 short lines, tell me how to open it.</pre>
+      </div>
+      <button type="button" class="done-btn" data-done="2">✓ Mark step 2 done</button>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step" id="s3" data-step="3">
+      <span class="step-num">3</span>
+      <h2>Open your website</h2>
+      <p class="time">5 minutes</p>
+      <h3>In Claude</h3>
+      <p>Claude shows the website as a live preview next to the chat. On the phone app, tap the preview card to open it full screen.</p>
+      <h3>In ChatGPT</h3>
+      <p>Type <b>"Open this in canvas"</b>, then press <b>Preview</b> at the top of the canvas.</p>
+      <h3>On a laptop (works with either)</h3>
+      <ol class="plain">
+        <li>Copy the whole code block.</li>
+        <li>Open Notepad (Windows) or TextEdit in plain-text mode (Mac) and paste it.</li>
+        <li>Save it as <b>my-site.html</b>, then double-click the file. It opens in your browser.</li>
+      </ol>
+      <div class="tip"><b>Stuck?</b> Paste this into the same chat: "I can't see the website. I'm on <mark style="background:none;color:var(--sky-ink)">[phone / laptop]</mark> using <mark style="background:none;color:var(--sky-ink)">[Claude / ChatGPT]</mark>. Give me the exact steps to open it."</div>
+      <button type="button" class="done-btn" data-done="3">✓ I can see my website</button>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="step" id="s4" data-step="4">
+      <span class="step-num">4</span>
+      <h2>Polish it with four prompts</h2>
+      <p class="time">20–30 minutes · same chat</p>
+      <p>Send these one at a time, and look at the preview after each one. This is the part where it starts to look like yours.</p>
+
+      <div class="prompt">
+        <div class="ph"><span class="ttl">A · Make it look premium</span><button type="button" data-copy="p1">Copy</button></div>
+<pre id="p1">Make the design look premium: more generous spacing, a subtle gradient behind the hero, softer card shadows and a gentle hover effect on buttons. Keep it one HTML file and keep all my text exactly as it is. Give me the full updated code.</pre>
+      </div>
+      <div class="prompt">
+        <div class="ph"><span class="ttl">B · Fix it for phones</span><button type="button" data-copy="p2">Copy</button></div>
+<pre id="p2">Check the page at a 360px-wide phone screen. Fix anything that overflows sideways, any text smaller than 16px and any button smaller than 44px tall. List what you changed in one line each, then give me the full updated code.</pre>
+      </div>
+      <div class="prompt">
+        <div class="ph"><span class="ttl">C · Add your photo (or initials)</span><button type="button" data-copy="p3">Copy</button></div>
+<pre id="p3">Add a round profile picture to the hero using this image link: <mark>[IMAGE URL — e.g. your LinkedIn photo link, or leave blank]</mark>. If the link is blank or doesn't load, show my initials in a coloured circle instead. Give me the full updated code.</pre>
+      </div>
+      <div class="prompt">
+        <div class="ph"><span class="ttl">D · Make the words sound like you</span><button type="button" data-copy="p4">Copy</button></div>
+<pre id="p4">Rewrite all the text on the page so it sounds confident but not boastful, in simple English a recruiter or client can read in 30 seconds. Don't add any facts, numbers or skills I didn't give you. Give me the full updated code.</pre>
+      </div>
+      <div class="tip"><b>Didn't like a change?</b> Say "Undo the last change and give me the previous version." AI is a draft partner — you're the editor.</div>
+      <button type="button" class="done-btn" data-done="4">✓ Mark step 4 done</button>
+    </section>
+
+    <!-- STEP 5 -->
+    <section class="step" id="s5" data-step="5">
+      <span class="step-num">5</span>
+      <h2>Finish checklist</h2>
+      <p class="time">5 minutes · on a real phone</p>
+      <ul class="check">
+        <li><input type="checkbox" id="c1"><label for="c1">My name, role and one-line pitch are at the top</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">No [placeholder] text is left anywhere</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">Nothing on the page is untrue or exaggerated</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">The Email button opens my email app</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5">The WhatsApp button opens a chat with my number</label></li>
+        <li><input type="checkbox" id="c6"><label for="c6">Nothing slides sideways when I scroll on my phone</label></li>
+      </ul>
+      <button type="button" class="done-btn" data-done="5">✓ My website is done</button>
+    </section>
+
+    <!-- NEXT: THE PAID OS -->
+    <section class="next" id="next">
+      <h2>You just built a website. Now make it a business.</h2>
+      <p>Right now your site lives inside a chat or on your laptop. The Weekend Founder OS takes the same way of working — your notes, a clear prompt, check, improve — and walks you through everything after this:</p>
+      <ul>
+        <li>Put your site live on your own domain (yourname.in) with GitHub</li>
+        <li>Pick and test a product idea people will actually pay for</li>
+        <li>Take payments with Razorpay and track every visitor</li>
+        <li>A sales system: Instagram, Reels, a WhatsApp and DM funnel</li>
+        <li>Your own AI assistants with Claude Projects and skills, so every task gets faster</li>
+        <li>154 prompts like the ones you just used, and 3 real case studies</li>
+      </ul>
+      <div class="g"><span>🛡️</span><span><b>₹1,999 one-time · 7-day full refund.</b> Not satisfied? Message Noor within 7 days and get every rupee back, no questions asked.</span></div>
+      <div class="row">
+        <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_guide_end">Get the full OS — ₹1,999</a>
+        <a class="btn btn-ghost" href="/weekend-founder/#ladder">See everything inside</a>
+      </div>
+    </section>
+
+    <!-- FEEDBACK / LEAD -->
+    <section class="feedback" id="feedback">
+      <h2>Want honest feedback on your site?</h2>
+      <p class="muted">Leave your WhatsApp number. Noor will message you to ask for your site and send two specific suggestions to improve it. No spam.</p>
+      <form id="fbForm" novalidate>
+        <label for="fName">Your name</label>
+        <input id="fName" name="name" autocomplete="name">
+        <div class="err" id="eName">Please add your name.</div>
+        <label for="fPhone">WhatsApp number</label>
+        <input id="fPhone" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit mobile number">
+        <div class="err" id="ePhone">Please enter a valid 10-digit Indian mobile number.</div>
+        <label for="fEmail">Email (optional)</label>
+        <input id="fEmail" name="email" type="email" autocomplete="email">
+        <button type="submit" class="btn btn-green" id="fSubmit">Get feedback from Noor</button>
+      </form>
+      <p class="thanks" id="fThanks">Thanks! Noor will message you on WhatsApp soon.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Noor Mohammed J · thedayzero · <a href="/weekend-founder/">Weekend Founder OS</a> · <a href="https://wa.me/919629843122" target="_blank" rel="noopener">WhatsApp</a></div>
+</footer>
+
+<script>
+(function(){
+  function track(ev, params){ try{ if(window.gtag) gtag('event', ev, params || {}); }catch(e){} }
+  function fb(kind, ev, params){ try{ if(window.fbq) fbq(kind, ev, params || {}); }catch(e){} }
+  function get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+  track('free_guide_view', { guide:'portfolio_website' });
+
+  // Copy buttons
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-copy');
+      var text = document.getElementById(id).innerText;
+      function done(){ btn.textContent = 'Copied ✓'; btn.classList.add('copied'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800); }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, done); }
+      else { var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(e){} t.remove(); done(); }
+      track('prompt_copy', { guide:'portfolio_website', prompt:id });
+    });
+  });
+
+  // Progress (remembered on this device)
+  var KEY = 'tdz_free_site_steps';
+  var doneSteps = {};
+  try{ doneSteps = JSON.parse(get(KEY) || '{}') || {}; }catch(e){}
+  var bars = document.querySelectorAll('.progress span'), txt = document.getElementById('progTxt');
+  function render(){
+    var n = 0;
+    for(var i = 1; i <= 5; i++){
+      var on = !!doneSteps[i];
+      if(on) n++;
+      bars[i-1].classList.toggle('done', on);
+      var sec = document.getElementById('s' + i);
+      if(sec) sec.classList.toggle('is-done', on);
+    }
+    txt.textContent = n + ' of 5 done';
+    return n;
+  }
+  render();
+  Array.prototype.forEach.call(document.querySelectorAll('[data-done]'), function(b){
+    b.addEventListener('click', function(){
+      var s = b.getAttribute('data-done');
+      doneSteps[s] = !doneSteps[s];
+      set(KEY, JSON.stringify(doneSteps));
+      var n = render();
+      if(doneSteps[s]){
+        track('free_step_done', { guide:'portfolio_website', step:Number(s) });
+        if(n === 5){
+          track('free_guide_complete', { guide:'portfolio_website' });
+          fb('trackCustom', 'FreeWebsiteComplete', {});
+          document.getElementById('next').scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      }
+    });
+  });
+
+  // Buy links
+  Array.prototype.forEach.call(document.querySelectorAll('.buy-link'), function(a){
+    a.addEventListener('click', function(){
+      track('begin_checkout', { currency:'INR', value:1999, location:a.getAttribute('data-loc'),
+        items:[{ item_id:'weekend_founder_os', item_name:'The Weekend Founder OS', price:1999, quantity:1 }] });
+      fb('track', 'InitiateCheckout', { value:1999, currency:'INR', content_ids:['weekend_founder_os'], content_type:'product' });
+    });
+  });
+
+  // Feedback form → same Apps Script lead sheet as the ₹499 page (pageUrl tells them apart)
+  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
+  var form = document.getElementById('fbForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var email = document.getElementById('fEmail').value.trim();
+    var okName = !!name, okPhone = /^[6-9]\d{9}$/.test(phone.replace(/\D/g,'').replace(/^91(?=\d{10}$)/,''));
+    document.getElementById('eName').classList.toggle('on', !okName);
+    document.getElementById('ePhone').classList.toggle('on', !okPhone);
+    if(!okName || !okPhone) return;
+    var btn = document.getElementById('fSubmit'); btn.disabled = true; btn.textContent = 'Sending…';
+    var p = new URLSearchParams(location.search), utm = {};
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){ if(p.get(k)) utm[k] = p.get(k); });
+    var payload = new URLSearchParams({ name:name, email:email, whatsapp:phone, pageUrl:location.href, timestamp:new Date().toISOString(), referrer:document.referrer || '', utm:JSON.stringify(utm) });
+    function thanks(){ form.style.display = 'none'; document.getElementById('fThanks').style.display = 'block'; }
+    fetch(WEBHOOK_URL, { method:'POST', mode:'no-cors', body:payload }).then(thanks, thanks);
+    track('generate_lead', { form:'free_site_feedback' });
+    fb('track', 'Lead', { content_name:'free_site_feedback' });
+  });
+})();
+</script>
+</body>
+</html>
