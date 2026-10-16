@@ -68,7 +68,14 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     "url": "https://thedayzero.in/weekend-founder/",
     "priceCurrency": "INR",
     "price": "1999",
-    "availability": "https://schema.org/InStock"
+    "availability": "https://schema.org/InStock",
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "IN",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 7,
+      "returnFees": "https://schema.org/FreeReturn"
+    }
   }
 }
 </script>
@@ -80,6 +87,7 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     {"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you have worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter."}},
     {"@type":"Question","name":"Is this a PDF?","acceptedAnswer":{"@type":"Answer","text":"It is a web book you read in your browser, built for phones. You can save the whole book as a PDF at any time with one button."}},
     {"@type":"Question","name":"How do I get access after paying?","acceptedAnswer":{"@type":"Answer","text":"Right after payment, Razorpay sends you to the reader and the book unlocks automatically. On a new device, unlock it again with the email and phone number you used to pay."}},
+    {"@type":"Question","name":"What if I'm not satisfied?","acceptedAnswer":{"@type":"Answer","text":"Message Noor on WhatsApp within 7 days of payment and you get your full ₹1,999 back to your original payment method through Razorpay. No questions asked, no forms."}},
     {"@type":"Question","name":"Does it promise income?","acceptedAnswer":{"@type":"Answer","text":"No. It teaches a method and shows real numbers from three products, including the ones that did not sell. Nobody honest can promise income."}},
     {"@type":"Question","name":"What happens when Claude or ChatGPT change?","acceptedAnswer":{"@type":"Answer","text":"Because it is a web book, chapters are updated in place when the tools change. Your access includes those updates."}},
     {"@type":"Question","name":"Who do I contact if something does not work?","acceptedAnswer":{"@type":"Answer","text":"Message Noor on WhatsApp at +91 96298 43122 with your payment reference."}}
@@ -298,6 +306,34 @@ section{padding:clamp(64px,9vw,112px) 0}
 footer{padding:40px 0 100px;border-top:1px solid var(--line);font-size:14px;color:var(--slate)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 footer a{color:var(--slate)}
+
+/* VSL + 7-day guarantee (Oct 16) */
+.vsl{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;margin:0 0 8px;box-shadow:0 18px 40px -16px rgba(11,27,63,.45)}
+.vsl video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.vsl-sound{position:absolute;top:10px;right:10px;z-index:2;display:flex;align-items:center;gap:7px;padding:5px 12px 5px 5px;border:0;border-radius:999px;background:rgba(11,27,63,.78);color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.vsl-sound .vs-icon{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center}
+.vsl-sound.hidden{display:none}
+.vsl-cap{font-size:13.5px;color:var(--slate);margin-bottom:18px}
+.same-stack{font-size:16px;color:var(--ink-2);background:var(--sky-tint);border-left:3px solid var(--sky);border-radius:8px;padding:12px 14px;margin-bottom:18px}
+.same-stack a{color:var(--sky-ink);font-weight:600}
+.g-callout{display:flex;align-items:center;gap:12px;text-decoration:none;background:#fff;border:2px solid #1f7a45;border-radius:16px;padding:10px 14px 10px 10px;box-shadow:0 6px 18px rgba(31,122,69,.16);max-width:520px}
+.g-seal{flex:none;display:flex}
+.g-seal svg{animation:sealPulse 2.6s ease-in-out infinite}
+@keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.g-copy{font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.g-copy strong{display:block;font-size:16px;color:#14532d}
+.g-arrow{display:flex;padding-left:120px;margin:2px 0 6px}
+.g-arrow svg{animation:arrowNudge 1.4s ease-in-out infinite}
+@keyframes arrowNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.guarantee{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,40px);align-items:center;background:linear-gradient(150deg,#eaf7ef,#fff 65%);border:2px solid #1f7a45;border-radius:28px;padding:clamp(28px,5vw,52px)}
+.guarantee h2{color:#14532d}
+.g-steps{list-style:none;display:grid;gap:10px;margin-top:18px}
+.g-steps li{display:flex;gap:12px;align-items:baseline;color:var(--ink-2)}
+.g-steps b{flex:none;width:24px;height:24px;border-radius:50%;background:#1f7a45;color:#fff;font-size:13px;display:inline-flex;align-items:center;justify-content:center}
+.g-steps a{color:#14532d;font-weight:600}
+@media (max-width:640px){.guarantee{grid-template-columns:1fr;text-align:left}.guarantee-seal{display:flex}}
+.card-guarantee{display:block;text-decoration:none;background:#eaf7ef;color:#14532d;font-weight:600;font-size:14px;border-radius:10px;padding:10px 12px;margin:-8px 0 18px}
+@media (prefers-reduced-motion:reduce){.g-seal svg,.g-arrow svg{animation:none}}
 </style>
 </head>
 <body>
@@ -323,12 +359,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h1>Build and sell your first AI product — before you quit your job.</h1>
       <p class="lead">The Weekend Founder OS is an operating manual for salaried tech professionals. It's the exact Claude and ChatGPT workflow behind three products I built on weekends — with the real numbers, including the ones that didn't sell.</p>
+
+      <!-- ================= VSL (16:9) =================
+           File: /assets/weekend-founder-vsl.mp4 (960x540 H.264, 55 s, faststart).
+           Thumbnail: /assets/weekend-founder-vsl-poster.jpg.
+           Starts muted when half the frame is on screen; the "Sound" button
+           restarts it from 0:00 with sound. -->
+      <div class="vsl" id="vslFrame">
+        <video id="vslVideo" muted playsinline preload="none" controls
+          poster="/assets/weekend-founder-vsl-poster.jpg"
+          aria-label="Video from Noor Mohammed J explaining the Weekend Founder OS">
+          <source src="/assets/weekend-founder-vsl.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="vsl-sound" id="vslSound" aria-label="Watch with sound">
+          <span class="vs-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg></span>
+          <span>Sound</span>
+        </button>
+      </div>
+      <p class="vsl-cap">55 seconds from Noor · Tamil &amp; English captions</p>
+
+      <p class="same-stack">The <b>same prompts and steps</b> I used to build <a href="https://thedayzero.in/" target="_blank" rel="noopener">thedayzero.in</a>, <a href="https://murugaaa.in" target="_blank" rel="noopener">murugaaa.in</a> and <a href="https://mentell.co.in" target="_blank" rel="noopener">mentell.co.in</a> — now yours to build your own digital product.</p>
+
+      <a href="#guarantee" class="g-callout">
+        <span class="g-seal" aria-hidden="true"><svg viewBox="0 0 100 100" width="60" height="60"><circle cx="50" cy="50" r="46" fill="#1f7a45"/><circle cx="50" cy="50" r="39" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 3"/><text x="50" y="44" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="22" fill="#fff">7-DAY</text><text x="50" y="60" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="9.5" fill="#fff">MONEY-BACK</text><text x="50" y="72" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="9.5" fill="#fff">GUARANTEE</text></svg></span>
+        <span class="g-copy"><strong>Not satisfied? Get your full ₹1,999 back.</strong>Within 7 days of payment. No questions asked.</span>
+      </a>
+      <div class="g-arrow" aria-hidden="true"><svg width="44" height="38" viewBox="0 0 46 40" fill="none" stroke="#1f7a45" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c4 16 14 26 30 28"/><path d="M30 24l9 8-11 4"/></svg></div>
       <div class="ctas">
         <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="hero">Get the OS <span class="price">₹1,999</span></a>
         <a class="btn btn-ghost" href="/weekend-founder/read/?sample=1" data-track="sample">Read Chapter 1 free</a>
       </div>
       <ul class="facts">
         <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>One-time payment</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>7-day full refund, no questions</li>
         <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Instant access, made for phones</li>
         <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Save the whole book as a PDF</li>
       </ul>
@@ -522,6 +585,23 @@ Explain the likely cause in plain English first, then give me the fix as exact s
   </div>
 </section>
 
+<section id="guarantee" style="padding-top:0">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="guarantee-seal" aria-hidden="true"><svg viewBox="0 0 100 100" width="104" height="104"><circle cx="50" cy="50" r="47" fill="#1f7a45"/><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 3"/><text x="50" y="38" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="8.5" fill="#fff">100% REFUND</text><text x="50" y="60" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="21" fill="#fff">7 DAYS</text><text x="50" y="73" text-anchor="middle" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="7.5" fill="#fff">NO QUESTIONS</text></svg></div>
+      <div>
+        <h2>Read it for 7 days. Not satisfied? Every rupee back.</h2>
+        <p class="lead">If the Weekend Founder OS isn't what you expected, for any reason, message me on WhatsApp within 7 days of payment and I'll refund the full ₹1,999. No questions, no forms, no support tickets. The risk is on me, not you.</p>
+        <ol class="g-steps">
+          <li><b>1</b><span>Pay ₹1,999 and start reading straight away.</span></li>
+          <li><b>2</b><span>Not happy? <a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%27d%20like%20a%20refund%20for%20the%20Weekend%20Founder%20OS." target="_blank" rel="noopener" data-wa="refund">Message Noor on WhatsApp</a> within 7 days of payment.</span></li>
+          <li><b>3</b><span>Your full ₹1,999 goes back to your original payment method through Razorpay.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="buy" style="padding-top:0">
   <div class="wrap">
     <div class="buy">
@@ -534,11 +614,13 @@ Explain the likely cause in plain English first, then give me the fix as exact s
           <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>154 prompt templates with one-tap copy</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Save as PDF, any time</li>
           <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Updates included as the tools change</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>7-day full refund if you're not satisfied, no questions asked</li>
         </ul>
       </div>
       <div class="card">
         <div class="amt">₹1,999 <small>one-time</small></div>
         <p>Secure checkout by Razorpay. UPI, cards and netbanking. You'll be taken straight to the book after paying.</p>
+        <a href="#guarantee" class="card-guarantee">🛡️ 7-day money-back guarantee — no questions asked</a>
         <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="price">Get the Weekend Founder OS</a>
         <div class="pay"><span>UPI</span><span>Cards</span><span>Netbanking</span></div>
       </div>
@@ -553,6 +635,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
       <details><summary>Do I need to know how to code?</summary><p>No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you've worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter.</p></details>
       <details><summary>Is this a PDF?</summary><p>It's a web book you read in your browser, built for phones. You can save the whole book as a PDF at any time with one button.</p></details>
       <details><summary>How do I get access after paying?</summary><p>Right after payment, Razorpay sends you to the reader and the book unlocks automatically. On a new device, unlock it again with the email and phone number you used to pay.</p></details>
+      <details><summary>What if I'm not satisfied?</summary><p>Message Noor on <a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%27d%20like%20a%20refund%20for%20the%20Weekend%20Founder%20OS." target="_blank" rel="noopener">WhatsApp</a> within 7 days of payment and you get your full ₹1,999 back to your original payment method through Razorpay. No questions asked, no forms.</p></details>
       <details><summary>Does it promise income?</summary><p>No. It teaches a method and shows real numbers from three products, including the ones that didn't sell. Nobody honest can promise income.</p></details>
       <details><summary>Which tools do I need, and what do they cost?</summary><p>Claude, ChatGPT and Canva (free plans are enough to start), a domain name, a free GitHub account and a Razorpay account. Chapter 3 prices a first launch line by line.</p></details>
       <details><summary>What happens when Claude or ChatGPT change?</summary><p>Because it's a web book, chapters are updated in place when the tools change. Your access includes those updates.</p></details>
@@ -563,7 +646,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 </main>
 
 <div class="sticky" id="sticky" aria-hidden="true">
-  <span><b>₹1,999</b> · one-time</span>
+  <span class="st-txt"><b>₹1,999</b> · 7-day refund</span>
   <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="sticky" tabindex="-1">Get the OS</a>
 </div>
 
@@ -611,6 +694,33 @@ Explain the likely cause in plain English first, then give me the fix as exact s
     new IntersectionObserver(function(es){ heroGone = !es[0].isIntersecting; top.classList.toggle('scrolled', heroGone); syncSticky(); }, { rootMargin:'-80px 0px 0px 0px' }).observe(hero);
     new IntersectionObserver(function(es){ buyVisible = es[0].isIntersecting; syncSticky(); }).observe(buy);
   }
+
+
+  // VSL: start muted when half visible (saves data for bouncers); Sound
+  // button restarts from 0:00 with sound. Watch-depth events for GA4.
+  (function(){
+    var v = document.getElementById('vslVideo'), b = document.getElementById('vslSound');
+    if(!v) return;
+    function play(){ try{ var p = v.play(); if(p && p.catch) p.catch(function(){}); }catch(e){} }
+    var reduce = false; try{ reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+    if(!reduce && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); play(); } }, { threshold:0.5 });
+      io.observe(v);
+    }
+    if(b) b.addEventListener('click', function(){ v.muted = false; try{ v.currentTime = 0; }catch(e){} play(); b.classList.add('hidden'); track('video_unmuted', { video:'weekend_founder_vsl' }); });
+    v.addEventListener('volumechange', function(){ if(!v.muted && b) b.classList.add('hidden'); });
+    v.addEventListener('play', function(){ track('video_play', { video:'weekend_founder_vsl' }); });
+    v.addEventListener('ended', function(){ track('video_ended', { video:'weekend_founder_vsl' }); });
+    var hit = {};
+    v.addEventListener('timeupdate', function(){
+      if(!v.duration || v.muted) return;
+      var pct = v.currentTime / v.duration * 100;
+      [25,50,75].forEach(function(m){ if(pct >= m && !hit[m]){ hit[m] = true; track('video_progress', { video:'weekend_founder_vsl', percent:m }); } });
+    });
+  })();
+  Array.prototype.forEach.call(document.querySelectorAll('a[href="#guarantee"]'), function(a){
+    a.addEventListener('click', function(){ track('guarantee_click', { item_id:'weekend_founder_os' }); });
+  });
 
   // Copy button on the demo prompt.
   var btn = document.getElementById('copyDemo');
