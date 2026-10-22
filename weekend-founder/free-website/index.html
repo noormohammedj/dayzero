@@ -290,7 +290,7 @@ footer a{color:#000}
 .next .btn-primary{animation:nudge 3.2s var(--ease) 2s infinite}
 @keyframes nudge{0%,86%,100%{transform:none}90%{transform:translateX(4px)}94%{transform:translateX(-2px)}}
 
-/* ---------- sticky ₹1,999 bar ---------- */
+/* ---------- sticky price bar ---------- */
 .buybar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#000;color:#fff;transform:translateY(110%);transition:transform .6s var(--ease);border-top:1px solid #222}
 .buybar.on{transform:none}
 .buybar .in-b{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom))}
@@ -303,8 +303,16 @@ footer a{color:#000}
 .buybar .btn:after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(90deg,transparent,rgba(0,0,0,.12),transparent);animation:sheen 3.6s ease-in-out infinite}
 .buybar .btn:hover{background:#e5e5e5}
 body.has-bar{padding-bottom:78px}
-@media (max-width:560px){.buybar .bb-txt b{font-size:13.5px}.buybar .rseal{display:none}.buybar .btn{padding:14px 16px}}
+.buybar .bb-ref{font-style:normal}
+@media (max-width:560px){.buybar .bb-ref{display:none}.buybar .bb-txt b{font-size:13.5px}.buybar .rseal{display:none}.buybar .btn{padding:14px 16px}}
 
+.was{font-weight:400;opacity:.55;text-decoration-thickness:1.5px;white-space:nowrap}
+.anchor{display:flex;flex-direction:column;gap:4px;margin:0 0 14px;padding:12px 14px;border:1px dashed rgba(255,255,255,.5);font-size:14px;line-height:1.35;color:#e6e6e6}
+.anchor .a-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.anchor s{font-weight:600;font-size:18px;text-decoration-thickness:2px;opacity:.75}
+.anchor small{font-size:12px;opacity:.7}
+.save-pill{display:inline-block;font:700 12px/1 var(--sans);letter-spacing:.02em;text-transform:uppercase;background:#fff;color:#000;padding:7px 10px;margin:-6px 0 22px}
+.dz-box .anchor{color:var(--ink-2);border-color:var(--line)}
 /* ---------- completion pop-up ---------- */
 .dz-modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:var(--gut);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .dz-modal.open{display:flex}
@@ -471,11 +479,11 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
     <section class="sell" id="sell">
       <span class="pv-k">Now think bigger</span>
       <h2>Built one for yourself? You can build one for <em>any business.</em></h2>
-      <p>The same prompts work for a salon, a clinic, a tuition centre or a bakery. Change the notes, and you have their website. Most small businesses near you still don't have one — and they'll pay someone who can make it happen.</p>
+      <p>The same prompts work for a salon, a clinic, a tuition centre or a bakery. Change the notes, and you have their website. Most small businesses near you still don't have one — and they'll pay someone who can make it happen. Freelancers in India charge ₹5,000–₹20,000 for a one-page site like the one you just built.</p>
       <div class="biz"><span>Salon</span><span>Clinic</span><span>Tuition centre</span><span>Bakery</span><span>Gym</span><span>CA office</span><span>Boutique</span><span>Home caterer</span></div>
       <p>The <b>Weekend Founder OS</b> shows you how to turn this into something you sell: put sites live on a real domain, price and package it, take payments with Razorpay, and find clients through Instagram and WhatsApp.</p>
       <div class="sell-row">
-        <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_sell_band">Join the Weekend Founder OS — ₹1,999</a>
+        <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_sell_band">Get the Weekend Founder OS — <s class="was">₹25,000+</s> ₹1,999</a>
         <span class="sell-ref"><div class="rseal sm" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="rc2" d="M60,60 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs><text><textPath href="#rc2" textLength="312">7-day full refund · no questions asked · </textPath></text></svg><div class="core">7<small>DAYS</small></div></div><span><b>7-day full refund.</b> No questions asked.</span></span>
       </div>
     </section>
@@ -545,9 +553,14 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
           <ol><li>Pay ₹1,999</li><li>Read for 7 days</li><li>Not happy? Full refund</li></ol>
         </div>
       </div>
-      <div class="price"><b>₹1,999</b><span>One-time · lifetime updates · zero risk</span></div>
+      <div class="anchor" aria-label="Price comparison">
+        <span class="a-row"><span>Hire a freelancer to build this for you</span><s>₹25,000+</s></span>
+        <small>Typical Indian freelancer rate for a business website with payments: ₹25,000–₹60,000.</small>
+      </div>
+      <div class="price"><b>₹1,999</b><span>One-time · learn to build it yourself · lifetime updates</span></div>
+      <span class="save-pill">Save ₹23,000+ — and keep the skill</span>
       <div class="row">
-        <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_guide_end">Join now — ₹1,999 <span aria-hidden="true">→</span></a>
+        <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_guide_end">Get the full OS — ₹1,999 <span aria-hidden="true">→</span></a>
         <a class="btn btn-ghost" href="/weekend-founder/#ladder">See everything inside</a>
       </div>
     </section>
@@ -576,8 +589,8 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
 <div class="buybar" id="buybar" role="region" aria-label="Weekend Founder OS offer">
   <div class="in-b">
     <div class="rseal sm" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="rc3" d="M60,60 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs><text><textPath href="#rc3" textLength="312">7-day full refund · no questions asked · </textPath></text></svg><div class="core">7<small>DAYS</small></div></div>
-    <div class="bb-txt"><b>Build &amp; sell websites — Weekend Founder OS</b><span><i></i>₹1,999 · 7-day full refund</span></div>
-    <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_sticky">Join · ₹1,999</a>
+    <div class="bb-txt"><b>Build &amp; sell websites — Weekend Founder OS</b><span><i></i><s class="was">₹25,000+</s> ₹1,999<em class="bb-ref"> · 7-day full refund</em></span></div>
+    <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_sticky">Get it · ₹1,999</a>
   </div>
 </div>
 
@@ -587,8 +600,8 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
     <div class="rseal" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="rc4" d="M60,60 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs><text><textPath href="#rc4" textLength="312">7-day full refund · no questions asked · </textPath></text></svg><div class="core">7<small>DAYS</small></div></div>
     <h2 id="dzTtl">You built a website in one evening.</h2>
     <p>That's the skill businesses pay for. The Weekend Founder OS shows you how to put sites live on a real domain, price them, take payments and find your first clients.</p>
-    <p><b>₹1,999 one-time.</b> Not satisfied in 7 days? Full refund, no questions.</p>
-    <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_complete_modal">Join now — ₹1,999 <span aria-hidden="true">→</span></a>
+    <p>A freelancer charges <s class="was">₹25,000+</s> to build this. <b>Learn it for ₹1,999 one-time.</b> Not satisfied in 7 days? Full refund, no questions.</p>
+    <a class="btn btn-primary buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="free_complete_modal">Get the full OS — ₹1,999 <span aria-hidden="true">→</span></a>
     <button type="button" class="dz-later" id="dzLater">Maybe later — show me what's inside</button>
   </div>
 </div>
