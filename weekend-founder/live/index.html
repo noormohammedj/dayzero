@@ -718,7 +718,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var MEET_LINK     = 'https://meet.google.com/myz-kkpn-qnp';
   // Registration backend (webinar-registration-backend.gs): sends the confirmation
   // email + WhatsApp and writes to the "Webinar Leads · 1 Nov" tab. Paste its /exec URL here.
-  var REG_WEBHOOK_URL = 'PASTE_WEBINAR_EXEC_URL';
+  var REG_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx0bU74c9y_y0Ab49fnzfUteX57tVUa_ZjPtxR0Wtan6lz6Rnhu7TsJoGHlKrvTSso/exec';
   // Old lead-capture webhook — used only until REG_WEBHOOK_URL is pasted, so no registration is lost.
   var LEAD_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
   var WEBHOOK_URL = REG_WEBHOOK_URL.indexOf('PASTE_') === 0 ? LEAD_WEBHOOK_URL : REG_WEBHOOK_URL;
