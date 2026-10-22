@@ -640,7 +640,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="err">Please choose one.</p>
         </div>
         <button class="btn btn-green" type="submit" id="regBtn">Save my free seat <span class="arr" aria-hidden="true">→</span></button>
-        <p class="fine">We'll only use your details to send the session link and reminders for this session. No spam, no selling your number.</p>
+        <p class="fine">You'll get a confirmation by email and WhatsApp. We'll only use your details for this session and follow-ups from Noor. No spam, no selling your number.</p>
       </form>
 
       <div class="done" id="done" hidden aria-live="polite">
@@ -716,7 +716,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Until it's pasted, the button opens a WhatsApp chat with Noor instead.
   var WA_GROUP_LINK = 'https://chat.whatsapp.com/EiJpBzp1GWB8RUbea2ygGn';
   var MEET_LINK     = 'https://meet.google.com/myz-kkpn-qnp';
-  var WEBHOOK_URL   = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
+  // Registration backend (webinar-registration-backend.gs): sends the confirmation
+  // email + WhatsApp and writes to the "Webinar Leads · 1 Nov" tab. Paste its /exec URL here.
+  var REG_WEBHOOK_URL = 'PASTE_WEBINAR_EXEC_URL';
+  // Old lead-capture webhook — used only until REG_WEBHOOK_URL is pasted, so no registration is lost.
+  var LEAD_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
+  var WEBHOOK_URL = REG_WEBHOOK_URL.indexOf('PASTE_') === 0 ? LEAD_WEBHOOK_URL : REG_WEBHOOK_URL;
   var START = new Date('2026-11-01T11:00:00+05:30');
   var END   = new Date('2026-11-01T12:30:00+05:30');
   var EVENT_TITLE = 'LIVE: Build your website with AI — thedayzero';
