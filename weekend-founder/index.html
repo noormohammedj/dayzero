@@ -497,6 +497,7 @@ footer p{font-size:14.5px;color:var(--dim)}
   .cf{display:none}
 }
 </style>
+<link rel="stylesheet" href="/assets/wf-plans.css">
 </head>
 <body class="no-js">
 <!-- Google Tag Manager (noscript) -->
@@ -510,6 +511,7 @@ footer p{font-size:14.5px;color:var(--dim)}
   <a class="wm" href="/" aria-label="thedayzero home">thedayzero</a>
   <nav aria-label="Primary">
     <button class="snd" id="snd" type="button" aria-pressed="true" aria-label="Sound on. Tap to mute."><span aria-hidden="true">♪</span></button>
+    <a class="tl" href="#plans">All plans</a>
     <a class="tl" href="#guarantee">7-day refund</a>
     <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="header">Get the OS · ₹1,999</a>
   </nav>
@@ -535,7 +537,7 @@ footer p{font-size:14.5px;color:var(--dim)}
         <a class="btn xl" href="#build" data-go="build">Start my build <span class="ar">↓</span></a>
         <a class="btn xl ghost buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="hero">Get the full OS · ₹1,999</a>
       </div>
-      <p class="deal" data-deal><span><s>₹7,999</s> ₹1,999 until 30 Nov</span><span class="cd" data-cd aria-hidden="true"></span></p>
+      <p class="deal" data-deal><span><s>₹4,999</s> ₹1,999 until 30 Nov</span><span class="cd" data-cd aria-hidden="true"></span></p>
       <p class="facts"><span><b>7-day</b> full refund</span><span><b>104</b> paid sales of my own</span></p>
     </div>
     <form class="hook" id="hook" autocomplete="off">
@@ -565,6 +567,161 @@ footer p{font-size:14.5px;color:var(--dim)}
     <p class="lt-s">A ₹99 product. Small money, but it comes in without me chasing anyone. <a class="lnk" href="#numbers">See all my numbers</a></p>
   </div>
 </aside>
+
+<!-- ================= PLANS (3 tiers + course finder) ================= -->
+<section class="pan plans" id="plans" data-pal="ember" data-name="Plans">
+  <div class="wrap">
+    <div class="head">
+      <p class="pl-kick rv">Three ways to start</p>
+      <h2 class="disp rv" style="font-size:clamp(46px,7vw,104px)">Pick your speed.</h2>
+      <p class="lead rv">Learn alone, build with me every weekend, or have me put your whole business on tech.</p>
+    </div>
+
+    <div class="pl-fomo rv" aria-label="1:1 batch status">
+      <span class="full"><s>November 1:1 batch</s> <b>Full</b></span>
+      <span class="live" id="plFomoLive">December 1:1 slots open</span>
+    </div>
+
+    <div class="pl-stage" id="plStage" role="region" aria-roledescription="carousel" aria-label="Course plans. Swipe or use the arrows.">
+      <div class="pl-track" id="plTrack">
+
+        <!-- 0 · Weekend Founder OS -->
+        <article class="pl-tile" data-plan="os" tabindex="0" aria-label="Weekend Founder OS, self-paced">
+          <span class="pl-badge">Self-paced · Start today</span>
+          <h3 class="pl-name">Weekend Founder OS</h3>
+          <p class="pl-meta">12 weeks · Learn at your own pace</p>
+          <div class="pl-price"><s data-was>₹4,999</s><span class="amt" data-amt="1999">₹1,999</span><span class="off" data-off>60% off</span></div>
+          <p class="pl-until" data-until>₹4,999 from 1 December <span class="pl-cd" data-plcd="os"></span></p>
+          <ul class="pl-list">
+            <li>Claude co-work and prompt engineering, step by step</li>
+            <li>Build your own professional website by the end</li>
+            <li>32 chapters, 154 copy-paste prompts</li>
+            <li>7-day full refund</li>
+          </ul>
+          <p class="pl-for"><b>Best for:</b> students, working professionals, anyone who wants to kick-start with AI.</p>
+          <div class="pl-cta">
+            <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="plans" data-plan-cta="os">Get the OS · <span data-amt-txt>₹1,999</span> <span class="ar">→</span></a>
+            <a class="btn ghost" href="#" data-wa-plan="os">Ask Noor first</a>
+          </div>
+        </article>
+
+        <!-- 1 · 1:1 with Noor (featured, front) -->
+        <article class="pl-tile feat" data-plan="one" tabindex="0" aria-label="One-to-one with Noor, 4 weekends">
+          <span class="pl-badge">1:1 with Noor · Every weekend</span>
+          <h3 class="pl-name">Build it with me</h3>
+          <p class="pl-meta">4 weekends · Live, one-to-one</p>
+          <div class="pl-price"><s data-was>₹9,999</s><span class="amt" data-amt="4999">₹4,999</span><span class="off" data-off>50% off</span></div>
+          <p class="pl-until" data-until>Launch price till <em>31 Dec</em> <span class="pl-cd" data-plcd="one"></span></p>
+          <div class="pl-slots" data-slots>
+            <span class="no">November · full</span>
+            <span class="yes" id="plSeatTxt">December · open</span>
+          </div>
+          <div class="pl-seatbar" data-slots aria-hidden="true"><i id="plSeatBar"></i></div>
+          <ul class="pl-list">
+            <li>Hands-on training across 3 levels of AI, all the way to code</li>
+            <li>You leave with 2 live websites</li>
+            <li>Plus 1 fully working product, built on your own idea</li>
+            <li>Noor works through it with you, every weekend</li>
+          </ul>
+          <p class="pl-for"><b>Best for:</b> extra income, running your own business, or building tech for your business.</p>
+          <div class="pl-cta">
+            <button class="btn xl" type="button" data-reserve="one">Reserve a December slot <span class="ar">→</span></button>
+            <a class="btn ghost" href="#" data-wa-plan="one">Talk to Noor on WhatsApp</a>
+          </div>
+        </article>
+
+        <!-- 2 · Business Tech Enablement -->
+        <article class="pl-tile" data-plan="biz" tabindex="0" aria-label="Business tech enablement">
+          <span class="pl-badge">For businesses · Done with you</span>
+          <h3 class="pl-name">Put my business on tech</h3>
+          <p class="pl-meta">Custom build · Scoped to your business</p>
+          <div class="pl-price"><s data-was>₹79,999</s><span class="amt" data-amt="29999">₹29,999</span><span class="off" data-off>62% off</span></div>
+          <p class="pl-until" data-until>Launch price till <em>31 Mar 2027</em> <span class="pl-cd" data-plcd="biz"></span></p>
+          <p class="pl-fine">*Price may vary slightly based on your requirement.</p>
+          <ul class="pl-list">
+            <li>Your own ERP and CRM</li>
+            <li>Digital marketing set up and running</li>
+            <li>Manage your workforce with tech</li>
+            <li>End-to-end tech enablement for your business</li>
+          </ul>
+          <p class="pl-for"><b>Best for:</b> any business that needs to go digital and run on its own tech.</p>
+          <div class="pl-cta">
+            <button class="btn" type="button" data-reserve="biz">Book a business call <span class="ar">→</span></button>
+            <a class="btn ghost" href="#" data-wa-plan="biz">WhatsApp Noor</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="pl-ctrl">
+      <button class="pl-arrow" type="button" id="plPrev" aria-label="Previous plan">←</button>
+      <div class="pl-dots" role="tablist" aria-label="Plans">
+        <button type="button" role="tab" data-go="0" aria-selected="false">Self-paced</button>
+        <button type="button" role="tab" data-go="1" aria-selected="true">1:1</button>
+        <button type="button" role="tab" data-go="2" aria-selected="false">Business</button>
+      </div>
+      <button class="pl-arrow" type="button" id="plNext" aria-label="Next plan">→</button>
+    </div>
+    <p class="pl-hint">Swipe the cards · Not sure? Answer 3 questions below</p>
+
+    <!-- Course finder -->
+    <div class="finder rv" id="finder">
+      <h3>Which one is for me?</h3>
+      <p class="sub">Three taps. I'll point you to the right course before you pay anything.</p>
+      <div class="fd-prog" aria-hidden="true"><i></i><i></i><i></i></div>
+
+      <div class="fd-step on" data-q="profession">
+        <p class="fd-q">What do you do right now?</p>
+        <div class="opt g2">
+          <button type="button" data-v="student"><b>Student</b><span>College or fresh graduate</span></button>
+          <button type="button" data-v="professional"><b>Working professional</b><span>IT, corporate or any job</span></button>
+          <button type="button" data-v="business"><b>Business owner</b><span>Shop, clinic, agency, factory, service</span></button>
+          <button type="button" data-v="other"><b>Something else</b><span>Freelancer, homemaker, between jobs</span></button>
+        </div>
+      </div>
+
+      <div class="fd-step" data-q="goal">
+        <p class="fd-q">What are you looking for?</p>
+        <div class="opt g2">
+          <button type="button" data-v="learn"><b>Learn AI</b><span>Get started and build my own website</span></button>
+          <button type="button" data-v="income"><b>Extra income</b><span>A side business or product that pays</span></button>
+          <button type="button" data-v="owntech"><b>Tech for my idea</b><span>Build the product or site my business needs</span></button>
+          <button type="button" data-v="fullbiz"><b>Run my business on tech</b><span>ERP, CRM, marketing, team management</span></button>
+        </div>
+        <button class="fd-back" type="button" data-fd-back>← Back</button>
+      </div>
+
+      <div class="fd-step" data-q="hours">
+        <p class="fd-q">How much time can you give every week?</p>
+        <div class="opt g3">
+          <button type="button" data-v="low"><b>2–5 hrs</b><span>A little, at my own pace</span></button>
+          <button type="button" data-v="mid"><b>5–10 hrs</b><span>Most weekends</span></button>
+          <button type="button" data-v="high"><b>10+ hrs</b><span>I'm serious about this</span></button>
+        </div>
+        <button class="fd-back" type="button" data-fd-back>← Back</button>
+      </div>
+
+      <div class="fd-res" id="fdRes" aria-live="polite">
+        <p class="k">Your best match</p>
+        <p class="t" id="fdTitle"></p>
+        <p class="why" id="fdWhy"></p>
+        <p class="alt" id="fdAlt"></p>
+        <div class="row">
+          <a class="btn" href="#plans" id="fdGo">See this plan <span class="ar">↑</span></a>
+          <a class="btn ghost" href="#" id="fdWa">Connect with Noor before you buy</a>
+        </div>
+        <form class="fd-lead" id="fdLead" novalidate>
+          <label>Your name<input name="name" maxlength="40" autocomplete="name" placeholder="Priya" required></label>
+          <label>WhatsApp number<input name="phone" type="tel" inputmode="tel" maxlength="16" autocomplete="tel" placeholder="98765 43210" required></label>
+          <button class="btn" type="submit">Send me this plan</button>
+          <p>Noor gets your answers and messages you on WhatsApp. No spam, no calls you didn't ask for.</p>
+        </form>
+        <button class="fd-back" type="button" id="fdRedo">↺ Start again</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ================= BUILDER ================= -->
 <section class="pan" id="build" data-pal="sun" data-name="Build">
@@ -621,7 +778,7 @@ footer p{font-size:14.5px;color:var(--dim)}
             <a class="btn xl buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="builder">Unlock the full plan · ₹1,999 <span class="ar">→</span></a>
             <a class="btn ghost" href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20have%20a%20question%20about%20the%20Weekend%20Founder%20OS" data-wa="builder">Ask Noor first</a>
           </div>
-          <p class="plan-note"><span data-deal>₹7,999, now ₹1,999 until 30 Nov. </span>7-day full refund. <button class="back" type="button" id="redo">Start again</button></p>
+          <p class="plan-note"><span data-deal>₹4,999, now ₹1,999 until 30 Nov. </span>7-day full refund. <button class="back" type="button" id="redo">Start again</button></p>
         </div>
       </div>
 
@@ -685,7 +842,7 @@ footer p{font-size:14.5px;color:var(--dim)}
 
 <div class="band">
   <div class="wrap">
-    <p><span data-deal>₹7,999. Now ₹1,999 until 30 Nov.</span><small>About ₹167 a weekend. 7-day full refund.</small><span data-deal><span class="cd" data-cd aria-hidden="true"></span></span></p>
+    <p><span data-deal>₹4,999. Now ₹1,999 until 30 Nov.</span><small>About ₹167 a weekend. 7-day full refund.</small><span data-deal><span class="cd" data-cd aria-hidden="true"></span></span></p>
     <a class="btn xl buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="band_journey">Get the OS · ₹1,999 <span class="ar">→</span></a>
   </div>
 </div>
@@ -838,9 +995,9 @@ Explain the likely cause in plain English first, then give me the fix as exact s
     <h2 class="sr">Get the Weekend Founder OS for ₹1,999</h2>
     <div class="grid">
       <div class="rv">
-        <p class="was">₹7,999</p>
+        <p class="was">₹4,999</p>
         <span class="now">₹1,999</span>
-        <p class="until" data-deal>Until 30 November. Then the fee goes up.</p>
+        <p class="until" data-deal>Until 30 November. Then it goes back to ₹4,999.</p>
         <div data-deal><span class="cd" data-cd aria-hidden="true"></span></div>
         <p class="cmp">AI tools move every month. Start this weekend, not next year.</p>
         <div class="math">
@@ -899,7 +1056,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
       <p class="lead rv" style="margin-top:18px">Something else? <a class="lnk" href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20have%20a%20question%20about%20the%20Weekend%20Founder%20OS">Ask me on WhatsApp</a>.</p>
     </div>
     <div>
-      <details data-deal><summary>Why is it ₹1,999 right now?</summary><p>The course fee is ₹7,999. It is ₹1,999 until 30 November 2026. The fee changes in December.</p></details>
+      <details data-deal><summary>Why is it ₹1,999 right now?</summary><p>The course fee is ₹4,999. It is ₹1,999 until 30 November 2026, then it goes back to ₹4,999.</p></details>
       <details><summary>Can I really earn from this?</summary><p>You can use the skill two ways: build websites for clients as a freelancer (Indian freelancers typically charge ₹5,000–₹20,000 for a one-page site), or sell a digital product of your own. The OS shows both. It doesn't promise income; that depends on the work you put in.</p></details>
       <details><summary>Why pay ₹1,999 when an AI subscription costs about the same?</summary><p>An AI subscription gives you the tool, every month. The OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans, and if it isn't for you, you get a full refund within 7 days.</p></details>
       <details><summary>Do I need to know how to code?</summary><p>No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you've worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter.</p></details>
@@ -924,7 +1081,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 </footer>
 
 <div class="sticky" id="sticky" aria-hidden="true">
-  <div class="t"><b id="stickyT">The Weekend Founder OS</b><span><s data-deal>₹7,999</s> ₹1,999 · 7-day refund <i data-deal style="font-style:normal"><span class="cd" data-cd aria-hidden="true"></span></i></span></div>
+  <div class="t"><b id="stickyT">The Weekend Founder OS</b><span><s data-deal>₹4,999</s> ₹1,999 · 7-day refund <i data-deal style="font-style:normal"><span class="cd" data-cd aria-hidden="true"></span></i></span></div>
   <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="sticky" tabindex="-1">Get it · ₹1,999</a>
 </div>
 
@@ -1143,7 +1300,14 @@ Explain the likely cause in plain English first, then give me the fix as exact s
     function two(n){ return (n < 10 ? '0' : '') + n; }
     function tick(){
       var left = end - Date.now();
-      if(left <= 0){ $$('[data-deal]').forEach(function(el){ el.hidden = true; el.style.display = 'none'; }); clearInterval(iv); return; }
+      if(left <= 0){
+        $$('[data-deal]').forEach(function(el){ el.hidden = true; el.style.display = 'none'; }); clearInterval(iv);
+        // launch price is over: show the regular ₹4,999 everywhere outside the plan tiles (those switch on their own)
+        PRICE = 4999;
+        var w = D.createTreeWalker(D.body, NodeFilter.SHOW_TEXT, null), n, plans = $('#plans');
+        while((n = w.nextNode())){ if(n.nodeValue.indexOf('₹1,999') > -1 && !(plans && plans.contains(n))) n.nodeValue = n.nodeValue.replace(/₹1,999/g, '₹4,999'); }
+        return;
+      }
       var d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, sec = Math.floor(left / 1e3) % 60;
       var html = '<i>' + d + '<small>d</small></i><i>' + two(h) + '<small>h</small></i><i>' + two(m) + '<small>m</small></i><i>' + two(sec) + '<small>s</small></i>';
       cds.forEach(function(el){ el.innerHTML = html; });
@@ -1180,7 +1344,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 
   /* ---------- marquee ---------- */
   (function(){
-    var items = ['Your first website tonight', 'Your own domain', 'A product people pay for', 'Razorpay checkout', 'Instagram + WhatsApp sales system', 'Your own AI assistants', '32 chapters', '154 prompts', '7-day refund', '₹7,999 now ₹1,999 until 30 Nov'];
+    var items = ['Your first website tonight', 'Your own domain', 'A product people pay for', 'Razorpay checkout', 'Instagram + WhatsApp sales system', 'Your own AI assistants', '32 chapters', '154 prompts', '7-day refund', '₹4,999 now ₹1,999 until 30 Nov'];
     var html = items.map(function(x){ return '<span>' + x + '</span><span>●</span>'; }).join('');
     $('#marq').innerHTML = html + html;
   })();
@@ -1440,5 +1604,25 @@ Explain the likely cause in plain English first, then give me the fix as exact s
   preview();
 })();
 </script>
+<!-- Reserve / book modal -->
+<dialog class="pl-modal" id="plModal" aria-labelledby="plModalT">
+  <form method="dialog" id="plModalForm" novalidate>
+    <button class="x" type="button" value="cancel" id="plModalX" aria-label="Close">×</button>
+    <h4 id="plModalT">Reserve your December slot</h4>
+    <p id="plModalP">November is full. Leave your number and Noor will confirm your December slot on WhatsApp.</p>
+    <label>Your name<input name="name" maxlength="40" autocomplete="name" required></label>
+    <label>WhatsApp number<input name="phone" type="tel" inputmode="tel" maxlength="16" autocomplete="tel" required></label>
+    <label id="plModalBizL" hidden>Business (what you do)<input name="biz" maxlength="60" placeholder="e.g. textile shop, 12 staff"></label>
+    <button class="btn" type="submit" id="plModalGo">Confirm on WhatsApp <span class="ar">→</span></button>
+    <small>Nothing is charged now. You pay only after Noor confirms your slot.</small>
+  </form>
+</dialog>
+
+<!-- Floating WhatsApp -->
+<a class="wa-fab" id="waFab" href="https://wa.me/919629843122" target="_blank" rel="noopener" aria-label="Chat with Noor on WhatsApp before you buy">
+  <span class="tip">Connect with me before you buy<small>Noor usually replies the same day</small></span>
+  <span class="ic"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.3.6 4.5 1.8 6.4L3.2 29l7.2-1.9c1.8 1 3.8 1.5 5.9 1.5 7 0 12.7-5.7 12.7-12.6C28.9 8.6 23.1 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.1-4.2-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.5 0-5.8 4.8-10.5 10.7-10.5 5.9 0 10.7 4.7 10.7 10.5 0 5.9-4.8 10.7-10.5 10.7zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.3-.3-.4-.6-.5z"/></svg></span>
+</a>
+<script src="/assets/wf-plans.js" defer></script>
 </body>
 </html>

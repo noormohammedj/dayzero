@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Leads · TheDayZero admin</title>
+<link rel="icon" href="/assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b0b0c;--ink2:#151517;--ink3:#1f1f22;--bone:#f3efe6;--dim:#aba79b;--line:rgba(243,239,230,.14);--acc:#ff6a2b;--ok:#2af5b0;--warm:#ffd23f;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--ink);color:var(--bone);font:15px/1.45 'Hanken Grotesk',system-ui,sans-serif}
+h1{font:400 clamp(34px,4vw,52px)/1 Anton,Impact,sans-serif;text-transform:uppercase;margin:0}
+.wrap{max-width:1400px;margin:0 auto;padding:24px clamp(14px,3vw,32px) 80px}
+.top{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;margin-bottom:20px}
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+button,.b{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;border:0;background:var(--acc);color:var(--ink);padding:10px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+button.g,.b.g{background:var(--ink3);color:var(--bone)}
+button.wa,.b.wa{background:#25d366;color:#04210f}
+input,select,textarea{font:inherit;background:var(--ink3);color:var(--bone);border:0;padding:9px 10px;min-width:0}
+.card{background:var(--ink2);padding:18px}
+#connect{display:grid;gap:10px;max-width:640px}
+#connect label{display:grid;gap:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:8px}
+.kpi b{display:block;font:400 40px/1 Anton,Impact,sans-serif;margin-top:6px}
+.kpi.hot b{color:var(--acc)}
+.row2{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:8px;margin-bottom:8px}
+@media(max-width:900px){.row2{grid-template-columns:1fr}}
+.fn{display:grid;gap:7px;margin-top:10px}
+.fn div{display:grid;grid-template-columns:120px 1fr 50px;gap:8px;align-items:center;font-size:13px}
+.fn i{height:12px;background:var(--acc);display:block;min-width:2px}
+.split{display:grid;gap:8px;margin-top:10px;font-size:14px}
+.split div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px}
+.seats{display:flex;gap:8px;align-items:end;flex-wrap:wrap;margin-top:10px}
+.seats label{display:grid;gap:4px;width:110px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{background:var(--ink3);color:var(--dim)}
+.chips button.on{background:var(--bone);color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--ink);cursor:pointer}
+td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:hover td{background:var(--ink2)}
+.t{font:700 11px var(--mono);text-transform:uppercase;padding:3px 7px;display:inline-block}
+.t.hot{background:var(--acc);color:var(--ink)}.t.warm{background:var(--warm);color:var(--ink)}.t.cold{background:var(--ink3);color:var(--dim)}
+.p{font:500 11px var(--mono);text-transform:uppercase;padding:3px 7px;background:var(--ink3)}
+.p.one{color:var(--acc)}.p.biz{color:var(--warm)}.p.os{color:var(--ok)}
+.sub{color:var(--dim);font-size:12.5px}
+td textarea{width:100%;min-height:36px;resize:vertical;font-size:13px}
+.tbl{overflow:auto;max-height:70vh}
+dialog{background:var(--ink2);color:var(--bone);border:0;max-width:760px;width:94vw;padding:22px}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--bone);color:var(--ink);padding:10px 16px;font-weight:700;display:none}
+.empty{padding:40px;text-align:center;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><p class="k">TheDayZero · Weekend Founder</p><h1>Lead funnel</h1></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="k" id="at" style="align-self:center"></span>
+      <button class="g" id="reload">Refresh</button>
+      <button class="g" id="tplBtn">Message templates</button>
+      <button class="g" id="csv">Export CSV</button>
+      <button class="g" id="logout">Disconnect</button>
+    </div>
+  </div>
+
+  <form class="card" id="connect" hidden>
+    <p>Connect this page to your Google Sheet backend. Both values come from <b>tools/funnel/SETUP.md</b>. They are saved only in this browser.</p>
+    <label class="k">Apps Script web app URL<input id="cUrl" placeholder="https://script.google.com/macros/s/…/exec" required></label>
+    <label class="k">Admin key<input id="cKey" required></label>
+    <button>Connect</button>
+    <p class="sub" id="cErr"></p>
+  </form>
+
+  <div id="app" hidden>
+    <div class="kpis" id="kpis"></div>
+    <div class="row2">
+      <div class="card"><p class="k">Funnel (unique visitors)</p><div class="fn" id="fn"></div></div>
+      <div class="card"><p class="k">Most interested in</p><div class="split" id="interest"></div><p class="k" style="margin-top:16px">Where they came from</p><div class="split" id="sources"></div></div>
+      <div class="card">
+        <p class="k">December 1:1 seats (shown live on the site)</p>
+        <div class="seats">
+          <label class="k">Left<input id="sLeft" type="number" min="0" max="50"></label>
+          <label class="k">Total<input id="sTotal" type="number" min="1" max="50"></label>
+          <button id="sSave">Update site</button>
+        </div>
+        <p class="sub" style="margin-top:10px">Set the real number. At 0 the site switches to “December full · January waitlist”. Leave blank to just say “open”.</p>
+      </div>
+    </div>
+
+    <div class="bar">
+      <div class="chips" id="fTemp">
+        <button data-v="call" class="on" title="Has a number, hot or warm, not yet contacted">Today's call list</button>
+        <button data-v="all">All</button><button data-v="hot">Hot</button><button data-v="warm">Warm</button><button data-v="cold">Cold</button>
+      </div>
+      <div class="chips" id="fPlan">
+        <button data-v="" class="on">Any plan</button><button data-v="one">1:1</button><button data-v="os">OS</button><button data-v="biz">Business</button>
+      </div>
+      <select id="fStatus"><option value="">Any status</option><option>new</option><option>contacted</option><option>follow-up</option><option>won</option><option>lost</option></select>
+      <label class="k"><input type="checkbox" id="fPhone"> Only with phone</label>
+      <input id="fQ" placeholder="Search name, phone, source">
+      <button class="g" id="copyNums">Copy numbers</button>
+    </div>
+    <div class="tbl card" style="padding:0">
+      <table>
+        <thead><tr>
+          <th data-s="temperature">Lead</th><th data-s="top_plan">Interest</th><th data-s="profession">Answers</th>
+          <th data-s="score">Score</th><th data-s="last_seen">Last seen</th><th data-s="utm_source">Source</th><th>Status · notes</th><th>Reach out</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin-top:10px">Visitors without a phone can’t be messaged directly. Retarget them with Meta custom audiences built from the <code>WF_tile_view</code>, <code>WF_tile_cta</code> and <code>WF_quiz_result</code> pixel events (filter by plan).</p>
+  </div>
+</div>
+
+<dialog id="tpl">
+  <h3 style="margin:0 0 6px">WhatsApp templates</h3>
+  <p class="sub">Placeholders: {name} {plan} {price} {business}. Saved in this browser.</p>
+  <div id="tplFields"></div>
+  <div style="display:flex;gap:8px"><button id="tplSave">Save</button><button class="g" id="tplReset">Reset to default</button><button class="g" id="tplClose">Close</button></div>
+</dialog>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s){ return document.querySelector(s); }, $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var LS = { get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set:function(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }, del:function(k){ try{ localStorage.removeItem(k); }catch(e){} } };
+  var URL_ = LS.get('tdz_admin_url'), KEY = LS.get('tdz_admin_key'), LEADS = [], sortBy = 'score', sortDir = -1;
+  var PLAN = { os:{ n:'Weekend Founder OS', p:'₹1,999' }, one:{ n:'1:1 weekend course', p:'₹4,999' }, biz:{ n:'Business Tech Enablement', p:'₹29,999' } };
+  var LBL = { student:'Student', professional:'Professional', business:'Business owner', other:'Other', learn:'Learn AI', income:'Extra income', owntech:'Tech for idea', fullbiz:'Biz on tech', low:'2–5h', mid:'5–10h', high:'10h+' };
+  var DEF_TPL = {
+    one_hot: 'Hi {name}, Noor here from TheDayZero. Saw you checking the 1:1 weekend course. November is full, and I’m holding a few December slots at {price} (it goes to ₹9,999 in January). Shall I block one for you?',
+    one_warm:'Hi {name}, Noor here. You were looking at building your product with me over 4 weekends. Happy to answer anything. What would you want to build? December slots are limited.',
+    os_hot:  'Hi {name}, Noor here. You looked at the Weekend Founder OS. It’s {price} till 30 Nov, then ₹4,999. Here’s the link: https://thedayzero.in/weekend-founder/#plans . Any question before you start? 7-day full refund if it’s not for you.',
+    os_warm: 'Hi {name}, Noor here from TheDayZero. Want me to send you a sample chapter of the Weekend Founder OS so you can see how it works?',
+    biz_hot: 'Hi {name}, Noor here. Thanks for your interest in putting {business} on tech. Can we do a 15-minute call this week? I’ll map out what you need (ERP/CRM, marketing, team tools) and give you an exact price.',
+    biz_warm:'Hi {name}, Noor here from TheDayZero. Saw you were looking at tech for your business. What’s the one thing that takes most of your time every week? I may be able to automate it.'
+  };
+  function tpl(){ try{ return Object.assign({}, DEF_TPL, JSON.parse(LS.get('tdz_admin_tpl') || '{}')); }catch(e){ return DEF_TPL; } }
+  function toast(m){ var t = $('#toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(function(){ t.style.display = 'none'; }, 2200); }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+  function api(params){
+    var q = Object.keys(params).map(function(k){ return k + '=' + encodeURIComponent(params[k]); }).join('&');
+    return fetch(URL_ + '?' + q + '&key=' + encodeURIComponent(KEY)).then(function(r){ return r.json(); });
+  }
+  function ago(iso){
+    if(!iso) return ''; var t = new Date(iso.length === 19 ? iso + '+05:30' : iso).getTime(), m = Math.max(0, Math.round((Date.now() - t) / 6e4));
+    return m < 60 ? m + 'm ago' : m < 1440 ? Math.round(m / 60) + 'h ago' : Math.round(m / 1440) + 'd ago';
+  }
+
+  function connectView(){ $('#connect').hidden = false; $('#app').hidden = true; $('#cUrl').value = URL_ || ''; }
+  $('#connect').addEventListener('submit', function(e){
+    e.preventDefault(); URL_ = $('#cUrl').value.trim(); KEY = $('#cKey').value.trim();
+    $('#cErr').textContent = 'Connecting…';
+    api({ action:'leads' }).then(function(d){
+      if(!d.ok){ $('#cErr').textContent = 'Wrong key, or the URL is not the /exec web app URL.'; return; }
+      LS.set('tdz_admin_url', URL_); LS.set('tdz_admin_key', KEY); $('#connect').hidden = true; render(d);
+    }).catch(function(){ $('#cErr').textContent = 'Could not reach that URL. Check the deployment has “Who has access: Anyone”.'; });
+  });
+  $('#logout').addEventListener('click', function(){ LS.del('tdz_admin_key'); KEY = null; connectView(); });
+  function load(){ $('#at').textContent = 'Loading…'; api({ action:'leads' }).then(function(d){ if(!d.ok){ connectView(); return; } render(d); }).catch(function(){ $('#at').textContent = 'Load failed'; }); }
+  $('#reload').addEventListener('click', load);
+
+  function render(d){
+    LEADS = d.leads || []; $('#app').hidden = false; $('#at').textContent = 'Updated ' + (d.at || '').replace('T', ' ');
+    var c = d.config || {}; $('#sLeft').value = c.decSeatsLeft; $('#sTotal').value = c.decSeatsTotal;
+    var n = LEADS.length, sum = function(k){ return LEADS.reduce(function(a, l){ return a + (+l[k] || 0); }, 0); }, cnt = function(f){ return LEADS.filter(f).length; };
+    var phones = cnt(function(l){ return l.phone; }), hot = cnt(function(l){ return l.temperature === 'hot'; });
+    var notContacted = cnt(function(l){ return l.phone && l.status === 'new'; });
+    $('#kpis').innerHTML = [
+      ['Visitors', n], ['Did the quiz', cnt(function(l){ return +l.quiz_done; })], ['Leads with phone', phones],
+      ['WhatsApp clicks', sum('wa_clicks')], ['Buy clicks', sum('buy_clicks')], ['Hot', hot, 'hot'], ['To call now', notContacted, 'hot']
+    ].map(function(k){ return '<div class="card kpi ' + (k[2] || '') + '"><span class="k">' + k[0] + '</span><b>' + k[1] + '</b></div>'; }).join('');
+    var steps = [
+      ['Saw plans', n], ['Opened a 2nd plan', cnt(function(l){ return (+l.views_os > 0) + (+l.views_one > 0) + (+l.views_biz > 0) >= 2; })],
+      ['Finished quiz', cnt(function(l){ return +l.quiz_done; })], ['Clicked CTA / WA', cnt(function(l){ return +l.cta_clicks + +l.wa_clicks > 0; })],
+      ['Left number', phones], ['Clicked buy', cnt(function(l){ return +l.buy_clicks > 0; })], ['Won', cnt(function(l){ return l.status === 'won'; })]
+    ];
+    $('#fn').innerHTML = steps.map(function(s){ var w = n ? Math.max(.5, s[1] / n * 100) : 0; return '<div><span>' + s[0] + '</span><i style="width:' + w + '%"></i><b>' + s[1] + '</b></div>'; }).join('');
+    var by = function(k, lab){ var o = {}; LEADS.forEach(function(l){ var v = l[k] || (k === 'top_plan' ? '(undecided)' : '(direct)'); o[v] = (o[v] || 0) + 1; });
+      return Object.keys(o).sort(function(a, b){ return o[b] - o[a]; }).slice(0, 6).map(function(v){ return '<div><span>' + esc(lab ? (lab[v] || v) : v) + '</span><b>' + o[v] + '</b></div>'; }).join(''); };
+    $('#interest').innerHTML = by('top_plan', { os:'Self-paced OS', one:'1:1 with Noor', biz:'Business' });
+    $('#sources').innerHTML = by('utm_source');
+    table();
+  }
+
+  var F = { temp:'call', plan:'', status:'', phone:false, q:'' };
+  function filtered(){
+    var q = F.q.toLowerCase();
+    return LEADS.filter(function(l){
+      if(F.temp === 'call' && !(l.phone && l.status === 'new' && l.temperature !== 'cold')) return false;
+      if(['hot','warm','cold'].indexOf(F.temp) >= 0 && l.temperature !== F.temp) return false;
+      if(F.plan && l.top_plan !== F.plan) return false;
+      if(F.status && l.status !== F.status) return false;
+      if(F.phone && !l.phone) return false;
+      if(q && [l.name, l.phone, l.utm_source, l.utm_campaign, l.business].join(' ').toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    }).sort(function(a, b){ var x = a[sortBy], y = b[sortBy]; return (x > y ? 1 : x < y ? -1 : 0) * sortDir; });
+  }
+  function msg(l){
+    var key = (l.top_plan || 'one') + '_' + (l.temperature === 'hot' ? 'hot' : 'warm'), t = tpl()[key] || '';
+    var pl = PLAN[l.top_plan] || PLAN.one;
+    return t.replace(/\{name\}/g, l.name || 'there').replace(/\{plan\}/g, pl.n).replace(/\{price\}/g, pl.p).replace(/\{business\}/g, l.business || 'your business');
+  }
+  function table(){
+    var list = filtered();
+    if(!list.length){ $('#rows').innerHTML = '<tr><td colspan="8" class="empty">' + (F.temp === 'call' ? 'Nobody to call right now. Switch to “All” to see every visitor.' : 'No leads match these filters.') + '</td></tr>'; return; }
+    $('#rows').innerHTML = list.map(function(l){
+      var ans = [LBL[l.profession], LBL[l.goal], LBL[l.hours]].filter(Boolean).join(' · ');
+      var views = 'OS ' + (+l.views_os || 0) + ' · 1:1 ' + (+l.views_one || 0) + ' · Biz ' + (+l.views_biz || 0);
+      return '<tr data-vid="' + esc(l.vid) + '">' +
+        '<td><span class="t ' + esc(l.temperature) + '">' + esc(l.temperature) + '</span><div><b>' + esc(l.name || 'Anonymous') + '</b></div><div class="sub">' + esc(l.phone ? '+' + l.phone : 'no number') + '</div></td>' +
+        '<td><span class="p ' + esc(l.top_plan) + '">' + esc((PLAN[l.top_plan] || {}).n || '-') + '</span><div class="sub">' + views + '</div>' + (l.recommended ? '<div class="sub">Quiz → ' + esc(l.recommended) + '</div>' : '') + '</td>' +
+        '<td>' + esc(ans || '-') + (l.business ? '<div class="sub">' + esc(l.business) + '</div>' : '') + '</td>' +
+        '<td><b>' + esc(l.score) + '</b><div class="sub">WA ' + (+l.wa_clicks || 0) + ' · buy ' + (+l.buy_clicks || 0) + '</div></td>' +
+        '<td>' + esc(ago(l.last_seen)) + '<div class="sub">first ' + esc(ago(l.first_seen)) + '</div></td>' +
+        '<td>' + esc(l.utm_source || '(direct)') + '<div class="sub">' + esc(l.utm_campaign || '') + '</div></td>' +
+        '<td><select data-f="status">' + ['new','contacted','follow-up','won','lost'].map(function(s){ return '<option' + (s === l.status ? ' selected' : '') + '>' + s + '</option>'; }).join('') + '</select>' +
+          '<textarea data-f="notes" placeholder="Notes">' + esc(l.notes) + '</textarea>' + (l.last_contacted ? '<div class="sub">contacted ' + esc(ago(l.last_contacted)) + '</div>' : '') + '</td>' +
+        '<td>' + (l.phone ? '<a class="b wa" target="_blank" rel="noopener" data-wa href="https://wa.me/' + esc(l.phone) + '?text=' + encodeURIComponent(msg(l)) + '">WhatsApp</a>' : '<span class="sub">Retarget only</span>') + '</td></tr>';
+    }).join('');
+  }
+  function bindChips(id, key){ $$('#' + id + ' button').forEach(function(b){ b.addEventListener('click', function(){ $$('#' + id + ' button').forEach(function(x){ x.classList.toggle('on', x === b); }); F[key] = b.getAttribute('data-v'); table(); }); }); }
+  bindChips('fTemp', 'temp'); bindChips('fPlan', 'plan');
+  $('#fStatus').addEventListener('change', function(){ F.status = this.value; table(); });
+  $('#fPhone').addEventListener('change', function(){ F.phone = this.checked; table(); });
+  $('#fQ').addEventListener('input', function(){ F.q = this.value; table(); });
+  $$('th[data-s]').forEach(function(th){ th.addEventListener('click', function(){ var s = th.getAttribute('data-s'); sortDir = sortBy === s ? -sortDir : -1; sortBy = s; table(); }); });
+
+  function lead(vid){ return LEADS.filter(function(l){ return l.vid === vid; })[0]; }
+  $('#rows').addEventListener('change', function(e){
+    var tr = e.target.closest('tr'), f = e.target.getAttribute('data-f'); if(!tr || !f) return;
+    var l = lead(tr.getAttribute('data-vid')), p = { action:'update', vid:l.vid }; p[f] = e.target.value; l[f] = e.target.value;
+    api(p).then(function(d){ toast(d.ok ? 'Saved' : 'Save failed'); });
+  });
+  $('#rows').addEventListener('click', function(e){
+    var a = e.target.closest('[data-wa]'); if(!a) return;
+    var tr = a.closest('tr'), l = lead(tr.getAttribute('data-vid'));
+    var p = { action:'update', vid:l.vid, contacted:1 }; if(l.status === 'new'){ p.status = 'contacted'; l.status = 'contacted'; }
+    api(p).then(function(){ toast('Marked as contacted'); });
+    setTimeout(table, 300);
+  });
+  $('#copyNums').addEventListener('click', function(){
+    var nums = filtered().filter(function(l){ return l.phone; }).map(function(l){ return '+' + l.phone; });
+    if(!nums.length){ toast('No numbers in this view'); return; }
+    navigator.clipboard.writeText(nums.join('\n')).then(function(){ toast(nums.length + ' numbers copied'); });
+  });
+  $('#csv').addEventListener('click', function(){
+    if(!LEADS.length) return; var cols = Object.keys(LEADS[0]);
+    var csv = [cols.join(',')].concat(filtered().map(function(l){ return cols.map(function(c){ return '"' + String(l[c] == null ? '' : l[c]).replace(/"/g, '""') + '"'; }).join(','); })).join('\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' })); a.download = 'dayzero-leads.csv'; a.click();
+  });
+  $('#sSave').addEventListener('click', function(){
+    var L = $('#sLeft').value, T = $('#sTotal').value;
+    Promise.all([api({ action:'setconfig', k:'decSeatsLeft', v:L }), api({ action:'setconfig', k:'decSeatsTotal', v:T })])
+      .then(function(r){ toast(r[0].ok && r[1].ok ? 'Site updated' : 'Update failed'); });
+  });
+  // templates
+  var NAMES = { one_hot:'1:1 · hot', one_warm:'1:1 · warm/cold', os_hot:'OS · hot', os_warm:'OS · warm/cold', biz_hot:'Business · hot', biz_warm:'Business · warm/cold' };
+  $('#tplBtn').addEventListener('click', function(){
+    var t = tpl(); $('#tplFields').innerHTML = Object.keys(NAMES).map(function(k){ return '<label class="k">' + NAMES[k] + '<textarea data-t="' + k + '">' + esc(t[k]) + '</textarea></label>'; }).join('');
+    $('#tpl').showModal();
+  });
+  $('#tplSave').addEventListener('click', function(){ var o = {}; $$('[data-t]').forEach(function(x){ o[x.getAttribute('data-t')] = x.value; }); LS.set('tdz_admin_tpl', JSON.stringify(o)); $('#tpl').close(); table(); toast('Templates saved'); });
+  $('#tplReset').addEventListener('click', function(){ LS.del('tdz_admin_tpl'); $('#tpl').close(); table(); toast('Defaults restored'); });
+  $('#tplClose').addEventListener('click', function(){ $('#tpl').close(); });
+
+  if(URL_ && KEY) load(); else connectView();
+})();
+</script>
+</body>
+</html>
