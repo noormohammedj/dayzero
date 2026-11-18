@@ -752,7 +752,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
       <h2 class="disp rv" id="faqH" style="margin-top:14px;font-size:clamp(36px,4.6vw,60px)">Before you pay.</h2>
     </div>
     <div class="rv">
-      <details><summary>I'm not in India. Can I join?<i aria-hidden="true"></i></summary><div class="ans">Yes. Everything is online, in English, on Google Meet. Prices are charged in Indian rupees and Razorpay accepts international cards; your bank converts the amount. Session times are shown in your own time zone on this page.</div></details>
+      <details><summary>I'm not in India. Can I join?<i aria-hidden="true"></i></summary><div class="ans">Yes. Everything is online, in English, on Google Meet. Message me on WhatsApp and I'll send you a way to pay from your country. Session times are shown in your own time zone on this page.</div></details>
       <details><summary>Do I need to know coding?<i aria-hidden="true"></i></summary><div class="ans">No. You describe what you want in plain English and Claude or ChatGPT writes it. I built the Plotskart app this way, with Claude Code.</div></details>
       <details><summary>Which one should I start with?<i aria-hidden="true"></i></summary><div class="ans">If you've never built anything with AI, start with the ₹199 crash course. If you want the full system to work through on your own, take the OS. If you want your product live in four weeks with me beside you, choose 1:1.</div></details>
       <details><summary>How do I book my 1:1 sessions?<i aria-hidden="true"></i></summary><div class="ans">After you pay, Razorpay takes you to my booking page. Pick four slots on Saturdays or Sundays between 11 AM and 4 PM IST. You get a calendar invite with the Google Meet link for each one.</div></details>
@@ -987,6 +987,14 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
     Array.prototype.forEach.call(d.querySelectorAll('a[href="/weekend-founder/live/"]'), function(a){
       a.setAttribute('href', '/weekend-founder/live/global/');
       a.innerHTML = a.innerHTML.replace('₹199', 'US$9');
+    });
+    // Razorpay can't take international cards yet: send OS and 1:1 buyers abroad to WhatsApp instead
+    [['offer_os','Hi Noor, I am outside India and would like the Weekend Founder OS. How can I pay?'],
+     ['offer_1on1','Hi Noor, I am outside India and would like the 1:1 coaching. How can I pay and book?']].forEach(function(p){
+      var a = d.querySelector('a[data-cta="' + p[0] + '"]'); if (!a) return;
+      a.setAttribute('href', 'https://wa.me/919629843122?text=' + encodeURIComponent(p[1]));
+      a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
+      a.innerHTML = (p[0] === 'offer_os' ? 'Get the OS' : 'Book 1:1 coaching') + ' on WhatsApp <span class="ar" aria-hidden="true">→</span>';
     });
     var cp = d.getElementById('crashPrice'); if (cp) cp.textContent = 'US$9';
     var cf = d.getElementById('crashFx'); if (cf) cf.removeAttribute('data-inr');
