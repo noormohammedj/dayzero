@@ -170,7 +170,7 @@
   .pl-cta .btn.ghost{min-height:44px}
   .pl-ctrl{margin-top:16px}
   .pl-arrow{display:none}
-  .pl-dots{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .pl-dots{width:100%;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
   .pl-dots button{padding:12px 6px}
   .pl-hint{font-size:10px;letter-spacing:.1em}
   .finder{margin-top:44px;padding:20px 16px}

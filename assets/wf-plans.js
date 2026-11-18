@@ -6,25 +6,37 @@
     // Google Apps Script web app URL (see tools/funnel/SETUP.md). Leave '' to run without the admin funnel.
     endpoint: '',
     wa: '919629843122',
-    // Price switch dates (IST). After each date the tile shows the higher price.
-    osUntil:  '2026-12-01T00:00:00+05:30',   // ₹1,999 → ₹4,999
-    oneUntil: '2027-01-01T00:00:00+05:30',   // ₹4,999 → ₹9,999
+    // From this moment (IST) the group cohort tile appears and 1:1 moves to ₹12,999.
+    // The OS stays ₹1,999.
+    newPricesFrom: '2026-12-01T00:00:00+05:30',
     bizUntil: '2027-04-01T00:00:00+05:30',   // ₹29,999 → ₹79,999
     // December 1:1 seats. The admin panel overrides these; until it does, the tile says "open".
     decSeatsLeft: null, decSeatsTotal: null,
     startIndex: 1                              // 1 = the 1:1 tile in front
   };
   var PLANS = {
-    os:  { name:'Weekend Founder OS',            short:'Self-paced OS',  now:1999,  later:4999,  ga:'weekend_founder_os' },
-    one: { name:'1:1 Build it with me (4 weekends)', short:'1:1 with Noor', now:4999, later:9999,  ga:'one_to_one_4wk' },
+    os:     { name:'Weekend Founder OS',              short:'Self-paced OS',  now:1999,  later:1999,  ga:'weekend_founder_os' },
+    cohort: { name:'Group cohort (4 weekends)',       short:'Group cohort',   now:4999,  later:4999,  ga:'group_cohort_4wk' },
+    one:    { name:'1:1 Build it with me (4 weekends)', short:'1:1 with Noor', now:4999, later:12999, ga:'one_to_one_4wk' },
     biz: { name:'Business Tech Enablement',      short:'Business',       now:29999, later:79999, ga:'business_tech' }
   };
-  var ORDER = ['os','one','biz'];
   var D = document, W = window;
   var $ = function(s, r){ return (r || D).querySelector(s); };
   var $$ = function(s, r){ return Array.prototype.slice.call((r || D).querySelectorAll(s)); };
   var stage = $('#plStage'); if(!stage) return;
+  var newPrices = Date.now() >= +new Date(CFG.newPricesFrom);
+  // The group cohort only exists from 1 Dec: before that, take its tile and tab out.
+  if(!newPrices){ $$('[data-plan="cohort"], .pl-dots [data-go-plan="cohort"]').forEach(function(el){ el.parentNode.removeChild(el); }); }
+  else {
+    // the cohort becomes the featured tile
+    $$('.pl-tile.feat', stage).forEach(function(t){ t.classList.remove('feat'); });
+    var ct = $('[data-plan="cohort"]', stage); if(ct) ct.classList.add('feat');
+  }
   var tiles = $$('.pl-tile', stage), dots = $$('.pl-dots [data-go]');
+  var ORDER = tiles.map(function(t){ return t.getAttribute('data-plan'); });
+  dots.forEach(function(b, i){ b.setAttribute('data-go', i); });
+  var LAST = tiles.length - 1;
+  CFG.startIndex = Math.max(0, ORDER.indexOf(newPrices ? 'cohort' : 'one'));
   var reduce = false; try{ reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   var inr = function(n){ return '₹' + Number(n).toLocaleString('en-IN'); };
   var now = Date.now();
@@ -93,7 +105,7 @@
   }
 
   /* ---------- prices, deadlines, countdowns ---------- */
-  var until = { os:+new Date(CFG.osUntil), one:+new Date(CFG.oneUntil), biz:+new Date(CFG.bizUntil) };
+  var until = { os:Infinity, cohort:Infinity, one:+new Date(CFG.newPricesFrom), biz:+new Date(CFG.bizUntil) };
   function priceOf(k){ return now < until[k] ? PLANS[k].now : PLANS[k].later; }
   tiles.forEach(function(t){
     var k = t.getAttribute('data-plan');
@@ -103,7 +115,7 @@
       $$('[data-amt-txt]', t).forEach(function(el){ el.textContent = inr(PLANS[k].later); });
     }
   });
-  if(now >= until.one){ $$('[data-slots]').forEach(function(el){ el.hidden = true; }); var fomo = $('.pl-fomo'); if(fomo) fomo.hidden = true; }
+  if(now >= until.one){ var fomo = $('.pl-fomo'); if(fomo) fomo.hidden = true; }
   function tickCd(){
     var t = Date.now();
     $$('[data-plcd]', stage).forEach(function(el){
@@ -147,15 +159,15 @@
   }
   function layout(){
     tiles.forEach(function(t, i){
-      var pos = Math.max(-2, Math.min(2, i - active));   // fixed order: 1,999 left · 4,999 centre · 29,999 right
+      var pos = Math.max(-2, Math.min(2, i - active));   // fixed order, cheapest on the left
       t.setAttribute('data-pos', pos); t.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
       $$('a,button', t).forEach(function(b){ b.tabIndex = pos === 0 ? 0 : -1; });
     });
     dots.forEach(function(b, i){ b.setAttribute('aria-selected', i === active ? 'true' : 'false'); });
-    $('#plPrev').disabled = active === 0; $('#plNext').disabled = active === 2;
+    $('#plPrev').disabled = active === 0; $('#plNext').disabled = active === LAST;
   }
   function go(i, dir, why){
-    if(i < 0 || i > 2){ stage.style.setProperty('--dx', i < 0 ? 40 : -40); setTimeout(function(){ stage.style.setProperty('--dx', 0); }, 200); return; }
+    if(i < 0 || i > LAST){ stage.style.setProperty('--dx', i < 0 ? 40 : -40); setTimeout(function(){ stage.style.setProperty('--dx', 0); }, 200); return; }
     if(i === active) return;
     dir = dir || (i > active ? 1 : -1); active = i; layout(); swoosh(dir, i);
     countUp($('[data-amt]', tiles[i]));
@@ -201,7 +213,7 @@
     var nudged = false;
     new IntersectionObserver(function(es, ob){
       es.forEach(function(en){ if(en.isIntersecting){
-        send('plans_view', { loc:'scroll' }); seen.one = 1; send('tile_view', { plan:'one', loc:'default' }); ob.disconnect();
+        send('plans_view', { loc:'scroll' }); seen[ORDER[active]] = 1; send('tile_view', { plan:ORDER[active], loc:'default' }); ob.disconnect();
         countUp($('[data-amt]', tiles[active]));
         if(!reduce && !nudged){ nudged = true; setTimeout(function(){ stage.style.setProperty('--dx', -30); setTimeout(function(){ stage.style.setProperty('--dx', 30); setTimeout(function(){ stage.style.setProperty('--dx', 0); }, 380); }, 380); }, 900); }
       }});
@@ -218,6 +230,7 @@
   }
   function waText(plan, extra){
     var who = profile.name ? 'Hi Noor, this is ' + profile.name + '.' : 'Hi Noor,';
+    if(plan === 'cohort') return who + ' I want to join the next group cohort (4 weekends, ' + inr(priceOf('cohort')) + ').' + answersLine() + (extra || '');
     if(plan === 'one') return who + ' I want to reserve a December 1:1 slot for the 4-weekend course (' + inr(priceOf('one')) + ').' + answersLine() + (extra || '');
     if(plan === 'biz') return who + ' I want to talk about Business Tech Enablement for my business.' + answersLine() + (extra || '');
     if(plan === 'os') return who + ' I have a question about the Weekend Founder OS (' + inr(priceOf('os')) + ') before I buy.' + answersLine() + (extra || '');
@@ -250,8 +263,8 @@
   function openModal(k){
     mPlan = k; send('tile_cta', { plan:k, loc:'reserve' });
     var biz = k === 'biz';
-    $('#plModalT').textContent = biz ? 'Book a business call' : ($('#plSeatTxt') && /full/.test($('#plSeatTxt').textContent) ? 'Join the January waitlist' : 'Reserve your December slot');
-    $('#plModalP').textContent = biz ? 'Tell me a little about your business. I\'ll message you on WhatsApp to scope it. Price may vary slightly with your requirement.'
+    $('#plModalT').textContent = k === 'cohort' ? 'Join the next cohort' : biz ? 'Book a business call' : ($('#plSeatTxt') && /full/.test($('#plSeatTxt').textContent) ? 'Join the January waitlist' : 'Reserve your December slot');
+    $('#plModalP').textContent = k === 'cohort' ? 'Leave your number and Noor will send you the cohort dates on WhatsApp.' : biz ? 'Tell me a little about your business. I\'ll message you on WhatsApp to scope it. Price may vary slightly with your requirement.'
       : 'Leave your number and Noor will confirm your December slot on WhatsApp.';
     $('#plModalBizL').hidden = !biz;
     if(profile.name) mForm.name.value = profile.name;
@@ -283,15 +296,18 @@
     $('#fdRes').classList.remove('on');
   }
   function recommend(a){
-    // Scores: profession + goal (heaviest) + weekly time. Ties go to the 1:1.
-    var s = { os:0, one:0, biz:0 };
+    // Scores: profession + goal (heaviest) + weekly time. Ties go to the cohort, else the 1:1.
+    // Only plans on the page (ORDER) can win, so the cohort is never picked before 1 Dec.
+    var s = { os:0, cohort:0, one:0, biz:0 };
     function add(o){ for(var k in o || {}) s[k] += o[k]; }
-    add({ student:{ os:3 }, professional:{ one:2, os:1 }, business:{ biz:2, one:2 }, other:{ one:1, os:2 } }[a.profession]);
-    add({ learn:{ os:4 }, income:{ one:4, os:1 }, owntech:{ one:4, biz:1 }, fullbiz:{ biz:6 } }[a.goal]);
-    add({ low:{ os:3 }, mid:{ one:2, os:1 }, high:{ one:3, biz:1 } }[a.hours]);
-    return ORDER.slice().sort(function(x, y){ return s[y] - s[x] || (x === 'one' ? -1 : y === 'one' ? 1 : 0); });
+    add({ student:{ os:3, cohort:1 }, professional:{ one:2, cohort:2, os:1 }, business:{ biz:2, one:2 }, other:{ one:1, cohort:1, os:2 } }[a.profession]);
+    add({ learn:{ os:4, cohort:1 }, income:{ one:4, cohort:4, os:1 }, owntech:{ one:4, cohort:2, biz:1 }, fullbiz:{ biz:6 } }[a.goal]);
+    add({ low:{ os:3 }, mid:{ one:2, cohort:3, os:1 }, high:{ one:3, cohort:1, biz:1 } }[a.hours]);
+    var pref = ORDER.indexOf('cohort') > -1 ? 'cohort' : 'one';
+    return ORDER.slice().sort(function(x, y){ return s[y] - s[x] || (x === pref ? -1 : y === pref ? 1 : 0); });
   }
   var WHY = {
+    cohort:'You want to build something real, with a group and Noor keeping you on track. Over 4 weekends you build live in Saturday group sessions, and the Weekend Founder OS is included.',
     os: 'You want to learn AI at your own pace. The OS walks you through Claude co-work and prompt engineering, and you finish with your own professional website. Start tonight.',
     one:'You want something that earns or works for your business, and you have the time. In 4 weekends with me you build 2 websites and 1 working product on your own idea, all the way to code.',
     biz:'You need your business running on tech, not a course. I set up your ERP or CRM, marketing and team tools around how you actually work.'
@@ -305,7 +321,7 @@
     $('#fdTitle').innerHTML = PLANS[k].short +' · <em>' + price + (k === 'biz' ? '*' : '') + '</em>';
     $('#fdWhy').textContent = WHY[k] + (k === 'one' ? ' The next batch starts in December.' : '');
     $('#fdAlt').textContent = 'Also worth a look: ' + PLANS[alt].short + ' (' + inr(priceOf(alt)) + ').' + (k === 'biz' ? ' *Price may vary slightly based on your requirement.' : '');
-    $('#fdGo').firstChild.nodeValue = (k === 'os' ? 'Get the OS now ' : k === 'one' ? 'Reserve my December slot ' : 'Book a business call ');
+    $('#fdGo').firstChild.nodeValue = (k === 'os' ? 'Get the OS now ' : k === 'cohort' ? 'Join the next cohort ' : k === 'one' ? 'Reserve my December slot ' : 'Book a business call ');
     $('#fdGo').setAttribute('data-k', k);
     $('#fdWa').href = waUrl(waText(k)); $('#fdWa').target = '_blank'; $('#fdWa').rel = 'noopener';
     $('#fdRes').classList.add('on'); chime();
