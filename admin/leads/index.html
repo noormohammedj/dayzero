@@ -98,7 +98,7 @@ dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
         <button data-v="all">All</button><button data-v="hot">Hot</button><button data-v="warm">Warm</button><button data-v="cold">Cold</button>
       </div>
       <div class="chips" id="fPlan">
-        <button data-v="" class="on">Any plan</button><button data-v="one">1:1</button><button data-v="os">OS</button><button data-v="biz">Business</button>
+        <button data-v="" class="on">Any plan</button><button data-v="cohort">Group</button><button data-v="one">1:1</button><button data-v="os">OS</button><button data-v="biz">Business</button>
       </div>
       <select id="fStatus"><option value="">Any status</option><option>new</option><option>contacted</option><option>follow-up</option><option>won</option><option>lost</option></select>
       <label class="k"><input type="checkbox" id="fPhone"> Only with phone</label>
@@ -132,12 +132,15 @@ dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
   var $ = function(s){ return document.querySelector(s); }, $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var LS = { get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set:function(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }, del:function(k){ try{ localStorage.removeItem(k); }catch(e){} } };
   var URL_ = LS.get('tdz_admin_url'), KEY = LS.get('tdz_admin_key'), LEADS = [], sortBy = 'score', sortDir = -1;
-  var PLAN = { os:{ n:'Weekend Founder OS', p:'₹1,999' }, one:{ n:'1:1 weekend course', p:'₹4,999' }, biz:{ n:'Business Tech Enablement', p:'₹29,999' } };
+  var NEW_PRICES = Date.now() >= +new Date('2026-12-01T00:00:00+05:30'); // from 1 Dec: group cohort ₹4,999, 1:1 ₹12,999
+  var PLAN = { os:{ n:'Weekend Founder OS', p:'₹1,999' }, cohort:{ n:'Group cohort (4 weekends)', p:'₹4,999' }, one:{ n:'1:1 weekend course', p:NEW_PRICES ? '₹12,999' : '₹4,999' }, biz:{ n:'Business Tech Enablement', p:'₹29,999' } };
   var LBL = { student:'Student', professional:'Professional', business:'Business owner', other:'Other', learn:'Learn AI', income:'Extra income', owntech:'Tech for idea', fullbiz:'Biz on tech', low:'2–5h', mid:'5–10h', high:'10h+' };
   var DEF_TPL = {
-    one_hot: 'Hi {name}, Noor here from TheDayZero. Saw you checking the 1:1 weekend course. November is full, and I’m holding a few December slots at {price} (it goes to ₹9,999 in January). Shall I block one for you?',
+    one_hot: 'Hi {name}, Noor here from TheDayZero. Saw you checking the 1:1 weekend course. I’m holding a few December slots at {price}' + (NEW_PRICES ? '' : ' (it goes to ₹12,999 on 1 Dec)') + '. Shall I block one for you?',
     one_warm:'Hi {name}, Noor here. You were looking at building your product with me over 4 weekends. Happy to answer anything. What would you want to build? December slots are limited.',
-    os_hot:  'Hi {name}, Noor here. You looked at the Weekend Founder OS. It’s {price} till 30 Nov, then ₹4,999. Here’s the link: https://thedayzero.in/weekend-founder/#plans . Any question before you start? 7-day full refund if it’s not for you.',
+    os_hot:  'Hi {name}, Noor here. You looked at the Weekend Founder OS. It’s {price} one-time. Here’s the link: https://thedayzero.in/weekend-founder/#plans . Any question before you start? 7-day full refund if it’s not for you.',
+    cohort_hot: 'Hi {name}, Noor here from TheDayZero. Saw you looking at the group cohort: 4 weekends of live Saturday builds, with the Weekend Founder OS included, for {price}. Want me to send you the next cohort dates?',
+    cohort_warm:'Hi {name}, Noor here. You were looking at building with a group over 4 weekends. What would you want to build? Happy to answer anything.',
     os_warm: 'Hi {name}, Noor here from TheDayZero. Want me to send you a sample chapter of the Weekend Founder OS so you can see how it works?',
     biz_hot: 'Hi {name}, Noor here. Thanks for your interest in putting {business} on tech. Can we do a 15-minute call this week? I’ll map out what you need (ERP/CRM, marketing, team tools) and give you an exact price.',
     biz_warm:'Hi {name}, Noor here from TheDayZero. Saw you were looking at tech for your business. What’s the one thing that takes most of your time every week? I may be able to automate it.'
@@ -185,7 +188,7 @@ dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
     $('#fn').innerHTML = steps.map(function(s){ var w = n ? Math.max(.5, s[1] / n * 100) : 0; return '<div><span>' + s[0] + '</span><i style="width:' + w + '%"></i><b>' + s[1] + '</b></div>'; }).join('');
     var by = function(k, lab){ var o = {}; LEADS.forEach(function(l){ var v = l[k] || (k === 'top_plan' ? '(undecided)' : '(direct)'); o[v] = (o[v] || 0) + 1; });
       return Object.keys(o).sort(function(a, b){ return o[b] - o[a]; }).slice(0, 6).map(function(v){ return '<div><span>' + esc(lab ? (lab[v] || v) : v) + '</span><b>' + o[v] + '</b></div>'; }).join(''); };
-    $('#interest').innerHTML = by('top_plan', { os:'Self-paced OS', one:'1:1 with Noor', biz:'Business' });
+    $('#interest').innerHTML = by('top_plan', { os:'Self-paced OS', cohort:'Group cohort', one:'1:1 with Noor', biz:'Business' });
     $('#sources').innerHTML = by('utm_source');
     table();
   }
@@ -262,7 +265,7 @@ dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
       .then(function(r){ toast(r[0].ok && r[1].ok ? 'Site updated' : 'Update failed'); });
   });
   // templates
-  var NAMES = { one_hot:'1:1 · hot', one_warm:'1:1 · warm/cold', os_hot:'OS · hot', os_warm:'OS · warm/cold', biz_hot:'Business · hot', biz_warm:'Business · warm/cold' };
+  var NAMES = { cohort_hot:'Group · hot', cohort_warm:'Group · warm/cold', one_hot:'1:1 · hot', one_warm:'1:1 · warm/cold', os_hot:'OS · hot', os_warm:'OS · warm/cold', biz_hot:'Business · hot', biz_warm:'Business · warm/cold' };
   $('#tplBtn').addEventListener('click', function(){
     var t = tpl(); $('#tplFields').innerHTML = Object.keys(NAMES).map(function(k){ return '<label class="k">' + NAMES[k] + '<textarea data-t="' + k + '">' + esc(t[k]) + '</textarea></label>'; }).join('');
     $('#tpl').showModal();
