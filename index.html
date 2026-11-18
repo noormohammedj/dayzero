@@ -168,7 +168,7 @@ h2.disp{font-size:clamp(38px,6.2vw,84px)}
 .hero .lead{margin-top:22px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .byline{display:flex;align-items:center;gap:12px;margin-top:28px;font-size:14.5px;color:var(--ink-3)}
-.byline img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--y)}
+.byline .mono{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--y);color:var(--ink);font-family:var(--disp);font-stretch:118%;font-weight:900;font-size:18px}
 .byline b{color:var(--ink);font-weight:700}
 
 /* stage: phone + yellow disc that move with each product */
@@ -327,8 +327,11 @@ h2.disp{font-size:clamp(38px,6.2vw,84px)}
 /* ---------- founder ---------- */
 .founder{padding:0 0 clamp(70px,9vw,120px)}
 .f-card{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,60px);align-items:center;background:var(--cream);border:1px solid var(--line);border-radius:40px;padding:clamp(22px,3.4vw,44px)}
-.f-photo{position:relative;border-radius:30px;overflow:hidden;aspect-ratio:4/5;background:var(--y)}
-.f-photo img{width:100%;height:100%;object-fit:cover}
+.f-panel{position:relative;border-radius:30px;background:var(--y);padding:clamp(22px,3vw,34px);display:grid;gap:18px;align-content:start}
+.f-panel div{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid rgba(20,20,20,.14);padding-bottom:14px}
+.f-panel b{font-family:var(--disp);font-stretch:118%;font-weight:900;font-size:clamp(48px,5.4vw,76px);letter-spacing:-.05em;line-height:.9;min-width:1.4em}
+.f-panel span{font-weight:700;font-size:17px}
+.f-panel small{font-size:13.5px;font-weight:600;color:var(--ink-2)}
 .f-card blockquote{font-family:var(--disp);font-stretch:108%;font-weight:800;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;line-height:1.08;margin:16px 0 20px}
 .f-card p{color:var(--ink-2);margin-bottom:12px;max-width:56ch}
 .f-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
@@ -393,7 +396,6 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
   .prod-vis{min-height:0;padding:36px 0}
   .how-grid{grid-template-columns:1fr}
   .f-card,.faq-grid{grid-template-columns:1fr}
-  .f-photo{max-width:360px}
   .mcta{display:flex}
   body{padding-bottom:84px}
 }
@@ -424,6 +426,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
     <a class="brand" href="/" aria-label="TheDayZero home"><i aria-hidden="true"></i>TheDayZero</a>
     <nav class="nav-links" aria-label="Main">
       <a href="#products">Products</a>
+      <a href="#film">Video</a>
       <a href="#proof">Proof</a>
       <a href="#learn">Learn</a>
       <a href="#founder">Founder</a>
@@ -461,7 +464,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
         <a class="btn btn-y" href="/weekend-founder/live/" data-cta="hero_crash">Start with the ₹199 crash course <span class="ar" aria-hidden="true">→</span></a>
         <a class="btn btn-line" href="#products" data-cta="hero_products">See what I built</a>
       </div>
-      <p class="byline rv"><img src="/assets/noor-founder.webp" alt="" width="40" height="40"><span><b>Noor Mohammed J</b> · 16 years in tech · coaching online, worldwide</span></p>
+      <p class="byline rv"><span class="mono" aria-hidden="true">N</span><span><b>Noor Mohammed J</b> · 16 years in tech · coaching online, worldwide</span></p>
     </div>
 
     <div class="stage rv" id="stage" data-i="0" aria-label="Products built by Noor" role="group">
@@ -615,9 +618,9 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
 <!-- ================= VIDEO (hidden until a video file is set below in FILM_SRC) ================= -->
 <section class="film" id="film" aria-labelledby="filmH" hidden>
   <div class="wrap">
-    <p class="kick rv">Two minutes, four products</p>
-    <h2 class="disp rv" id="filmH" style="margin-top:14px">Watch me click through all of it.</h2>
-    <div class="film-box rv"><video id="filmVideo" controls playsinline preload="none"></video></div>
+    <p class="kick rv">One minute, four products</p>
+    <h2 class="disp rv" id="filmH" style="margin-top:14px">See all four in 62 seconds.</h2>
+    <div class="film-box rv"><video id="filmVideo" controls playsinline muted preload="none" width="1920" height="1080"></video></div>
   </div>
 </section>
 
@@ -720,7 +723,12 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
 <section class="founder" id="founder" aria-labelledby="fH">
   <div class="wrap">
     <div class="f-card rv">
-      <div class="f-photo"><img src="/assets/noor-founder.webp" alt="Noor Mohammed J" width="480" height="600" loading="lazy"></div>
+      <div class="f-panel" aria-hidden="true">
+        <div><b>16</b><span>years in tech</span></div>
+        <div><b>4</b><span>live products</span></div>
+        <div><b>0</b><span>developers hired</span></div>
+        <small>Noor Mohammed J · Founder, TheDayZero</small>
+      </div>
       <div>
         <p class="kick">Who's teaching</p>
         <h2 class="sr" id="fH">Noor Mohammed J</h2>
@@ -791,8 +799,8 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
   /* ─────────── CONFIG ─────────── */
   // Paste the path or URL of Noor's 2-minute product walkthrough here (e.g. '/assets/products-walkthrough.mp4').
   // While it's empty the video section stays hidden.
-  var FILM_SRC = '';
-  var FILM_POSTER = '';
+  var FILM_SRC = '/assets/video/dayzero-products.mp4';
+  var FILM_POSTER = '/assets/video/dayzero-products-poster.webp';
   // 1:1 price switches automatically on 1 Dec 2026 (IST). Update the Razorpay link amount on the same day.
   var ONE_SWITCH = new Date('2026-12-01T00:00:00+05:30');
   // Live sites inside the product phones. If a phone ever shows a blank or "refused to connect"
@@ -923,6 +931,10 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
     v.src = FILM_SRC; if (FILM_POSTER) v.poster = FILM_POSTER;
     film.hidden = false;
     v.addEventListener('play', function(){ track('tdz_home_video_play'); }, {once:true});
+    v.loop = true;
+    if (!reduce && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); } else { v.pause(); } }); }, {threshold:.4}).observe(v);
+    }
   }
 
   /* Live sites inside the product phones: load when the phone scrolls into view */

@@ -187,8 +187,7 @@ header.top.scrolled{background:rgba(11,11,12,.9)}
 .facts s{opacity:.6}
 .hook{background:rgba(11,11,12,.82);padding:22px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .hook .who{display:flex;gap:12px;align-items:center}
-.face{width:52px;height:52px;border-radius:50%;overflow:hidden;flex:none;background:var(--ink-3);display:block}
-.face img{width:260%;max-width:none;height:auto;margin:-36% 0 0 -80%}
+.face{width:52px;height:52px;border-radius:50%;overflow:hidden;flex:none;background:var(--acc);color:var(--ink);display:grid;place-items:center;font-family:var(--disp);font-size:24px;line-height:1}
 .hook .who b{display:block;font-size:15px}
 .hook .who span{font-size:13px;color:var(--dim)}
 .hook p{font-size:19px;font-weight:600;line-height:1.3}
@@ -458,7 +457,7 @@ tfoot td{font-weight:800;border-bottom:0}
 @media (max-width:820px){.price .grid,.guar{grid-template-columns:1fr}.now{font-size:27vw}}
 
 /* ---------- author + faq ---------- */
-.auth{display:grid;grid-template-columns:minmax(0,.6fr) minmax(0,1.4fr);gap:clamp(24px,5vw,80px);align-items:center}
+.auth{display:grid;grid-template-columns:minmax(0,1fr);max-width:900px;gap:clamp(24px,5vw,80px);align-items:center}
 .auth img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .auth blockquote{font-size:clamp(22px,2.5vw,34px);font-weight:700;line-height:1.25;max-width:26ch}
 .auth p{margin-top:18px;font-size:17px;max-width:60ch}
@@ -542,7 +541,7 @@ footer p{font-size:14.5px;color:var(--dim)}
     </div>
     <form class="hook" id="hook" autocomplete="off">
       <div class="who">
-        <span class="face"><img src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J" width="700" height="839"></span>
+        <span class="face" aria-hidden="true">N</span>
         <div><b>Noor Mohammed J</b><span>Your guide · 16 years in tech</span></div>
       </div>
       <p>Tell me your name and I'll show you the website you'll build tonight.</p>
@@ -733,7 +732,7 @@ footer p{font-size:14.5px;color:var(--dim)}
     <div class="bld">
       <div class="console rv" id="console">
         <div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        <div class="say"><span class="face"><img src="/assets/ai-workshop-founder.webp" alt="" width="700" height="839"></span><div id="say" aria-live="polite">First, who's building?</div></div>
+        <div class="say"><span class="face" aria-hidden="true">N</span><div id="say" aria-live="polite">First, who's building?</div></div>
 
         <div class="step on" data-step="0">
           <div class="two">
@@ -1038,7 +1037,6 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 <!-- ================= AUTHOR ================= -->
 <section class="pan" id="noor" data-pal="ember" data-name="Noor">
   <div class="wrap auth">
-    <img class="rv" src="/assets/ai-workshop-founder.webp" alt="Noor Mohammed J" width="700" height="839" loading="lazy">
     <div class="rv">
       <h2 class="sr">Who wrote it</h2>
       <blockquote>“I spent almost six years figuring out what to build. Most of that time, I was waiting to feel ready.”</blockquote>
