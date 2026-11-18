@@ -110,7 +110,7 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
 
   try {
     if (window.gtag) gtag('event', 'purchase_1on1_landing', {payment_id: payId});
-    if (window.fbq) fbq('track', 'Purchase', {content_name:'1:1 coaching', currency:'INR', value: new Date() < new Date('2026-12-01T00:00:00+05:30') ? 4999 : 12999});
+    if (window.fbq) fbq('track', 'Purchase', {content_name:'1:1 coaching', currency:'INR', value: 12999});
   } catch(e){}
 
   if (!BOOKING_URL){
