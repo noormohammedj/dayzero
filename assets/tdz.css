@@ -155,3 +155,5 @@ html[data-skin="wf"] .pl-until em,html[data-skin="wf"] .fd-res .t em{background:
 html[data-skin="wf"] .pl-slots .yes{background:var(--tdz-y-soft);box-shadow:inset 0 0 0 1px var(--tdz-y)}
 html[data-skin="wf"] .pl-tile.feat{background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ang,0deg),var(--tdz-y),#141414,var(--tdz-y)) border-box}
 html[data-skin="wf"] .mani p{font-size:min(8.8vw,21vh)}
+.tdz-region-bar{background:var(--tdz-y);color:var(--tdz-ink);font-family:var(--tdz-sans);font-size:14.5px;line-height:1.45;text-align:center;padding:10px var(--tdz-gut);position:relative;z-index:5}
+.tdz-region-bar a{color:var(--tdz-ink);font-weight:700;white-space:nowrap}
