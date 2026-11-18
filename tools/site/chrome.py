@@ -40,8 +40,8 @@ HEAD = '''<!--tdz:head-->
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
 {fonts}
-<link rel="stylesheet" href="/assets/tdz.css?v=1">
-<script src="/assets/tdz.js?v=1"></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=2">
+<script src="/assets/tdz.js?v=2"></script>
 <!--/tdz:head-->'''
 
 CTA = {
