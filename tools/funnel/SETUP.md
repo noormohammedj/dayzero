@@ -9,7 +9,7 @@
   - Business: ₹29,999 until 31 Mar 2027, then ₹79,999.
 
   To change a date, edit `CFG` at the top of `/assets/wf-plans.js`.
-- **FOMO.** The page shows "November 1:1 batch: Full", a December seat count you set from the admin page, a seat bar, and countdowns. When seats reach 0, it switches to "December full · join the January waitlist".
+- **FOMO.** The page shows a December seat count you set from the admin page, a seat bar (hidden until you set a real count), and countdowns. When seats reach 0, it switches to "December full · join the January waitlist".
 - **"Which one is for me?"** Visitors answer three taps (what they do, what they're looking for, hours a week). The page then recommends a plan, rotates the carousel to it, and offers "Send me this plan" (name + WhatsApp) or "Connect with Noor before you buy".
 - **Reserve / Book call modal.** It takes a name and WhatsApp number, logs the lead, and opens WhatsApp with a pre-filled message that includes their quiz answers.
 - **Floating WhatsApp button.** It says "Connect with me before you buy", and its message changes to match the plan the visitor is looking at or was recommended.
@@ -58,7 +58,7 @@ If you edit `Code.gs` later, go to **Deploy → Manage deployments → Edit → 
 
 ## Before 1 December
 
-The OS Razorpay link (`https://rzp.io/rzp/UQYIUZL`) has a fixed amount, so Razorpay keeps charging ₹1,999 until you change it by hand. The website switches itself at midnight IST on 1 Dec: every "₹1,999" becomes "₹4,999" on the main page, the free-website guide and the reader; the launch-price lines, countdowns and the "November 1:1 batch: Full" line are hidden; tracking values become 4999.
+The OS Razorpay link (`https://rzp.io/rzp/UQYIUZL`) has a fixed amount, so Razorpay keeps charging ₹1,999 until you change it by hand. The website switches itself at midnight IST on 1 Dec: every "₹1,999" becomes "₹4,999" on the main page, the free-website guide and the reader; the launch-price lines and countdowns are hidden; tracking values become 4999.
 
 What you do in Razorpay (Dashboard → Payment Links, or Payment Pages if UQYIUZL is a page):
 
@@ -72,4 +72,3 @@ What you do in Razorpay (Dashboard → Payment Links, or Payment Pages if UQYIUZ
 
 Also on 1 Dec: the search and social preview text in the `<head>` of `weekend-founder/index.html` (meta descriptions and the JSON-LD `price`/`priceValidUntil`) can't switch by date. Change `₹1,999` to `₹4,999` there, and the JSON-LD `"price": "1999"` to `"4999"` with `"priceValidUntil"` removed.
 
-The "November 1:1 batch: Full" line is controlled by `novemberFull` in `assets/wf-plans.js`. Set it to `false` if the November batch is not actually full.

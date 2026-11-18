@@ -12,9 +12,6 @@
     bizUntil: '2027-04-01T00:00:00+05:30',   // ₹29,999 → ₹79,999
     // December 1:1 seats. The admin panel overrides these; until it does, the tile says "open".
     decSeatsLeft: null, decSeatsTotal: null,
-    // "November 1:1 batch: Full". Keep true only while November really is full.
-    // The line hides itself on 1 Dec either way.
-    novemberFull: true, novemberEnds: '2026-12-01T00:00:00+05:30',
     startIndex: 1                              // 1 = the 1:1 tile in front
   };
   var PLANS = {
@@ -106,12 +103,6 @@
       $$('[data-amt-txt]', t).forEach(function(el){ el.textContent = inr(PLANS[k].later); });
     }
   });
-  // November 1:1 line: only while it is true and still November
-  var novFull = CFG.novemberFull && now < +new Date(CFG.novemberEnds);
-  if(!novFull){
-    $$('.pl-fomo .full, .pl-slots .no').forEach(function(el){ el.hidden = true; el.style.display = 'none'; });
-    $$('.pl-slots').forEach(function(el){ el.style.gridTemplateColumns = '1fr'; });
-  }
   if(now >= until.one){ $$('[data-slots]').forEach(function(el){ el.hidden = true; }); var fomo = $('.pl-fomo'); if(fomo) fomo.hidden = true; }
   function tickCd(){
     var t = Date.now();
@@ -261,7 +252,7 @@
     var biz = k === 'biz';
     $('#plModalT').textContent = biz ? 'Book a business call' : ($('#plSeatTxt') && /full/.test($('#plSeatTxt').textContent) ? 'Join the January waitlist' : 'Reserve your December slot');
     $('#plModalP').textContent = biz ? 'Tell me a little about your business. I\'ll message you on WhatsApp to scope it. Price may vary slightly with your requirement.'
-      : (novFull ? 'November is full. ' : '') + 'Leave your number and Noor will confirm your December slot on WhatsApp.';
+      : 'Leave your number and Noor will confirm your December slot on WhatsApp.';
     $('#plModalBizL').hidden = !biz;
     if(profile.name) mForm.name.value = profile.name;
     if(profile.phone) mForm.phone.value = profile.phone.replace(/^91/, '');
@@ -312,7 +303,7 @@
     steps.forEach(function(s){ s.classList.remove('on'); }); bars.forEach(function(b){ b.classList.add('on'); });
     var price = inr(priceOf(k));
     $('#fdTitle').innerHTML = PLANS[k].short +' · <em>' + price + (k === 'biz' ? '*' : '') + '</em>';
-    $('#fdWhy').textContent = WHY[k] + (k === 'one' && novFull ? ' November is full, so you\'d start in December.' : '');
+    $('#fdWhy').textContent = WHY[k] + (k === 'one' ? ' The next batch starts in December.' : '');
     $('#fdAlt').textContent = 'Also worth a look: ' + PLANS[alt].short + ' (' + inr(priceOf(alt)) + ').' + (k === 'biz' ? ' *Price may vary slightly based on your requirement.' : '');
     $('#fdGo').firstChild.nodeValue = (k === 'os' ? 'Get the OS now ' : k === 'one' ? 'Reserve my December slot ' : 'Book a business call ');
     $('#fdGo').setAttribute('data-k', k);
