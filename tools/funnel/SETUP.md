@@ -58,4 +58,18 @@ If you edit `Code.gs` later, go to **Deploy → Manage deployments → Edit → 
 
 ## Before 1 December
 
-The OS Razorpay link (`https://rzp.io/rzp/UQYIUZL`) has a fixed amount. On 1 Dec, change that link's amount to ₹4,999 in Razorpay. The page text switches itself: after 30 Nov every "₹1,999" on the page changes to "₹4,999", and the launch-price lines and countdowns are hidden.
+The OS Razorpay link (`https://rzp.io/rzp/UQYIUZL`) has a fixed amount, so Razorpay keeps charging ₹1,999 until you change it by hand. The website switches itself at midnight IST on 1 Dec: every "₹1,999" becomes "₹4,999" on the main page, the free-website guide and the reader; the launch-price lines, countdowns and the "November 1:1 batch: Full" line are hidden; tracking values become 4999.
+
+What you do in Razorpay (Dashboard → Payment Links, or Payment Pages if UQYIUZL is a page):
+
+1. Before 30 Nov, open the link and check whether it can be edited. Some links only let you change the amount while no payment is in progress; a Payment Page lets you edit the price field any time.
+2. Between 00:00 and 00:15 IST on 1 Dec, change the amount from ₹1,999 to ₹4,999 and save. If you can't be awake, do it first thing in the morning; anyone who pays ₹1,999 before you change it simply got the launch price.
+3. Open `https://rzp.io/rzp/UQYIUZL` in a private window and check it now shows ₹4,999.
+4. If the amount can't be edited: create a new ₹4,999 link with the same title, description, customer fields and redirect URL, then send the new link to whoever maintains the site so `UQYIUZL` can be replaced everywhere (`weekend-founder/index.html`, `free-website/`, `read/`).
+5. The reader backend (the Apps Script at `BACKEND_URL` in `weekend-founder/read/index.html`) checks payments before opening the book. If it checks for an amount of ₹1,999 (199900 paise), add 499900 as a valid amount, or ₹4,999 buyers will be told their payment "isn't valid".
+6. Make a ₹4,999 test purchase (or ask a friend), unlock the book with it, then refund it from the dashboard.
+7. If you saved your own WhatsApp templates on the admin page, edit the OS one: it still says "till 30 Nov".
+
+Also on 1 Dec: the search and social preview text in the `<head>` of `weekend-founder/index.html` (meta descriptions and the JSON-LD `price`/`priceValidUntil`) can't switch by date. Change `₹1,999` to `₹4,999` there, and the JSON-LD `"price": "1999"` to `"4999"` with `"priceValidUntil"` removed.
+
+The "November 1:1 batch: Full" line is controlled by `novemberFull` in `assets/wf-plans.js`. Set it to `false` if the November batch is not actually full.

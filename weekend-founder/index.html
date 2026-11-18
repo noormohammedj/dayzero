@@ -87,7 +87,7 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"Can I really earn from this?","acceptedAnswer":{"@type":"Answer","text":"You can use the skill two ways: build websites for clients as a freelancer (Indian freelancers typically charge ₹5,000–₹20,000 for a one-page site), or sell a digital product of your own. The OS shows both. It doesn't promise income; that depends on the work you put in."}},
-    {"@type":"Question","name":"Why pay ₹1,999 when an AI subscription costs about the same?","acceptedAnswer":{"@type":"Answer","text":"An AI subscription gives you the tool, every month. The Weekend Founder OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans."}},
+    {"@type":"Question","name":"Why pay for a playbook when ChatGPT and Claude are right there?","acceptedAnswer":{"@type":"Answer","text":"An AI subscription gives you the tool, every month. The Weekend Founder OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans."}},
     {"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you have worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter."}},
     {"@type":"Question","name":"Is this a PDF?","acceptedAnswer":{"@type":"Answer","text":"It is a web book you read in your browser, built for phones. You can save the whole book as a PDF at any time with one button."}},
     {"@type":"Question","name":"How do I get access after paying?","acceptedAnswer":{"@type":"Answer","text":"Right after payment, Razorpay sends you to the reader and the book unlocks automatically. On a new device, unlock it again with the email and phone number you used to pay."}},
@@ -806,7 +806,7 @@ footer p{font-size:14.5px;color:var(--dim)}
 <section class="mani" id="why" data-pal="rose" data-name="Why">
   <div class="pin">
     <div class="wrap">
-      <h2 class="sr">Why pay ₹1,999 when an AI subscription costs about the same?</h2>
+      <h2 class="sr">Why pay for a playbook when ChatGPT and Claude are right there?</h2>
       <p>A chat box is a tool.</p>
       <p>This is the playbook.</p>
       <p>Build in order.</p>
@@ -1058,7 +1058,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
     <div>
       <details data-deal><summary>Why is it ₹1,999 right now?</summary><p>The course fee is ₹4,999. It is ₹1,999 until 30 November 2026, then it goes back to ₹4,999.</p></details>
       <details><summary>Can I really earn from this?</summary><p>You can use the skill two ways: build websites for clients as a freelancer (Indian freelancers typically charge ₹5,000–₹20,000 for a one-page site), or sell a digital product of your own. The OS shows both. It doesn't promise income; that depends on the work you put in.</p></details>
-      <details><summary>Why pay ₹1,999 when an AI subscription costs about the same?</summary><p>An AI subscription gives you the tool, every month. The OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans, and if it isn't for you, you get a full refund within 7 days.</p></details>
+      <details><summary>Why pay for a playbook when ChatGPT and Claude are right there?</summary><p>An AI subscription gives you the tool, every month. The OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans, and if it isn't for you, you get a full refund within 7 days.</p></details>
       <details><summary>Do I need to know how to code?</summary><p>No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you've worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter.</p></details>
       <details><summary>Is this a PDF?</summary><p>It's a web book you read in your browser, built for phones. You can save the whole book as a PDF at any time with one button.</p></details>
       <details><summary>How do I get access after paying?</summary><p>Right after payment, Razorpay sends you to the reader and the book unlocks automatically. On a new device, unlock it again with the email and phone number you used to pay.</p></details>
@@ -1076,7 +1076,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 <footer>
   <div class="wrap">
     <a class="huge" href="#start" aria-label="Back to top">Day Zero</a>
-    <p>© 2026 Noor Mohammed J · RoJerU · Coimbatore · <a href="/founder.html">About Noor</a> · <a href="https://wa.me/919629843122">WhatsApp</a> · <a href="https://thedayzero.in/run-business-30-days/">30-day course</a></p>
+    <p>© 2026 Noor Mohammed J · RoJerU · Coimbatore · <a href="/founder.html">About Noor</a> · <a href="https://wa.me/919629843122">WhatsApp</a> · <a href="https://thedayzero.in/run-business-30-days/">30-day course</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
   </div>
 </footer>
 
@@ -1305,7 +1305,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
         // launch price is over: show the regular ₹4,999 everywhere outside the plan tiles (those switch on their own)
         PRICE = 4999;
         var w = D.createTreeWalker(D.body, NodeFilter.SHOW_TEXT, null), n, plans = $('#plans');
-        while((n = w.nextNode())){ if(n.nodeValue.indexOf('₹1,999') > -1 && !(plans && plans.contains(n))) n.nodeValue = n.nodeValue.replace(/₹1,999/g, '₹4,999'); }
+        while((n = w.nextNode())){ if(/₹1,999|₹167/.test(n.nodeValue) && !(plans && plans.contains(n))) n.nodeValue = n.nodeValue.replace(/₹1,999/g, '₹4,999').replace(/₹167/g, '₹417'); }
         return;
       }
       var d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, sec = Math.floor(left / 1e3) % 60;
@@ -1344,7 +1344,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 
   /* ---------- marquee ---------- */
   (function(){
-    var items = ['Your first website tonight', 'Your own domain', 'A product people pay for', 'Razorpay checkout', 'Instagram + WhatsApp sales system', 'Your own AI assistants', '32 chapters', '154 prompts', '7-day refund', '₹4,999 now ₹1,999 until 30 Nov'];
+    var items = ['Your first website tonight', 'Your own domain', 'A product people pay for', 'Razorpay checkout', 'Instagram + WhatsApp sales system', 'Your own AI assistants', '32 chapters', '154 prompts', '7-day refund', PRICE === 1999 ? '₹4,999 now ₹1,999 until 30 Nov' : '₹4,999 one-time'];
     var html = items.map(function(x){ return '<span>' + x + '</span><span>●</span>'; }).join('');
     $('#marq').innerHTML = html + html;
   })();
