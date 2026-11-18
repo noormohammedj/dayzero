@@ -18,7 +18,15 @@
     if (q === 'in' || q === 'intl'){ sessionStorage.setItem('tdz_region', q); }
     force = sessionStorage.getItem('tdz_region');
   } catch(e){}
-  var india = force ? force === 'in' : (tz ? (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') : /-IN$/i.test(navigator.language || ''));
+  // India unless the browser clearly says otherwise. Signals: India time zone or UTC+5:30 offset,
+  // or an Indian language setting (en-IN, hi-IN, ta-IN...). Privacy browsers that report UTC
+  // or no time zone count as India, so no Indian visitor is ever shown dollars by mistake.
+  var langs = []; try { langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map(String); } catch(e){}
+  var offIN = false; try { offIN = new Date().getTimezoneOffset() === -330; } catch(e){}
+  var tzIN = /^Asia\/(Kolkata|Calcutta)$/.test(tz) || offIN;
+  var langIN = langs.some(function(l){ return /-IN$/i.test(l) || /^(hi|ta|te|kn|ml|mr|bn|gu|pa|or|as|ur-IN)\b/i.test(l); });
+  var tzUnknown = !tz || /^(UTC|Etc\/|GMT|Universal|Zulu)/i.test(tz);
+  var india = force ? force === 'in' : (tzIN || langIN || tzUnknown);
   var BOT = /bot|crawl|spider|slurp|lighthouse|headless/i.test(navigator.userAgent || '');
   D.documentElement.setAttribute('data-region', india ? 'in' : 'intl');
 
@@ -97,18 +105,25 @@
     W.open(waLink(PAY[id] || 'to join'), '_blank', 'noopener');
   }, true);
 
-  // The India workshop and the global workshop each send the other region to its own page.
+  // The two workshop pages never redirect. Each page keeps its own price and date, and offers the
+  // other session in a small bar if the visitor seems to be in the other region.
   var path = location.pathname.replace(/index\.html$/, '');
-  var stay = /[?&]stay=1/.test(location.search) || force;
-  if (!BOT && !stay){
-    if (!india && path === '/weekend-founder/live/'){ location.replace('/weekend-founder/live/global/' + location.search + location.hash); return; }
-    if (india && path === '/weekend-founder/live/global/'){ location.replace('/weekend-founder/live/' + location.search + location.hash); return; }
+  var IN_PAGE = path === '/weekend-founder/live/', GL_PAGE = path === '/weekend-founder/live/global/';
+  if (IN_PAGE || GL_PAGE) D.documentElement.setAttribute('data-keep-inr', '');
+  function regionBar(){
+    var html = '';
+    if (IN_PAGE && !india) html = 'Outside India? There is an English session for you on <b>Sat 5 Dec, 17:00 UTC, US$9</b>. <a href="/weekend-founder/live/global/">See the global session →</a>';
+    if (GL_PAGE && india) html = 'In India? Join the <b>₹199 session on Sat 21 Nov, 11 AM IST</b>. <a href="/weekend-founder/live/">See the India session →</a>';
+    if (!html) return;
+    var bar = D.createElement('div'); bar.className = 'tdz-region-bar'; bar.innerHTML = html;
+    var nav = D.getElementById('tdzNav'); if (nav && nav.nextSibling) nav.parentNode.insertBefore(bar, nav.nextSibling); else D.body.insertBefore(bar, D.body.firstChild);
   }
 
   W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText };
 
   function run(){
-    if (!india){
+    regionBar();
+    if (!india && !IN_PAGE && !GL_PAGE){
       walk(D.body);
       fixLinks(D);
       // keep converting whatever page scripts write later (countdowns, carousels, calculators)
