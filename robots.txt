@@ -1,6 +1,11 @@
+# TheDayZero · thedayzero.in
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /tools/
+Disallow: /weekend-founder/book/
+Disallow: /weekend-founder/read/
+Disallow: /thank-you.html
+Disallow: /Thankyou/
 
 Sitemap: https://thedayzero.in/sitemap.xml

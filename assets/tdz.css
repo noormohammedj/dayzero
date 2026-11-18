@@ -1,0 +1,157 @@
+/* TheDayZero · one look for every page.
+   Brand tokens, the shared header, the shared footer and the page skins.
+   Every page loads this file last, so the skins win over each page's own styles.
+   Fonts: Archivo (variable width) for display, Schibsted Grotesk for text. */
+
+:root{
+  --tdz-y:#FFC800; --tdz-y-soft:#FFF4C2; --tdz-y-deep:#E0A800;
+  --tdz-ink:#141414; --tdz-ink-2:#3d3b36; --tdz-ink-3:#77736a;
+  --tdz-paper:#ffffff; --tdz-cream:#FFFBEA; --tdz-line:#ece7d8;
+  --tdz-disp:'Archivo','Arial Black',Impact,sans-serif;
+  --tdz-sans:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --tdz-gut:clamp(16px,4vw,48px); --tdz-max:1240px;
+  --tdz-ease:cubic-bezier(.2,.75,.15,1);
+}
+
+/* ---------- shared header ---------- */
+.tdz-nav{position:sticky;top:0;z-index:900;background:rgba(255,255,255,.88);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--tdz-line);font-family:var(--tdz-sans);color:var(--tdz-ink)}
+.tdz-nav *{box-sizing:border-box}
+.tdz-nav .tdz-w{max-width:var(--tdz-max);margin:0 auto;padding:0 var(--tdz-gut);display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.tdz-brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--tdz-disp);font-stretch:118%;font-weight:900;font-size:21px;letter-spacing:-.03em;text-decoration:none;color:var(--tdz-ink);line-height:1;white-space:nowrap}
+.tdz-brand i{width:14px;height:14px;border-radius:50%;background:var(--tdz-y);box-shadow:inset 0 0 0 2.5px var(--tdz-ink);flex:none}
+.tdz-links{display:flex;gap:28px;font-weight:600;font-size:15px;margin:0;padding:0}
+.tdz-links a{text-decoration:none;color:var(--tdz-ink);position:relative;padding:6px 0}
+.tdz-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--tdz-y);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--tdz-ease)}
+.tdz-links a:hover::after,.tdz-links a[aria-current]::after{transform:scaleX(1)}
+.tdz-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border-radius:999px;font-family:var(--tdz-sans);font-weight:700;font-size:15px;letter-spacing:0;text-transform:none;text-decoration:none;white-space:nowrap;background:var(--tdz-y);color:var(--tdz-ink);border:0;box-shadow:0 10px 24px -14px rgba(160,110,0,.9);transition:transform .25s var(--tdz-ease),background-color .2s}
+.tdz-btn:hover{transform:translateY(-2px);background:#FFD21F}
+.tdz-btn.ink{background:var(--tdz-ink);color:#fff;box-shadow:none}
+.tdz-menu{display:none;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;border:1.5px solid var(--tdz-ink);background:none;padding:0;cursor:pointer;color:var(--tdz-ink)}
+.tdz-menu span{display:block;width:16px;height:2px;background:var(--tdz-ink);position:relative}
+.tdz-menu span::before,.tdz-menu span::after{content:"";position:absolute;left:0;width:16px;height:2px;background:var(--tdz-ink);transition:transform .3s var(--tdz-ease)}
+.tdz-menu span::before{top:-5px}.tdz-menu span::after{top:5px}
+.tdz-open .tdz-menu span{background:transparent}
+.tdz-open .tdz-menu span::before{transform:translateY(5px) rotate(45deg)}
+.tdz-open .tdz-menu span::after{transform:translateY(-5px) rotate(-45deg)}
+.tdz-sheet{position:fixed;inset:68px 0 0;z-index:899;background:var(--tdz-y);padding:28px var(--tdz-gut);display:flex;flex-direction:column;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .3s,transform .35s var(--tdz-ease);font-family:var(--tdz-sans);overflow-y:auto}
+.tdz-open .tdz-sheet{opacity:1;transform:none;pointer-events:auto}
+.tdz-sheet a{font-family:var(--tdz-disp);font-stretch:112%;font-weight:850;font-size:clamp(30px,8vw,40px);letter-spacing:-.03em;text-decoration:none;padding:5px 0;color:var(--tdz-ink)}
+.tdz-sheet .tdz-btn{margin-top:18px;font-family:var(--tdz-sans);font-size:17px;align-self:flex-start;padding:0 26px;min-height:54px}
+@media (max-width:960px){.tdz-links,.tdz-nav .tdz-desk{display:none}.tdz-menu{display:inline-flex}}
+@media (max-width:380px){.tdz-brand{font-size:19px}}
+
+/* ---------- shared footer ---------- */
+.tdz-foot{background:var(--tdz-ink);color:#cfcabb;font-family:var(--tdz-sans);font-size:15px;line-height:1.55;position:relative;z-index:5;overflow:hidden}
+.tdz-foot *{box-sizing:border-box}
+.tdz-foot .tdz-w{max-width:var(--tdz-max);margin:0 auto;padding:clamp(56px,7vw,88px) var(--tdz-gut) 0}
+.tdz-foot-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:clamp(28px,4vw,56px)}
+.tdz-foot .tdz-brand{color:#fff;font-size:24px}
+.tdz-foot .tdz-brand i{box-shadow:inset 0 0 0 2.5px #fff}
+.tdz-foot-pitch{margin:16px 0 0;max-width:34ch;color:#cfcabb}
+.tdz-foot h3{margin:0 0 14px;font-family:var(--tdz-sans);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tdz-y)}
+.tdz-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.tdz-foot a{color:#ece8dc;text-decoration:none}
+.tdz-foot a:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--tdz-y);text-underline-offset:4px}
+.tdz-foot .tdz-btn{margin-top:22px;color:var(--tdz-ink)}
+.tdz-foot .tdz-btn:hover{color:var(--tdz-ink);text-decoration:none}
+.tdz-foot-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-top:clamp(44px,6vw,72px);padding:22px 0;border-top:1px solid #2c2b28;font-size:13.5px;color:#a9a497}
+.tdz-foot-mark{font-family:var(--tdz-disp);font-stretch:125%;font-weight:900;letter-spacing:-.045em;line-height:.78;font-size:min(12.6vw,176px);color:var(--tdz-y);white-space:nowrap;margin:0 0 -0.12em;padding:0 var(--tdz-gut);text-align:center;user-select:none}
+.tdz-foot-mark span{color:#fff}
+@media (max-width:860px){.tdz-foot-top{grid-template-columns:1fr 1fr}.tdz-foot-top>div:first-child{grid-column:1/-1}}
+@media (max-width:420px){.tdz-foot-mark{font-size:12.4vw}}
+
+/* ---------- shared bits pages can use ---------- */
+.tdz-hl{background:linear-gradient(transparent 58%,var(--tdz-y) 58% 92%,transparent 92%);padding:0 .06em}
+.tdz-region-note{font-size:13px;color:var(--tdz-ink-3)}
+::selection{background:var(--tdz-y);color:var(--tdz-ink)}
+
+/* =====================================================================
+   PAGE SKINS. Each page sets <html data-skin="...">.
+   They map the page's own tokens onto the TheDayZero palette and type.
+   ===================================================================== */
+
+/* every skinned page: hide its old header and footer, the shared ones replace them */
+html[data-skin] body > header.top,
+html[data-skin] body > nav.home-nav,
+html[data-skin] body > footer:not(.tdz-foot){display:none!important}
+html[data-skin] body{font-family:var(--tdz-sans)}
+
+/* ---------- Weekend Founder sales page (was dark, Anton, orange) ---------- */
+html[data-skin="wf"]{
+  --ink:#ffffff; --ink-2:#FFFBEA; --ink-3:#f4efdd;
+  --bone:#141414; --dim:#5f5b51; --line:rgba(20,20,20,.13);
+  --acc:#FFC800; --ok:#1a7f4b;
+  --disp:'Archivo','Arial Black',Impact,sans-serif;
+  --sans:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html[data-skin="wf"] body{background:#fff;color:#141414}
+html[data-skin="wf"] #gl,html[data-skin="wf"] .grain,html[data-skin="wf"] .cur,html[data-skin="wf"] #snd{display:none!important}
+html[data-skin="wf"] h1,html[data-skin="wf"] h2,html[data-skin="wf"] h3,html[data-skin="wf"] .disp,html[data-skin="wf"] .huge,html[data-skin="wf"] .big,html[data-skin="wf"] .now{font-stretch:68%;font-weight:850;letter-spacing:-.02em}
+/* accent used as text: ink on white, with the yellow marker underneath for emphasis */
+html[data-skin="wf"] .lab,html[data-skin="wf"] .math b,html[data-skin="wf"] .calc label b,html[data-skin="wf"] .calc output,
+html[data-skin="wf"] .plan li b,html[data-skin="wf"] .pr mark,html[data-skin="wf"] .mani p:last-of-type.on,html[data-skin="wf"] .jr li.on .nm,
+html[data-skin="wf"] .pay .fig,html[data-skin="wf"] .big,html[data-skin="wf"] .now,html[data-skin="wf"] summary::after{color:#141414}
+html[data-skin="wf"] .lab{color:#77736a;font-family:var(--tdz-sans);font-weight:700;letter-spacing:.14em}
+html[data-skin="wf"] .hero h1 .ln:nth-child(3){color:#141414;background:linear-gradient(transparent 62%,var(--tdz-y) 62% 94%,transparent 94%)}
+html[data-skin="wf"] .big,html[data-skin="wf"] .now{-webkit-text-stroke:0;text-shadow:none}
+html[data-skin="wf"] .btn{font-family:var(--tdz-sans);font-weight:700;letter-spacing:0;text-transform:none;border-radius:999px;font-size:15px;color:#141414}
+html[data-skin="wf"] .btn.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px #141414;color:#141414}
+html[data-skin="wf"] .btn.ghost:hover{background:#141414;color:#fff}
+
+/* ---------- live workshop pages (were green + Cormorant) ---------- */
+html[data-skin="live"]{
+  --paper:#FFFFFF; --cream:#FFFBEA; --sand:#FFF4C2; --hair:#ece7d8;
+  --ink:#141414; --ink-2:#3d3b36; --slate:#77736a;
+  --green:#141414; --green-2:#2b2a27; --green-tint:#FFF4C2;
+  --night:#141414; --night-2:#201f1c; --on-night:#ffffff; --on-night-2:#cfcabb; --line-night:rgba(255,255,255,.14);
+  --display:'Archivo','Arial Black',Impact,sans-serif;
+  --sans:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html[data-skin="live"] h1,html[data-skin="live"] h2,html[data-skin="live"] h3{font-family:var(--tdz-disp);font-stretch:108%;font-weight:820;letter-spacing:-.025em;line-height:1.02}
+html[data-skin="live"] h1 em,html[data-skin="live"] h2 em,html[data-skin="live"] h3 em,html[data-skin="live"] h1 i,html[data-skin="live"] h2 i{font-style:normal;background:linear-gradient(transparent 60%,var(--tdz-y) 60% 92%,transparent 92%);color:inherit}
+html[data-skin="live"] .hero h1 em,html[data-skin="live"] .hero h1 i,html[data-skin="live"] .dark h2 em,html[data-skin="live"] .reg h2 em,html[data-skin="live"] .hero h1 span,html[data-skin="live"] .reg h2 i{background:none;color:var(--tdz-y)}
+
+/* ---------- founder + story (were mustard + Poppins) ---------- */
+html[data-skin="about"]{
+  --font-heading:'Archivo','Arial Black',Impact,sans-serif;
+  --font-body:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mustard-light:#FFE27A; --mustard:#FFC800; --mustard-deep:#141414; --mustard-tint:#FFF4C2;
+  --ink:#141414; --ink-body:rgba(20,20,20,.86); --ink-soft:rgba(20,20,20,.62);
+}
+html[data-skin="about"] body{background:#fff}
+html[data-skin="about"] h1,html[data-skin="about"] h2{font-stretch:112%;font-weight:850;letter-spacing:-.03em}
+
+/* ---------- privacy + terms ---------- */
+html[data-skin="legal"]{--bg:#ffffff; --ink:#141414; --body:rgba(20,20,20,.84); --soft:rgba(20,20,20,.6); --line:#ece7d8; --acc:#141414}
+html[data-skin="legal"] body{background:#fff;font-family:var(--tdz-sans)}
+html[data-skin="legal"] h1,html[data-skin="legal"] h2{font-family:var(--tdz-disp);font-stretch:112%;font-weight:850;letter-spacing:-.03em}
+html[data-skin="legal"] a{text-decoration-color:var(--tdz-y);text-underline-offset:3px}
+
+/* ---------- free website tool ---------- */
+html[data-skin="tool"]{
+  --ink:#141414; --ink-2:#3d3b36; --slate:#77736a; --line:#ece7d8; --paper:#FFFFFF; --mist:#FFFBEA; --graphite:#141414; --fog:#ece7d8;
+  --green:#141414; --green-ink:#141414;
+  --sans:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --logo:'Archivo','Arial Black',Impact,sans-serif;
+}
+html[data-skin="tool"] h1,html[data-skin="tool"] h2{font-family:var(--tdz-disp);font-stretch:108%;font-weight:850;letter-spacing:-.03em}
+html[data-skin="tool"] h1 em,html[data-skin="tool"] h2 em{font-style:normal;background:linear-gradient(transparent 60%,var(--tdz-y) 60% 92%,transparent 92%)}
+html[data-skin="tool"] .btn-primary{background:var(--tdz-y);color:var(--tdz-ink);border-color:var(--tdz-y)}
+
+/* ---------- OS reader ---------- */
+html[data-skin="read"]{
+  --ink:#141414; --ink-2:#3d3b36; --slate:#77736a; --line:#ece7d8; --paper:#FFFFFF; --mist:#FFFBEA;
+  --sky:#141414; --sky-ink:#141414; --sky-tint:#FFF4C2; --mustard:#FFC800; --mustard-ink:#7a5b00; --butter:#FFF4C2;
+  --graphite:#141414; --fog:#ece7d8;
+}
+html[data-skin="read"] body{font-family:var(--tdz-sans)}
+html[data-skin="read"] h1,html[data-skin="read"] h2{font-family:var(--tdz-disp);font-stretch:108%;font-weight:850;letter-spacing:-.025em}
+html[data-skin="wf"]{--mono:'Schibsted Grotesk',system-ui,sans-serif; --ok:#141414}
+html[data-skin="wf"] .hero{min-height:0;padding-top:clamp(40px,7vh,80px)}
+html[data-skin="wf"] .lt-n b,html[data-skin="wf"] .fig,html[data-skin="wf"] .pl-price .amt{font-weight:850;font-stretch:68%}
+html[data-skin="wf"] .pl-kick,html[data-skin="wf"] .fd-res .k{color:#77736a;font-weight:700}
+html[data-skin="wf"] .pl-price .amt,html[data-skin="wf"] .pl-until em,html[data-skin="wf"] .fd-res .t em,html[data-skin="wf"] .pl-tile.rec .pl-badge::after{color:#141414}
+html[data-skin="wf"] .pl-until em,html[data-skin="wf"] .fd-res .t em{background:var(--tdz-y);padding:0 .2em}
+html[data-skin="wf"] .pl-slots .yes{background:var(--tdz-y-soft);box-shadow:inset 0 0 0 1px var(--tdz-y)}
+html[data-skin="wf"] .pl-tile.feat{background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ang,0deg),var(--tdz-y),#141414,var(--tdz-y)) border-box}
+html[data-skin="wf"] .mani p{font-size:min(8.8vw,21vh)}
