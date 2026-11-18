@@ -12,7 +12,7 @@ var EVENTS = ['plans_view','tile_view','tile_cta','quiz_start','quiz_result','wa
 var WEIGHT = { plans_view:1, tile_view:2, tile_cta:6, quiz_start:2, quiz_result:8, wa_click:10, buy_click:15, lead_submit:25 };
 var EV_HEAD = ['ts','vid','event','plan','loc','name','phone','profession','goal','hours','recommended','business','utm_source','utm_medium','utm_campaign','utm_content','referrer','page'];
 var LEAD_HEAD = ['vid','first_seen','last_seen','name','phone','profession','goal','hours','recommended','business','top_plan','score','temperature',
-  'views_os','views_one','views_biz','cta_clicks','wa_clicks','buy_clicks','quiz_done','events','utm_source','utm_campaign','referrer','status','notes','last_contacted'];
+  'views_os','views_one','views_biz','cta_clicks','wa_clicks','buy_clicks','quiz_done','events','utm_source','utm_campaign','referrer','status','notes','last_contacted','views_cohort'];
 var PUBLIC_CONFIG = ['decSeatsLeft','decSeatsTotal'];
 
 function setup(){
@@ -42,13 +42,13 @@ function doPost(e){
   if(raw.length > 4000) return json_({ ok:false });
   var p; try{ p = JSON.parse(raw); }catch(err){ return json_({ ok:false }); }
   if(EVENTS.indexOf(p.event) < 0 || !/^v[a-z0-9]{6,20}$/.test(p.vid || '')) return json_({ ok:false });
-  var plan = ['os','one','biz'].indexOf(p.plan) >= 0 ? p.plan : '';
+  var plan = ['os','cohort','one','biz'].indexOf(p.plan) >= 0 ? p.plan : '';
   var ph = phone_(p.phone);
   var lock = LockService.getScriptLock(); lock.waitLock(10000);
   try{
     var ts = iso_();
     sheet_('Events', EV_HEAD).appendRow([ts, p.vid, p.event, plan, str_(p.loc, 20), str_(p.name, 40), ph, str_(p.profession, 20), str_(p.goal, 20), str_(p.hours, 10),
-      str_(p.recommended, 6), str_(p.business, 60), str_(p.utm_source, 60), str_(p.utm_medium, 60), str_(p.utm_campaign, 60), str_(p.utm_content, 60), str_(p.referrer, 120), str_(p.page, 60)]);
+      str_(p.recommended, 8), str_(p.business, 60), str_(p.utm_source, 60), str_(p.utm_medium, 60), str_(p.utm_campaign, 60), str_(p.utm_content, 60), str_(p.referrer, 120), str_(p.page, 60)]);
     upsertLead_(p, plan, ph, ts);
   } finally { lock.releaseLock(); }
   return json_({ ok:true });
@@ -60,7 +60,7 @@ function upsertLead_(p, plan, ph, ts){
   var row, r;
   if(hit){ row = hit.getRow(); r = sh.getRange(row, 1, 1, LEAD_HEAD.length).getValues()[0]; }
   else { r = LEAD_HEAD.map(function(){ return ''; }); r[H.vid] = p.vid; r[H.first_seen] = ts; r[H.status] = 'new';
-    ['views_os','views_one','views_biz','cta_clicks','wa_clicks','buy_clicks','quiz_done','events','score'].forEach(function(k){ r[H[k]] = 0; }); }
+    ['views_os','views_cohort','views_one','views_biz','cta_clicks','wa_clicks','buy_clicks','quiz_done','events','score'].forEach(function(k){ r[H[k]] = 0; }); }
   r[H.last_seen] = ts; r[H.events] = +r[H.events] + 1; r[H.score] = +r[H.score] + (WEIGHT[p.event] || 0);
   if(p.name) r[H.name] = str_(p.name, 40);
   if(ph) r[H.phone] = ph;
@@ -75,7 +75,7 @@ function upsertLead_(p, plan, ph, ts){
   if(p.event === 'buy_click'){ r[H.buy_clicks] = +r[H.buy_clicks] + 1; if(plan) r[H['views_' + plan]] = +r[H['views_' + plan]] + 5; }
   if(p.event === 'quiz_result') r[H.quiz_done] = 1;
   if(p.event === 'lead_submit' && plan) r[H['views_' + plan]] = +r[H['views_' + plan]] + 6;
-  var v = { os:+r[H.views_os], one:+r[H.views_one], biz:+r[H.views_biz] };
+  var v = { os:+r[H.views_os], cohort:+r[H.views_cohort] || 0, one:+r[H.views_one], biz:+r[H.views_biz] };
   if(r[H.recommended]) v[r[H.recommended]] += 2;
   var top = Object.keys(v).sort(function(a, b){ return v[b] - v[a]; })[0];
   r[H.top_plan] = v[top] > 0 ? top : '';

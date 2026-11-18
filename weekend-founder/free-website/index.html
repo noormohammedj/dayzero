@@ -607,7 +607,7 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
 </div>
 
 <footer>
-  <div class="wrap">© 2026 Noor Mohammed J · thedayzero · <a href="/weekend-founder/">Weekend Founder OS</a> · <a href="https://wa.me/919629843122" target="_blank" rel="noopener">WhatsApp</a></div>
+  <div class="wrap">© 2026 Noor Mohammed J · thedayzero · <a href="/weekend-founder/">Weekend Founder OS</a> · <a href="https://wa.me/919629843122" target="_blank" rel="noopener">WhatsApp</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
 </footer>
 
 <script>
@@ -616,6 +616,8 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
   function fb(kind, ev, params){ try{ if(window.fbq) fbq(kind, ev, params || {}); }catch(e){} }
   function get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
   function set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+  var PRICE = 1999; // Weekend Founder OS, one-time
 
   track('free_guide_view', { guide:'portfolio_website' });
 
@@ -706,9 +708,9 @@ Give me the complete code in one block. Then, in 3 short lines, tell me how to o
   // Buy links
   Array.prototype.forEach.call(document.querySelectorAll('.buy-link'), function(a){
     a.addEventListener('click', function(){
-      track('begin_checkout', { currency:'INR', value:1999, location:a.getAttribute('data-loc'),
-        items:[{ item_id:'weekend_founder_os', item_name:'The Weekend Founder OS', price:1999, quantity:1 }] });
-      fb('track', 'InitiateCheckout', { value:1999, currency:'INR', content_ids:['weekend_founder_os'], content_type:'product' });
+      track('begin_checkout', { currency:'INR', value:PRICE, location:a.getAttribute('data-loc'),
+        items:[{ item_id:'weekend_founder_os', item_name:'The Weekend Founder OS', price:PRICE, quantity:1 }] });
+      fb('track', 'InitiateCheckout', { value:PRICE, currency:'INR', content_ids:['weekend_founder_os'], content_type:'product' });
     });
   });
 

@@ -69,7 +69,6 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
     "url": "https://thedayzero.in/weekend-founder/",
     "priceCurrency": "INR",
     "price": "1999",
-    "priceValidUntil": "2026-11-30",
     "availability": "https://schema.org/InStock",
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
@@ -87,7 +86,7 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"Can I really earn from this?","acceptedAnswer":{"@type":"Answer","text":"You can use the skill two ways: build websites for clients as a freelancer (Indian freelancers typically charge ₹5,000–₹20,000 for a one-page site), or sell a digital product of your own. The OS shows both. It doesn't promise income; that depends on the work you put in."}},
-    {"@type":"Question","name":"Why pay ₹1,999 when an AI subscription costs about the same?","acceptedAnswer":{"@type":"Answer","text":"An AI subscription gives you the tool, every month. The Weekend Founder OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans."}},
+    {"@type":"Question","name":"Why pay for a playbook when ChatGPT and Claude are right there?","acceptedAnswer":{"@type":"Answer","text":"An AI subscription gives you the tool, every month. The Weekend Founder OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans."}},
     {"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you have worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter."}},
     {"@type":"Question","name":"Is this a PDF?","acceptedAnswer":{"@type":"Answer","text":"It is a web book you read in your browser, built for phones. You can save the whole book as a PDF at any time with one button."}},
     {"@type":"Question","name":"How do I get access after paying?","acceptedAnswer":{"@type":"Answer","text":"Right after payment, Razorpay sends you to the reader and the book unlocks automatically. On a new device, unlock it again with the email and phone number you used to pay."}},
@@ -537,7 +536,6 @@ footer p{font-size:14.5px;color:var(--dim)}
         <a class="btn xl" href="#build" data-go="build">Start my build <span class="ar">↓</span></a>
         <a class="btn xl ghost buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="hero">Get the full OS · ₹1,999</a>
       </div>
-      <p class="deal" data-deal><span><s>₹4,999</s> ₹1,999 until 30 Nov</span><span class="cd" data-cd aria-hidden="true"></span></p>
       <p class="facts"><span><b>7-day</b> full refund</span><span><b>104</b> paid sales of my own</span></p>
     </div>
     <form class="hook" id="hook" autocomplete="off">
@@ -578,7 +576,6 @@ footer p{font-size:14.5px;color:var(--dim)}
     </div>
 
     <div class="pl-fomo rv" aria-label="1:1 batch status">
-      <span class="full"><s>November 1:1 batch</s> <b>Full</b></span>
       <span class="live" id="plFomoLive">December 1:1 slots open</span>
     </div>
 
@@ -590,8 +587,7 @@ footer p{font-size:14.5px;color:var(--dim)}
           <span class="pl-badge">Self-paced · Start today</span>
           <h3 class="pl-name">Weekend Founder OS</h3>
           <p class="pl-meta">12 weeks · Learn at your own pace</p>
-          <div class="pl-price"><s data-was>₹4,999</s><span class="amt" data-amt="1999">₹1,999</span><span class="off" data-off>60% off</span></div>
-          <p class="pl-until" data-until>₹4,999 from 1 December <span class="pl-cd" data-plcd="os"></span></p>
+          <div class="pl-price"><span class="amt" data-amt="1999">₹1,999</span></div>
           <ul class="pl-list">
             <li>Claude co-work and prompt engineering, step by step</li>
             <li>Build your own professional website by the end</li>
@@ -605,15 +601,33 @@ footer p{font-size:14.5px;color:var(--dim)}
           </div>
         </article>
 
-        <!-- 1 · 1:1 with Noor (featured, front) -->
+        <!-- 1 · Group cohort (shown from 1 Dec; wf-plans.js removes it before that). Copy is a first draft. -->
+        <article class="pl-tile" data-plan="cohort" tabindex="0" aria-label="Group cohort, 4 weekends">
+          <span class="pl-badge">Group cohort · Live Saturdays</span>
+          <h3 class="pl-name">Build it in a group</h3>
+          <p class="pl-meta">4 weekends · Live Saturday group builds</p>
+          <div class="pl-price"><span class="amt" data-amt="4999">₹4,999</span></div>
+          <ul class="pl-list">
+            <li>Build live with Noor and the group every Saturday, for 4 weekends</li>
+            <li>The Weekend Founder OS included (₹1,999 on its own)</li>
+            <li>Leave with your own website, built alongside others</li>
+            <li>Ask questions live while you build</li>
+          </ul>
+          <p class="pl-for"><b>Best for:</b> working professionals and students who want to build with others keeping them on track.</p>
+          <div class="pl-cta">
+            <button class="btn xl" type="button" data-reserve="cohort">Join the next cohort <span class="ar">→</span></button>
+            <a class="btn ghost" href="#" data-wa-plan="cohort">Ask Noor on WhatsApp</a>
+          </div>
+        </article>
+
+        <!-- 2 · 1:1 with Noor (featured, front until 1 Dec) -->
         <article class="pl-tile feat" data-plan="one" tabindex="0" aria-label="One-to-one with Noor, 4 weekends">
           <span class="pl-badge">1:1 with Noor · Every weekend</span>
           <h3 class="pl-name">Build it with me</h3>
           <p class="pl-meta">4 weekends · Live, one-to-one</p>
-          <div class="pl-price"><s data-was>₹9,999</s><span class="amt" data-amt="4999">₹4,999</span><span class="off" data-off>50% off</span></div>
-          <p class="pl-until" data-until>Launch price till <em>31 Dec</em> <span class="pl-cd" data-plcd="one"></span></p>
+          <div class="pl-price"><s data-was>₹12,999</s><span class="amt" data-amt="4999">₹4,999</span><span class="off" data-off>62% off</span></div>
+          <p class="pl-until" data-until>₹12,999 from <em>1 Dec</em> <span class="pl-cd" data-plcd="one"></span></p>
           <div class="pl-slots" data-slots>
-            <span class="no">November · full</span>
             <span class="yes" id="plSeatTxt">December · open</span>
           </div>
           <div class="pl-seatbar" data-slots aria-hidden="true"><i id="plSeatBar"></i></div>
@@ -630,7 +644,7 @@ footer p{font-size:14.5px;color:var(--dim)}
           </div>
         </article>
 
-        <!-- 2 · Business Tech Enablement -->
+        <!-- 3 · Business Tech Enablement -->
         <article class="pl-tile" data-plan="biz" tabindex="0" aria-label="Business tech enablement">
           <span class="pl-badge">For businesses · Done with you</span>
           <h3 class="pl-name">Put my business on tech</h3>
@@ -658,8 +672,9 @@ footer p{font-size:14.5px;color:var(--dim)}
       <button class="pl-arrow" type="button" id="plPrev" aria-label="Previous plan">←</button>
       <div class="pl-dots" role="tablist" aria-label="Plans">
         <button type="button" role="tab" data-go="0" aria-selected="false">Self-paced</button>
-        <button type="button" role="tab" data-go="1" aria-selected="true">1:1</button>
-        <button type="button" role="tab" data-go="2" aria-selected="false">Business</button>
+        <button type="button" role="tab" data-go="1" data-go-plan="cohort" aria-selected="false">Group</button>
+        <button type="button" role="tab" data-go="2" aria-selected="true">1:1</button>
+        <button type="button" role="tab" data-go="3" aria-selected="false">Business</button>
       </div>
       <button class="pl-arrow" type="button" id="plNext" aria-label="Next plan">→</button>
     </div>
@@ -778,7 +793,7 @@ footer p{font-size:14.5px;color:var(--dim)}
             <a class="btn xl buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="builder">Unlock the full plan · ₹1,999 <span class="ar">→</span></a>
             <a class="btn ghost" href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20have%20a%20question%20about%20the%20Weekend%20Founder%20OS" data-wa="builder">Ask Noor first</a>
           </div>
-          <p class="plan-note"><span data-deal>₹4,999, now ₹1,999 until 30 Nov. </span>7-day full refund. <button class="back" type="button" id="redo">Start again</button></p>
+          <p class="plan-note">₹1,999 one-time. 7-day full refund. <button class="back" type="button" id="redo">Start again</button></p>
         </div>
       </div>
 
@@ -806,7 +821,7 @@ footer p{font-size:14.5px;color:var(--dim)}
 <section class="mani" id="why" data-pal="rose" data-name="Why">
   <div class="pin">
     <div class="wrap">
-      <h2 class="sr">Why pay ₹1,999 when an AI subscription costs about the same?</h2>
+      <h2 class="sr">Why pay for a playbook when ChatGPT and Claude are right there?</h2>
       <p>A chat box is a tool.</p>
       <p>This is the playbook.</p>
       <p>Build in order.</p>
@@ -842,7 +857,7 @@ footer p{font-size:14.5px;color:var(--dim)}
 
 <div class="band">
   <div class="wrap">
-    <p><span data-deal>₹4,999. Now ₹1,999 until 30 Nov.</span><small>About ₹167 a weekend. 7-day full refund.</small><span data-deal><span class="cd" data-cd aria-hidden="true"></span></span></p>
+    <p><span>₹1,999 one-time.</span><small>About ₹167 a weekend. 7-day full refund.</small></p>
     <a class="btn xl buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="band_journey">Get the OS · ₹1,999 <span class="ar">→</span></a>
   </div>
 </div>
@@ -995,10 +1010,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
     <h2 class="sr">Get the Weekend Founder OS for ₹1,999</h2>
     <div class="grid">
       <div class="rv">
-        <p class="was">₹4,999</p>
         <span class="now">₹1,999</span>
-        <p class="until" data-deal>Until 30 November. Then it goes back to ₹4,999.</p>
-        <div data-deal><span class="cd" data-cd aria-hidden="true"></span></div>
         <p class="cmp">AI tools move every month. Start this weekend, not next year.</p>
         <div class="math">
           <div><b>₹167</b>a weekend</div>
@@ -1056,9 +1068,8 @@ Explain the likely cause in plain English first, then give me the fix as exact s
       <p class="lead rv" style="margin-top:18px">Something else? <a class="lnk" href="https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20have%20a%20question%20about%20the%20Weekend%20Founder%20OS">Ask me on WhatsApp</a>.</p>
     </div>
     <div>
-      <details data-deal><summary>Why is it ₹1,999 right now?</summary><p>The course fee is ₹4,999. It is ₹1,999 until 30 November 2026, then it goes back to ₹4,999.</p></details>
       <details><summary>Can I really earn from this?</summary><p>You can use the skill two ways: build websites for clients as a freelancer (Indian freelancers typically charge ₹5,000–₹20,000 for a one-page site), or sell a digital product of your own. The OS shows both. It doesn't promise income; that depends on the work you put in.</p></details>
-      <details><summary>Why pay ₹1,999 when an AI subscription costs about the same?</summary><p>An AI subscription gives you the tool, every month. The OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans, and if it isn't for you, you get a full refund within 7 days.</p></details>
+      <details><summary>Why pay for a playbook when ChatGPT and Claude are right there?</summary><p>An AI subscription gives you the tool, every month. The OS is a one-time playbook: what to ask, in what order, with 154 tested prompts and the steps behind three live products. Most of it works on the free Claude and ChatGPT plans, and if it isn't for you, you get a full refund within 7 days.</p></details>
       <details><summary>Do I need to know how to code?</summary><p>No. The book teaches you to describe what you want clearly, test it on a real phone and report what broke. Claude writes the code. If you've worked in IT as a PM, QA, BA or tech lead, you already have the skills that matter.</p></details>
       <details><summary>Is this a PDF?</summary><p>It's a web book you read in your browser, built for phones. You can save the whole book as a PDF at any time with one button.</p></details>
       <details><summary>How do I get access after paying?</summary><p>Right after payment, Razorpay sends you to the reader and the book unlocks automatically. On a new device, unlock it again with the email and phone number you used to pay.</p></details>
@@ -1076,12 +1087,12 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 <footer>
   <div class="wrap">
     <a class="huge" href="#start" aria-label="Back to top">Day Zero</a>
-    <p>© 2026 Noor Mohammed J · RoJerU · Coimbatore · <a href="/founder.html">About Noor</a> · <a href="https://wa.me/919629843122">WhatsApp</a> · <a href="https://thedayzero.in/run-business-30-days/">30-day course</a></p>
+    <p>© 2026 Noor Mohammed J · RoJerU · Coimbatore · <a href="/founder.html">About Noor</a> · <a href="https://wa.me/919629843122">WhatsApp</a> · <a href="https://thedayzero.in/run-business-30-days/">30-day course</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
   </div>
 </footer>
 
 <div class="sticky" id="sticky" aria-hidden="true">
-  <div class="t"><b id="stickyT">The Weekend Founder OS</b><span><s data-deal>₹4,999</s> ₹1,999 · 7-day refund <i data-deal style="font-style:normal"><span class="cd" data-cd aria-hidden="true"></span></i></span></div>
+  <div class="t"><b id="stickyT">The Weekend Founder OS</b><span>₹1,999 · 7-day refund</span></div>
   <a class="btn buy-link" href="https://rzp.io/rzp/UQYIUZL" data-loc="sticky" tabindex="-1">Get it · ₹1,999</a>
 </div>
 
@@ -1294,27 +1305,6 @@ Explain the likely cause in plain English first, then give me the fix as exact s
   // Safety net: the headline is never left hidden if the animation stalls.
   setTimeout(function(){ $('#h1').classList.add('done'); }, 1500);
 
-  /* ---------- deadline: ₹1,999 until the end of 30 Nov 2026 (IST) ---------- */
-  (function(){
-    var end = new Date('2026-12-01T00:00:00+05:30').getTime(), cds = $$('[data-cd]');
-    function two(n){ return (n < 10 ? '0' : '') + n; }
-    function tick(){
-      var left = end - Date.now();
-      if(left <= 0){
-        $$('[data-deal]').forEach(function(el){ el.hidden = true; el.style.display = 'none'; }); clearInterval(iv);
-        // launch price is over: show the regular ₹4,999 everywhere outside the plan tiles (those switch on their own)
-        PRICE = 4999;
-        var w = D.createTreeWalker(D.body, NodeFilter.SHOW_TEXT, null), n, plans = $('#plans');
-        while((n = w.nextNode())){ if(n.nodeValue.indexOf('₹1,999') > -1 && !(plans && plans.contains(n))) n.nodeValue = n.nodeValue.replace(/₹1,999/g, '₹4,999'); }
-        return;
-      }
-      var d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, sec = Math.floor(left / 1e3) % 60;
-      var html = '<i>' + d + '<small>d</small></i><i>' + two(h) + '<small>h</small></i><i>' + two(m) + '<small>m</small></i><i>' + two(sec) + '<small>s</small></i>';
-      cds.forEach(function(el){ el.innerHTML = html; });
-    }
-    var iv = setInterval(tick, 1000); tick();
-  })();
-
   /* ---------- freelance calculator ---------- */
   (function(){
     var r = $('#sites'); if(!r) return;
@@ -1344,7 +1334,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
 
   /* ---------- marquee ---------- */
   (function(){
-    var items = ['Your first website tonight', 'Your own domain', 'A product people pay for', 'Razorpay checkout', 'Instagram + WhatsApp sales system', 'Your own AI assistants', '32 chapters', '154 prompts', '7-day refund', '₹4,999 now ₹1,999 until 30 Nov'];
+    var items = ['Your first website tonight', 'Your own domain', 'A product people pay for', 'Razorpay checkout', 'Instagram + WhatsApp sales system', 'Your own AI assistants', '32 chapters', '154 prompts', '7-day refund', '₹1,999 one-time'];
     var html = items.map(function(x){ return '<span>' + x + '</span><span>●</span>'; }).join('');
     $('#marq').innerHTML = html + html;
   })();
@@ -1609,7 +1599,7 @@ Explain the likely cause in plain English first, then give me the fix as exact s
   <form method="dialog" id="plModalForm" novalidate>
     <button class="x" type="button" value="cancel" id="plModalX" aria-label="Close">×</button>
     <h4 id="plModalT">Reserve your December slot</h4>
-    <p id="plModalP">November is full. Leave your number and Noor will confirm your December slot on WhatsApp.</p>
+    <p id="plModalP">Leave your number and Noor will confirm your December slot on WhatsApp.</p>
     <label>Your name<input name="name" maxlength="40" autocomplete="name" required></label>
     <label>WhatsApp number<input name="phone" type="tel" inputmode="tel" maxlength="16" autocomplete="tel" required></label>
     <label id="plModalBizL" hidden>Business (what you do)<input name="biz" maxlength="60" placeholder="e.g. textile shop, 12 staff"></label>
