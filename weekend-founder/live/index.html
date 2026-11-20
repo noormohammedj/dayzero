@@ -690,7 +690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a class="btn btn-green" id="payBtn" href="#" target="_blank" rel="noopener">Pay ₹199 on Razorpay</a>
           </li>
           <li><b>Get your session link</b>
-            <p class="meet">Within a few hours of payment, the Google Meet link and the attendees’ WhatsApp group come to your WhatsApp and email. Nothing by then? <a id="waHelp" href="#" target="_blank" rel="noopener">Message Noor</a>.</p>
+            <p class="meet">Right after you pay, Razorpay brings you to a page where you pick your Saturday (the Meet link comes by email) and join the attendees’ WhatsApp group. Paid but didn’t land there? <a href="/weekend-founder/live/booked/">Book your seat here</a> or <a id="waHelp" href="#" target="_blank" rel="noopener">message Noor</a>.</p>
           </li>
           <li><b>Put it in your calendar</b>
             <div class="row-btns">
@@ -930,7 +930,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var finished = false;
     function finish(){
       if (finished) return; finished = true;
-      try { localStorage.setItem(STORE_KEY, JSON.stringify({name:name, at:Date.now()})); } catch(e){}
+      try { localStorage.setItem(STORE_KEY, JSON.stringify({name:name, email:email, at:Date.now()})); } catch(e){}
       track('generate_lead', {form:SRC, role:role, value:0, currency:'INR'}, 'Lead', {content_name:'Live 21 Nov workshop (₹199)', value:0, currency:'INR'});
       showDone(name);
       document.getElementById('regCard').scrollIntoView({behavior:'smooth', block:'start'});
