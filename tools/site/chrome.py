@@ -42,7 +42,7 @@ HEAD = '''<!--tdz:head-->
 <meta name="theme-color" content="#FFC800">
 {fonts}
 <link rel="stylesheet" href="/assets/tdz.css?v=2">
-<script src="/assets/tdz.js?v=2"></script>
+<script src="/assets/tdz.js?v=3"></script>
 <!--/tdz:head-->'''
 
 CTA = {

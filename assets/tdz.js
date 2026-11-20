@@ -113,7 +113,7 @@
   function regionBar(){
     var html = '';
     if (IN_PAGE && !india) html = 'Outside India? There is an English session for you on <b>Sat 5 Dec, 17:00 UTC, US$9</b>. <a href="/weekend-founder/live/global/">See the global session →</a>';
-    if (GL_PAGE && india) html = 'In India? Join the <b>₹199 session on Sat 21 Nov, 11 AM IST</b>. <a href="/weekend-founder/live/">See the India session →</a>';
+    if (GL_PAGE && india) html = 'In India? Join the <b>₹199 session, every Saturday 11 AM – 12 PM IST</b>. <a href="/weekend-founder/live/">See the India session →</a>';
     if (!html) return;
     var bar = D.createElement('div'); bar.className = 'tdz-region-bar'; bar.innerHTML = html;
     var nav = D.getElementById('tdzNav'); if (nav && nav.nextSibling) nav.parentNode.insertBefore(bar, nav.nextSibling); else D.body.insertBefore(bar, D.body.firstChild);

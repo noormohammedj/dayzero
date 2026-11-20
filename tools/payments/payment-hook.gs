@@ -152,7 +152,7 @@ function emailBuyer199_(P, seat, name, email){
     'Join the attendees\' WhatsApp group for reminders and the notes template:\n' + P.groupUrl + '\n\n' +
     'Bring a laptop, a free Claude or ChatGPT account, and five lines about yourself.\n\n' +
     'Any trouble, reply here or WhatsApp +91 96298 43122.\n\nNoor\nTheDayZero';
-  GmailApp.sendEmail(email, "You're in: " + seat.label + ', live workshop', body, { name:'Noor · TheDayZero', replyTo:prop_('NOOR_EMAIL') || undefined });
+  GmailApp.sendEmail(email, "You're in: ₹199 live workshop, " + seat.label, body, { name:'Noor · TheDayZero', replyTo:prop_('NOOR_EMAIL') || undefined });
   return true;
 }
 
