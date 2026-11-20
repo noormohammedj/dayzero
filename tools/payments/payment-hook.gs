@@ -3,7 +3,7 @@
  *
  * What it does
  *  1. Razorpay calls this web app when a payment is captured (webhook "payment.captured").
- *     The script re-reads the payment from Razorpay's API (so a fake call can't trigger anything),
+ *     The webhook URL carries a secret key (and, if API keys are set, the payment is re-read from Razorpay),
  *     works out the product from the amount, and then:
  *       - ₹199: adds the buyer as a guest to the next Saturday of the recurring Google Calendar workshop
  *         event, so Google emails them the invite with the Meet link (free, no Calendly needed)
@@ -71,8 +71,8 @@ function doPost(e){
   if(body && body.event){
     if(!prop_('HOOK_KEY') || (e.parameter || {}).k !== prop_('HOOK_KEY')) return json_({ ok:false });
     if(body.event !== 'payment.captured') return json_({ ok:true, skipped:body.event });
-    var id = (((body.payload || {}).payment || {}).entity || {}).id;
-    return json_(handlePayment_(id));
+    var entity = ((body.payload || {}).payment || {}).entity || {};
+    return json_(handlePayment_(entity.id, entity));
   }
   // B. Booking page after a Calendly booking
   if(body && body.type === 'booked') return json_(handleBooking_(body));
@@ -80,12 +80,12 @@ function doPost(e){
 }
 
 /* ---------- A. payment captured ---------- */
-function handlePayment_(id){
+function handlePayment_(id, hookEntity){
   if(!/^pay_[A-Za-z0-9]{8,30}$/.test(id || '')) return { ok:false };
   var lock = LockService.getScriptLock(); lock.waitLock(20000);
   try{
     if(findRow_(2, id)) return { ok:true, duplicate:true };
-    var pay = razorpayPayment_(id);                                  // trust Razorpay's API, not the webhook body
+    var pay = razorpayPayment_(id, hookEntity);
     if(!pay || pay.status !== 'captured') return { ok:false, reason:'not captured' };
     var plan = planFor_(pay.amount);
     var name = String((pay.notes && (pay.notes.name || pay.notes.full_name)) || '').slice(0, 60);
@@ -156,9 +156,13 @@ function emailBuyer199_(P, seat, name, email){
   return true;
 }
 
-function razorpayPayment_(id){
+// With RZP_KEY_ID/RZP_KEY_SECRET set, the payment is re-read from Razorpay's API (strongest check).
+// Without them, the webhook body is used. That is still safe because only Razorpay knows the
+// webhook URL's secret ?k=HOOK_KEY. Keys are optional so Noor never has to regenerate the Live key
+// that other sites (run-business-30-days page, mentell.co.in) already use.
+function razorpayPayment_(id, hookEntity){
   var key = prop_('RZP_KEY_ID'), secret = prop_('RZP_KEY_SECRET');
-  if(!key || !secret) throw new Error('Set RZP_KEY_ID and RZP_KEY_SECRET in Script properties');
+  if(!key || !secret) return (hookEntity && hookEntity.id === id) ? hookEntity : null;
   var r = UrlFetchApp.fetch('https://api.razorpay.com/v1/payments/' + encodeURIComponent(id), {
     headers:{ Authorization:'Basic ' + Utilities.base64Encode(key + ':' + secret) }, muteHttpExceptions:true });
   return r.getResponseCode() === 200 ? JSON.parse(r.getContentText()) : null;

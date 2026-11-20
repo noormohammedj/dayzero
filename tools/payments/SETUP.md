@@ -33,7 +33,7 @@ Pay ₹199 from a second email. You should land on the "You're in" page, get the
 2. Left menu **Services → +** → **Google Calendar API** → Add.
 3. Run `setup` once (approve Gmail, Sheets and Calendar access). View → Logs shows the **HOOK_KEY**.
 4. Project Settings → **Script properties**, add:
-   - `RZP_KEY_ID`, `RZP_KEY_SECRET`: Razorpay → Account & Settings → **API Keys** → Generate (Live mode).
+   - `RZP_KEY_ID`, `RZP_KEY_SECRET`: **optional, skip them.** Don't regenerate your Live key: the old one is used by the 30-day program page and probably mentell.co.in, and regenerating would break their checkouts. The script works without these keys.
    - `NOOR_EMAIL`: the Gmail you want sale alerts on
    - `WORKSHOP_EVENT_ID`: `todn64al68e1d5dob38f5psqhs` (the recurring Saturday event Claude created)
    - `CALENDLY_TOKEN`: Calendly → Integrations → **API & Webhooks** → Personal access token (free plan works). Only used for the ₹4,999 "slot booked" WhatsApp.
