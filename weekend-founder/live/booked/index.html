@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book your workshop seat · TheDayZero</title>
+<title>You're booked · TheDayZero</title>
 <meta name="robots" content="noindex, nofollow">
 
 <!-- Google tag (gtag.js) -->
@@ -60,7 +60,7 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
 .fallback{padding:40px 28px;text-align:center}
 .fallback p{color:var(--ink-2);max-width:46ch;margin:0 auto 20px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--y);color:var(--ink)}
-.group{background:var(--cream);border:1px solid var(--line);border-radius:28px;padding:28px clamp(20px,4vw,40px);margin:0 0 28px;transition:box-shadow .3s,border-color .3s}
+.group{background:var(--cream);border:1px solid var(--line);border-radius:28px;padding:28px clamp(20px,4vw,40px);margin:8px 0 8px;transition:box-shadow .3s,border-color .3s}
 .group.now{border-color:#25D366;box-shadow:0 0 0 4px rgba(37,211,102,.18)}
 .group h2{font-family:var(--disp);font-stretch:112%;font-weight:900;font-size:clamp(24px,3vw,32px);letter-spacing:-.03em;line-height:1.05;margin-bottom:8px}
 .group p{color:var(--ink-2);margin-bottom:18px;max-width:56ch}
@@ -111,37 +111,44 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
 <main class="wrap">
   <section class="hero">
     <span class="paid"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>₹199 paid. Thank you!</span>
-    <h1>Lock your <em>Saturday</em> seat.</h1>
-    <p class="lead">The live workshop runs Saturdays, 11 AM – 12 PM IST on Google Meet. Pick your Saturday below; your name and email are already filled in. Then join the attendees' WhatsApp group.</p>
-    <ol class="steps">
-      <li><b>Pick your Saturday</b>Only the 11 AM IST group slot is shown.</li>
-      <li><b>Get the invite</b>Calendly emails you (and Noor) the Google Meet link and a reminder.</li>
-      <li><b>Join the WhatsApp group</b>Reminders, the notes template and the prompt pack go there.</li>
-    </ol>
+    <h1>You're in for <em id="satDay">Saturday</em>.</h1>
+    <p class="lead"><b id="satWhen">Saturday, 11 AM – 12 PM IST</b> on Google Meet. A calendar invite with the Meet link is on its way to <b id="satEmail">your email</b>. One step left: join the attendees' WhatsApp group.</p>
   </section>
 
-  <div class="cal" id="cal" aria-label="Pick your workshop Saturday"></div>
-
-  <section class="group" id="group">
-    <h2>Last step: join the attendees' group</h2>
+  <section class="group now" id="group">
+    <h2>Join the attendees' group</h2>
     <p>Reminders, the 5-line notes template and the prompt pack are shared here before Saturday.</p>
     <a class="btn wa" id="waGroup" href="https://chat.whatsapp.com/KcdOo9nqv7k3Whya6lwQoz" target="_blank" rel="noopener">Join the WhatsApp group →</a>
   </section>
 
-  <p class="note">Calendar not loading, or need to change your Saturday? Message Noor on <a id="helpNote" href="https://wa.me/919629843122" target="_blank" rel="noopener">WhatsApp at +91 96298 43122</a>. Keep your Razorpay receipt email, it's your proof of payment.</p>
+  <section class="more">
+    <ol class="steps">
+      <li><b>Join the WhatsApp group</b>Reminders, the notes template and the prompt pack go there.</li>
+      <li><b>Accept the invite</b>It comes from Noor's Google Calendar, with the Meet link and a reminder.</li>
+      <li><b>Bring a laptop</b>Plus a free Claude or ChatGPT account and five lines about yourself.</li>
+    </ol>
+  </section>
+
+
+  <p class="note">No invite within 15 minutes, or want a different Saturday? Message Noor on <a id="helpNote" href="https://wa.me/919629843122" target="_blank" rel="noopener">WhatsApp at +91 96298 43122</a>. Keep your Razorpay receipt email, it's your proof of payment.</p>
 </main>
 
 <script>
 (function(){
   'use strict';
   /* ─────────── CONFIG ─────────── */
-  // Calendly event for the ₹199 Saturday group workshop (Sat 11:00–12:00 IST only).
-  var BOOKING_URL = 'https://calendly.com/noormohammed-j/199-live-workshop-build-a-website-with-ai';
-  var GROUP_URL   = 'https://chat.whatsapp.com/KcdOo9nqv7k3Whya6lwQoz';
-  var STORE_KEY   = 'tdz_live_nov21_reg';
-  // After-payment automation web app (tools/payments/payment-hook.gs). Empty = skip the "slot booked" WhatsApp.
-  var HOOK_URL    = '';   // written by /weekend-founder/live/ when the form is sent
+  var GROUP_URL = 'https://chat.whatsapp.com/KcdOo9nqv7k3Whya6lwQoz';
+  var STORE_KEY = 'tdz_live_nov21_reg';   // written by /weekend-founder/live/ when the form is sent
   /* ────────────────────────────── */
+  // The workshop runs every Saturday 11:00–12:00 IST. Buyers who pay before Saturday 10:00 IST
+  // get this Saturday; after that, next Saturday. tools/payments/payment-hook.gs uses the same rule.
+  function nextSaturday(now){
+    var ist = new Date(now.getTime() + 330 * 60000);                 // IST wall clock, read with getUTC*
+    var add = (6 - ist.getUTCDay() + 7) % 7;
+    var start = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate() + add, 11, 0) - 330 * 60000;
+    if (start - 60 * 60000 <= now.getTime()) start += 7 * 86400000;  // cut-off: 10:00 IST on the day
+    return new Date(start);
+  }
 
   var q = new URLSearchParams(location.search);
   var payId = q.get('razorpay_payment_id') || q.get('payment_id') || '';
@@ -150,7 +157,14 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
   var name = q.get('name') || saved.name || '';
   var email = q.get('email') || saved.email || '';
 
-  var waMsg = 'Hi Noor, I paid ₹199 for the live workshop' + (payId ? ' (payment ' + payId + ')' : '') + (name ? ' — ' + name : '') + '. Please help me book my seat.';
+  var sat = nextSaturday(new Date());
+  var dayTxt = sat.toLocaleDateString('en-IN', {timeZone:'Asia/Kolkata', weekday:'long', day:'numeric', month:'long'});
+  document.getElementById('satDay').textContent = dayTxt.replace(/,/, '');
+  document.getElementById('satWhen').textContent = dayTxt + ', 11 AM – 12 PM IST';
+  if (email) document.getElementById('satEmail').textContent = email;
+  if (name) document.querySelector('h1').firstChild.textContent = name.split(' ')[0] + ", you're in for ";
+
+  var waMsg = 'Hi Noor, I paid ₹199 for the live workshop on ' + dayTxt + (payId ? ' (payment ' + payId + ')' : '') + (name ? ' — ' + name : '') + '. ';
   var wa = 'https://wa.me/919629843122?text=' + encodeURIComponent(waMsg);
   document.getElementById('helpTop').href = wa;
   document.getElementById('helpNote').href = wa;
@@ -168,35 +182,6 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
       if (window.fbq) fbq('track', 'Purchase', {content_name:'Live workshop ₹199', currency:'INR', value:199});
     }
   } catch(e){}
-
-  var cal = document.getElementById('cal');
-  var u = new URL(BOOKING_URL);
-  u.searchParams.set('hide_gdpr_banner', '1');
-  u.searchParams.set('hide_event_type_details', '1');
-  u.searchParams.set('primary_color', 'ffc800');
-  u.searchParams.set('embed_domain', location.hostname);
-  u.searchParams.set('embed_type', 'Inline');
-  if (name)  u.searchParams.set('name', name);
-  if (email) u.searchParams.set('email', email);
-  if (payId) u.searchParams.set('a1', 'Razorpay payment ' + payId);
-  var f = document.createElement('iframe');
-  f.src = u.toString(); f.title = 'Pick your workshop Saturday'; f.loading = 'eager';
-  cal.appendChild(f);
-
-  var group = document.getElementById('group');
-  window.addEventListener('message', function(e){
-    if (!/calendly\.com$/.test((e.origin || '').replace(/^https?:\/\//, ''))) return;
-    if (e.data && e.data.event === 'calendly.event_scheduled'){
-      try {
-        var pl = e.data.payload || {};
-        if (HOOK_URL && pl.invitee && pl.invitee.uri) fetch(HOOK_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'},
-          body: JSON.stringify({type:'booked', plan:'crash199', invitee_uri:pl.invitee.uri, payment_id:payId})});
-      } catch(err){}
-      group.classList.add('now');
-      group.scrollIntoView({behavior:'smooth', block:'center'});
-      try { if (window.gtag) gtag('event', 'booking_crash199_scheduled', {payment_id: payId}); } catch(err){}
-    }
-  });
 })();
 </script>
 <!--tdz:foot-->

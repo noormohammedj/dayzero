@@ -5,21 +5,23 @@
  *  1. Razorpay calls this web app when a payment is captured (webhook "payment.captured").
  *     The script re-reads the payment from Razorpay's API (so a fake call can't trigger anything),
  *     works out the product from the amount, and then:
- *       - emails the buyer their booking link + WhatsApp group link, and emails Noor a "new sale" note
+ *       - ₹199: adds the buyer as a guest to the next Saturday of the recurring Google Calendar workshop
+ *         event, so Google emails them the invite with the Meet link (free, no Calendly needed)
+ *       - emails the buyer their next step + WhatsApp group link, and emails Noor a "new sale" note
  *       - sends the buyer a WhatsApp message (WhatsApp Cloud API template), if WhatsApp is set up
  *       - logs the payment in the "Payments" tab (one row per payment, never processed twice)
- *  2. The booking pages (/weekend-founder/live/booked/ and /weekend-founder/book/) call this web app
- *     after someone books in Calendly. The script checks the booking with Calendly's API, finds the
+ *  2. The ₹4,999 booking page (/weekend-founder/book/) calls this web app after someone books in Calendly. The script checks the booking with Calendly's API, finds the
  *     buyer's phone from the Payments tab, and sends a "your slot is booked" WhatsApp message.
  *
  * Setup: tools/payments/SETUP.md. Settings live in Project Settings → Script properties, never in code.
+ * Needs the advanced "Google Calendar API" service turned on (Services → + → Google Calendar API).
  */
 
 var PLANS = {
   crash199: {
     label: '₹199 live workshop',
     amounts: [19900],
-    bookUrl: 'https://thedayzero.in/weekend-founder/live/booked/',
+    bookUrl: 'https://thedayzero.in/weekend-founder/live/booked/',   // thank-you page (no booking needed)
     groupUrl: 'https://chat.whatsapp.com/KcdOo9nqv7k3Whya6lwQoz',
     when: 'Saturdays, 11 AM – 12 PM IST'
   },
@@ -93,13 +95,65 @@ function handlePayment_(id){
     var row = sh.getLastRow();
     if(!plan){ notifyNoor_('Payment of ₹' + (pay.amount / 100) + ' with no matching product', id, name, email, phone, ''); return { ok:true, plan:'unknown' }; }
 
-    var P = PLANS[plan], link = bookLink_(plan, id, name, email);
-    var emailed = emailBuyer_(P, link, name, email);
-    notifyNoor_('New ' + P.label + ' payment', id, name, email, phone, link);
-    var wa = sendWhatsApp_(phone, prop_(plan === 'crash199' ? 'WA_TEMPLATE_PAID_199' : 'WA_TEMPLATE_PAID_4999'), [name || 'there', link, P.groupUrl]);
+    var P = PLANS[plan], link, wa, emailed;
+    if(plan === 'crash199'){
+      var seat = addToWorkshop_(email, name);                         // Google sends the invite + Meet link
+      link = P.bookUrl + '?' + 'razorpay_payment_id=' + encodeURIComponent(id) + (name ? '&name=' + encodeURIComponent(name) : '') + (email ? '&email=' + encodeURIComponent(email) : '');
+      emailed = emailBuyer199_(P, seat, name, email);
+      notifyNoor_('New ₹199 workshop payment (' + seat.label + ')', id, name, email, phone, '');
+      wa = sendWhatsApp_(phone, prop_('WA_TEMPLATE_PAID_199'), [name || 'there', seat.label, P.groupUrl]);
+      sh.getRange(row, 10, 1, 1).setValue(seat.ok ? 'invited: ' + seat.label : 'INVITE FAILED: ' + seat.error);
+    } else {
+      link = bookLink_(plan, id, name, email);
+      emailed = emailBuyer_(P, link, name, email);
+      notifyNoor_('New ' + P.label + ' payment', id, name, email, phone, link);
+      wa = sendWhatsApp_(phone, prop_('WA_TEMPLATE_PAID_4999'), [name || 'there', link, P.groupUrl]);
+    }
     sh.getRange(row, 8, 1, 2).setValues([[emailed ? 'yes' : 'no', wa]]);
     return { ok:true, plan:plan };
   } finally { lock.releaseLock(); }
+}
+
+/* ---------- ₹199: guest on the recurring Saturday workshop ---------- */
+// Same rule as /weekend-founder/live/booked/: this Saturday 11:00 IST, unless it is already 10:00 IST
+// on Saturday or later, then next Saturday.
+function nextSaturday_(now){
+  var ist = new Date(now.getTime() + 330 * 60000);
+  var add = (6 - ist.getUTCDay() + 7) % 7;
+  var start = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate() + add, 11, 0) - 330 * 60000;
+  if(start - 60 * 60000 <= now.getTime()) start += 7 * 86400000;
+  return new Date(start);
+}
+
+function addToWorkshop_(email, name){
+  var start = nextSaturday_(new Date());
+  var label = Utilities.formatDate(start, 'Asia/Kolkata', 'EEEE d MMMM') + ', 11 AM – 12 PM IST';
+  if(!email) return { ok:false, label:label, error:'no email on the payment' };
+  try{
+    var cal = prop_('WORKSHOP_CALENDAR_ID') || 'primary', series = prop_('WORKSHOP_EVENT_ID');
+    var list = Calendar.Events.instances(cal, series, { timeMin:new Date(start.getTime() - 60000).toISOString(), timeMax:new Date(start.getTime() + 60000).toISOString() });
+    var occ = (list.items || [])[0];
+    if(!occ) return { ok:false, label:label, error:'no workshop on that Saturday in the calendar' };
+    var guests = occ.attendees || [];
+    if(!guests.some(function(a){ return String(a.email).toLowerCase() === email.toLowerCase(); }))
+      guests.push({ email:email, displayName:name || undefined });
+    // Only this Saturday's occurrence: the buyer is not invited to every future Saturday.
+    Calendar.Events.patch({ attendees:guests }, cal, occ.id, { sendUpdates:'all' });
+    return { ok:true, label:label };
+  }catch(err){ return { ok:false, label:label, error:String(err).slice(0, 120) }; }
+}
+
+function emailBuyer199_(P, seat, name, email){
+  if(!email) return false;
+  var hi = name ? 'Hi ' + name.split(' ')[0] + ',' : 'Hi,';
+  var body = hi + '\n\nThanks for paying. Your seat is booked for ' + seat.label + ' on Google Meet.\n\n' +
+    (seat.ok ? 'A Google Calendar invite with the Meet link has been sent to this email. Please accept it so you get the reminder.\n\n'
+             : 'Noor will send you the Google Meet link shortly.\n\n') +
+    'Join the attendees\' WhatsApp group for reminders and the notes template:\n' + P.groupUrl + '\n\n' +
+    'Bring a laptop, a free Claude or ChatGPT account, and five lines about yourself.\n\n' +
+    'Any trouble, reply here or WhatsApp +91 96298 43122.\n\nNoor\nTheDayZero';
+  GmailApp.sendEmail(email, "You're in: " + seat.label + ', live workshop', body, { name:'Noor · TheDayZero', replyTo:prop_('NOOR_EMAIL') || undefined });
+  return true;
 }
 
 function razorpayPayment_(id){
@@ -153,8 +207,8 @@ function handleBooking_(b){
     if(!row) return { ok:true, matched:false };                       // booked but no payment on file: Noor still gets Calendly's email
     var v = sh.getRange(row, 1, 1, PAY_HEAD.length).getValues()[0];
     if(v[10] === 'sent:' + ev.start_time) return { ok:true, duplicate:true };
-    var plan = v[2], P = PLANS[plan] || PLANS.crash199;
-    var wa = sendWhatsApp_(v[6], prop_(plan === 'crash199' ? 'WA_TEMPLATE_BOOKED_199' : 'WA_TEMPLATE_BOOKED_4999'), [invitee.name || v[4] || 'there', when, P.groupUrl]);
+    var P = PLANS.build4999;
+    var wa = sendWhatsApp_(v[6], prop_('WA_TEMPLATE_BOOKED_4999'), [invitee.name || v[4] || 'there', when, P.groupUrl]);
     sh.getRange(row, 10, 1, 2).setValues([[when, wa === 'sent' ? 'sent:' + ev.start_time : wa]]);
     return { ok:true, whatsapp:wa };
   } finally { lock.releaseLock(); }
@@ -178,6 +232,11 @@ function sendWhatsApp_(phone, template, params){
 /** Editor test: sends both WhatsApp templates to TEST_PHONE (Script property), e.g. 9198xxxxxxxx. */
 function testWhatsApp(){
   var to = phone_(prop_('TEST_PHONE'));
-  Logger.log(sendWhatsApp_(to, prop_('WA_TEMPLATE_PAID_199'), ['Noor', PLANS.crash199.bookUrl, PLANS.crash199.groupUrl]));
-  Logger.log(sendWhatsApp_(to, prop_('WA_TEMPLATE_BOOKED_199'), ['Noor', 'Sat 28 Nov, 11:00 AM IST', PLANS.crash199.groupUrl]));
+  Logger.log(sendWhatsApp_(to, prop_('WA_TEMPLATE_PAID_199'), ['Noor', 'Saturday 28 November, 11 AM – 12 PM IST', PLANS.crash199.groupUrl]));
+  Logger.log(sendWhatsApp_(to, prop_('WA_TEMPLATE_PAID_4999'), ['Noor', PLANS.build4999.bookUrl, PLANS.build4999.groupUrl]));
+}
+
+/** Editor test: invites TEST_EMAIL (Script property) to the next Saturday workshop. */
+function testWorkshopInvite(){
+  Logger.log(JSON.stringify(addToWorkshop_(prop_('TEST_EMAIL'), 'Test')));
 }
