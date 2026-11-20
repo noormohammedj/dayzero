@@ -686,6 +686,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="when">Saturday, 21 November · 11:00 AM IST · Google Meet · ₹199</p>
         <ol class="steps">
           <li><b>Pay ₹199 to confirm your seat</b>
+            <p class="meet">The Razorpay page has opened in a new tab (it may say “Beginner course to learn AI”: that’s this workshop). Closed it? Use this button.</p>
             <a class="btn btn-green" id="payBtn" href="#" target="_blank" rel="noopener">Pay ₹199 on Razorpay</a>
           </li>
           <li><b>Get your session link</b>
@@ -910,7 +911,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var first = form.querySelector('.field.bad input, .field.bad select'); if (first) first.focus();
       return;
     }
-    var btn = document.getElementById('regBtn'); btn.disabled = true; btn.textContent = 'Saving your seat…';
+    var btn = document.getElementById('regBtn'); btn.disabled = true; btn.textContent = 'Opening payment…';
+
+    // Open the ₹199 Razorpay page straight away, inside the click, so pop-up blockers allow it.
+    // Before 20 Nov visitors had to find and press a second "Pay" button after the form, and most stopped there.
+    if (payReady){
+      try { window.open(PAY_URL, '_blank', 'noopener'); } catch(e){}
+      track('begin_checkout', {form:SRC, value:199, currency:'INR', ready:payReady, auto:true}, 'InitiateCheckout', {content_name:'Live 21 Nov workshop (₹199)', value:199, currency:'INR'});
+      // If the browser blocked the new tab, the Pay button on the next panel still works.
+    }
 
     var q = new URLSearchParams(location.search), utm = {};
     ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){ if (q.get(k)) utm[k.replace('utm_','')] = q.get(k); });
