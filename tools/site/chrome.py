@@ -19,6 +19,7 @@ PAGES = {
     'weekend-founder/live/index.html':    ('live', True,  'register'),
     'weekend-founder/live/global/index.html': ('live', True, 'register'),
     'weekend-founder/book/index.html':    ('book', True,  'wa'),
+    'weekend-founder/live/booked/index.html': ('book', True, 'wa199'),
     'weekend-founder/free-website/index.html': ('tool', True, 'os'),
     'weekend-founder/read/index.html':    ('read', False, None),
     'founder.html':                       ('about', True, 'crash'),
@@ -41,7 +42,7 @@ HEAD = '''<!--tdz:head-->
 <meta name="theme-color" content="#FFC800">
 {fonts}
 <link rel="stylesheet" href="/assets/tdz.css?v=2">
-<script src="/assets/tdz.js?v=2"></script>
+<script src="/assets/tdz.js?v=3"></script>
 <!--/tdz:head-->'''
 
 CTA = {
@@ -49,6 +50,7 @@ CTA = {
     'os':       ('https://rzp.io/rzp/UQYIUZL', 'Get the OS · ₹1,999', 'nav_os'),
     'register': ('#register', 'Save my seat', 'nav_register'),
     'wa':       ('https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20need%20help%20booking%20my%201%3A1%20sessions', 'Help on WhatsApp', 'nav_wa'),
+    'wa199':    ('https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20paid%20for%20the%20%E2%82%B9199%20workshop%20and%20need%20help%20booking', 'Help on WhatsApp', 'nav_wa'),
 }
 
 def nav(cta):

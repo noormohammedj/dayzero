@@ -60,6 +60,11 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
 .fallback{padding:40px 28px;text-align:center}
 .fallback p{color:var(--ink-2);max-width:46ch;margin:0 auto 20px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--y);color:var(--ink)}
+.group{background:var(--cream);border:1px solid var(--line);border-radius:28px;padding:28px clamp(20px,4vw,40px);margin:0 0 28px;transition:box-shadow .3s,border-color .3s}
+.group.now{border-color:#25D366;box-shadow:0 0 0 4px rgba(37,211,102,.18)}
+.group h2{font-family:var(--disp);font-stretch:112%;font-weight:900;font-size:clamp(24px,3vw,32px);letter-spacing:-.03em;line-height:1.05;margin-bottom:8px}
+.group p{color:var(--ink-2);margin-bottom:18px;max-width:56ch}
+.btn.wa{background:#25D366;color:#0b2414}
 .note{font-size:14.5px;color:var(--ink-3);padding-bottom:48px;max-width:70ch}
 @media (max-width:760px){.steps{grid-template-columns:1fr}.cal iframe{height:1000px}}
 </style>
@@ -70,7 +75,7 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
 <link rel="stylesheet" href="/assets/tdz.css?v=2">
-<script src="/assets/tdz.js?v=2"></script>
+<script src="/assets/tdz.js?v=3"></script>
 <!--/tdz:head-->
 </head>
 <body>
@@ -107,15 +112,21 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
   <section class="hero">
     <span class="paid"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Payment received. Thank you!</span>
     <h1>Now pick your <em>four</em> weekends.</h1>
-    <p class="lead">Your 1:1 coaching with Noor is four sessions on Google Meet. Choose any Saturday or Sunday slot between 11 AM and 4 PM IST. Book one now and the rest whenever you're ready.</p>
+    <p class="lead">Your 1:1 coaching with Noor is four sessions on Google Meet. Choose any Saturday or Sunday slot between 12 PM and 6 PM IST. Book one now and the rest whenever you're ready, then join the WhatsApp group.</p>
     <ol class="steps">
-      <li><b>Choose a slot</b>Saturdays and Sundays, 11 AM – 4 PM IST.</li>
+      <li><b>Choose a slot</b>Saturdays and Sundays, 12 PM – 6 PM IST.</li>
       <li><b>Enter the email you paid with</b>So Noor can match your booking to your payment.</li>
-      <li><b>Get the invite</b>A calendar invite with the Google Meet link arrives by email.</li>
+      <li><b>Get the invite</b>Calendly emails you (and Noor) the Google Meet link, then join the group below.</li>
     </ol>
   </section>
 
   <div class="cal" id="cal" aria-label="Booking calendar"></div>
+
+  <section class="group" id="group">
+    <h2>Join the Weekend Founder group</h2>
+    <p>Session reminders, build notes and help between sessions happen here.</p>
+    <a class="btn wa" id="waGroup" href="https://chat.whatsapp.com/EYYFwHqslBkLlDvTIv4no9" target="_blank" rel="noopener">Join the WhatsApp group →</a>
+  </section>
 
   <p class="note">Can't find a time that works, or need to move a session? Message Noor on <a id="helpNote" href="https://wa.me/919629843122" target="_blank" rel="noopener">WhatsApp at +91 96298 43122</a>. Please keep your Razorpay receipt email, it's your proof of payment.</p>
 </main>
@@ -129,6 +140,8 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
   //  • Google Calendar appointment schedule: 'https://calendar.app.google/xxxx'
   // While it's empty, the page shows a WhatsApp button instead, so no buyer gets stuck.
   var BOOKING_URL = 'https://calendly.com/noormohammed-j/weekend-founder-1-1-coaching';
+  // After-payment automation web app (tools/payments/payment-hook.gs). Empty = skip the "slot booked" WhatsApp.
+  var HOOK_URL = '';
   /* ────────────────────────────── */
 
   var q = new URLSearchParams(location.search);
@@ -158,6 +171,8 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
     u.searchParams.set('embed_domain', location.hostname);
     u.searchParams.set('embed_type', 'Inline');
     if (payId) u.searchParams.set('a1', payId);   // pre-fills the first booking question ("Razorpay payment ID")
+    if (q.get('name'))  u.searchParams.set('name', q.get('name'));
+    if (q.get('email')) u.searchParams.set('email', q.get('email'));
     src = u.toString();
   }
   var f = document.createElement('iframe');
@@ -165,7 +180,14 @@ h1 em{font-style:normal;background:var(--y);padding:0 .1em;border-radius:.1em}
   cal.appendChild(f);
 
   window.addEventListener('message', function(e){
+    if (!/calendly\.com$/.test((e.origin || '').replace(/^https?:\/\//, ''))) return;
     if (e.data && e.data.event === 'calendly.event_scheduled'){
+      try {
+        var pl = e.data.payload || {};
+        if (HOOK_URL && pl.invitee && pl.invitee.uri) fetch(HOOK_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'},
+          body: JSON.stringify({type:'booked', plan:'build4999', invitee_uri:pl.invitee.uri, payment_id:payId})});
+      } catch(err){}
+      var g = document.getElementById('group'); g.classList.add('now'); g.scrollIntoView({behavior:'smooth', block:'center'});
       try { if (window.gtag) gtag('event', 'booking_1on1_scheduled', {payment_id: payId}); } catch(err){}
     }
   });
