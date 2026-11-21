@@ -4,7 +4,7 @@
   'use strict';
   var CFG = {
     // Google Apps Script web app URL (see tools/funnel/SETUP.md). Leave '' to run without the admin funnel.
-    endpoint: '',
+    endpoint: 'https://script.google.com/macros/s/AKfycbyXR3mKc1CjNwpDKkSdemEQM0oSraVkIFL0BRjbUjsHhJtJhl_vash_qeD3Arr77T94/exec',
     wa: '919629843122',
     // From this moment (IST) the group cohort tile appears and 1:1 moves to ₹12,999.
     // The OS stays ₹1,999.

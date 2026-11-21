@@ -68,7 +68,7 @@ function doPost(e){
   var body; try{ body = JSON.parse(raw); }catch(err){ return json_({ ok:false }); }
 
   // A. Razorpay webhook (the URL carries ?k=HOOK_KEY because Apps Script can't read request headers)
-  if(body && body.event){
+  if(body && body.event && body.payload && !body.vid){
     if(!prop_('HOOK_KEY') || (e.parameter || {}).k !== prop_('HOOK_KEY')) return json_({ ok:false });
     if(body.event !== 'payment.captured') return json_({ ok:true, skipped:body.event });
     var entity = ((body.payload || {}).payment || {}).entity || {};
@@ -76,6 +76,8 @@ function doPost(e){
   }
   // B. Booking page after a Calendly booking
   if(body && body.type === 'booked') return json_(handleBooking_(body));
+  // C. Lead forms (type:'lead') and Weekend Founder page activity (has a visitor id) → Leads + Events tabs
+  if(body && (body.type === 'lead' || body.vid)) return json_(logLead_(body));
   return json_({ ok:false });
 }
 
@@ -93,6 +95,7 @@ function handlePayment_(id, hookEntity){
     var sh = sheet_();
     sh.appendRow([iso_(), id, plan || 'unknown', pay.amount / 100, name, email, phone, '', '', '', '', '']);
     var row = sh.getLastRow();
+    try{ upsertLead_({ name:name, email:email, phone:phone, source:'razorpay', event:'paid', plan:plan || 'unknown' }, { paid:plan || ('₹' + pay.amount / 100), payment_id:id }); }catch(err){}
     if(!plan){ notifyNoor_('Payment of ₹' + (pay.amount / 100) + ' with no matching product', id, name, email, phone, ''); return { ok:true, plan:'unknown' }; }
 
     var P = PLANS[plan], link, wa, emailed;
@@ -216,6 +219,82 @@ function handleBooking_(b){
     sh.getRange(row, 10, 1, 2).setValues([[when, wa === 'sent' ? 'sent:' + ev.start_time : wa]]);
     return { ok:true, whatsapp:wa };
   } finally { lock.releaseLock(); }
+}
+
+/* ---------- C. Lead sheet: every lead and payer in one place ---------- */
+// Leads tab: one row per person (matched on phone, then email). Payments update the same row.
+// Events tab: every form submit and page action, including anonymous visitors, for funnel analysis.
+var LEAD_HEAD = ['first_seen', 'last_seen', 'name', 'email', 'phone', 'first_source', 'last_source', 'interest', 'role', 'profession', 'goal', 'hours',
+  'utm_source', 'utm_campaign', 'actions', 'last_action', 'status', 'paid', 'payment_id', 'contacted', 'notes'];
+var EV_HEAD = ['ts', 'visitor', 'event', 'source', 'page', 'plan', 'name', 'email', 'phone', 'utm_source', 'utm_campaign', 'referrer'];
+function tab_(name, head){
+  var ss = SpreadsheetApp.getActiveSpreadsheet(), sh = ss.getSheetByName(name);
+  if(!sh){ sh = ss.insertSheet(name); sh.appendRow(head); sh.setFrozenRows(1); sh.getRange(1, 1, 1, head.length).setFontWeight('bold'); }
+  return sh;
+}
+function s_(v, n){ return String(v == null ? '' : v).replace(/[\u0000-\u001f]/g, ' ').replace(/^[=+\-@]/, "'$&").slice(0, n || 80); }
+function email_(v){ v = String(v || '').trim().toLowerCase(); return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? v.slice(0, 120) : ''; }
+function utm_(b){ var u = {}; try{ u = typeof b.utm === 'string' ? JSON.parse(b.utm || '{}') : (b.utm || {}); }catch(e){}
+  return { source:b.utm_source || b.src || u.source || '', campaign:b.utm_campaign || b.cmp || u.campaign || '' }; }
+
+function logLead_(b){
+  var lock = LockService.getScriptLock(); lock.waitLock(20000);
+  try{
+    var phone = phone_(b.whatsapp || b.phone), email = email_(b.email), u = utm_(b);
+    var source = s_(b.source || b.form || b.page || (b.pageUrl ? String(b.pageUrl).split('?')[0] : ''), 60);
+    var event = s_(b.event || 'form_submit', 30);
+    tab_('Events', EV_HEAD).appendRow([iso_(), s_(b.vid, 40), event, source, s_(b.page || b.pageUrl, 120), s_(b.plan, 20),
+      s_(b.name, 60), email, phone, s_(u.source, 40), s_(u.campaign, 60), s_(b.referrer, 120)]);
+    if(!phone && !email) return { ok:true, anonymous:true };
+    upsertLead_({ name:b.name, email:email, phone:phone, source:source, event:event, plan:b.plan || b.recommended || (b.price ? '₹' + b.price : ''),
+      role:b.role, profession:b.profession, goal:b.goal, hours:b.hours, utm:u }, null);
+    return { ok:true };
+  } finally { lock.releaseLock(); }
+}
+
+// pay = { paid, payment_id } marks the person as a buyer.
+function upsertLead_(d, pay){
+  var sh = tab_('Leads', LEAD_HEAD), n = LEAD_HEAD.length, row = 0, last = sh.getLastRow();
+  var phone = phone_(d.phone), email = email_(d.email), now = iso_();
+  if(last >= 2){
+    if(phone){ var h = sh.getRange(2, 5, last - 1, 1).createTextFinder(phone).matchEntireCell(true).findNext(); if(h) row = h.getRow(); }
+    if(!row && email){ var h2 = sh.getRange(2, 4, last - 1, 1).createTextFinder(email).matchEntireCell(true).findNext(); if(h2) row = h2.getRow(); }
+  }
+  var r = row ? sh.getRange(row, 1, 1, n).getValues()[0] : [now, '', '', '', '', s_(d.source, 60), '', '', '', '', '', '', '', '', 0, '', 'new', '', '', '', ''];
+  function keep(i, v){ if(v) r[i] = v; }
+  r[1] = now; keep(2, s_(d.name, 60)); keep(3, email); keep(4, phone); keep(6, s_(d.source, 60)); keep(7, s_(d.plan, 20));
+  keep(8, s_(d.role, 20)); keep(9, s_(d.profession, 20)); keep(10, s_(d.goal, 30)); keep(11, s_(d.hours, 10));
+  if(d.utm){ if(!r[12]) r[12] = s_(d.utm.source, 40); if(!r[13]) r[13] = s_(d.utm.campaign, 60); }
+  r[14] = (Number(r[14]) || 0) + 1; r[15] = s_(d.event, 30);
+  if(pay && String(r[18]).indexOf(pay.payment_id) >= 0) pay = null;   // this payment is already on the row
+  if(pay){ r[16] = 'paid'; r[17] = r[17] ? r[17] + ', ' + s_(pay.paid, 20) : s_(pay.paid, 20); r[18] = r[18] ? r[18] + ', ' + pay.payment_id : pay.payment_id; }
+  else if(r[16] !== 'paid' && d.event !== 'paid'){ r[16] = (phone ? 'has number' : 'email only'); }
+  if(row) sh.getRange(row, 1, 1, n).setValues([r]); else sh.appendRow(r);
+}
+
+/** Run once from the editor to copy leads from an older sheet into the Leads tab.
+ *  Set Script property OLD_LEADS_SHEET_ID to that sheet's id (the long part of its URL).
+ *  Columns are found by their header names (name, email, whatsapp/phone, source/pageUrl, timestamp). Safe to run twice. */
+function importOldLeads(){
+  var id = prop_('OLD_LEADS_SHEET_ID'); if(!id) throw new Error('Set OLD_LEADS_SHEET_ID first');
+  var count = 0;
+  SpreadsheetApp.openById(id).getSheets().forEach(function(t){
+    var v = t.getDataRange().getValues(); if(v.length < 2) return;
+    var h = v[0].map(function(x){ return String(x).toLowerCase(); });
+    function col(re){ for(var i = 0; i < h.length; i++) if(re.test(h[i])) return i; return -1; }
+    var cn = col(/name/), ce = col(/mail/), cp = col(/whatsapp|phone|mobile|contact/), cs = col(/^source|form/), cu = col(/pageurl|page/);
+    if(ce < 0 && cp < 0) return;
+    for(var i = 1; i < v.length; i++){
+      var src = (cs >= 0 && v[i][cs]) || (cu >= 0 && String(v[i][cu]).split('?')[0]) || ('old sheet: ' + t.getName());
+      if(!phone_(cp >= 0 ? v[i][cp] : '') && !email_(ce >= 0 ? v[i][ce] : '')) continue;
+      upsertLead_({ name:cn >= 0 ? v[i][cn] : '', email:ce >= 0 ? v[i][ce] : '', phone:cp >= 0 ? v[i][cp] : '', source:src, event:'imported' }, null);
+      count++;
+    }
+  });
+  // Mark everyone already in the Payments tab as paid.
+  var p = sheet_(), pv = p.getLastRow() < 2 ? [] : p.getRange(2, 1, p.getLastRow() - 1, PAY_HEAD.length).getValues();
+  pv.forEach(function(x){ upsertLead_({ name:x[4], email:x[5], phone:x[6], source:'razorpay', event:'paid' }, { paid:x[2], payment_id:x[1] }); });
+  Logger.log('Imported ' + count + ' old leads and ' + pv.length + ' payments.');
 }
 
 /* ---------- WhatsApp Cloud API (Meta) ---------- */

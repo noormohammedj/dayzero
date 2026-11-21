@@ -939,6 +939,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       showDone(name);
       document.getElementById('regCard').scrollIntoView({behavior:'smooth', block:'start'});
     }
+    try { navigator.sendBeacon('https://script.google.com/macros/s/AKfycbyXR3mKc1CjNwpDKkSdemEQM0oSraVkIFL0BRjbUjsHhJtJhl_vash_qeD3Arr77T94/exec', new Blob([JSON.stringify(Object.assign({type:'lead'}, Object.fromEntries(payload)))], {type:'text/plain'})); } catch(e){} // copy to the one lead sheet (Leads tab)
     try { fetch(WEBHOOK_URL, {method:'POST', mode:'no-cors', body:payload}).then(finish, finish); } catch(e){ finish(); }
     setTimeout(finish, 4000); // never leave the visitor waiting on the network
   });

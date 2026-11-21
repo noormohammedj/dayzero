@@ -57,3 +57,14 @@ Needs: a phone number **not** already on the WhatsApp app (a new SIM, or move a 
 6. Run `testWhatsApp` in the editor: two messages should arrive on your phone.
 
 Until step 5 is done, the script still emails, and the Payments tab marks WhatsApp as "not set up".
+
+## 5. One lead sheet for every lead and payer (2 min, after any update to the script)
+The same script now also keeps your lead sheet, in the same "DayZero Payments" spreadsheet:
+- **Leads** tab: one row per person, matched on WhatsApp number, then email. It holds where they first and last came from, which plan they looked at, their quiz answers, UTM source and campaign, how many actions they took, and whether they **paid** (with the payment id). Every payment marks the person's row as `paid`, so lead → sale is visible on one row.
+- **Events** tab: every form submit and Weekend Founder page action, including anonymous visitors, so we can see where people drop off.
+
+Sources that feed it: the ₹199 live page, the global $9 page, the free-website page, the 30-day program page, the Weekend Founder plans page (quiz, reserve, WhatsApp and buy clicks), and Razorpay payments. The old lead sheet still gets its copy, so nothing is lost.
+
+To switch it on: Apps Script → paste the new `payment-hook.gs` → Save → **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**. The URL stays the same.
+
+To copy your older leads in once: open the old lead sheet, copy the long id from its URL (between `/d/` and `/edit`), add it as Script property `OLD_LEADS_SHEET_ID`, then run `importOldLeads`. It also marks everyone in the Payments tab as paid. Running it twice does not duplicate payments.
