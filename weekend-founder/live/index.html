@@ -74,6 +74,7 @@ src="https://www.facebook.com/tr?id=1441746631134656&ev=PageView&noscript=1"
   "offers": {
     "@type": "Offer",
     "price": "199",
+    "priceValidUntil": "2026-11-30",
     "priceCurrency": "INR",
     "availability": "https://schema.org/InStock",
     "url": "https://thedayzero.in/weekend-founder/live/",
@@ -267,6 +268,25 @@ h2 em{font-style:italic;color:var(--green)}
 .site h3{font-family:var(--display);font-size:25px;font-weight:600;margin:6px 0 6px}
 .site p{font-size:15px;color:var(--ink-2)}
 .proof-note{font-size:13.5px;color:var(--slate);margin-top:20px;text-align:center}
+/* Live class proof (21 Nov) */
+.live-proof{display:grid;grid-template-columns:minmax(0,558fr) minmax(0,750fr);gap:18px;max-width:860px;margin:0 auto 40px;align-items:start}
+.lp-media{position:relative;border-radius:var(--r);overflow:hidden;background:var(--night);aspect-ratio:464/832;margin:0;box-shadow:var(--shadow)}
+.lp-media video,.lp-media img{width:100%;height:100%;object-fit:cover;display:block}
+.lp-photo{aspect-ratio:3/4}
+.lp-tag{position:absolute;left:14px;top:14px;display:inline-flex;align-items:center;gap:8px;background:#FFC800;color:var(--ink);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.lp-tag i{width:8px;height:8px;border-radius:50%;background:#E5322D;display:inline-block;animation:lpPulse 1.6s infinite}
+@keyframes lpPulse{50%{opacity:.25}}
+.lp-cap{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font-size:14.5px;line-height:1.45}
+.lp-cap b{display:block;font-family:var(--display);font-size:19px;font-weight:600}
+@media (max-width:640px){.live-proof{grid-template-columns:1fr;max-width:400px}}
+@media (prefers-reduced-motion:reduce){.lp-tag i{animation:none}}
+/* Price rise (₹199 → ₹499 from 1 Dec) — India page only; outside India this page points to the US$ session */
+.rise{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:22px;background:#FFC800;color:var(--ink);border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.4;max-width:560px}
+.rise s{opacity:.55}
+.rise b{font-weight:700}
+.rise .rise-left{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:#FFC800;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.reg .rise{margin-top:16px}
+html[data-region="intl"] .rise,html.after-rise .rise,html[data-region="intl"] .rise-inline,html.after-rise .rise-inline{display:none}
 
 /* Host */
 .host{display:block;max-width:760px}
@@ -457,6 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-light" href="#register" data-cta="hero">Save my seat · ₹199 <span class="arr" aria-hidden="true">→</span></a>
         <span class="hero-note">Takes a minute · Up to 100 seats</span>
       </div>
+      <p class="rise" role="note"><span class="rise-left" data-rise-left>Until 30 Nov</span><span><b>₹199 ends 30 November.</b> From 1 December every session is <b>₹499</b>. Book before 30 November to lock in ₹199.</span></p>
       <div class="facts">
         <div class="fact"><small>Next session</small><strong data-sat="short">Sat, 21 Nov</strong></div>
         <div class="fact"><small>Time · IST</small><strong>11 AM – 12 PM</strong></div>
@@ -595,7 +616,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="head center rv">
       <span class="kicker">05 · Real, not polished</span>
       <h2 id="proof">Small groups. <em>Honest</em> proof.</h2>
-      <p class="sub">The first edition, on 1 November, was small, so there are no attendee reviews to show you yet. Here's what is real instead — the same method, used on my own products.</p>
+      <p class="sub">This is Saturday, 21 November: live on Google Meet, building with AI on screen, together. One person left already planning a resume-writing service of their own. No polished reviews yet, just the real thing.</p>
+    </div>
+    <div class="live-proof">
+      <figure class="lp-media rv">
+        <video autoplay muted loop playsinline preload="metadata" poster="/assets/proof/live-class-21-nov-poster.jpg" aria-label="Three seconds of Noor teaching the live class on 21 November">
+          <source src="/assets/proof/live-class-21-nov.mp4" type="video/mp4">
+        </video>
+        <span class="lp-tag"><i aria-hidden="true"></i>Live · 21 Nov</span>
+        <figcaption class="lp-cap"><b>Teaching, live</b>Walking the room through the build, step by step.</figcaption>
+      </figure>
+      <figure class="lp-media lp-photo rv">
+        <img src="/assets/proof/live-class-21-nov.jpg" alt="Noor's laptop during the 21 November live class: Google Meet with screen sharing on and attendees in the call" loading="lazy" width="960" height="1280">
+        <span class="lp-tag">Sat 21 Nov · 11 AM IST</span>
+        <figcaption class="lp-cap"><b>The actual session</b>Google Meet, screen shared, attendees building alongside.</figcaption>
+      </figure>
     </div>
     <div class="stats">
       <div class="stat rv"><b>57</b><span>paid sales across three of my offers, as of 13 Oct 2026</span></div>
@@ -636,6 +671,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="kicker">07 · Save your seat</span>
       <h2 id="regh">Build your website with AI — <em>live.</em></h2>
       <div class="price"><b>₹199</b><span><span data-sat="short">Sat, 21 Nov</span> · 11 AM – 12 PM IST · Google Meet</span></div>
+      <p class="rise" role="note"><span class="rise-left" data-rise-left>Until 30 Nov</span><span>Price goes up to <b>₹499 per session</b> from 1 December.</span></p>
       <ul class="incl">
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>A seat in the one-hour live build and the selling session</span></li>
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>The prompt pack we use on the day</span></li>
@@ -648,7 +684,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="card rv" id="regCard">
       <form id="regForm" novalidate>
         <h3>Save my seat</h3>
-        <p class="when"><span data-sat="long">Saturday, 21 November</span> · 11 AM – 12 PM IST · ₹199 only</p>
+        <p class="when"><span data-sat="long">Saturday, 21 November</span> · 11 AM – 12 PM IST · ₹199 only<span class="rise-inline"> (₹499 from 1 Dec)</span></p>
         <div class="field" id="f-name">
           <label for="name">Your name</label>
           <input id="name" name="name" type="text" autocomplete="name" required placeholder="e.g. Priya Raman">
@@ -742,7 +778,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <div class="sticky" id="sticky" aria-hidden="true">
-  <div><small>₹199 · <span data-sat="short">Sat 21 Nov</span>, 11 AM IST</small><b>Build a website, learn to sell it</b></div>
+  <div><small>₹199 · <span data-sat="short">Sat 21 Nov</span>, 11 AM IST<span class="rise-inline"> · ₹499 from 1 Dec</span></small><b>Build a website, learn to sell it</b></div>
   <a class="btn btn-light" href="#register" data-cta="sticky" tabindex="-1">Save seat</a>
 </div>
 
@@ -754,6 +790,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // If this is ever blanked to PASTE_..., the pay button falls back to a WhatsApp chat with Noor.
   // The Meet link and WhatsApp group link are NOT on this page any more: they go to people after they pay.
   var PAY_URL = 'https://rzp.io/rzp/9hyRWq04';
+  // Price rise: ₹199 until 30 Nov 2026, ₹499 per session from 1 Dec 2026 00:00 IST.
+  // Paste the ₹499 Razorpay link here before 1 Dec. Until then, after 1 Dec the pay button opens WhatsApp to Noor.
+  var PAY_URL_499 = 'PASTE_499_RAZORPAY_LINK';
+  var RISE_AT = Date.UTC(2026, 10, 30, 18, 30); // = 1 Dec 2026 00:00 IST
+  var AFTER_RISE = Date.now() >= RISE_AT;
+  var PRICE = AFTER_RISE ? 499 : 199;
+  if (AFTER_RISE){
+    PAY_URL = PAY_URL_499;
+    document.documentElement.classList.add('after-rise');
+    // Swap every visible ₹199 on this page for ₹499 (headlines, buttons, FAQ, schema stays as history).
+    var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), tn, tl = [];
+    while ((tn = tw.nextNode())) if (tn.nodeValue.indexOf('₹199') > -1 && !/SCRIPT|STYLE/.test(tn.parentNode.nodeName)) tl.push(tn);
+    tl.forEach(function(t){ t.nodeValue = t.nodeValue.replace(/₹199/g, '₹499'); });
+    document.title = document.title.replace('₹199', '₹499');
+  } else {
+    // "5 days left" style counter on the price-rise notes
+    var daysLeft = Math.ceil((RISE_AT - Date.now()) / 86400000);
+    var leftTxt = daysLeft <= 1 ? 'Last day' : daysLeft + ' days left';
+    document.querySelectorAll('[data-rise-left]').forEach(function(el){ el.textContent = leftTxt; });
+  }
   // Registration backend (webinar-registration-backend.gs): writes to the webinar leads tab.
   // Its confirmation email must NOT include the Meet link now that the session is paid.
   var REG_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx0bU74c9y_y0Ab49fnzfUteX57tVUa_ZjPtxR0Wtan6lz6Rnhu7TsJoGHlKrvTSso/exec';
@@ -862,7 +918,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* Calendar links */
   function gStamp(d){ return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
-  var details = '₹199 live workshop with Noor Mohammed J. Bring a laptop and a free Claude or ChatGPT account.\n\nThe Google Meet link comes on WhatsApp and email after payment.';
+  var details = '₹' + PRICE + ' live workshop with Noor Mohammed J. Bring a laptop and a free Claude or ChatGPT account.\n\nThe Google Meet link comes on WhatsApp and email after payment.';
   var gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + '&text=' + encodeURIComponent(EVENT_TITLE)
     + '&dates=' + gStamp(START) + '/' + gStamp(END)
@@ -882,12 +938,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var payBtn = document.getElementById('payBtn'), waHelp = document.getElementById('waHelp');
   function waText(name, msg){ return 'https://wa.me/919629843122?text=' + encodeURIComponent(msg + (name ? ' — ' + name : '')); }
   function setPay(name){
-    waHelp.href = waText(name, 'Hi Noor, I paid ₹199 for the Saturday live workshop but have not got the invite yet');
+    waHelp.href = waText(name, 'Hi Noor, I paid ₹' + PRICE + ' for the Saturday live workshop but have not got the invite yet');
     if (payReady){ payBtn.href = PAY_URL; }
-    else { payBtn.href = waText(name, 'Hi Noor, I registered for the Saturday live workshop. Please send me the ₹199 payment link'); payBtn.textContent = 'Message Noor to pay ₹199'; }
+    else { payBtn.href = waText(name, 'Hi Noor, I registered for the Saturday live workshop. Please send me the ₹' + PRICE + ' payment link'); payBtn.textContent = 'Message Noor to pay ₹' + PRICE; }
   }
   payBtn.addEventListener('click', function(){
-    track('begin_checkout', {form:SRC, value:199, currency:'INR', ready:payReady}, 'InitiateCheckout', {content_name:'Saturday live workshop (₹199)', value:199, currency:'INR'});
+    track('begin_checkout', {form:SRC, value:PRICE, currency:'INR', ready:payReady}, 'InitiateCheckout', {content_name:'Saturday live workshop (₹' + PRICE + ')', value:PRICE, currency:'INR'});
   });
 
   /* Registration */
@@ -931,7 +987,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Before 20 Nov visitors had to find and press a second "Pay" button after the form, and most stopped there.
     if (payReady){
       try { window.open(PAY_URL, '_blank', 'noopener'); } catch(e){}
-      track('begin_checkout', {form:SRC, value:199, currency:'INR', ready:payReady, auto:true}, 'InitiateCheckout', {content_name:'Saturday live workshop (₹199)', value:199, currency:'INR'});
+      track('begin_checkout', {form:SRC, value:PRICE, currency:'INR', ready:payReady, auto:true}, 'InitiateCheckout', {content_name:'Saturday live workshop (₹' + PRICE + ')', value:PRICE, currency:'INR'});
       // If the browser blocked the new tab, the Pay button on the next panel still works.
     }
 
@@ -939,13 +995,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(k){ if (q.get(k)) utm[k.replace('utm_','')] = q.get(k); });
     // pageUrl carries the session + role so these rows are easy to filter in the lead sheet
     var pageUrl = location.origin + location.pathname + '?reg=' + SRC + '&role=' + role + (location.search ? '&' + location.search.slice(1) : '');
-    var payload = new URLSearchParams({ name:name, email:email, whatsapp:'+91' + digits, pageUrl:pageUrl, timestamp:new Date().toISOString(), referrer:document.referrer || '', utm:JSON.stringify(utm), role:role, source:SRC, price:'199' });
+    var payload = new URLSearchParams({ name:name, email:email, whatsapp:'+91' + digits, pageUrl:pageUrl, timestamp:new Date().toISOString(), referrer:document.referrer || '', utm:JSON.stringify(utm), role:role, source:SRC, price:String(PRICE) });
 
     var finished = false;
     function finish(){
       if (finished) return; finished = true;
       try { localStorage.setItem(STORE_KEY, JSON.stringify({name:name, email:email, at:Date.now()})); } catch(e){}
-      track('generate_lead', {form:SRC, role:role, value:0, currency:'INR'}, 'Lead', {content_name:'Saturday live workshop (₹199)', value:0, currency:'INR'});
+      track('generate_lead', {form:SRC, role:role, value:0, currency:'INR'}, 'Lead', {content_name:'Saturday live workshop (₹' + PRICE + ')', value:0, currency:'INR'});
       showDone(name);
       document.getElementById('regCard').scrollIntoView({behavior:'smooth', block:'start'});
     }
