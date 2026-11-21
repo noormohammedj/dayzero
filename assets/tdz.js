@@ -119,6 +119,90 @@
     var nav = D.getElementById('tdzNav'); if (nav && nav.nextSibling) nav.parentNode.insertBefore(bar, nav.nextSibling); else D.body.insertBefore(bar, D.body.firstChild);
   }
 
+
+  // ---------- motion: progress line, reveal, marker sweep, counters, product marquee ----------
+  var PRODUCTS = [
+    ['Murugaaa', 'https://murugaaa.in', 'temple bookings'],
+    ['Mentell', 'https://mentell.co.in', 'wellness brand'],
+    ['Plotskart', 'https://plotskart.in', 'iOS + Android app'],
+    ['MandapKart', 'https://mandapkart.in', 'venue marketplace'],
+    ['TheDayZero', 'https://thedayzero.in/', 'this site']
+  ];
+  function motion(){
+    var still = W.matchMedia && W.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var skin = D.documentElement.getAttribute('data-skin');
+    var vh = W.innerHeight || 800;
+
+    // product marquee on the workshop pages, right under the hero (one short line, ~52px)
+    if (skin === 'live'){
+      var hero = D.querySelector('section.hero');
+      if (hero && !D.querySelector('.tdz-mq')){
+        var one = PRODUCTS.map(function(p){
+          return '<a href="' + p[1] + '" target="_blank" rel="noopener" data-cta="marquee_' + p[0].toLowerCase() + '"><i aria-hidden="true"></i>' + p[0] + ' <small>' + p[2] + '</small></a>';
+        }).join('') + '<span><i aria-hidden="true"></i>All built on weekends with AI</span>';
+        var mq = D.createElement('div');
+        mq.className = 'tdz-mq';
+        mq.setAttribute('aria-label', 'Products Noor built with AI');
+        mq.innerHTML = '<div class="tdz-mq-track"><div style="display:flex">' + one + '</div>' + (still ? '' : '<div style="display:flex" aria-hidden="true">' + one.replace(/<a /g, '<a tabindex="-1" ') + '</div>') + '</div>';
+        hero.parentNode.insertBefore(mq, hero.nextSibling);
+      }
+    }
+    if (still || !('IntersectionObserver' in W)) return;
+
+    // reading progress
+    var bar = D.createElement('div'); bar.className = 'tdz-prog'; bar.setAttribute('aria-hidden', 'true'); D.body.appendChild(bar);
+    var ticking = false;
+    var prog = function(){ ticking = false; var h = D.documentElement.scrollHeight - vh; bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, W.pageYOffset / h) : 0) + ')'; };
+    W.addEventListener('scroll', function(){ if (!ticking){ ticking = true; W.requestAnimationFrame(prog); } }, { passive:true });
+    prog();
+
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var el = e.target; io.unobserve(el);
+        el.classList.add('tdz-in');
+        if (el.hasAttribute('data-tdz-count')) count(el);
+      });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:.12 });
+    var below = function(el){ return el.getBoundingClientRect().top > vh * .92; };
+
+    // reveal: only on pages that have no reveal of their own, and only below the first screen
+    if (skin === 'about' && !D.querySelector('.rv')){
+      Array.prototype.forEach.call(D.querySelectorAll('main h2, main section > *, body > section > *, .wrap > h2, .wrap > p, .wrap > div'), function(el){
+        if (el.closest('.tdz-nav,.tdz-foot,.tdz-sheet,.tdz-mq') || el.classList.contains('tdz-rv') || el.closest('.tdz-rv')) return;
+        if (!below(el) || el.offsetHeight > vh * 1.4) return;
+        el.classList.add('tdz-rv'); io.observe(el);
+      });
+    }
+
+    // marker sweep on highlighted words below the fold
+    Array.prototype.forEach.call(D.querySelectorAll('h2 em, h2 .hl, .tdz-hl'), function(el){
+      var bg = getComputedStyle(el).backgroundImage;
+      if (!bg || bg === 'none' || !below(el)) return;
+      el.classList.add('tdz-sweep'); io.observe(el);
+    });
+
+    // counters: plain whole numbers in stat tiles, counted up once when seen
+    Array.prototype.forEach.call(D.querySelectorAll('.stat > b, .nums .num > b, [data-tdz-count]'), function(el){
+      var t = (el.textContent || '').trim();
+      if (!/^\d{1,4}\+?$/.test(t) || parseInt(t, 10) < 3 || !below(el)) return;
+      el.setAttribute('data-tdz-count', t);
+      el.textContent = '0';
+      el.style.minWidth = t.length + 'ch';
+      io.observe(el);
+    });
+    function count(el){
+      var t = el.getAttribute('data-tdz-count'), n = parseInt(t, 10), plus = /\+$/.test(t), t0 = null;
+      var step = function(ts){
+        if (t0 === null) t0 = ts;
+        var k = Math.min(1, (ts - t0) / 1100), v = Math.round(n * (1 - Math.pow(1 - k, 3)));
+        el.textContent = v + (plus && k === 1 ? '+' : '');
+        if (k < 1) W.requestAnimationFrame(step);
+      };
+      W.requestAnimationFrame(step);
+    }
+  }
+
   W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText };
 
   function run(){
@@ -136,6 +220,7 @@
         }).observe(D.body, { childList:true, characterData:true, subtree:true });
       }
     }
+    try { motion(); } catch (e) {}
     // footer wordmark: fill the width exactly
     var mk = D.querySelector('.tdz-foot-mark');
     if (mk){

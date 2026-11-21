@@ -157,3 +157,119 @@ html[data-skin="wf"] .pl-tile.feat{background:linear-gradient(#fff,#fff) padding
 html[data-skin="wf"] .mani p{font-size:min(8.8vw,21vh)}
 .tdz-region-bar{background:var(--tdz-y);color:var(--tdz-ink);font-family:var(--tdz-sans);font-size:14.5px;line-height:1.45;text-align:center;padding:10px var(--tdz-gut);position:relative;z-index:5}
 .tdz-region-bar a{color:var(--tdz-ink);font-weight:700;white-space:nowrap}
+
+/* =====================================================================
+   ALL-LIGHT (21 Nov). No dark sections anywhere: white, cream and yellow.
+   ===================================================================== */
+
+/* ---------- live workshop pages: hero, phases and register go light ---------- */
+html[data-skin="live"]{
+  --night:#FFFBEA; --night-2:#ffffff; --on-night:#141414; --on-night-2:#4a4740; --line-night:rgba(20,20,20,.12);
+}
+html[data-skin="live"] .hero{background:#fff}
+html[data-skin="live"] .hero::before{background:radial-gradient(closest-side,rgba(255,200,0,.32),transparent 70%)}
+html[data-skin="live"] .hero::after{background:radial-gradient(closest-side,rgba(255,200,0,.16),transparent 70%)}
+html[data-skin="live"] .hero h1 em,html[data-skin="live"] .hero h1 i,html[data-skin="live"] .hero h1 span,
+html[data-skin="live"] .dark h2 em,html[data-skin="live"] .dark .kicker,
+html[data-skin="live"] .reg h2 em,html[data-skin="live"] .reg h2 i,html[data-skin="live"] .reg .kicker{color:#141414}
+html[data-skin="live"] .hero h1 em,html[data-skin="live"] .dark h2 em,html[data-skin="live"] .reg h2 em{background:linear-gradient(transparent 60%,var(--tdz-y) 60% 92%,transparent 92%) no-repeat 0 0/100% 100%}
+html[data-skin="live"] .tag{background:#fff}
+html[data-skin="live"] .fact{background:rgba(255,255,255,.7)}
+html[data-skin="live"] .cbox{background:#fff;box-shadow:0 10px 24px -18px rgba(20,20,20,.5)}
+html[data-skin="live"] .vframe{box-shadow:0 40px 70px -36px rgba(20,20,20,.45),0 0 0 1px rgba(20,20,20,.08)}
+html[data-skin="live"] .btn-light{background:var(--tdz-y);color:#141414;box-shadow:0 14px 30px -14px rgba(160,110,0,.9)}
+html[data-skin="live"] .btn-light:hover{background:#FFD21F;box-shadow:0 18px 36px -14px rgba(160,110,0,.9)}
+html[data-skin="live"] .phase{background:#fff;box-shadow:0 1px 0 rgba(20,20,20,.04)}
+html[data-skin="live"] .phase:hover{border-color:var(--tdz-y)}
+html[data-skin="live"] .ph-time{color:#7a5b00}
+html[data-skin="live"] .ph-num{color:rgba(20,20,20,.08)}
+html[data-skin="live"] .ph-line{background:linear-gradient(90deg,var(--tdz-y),transparent)}
+/* register block: the one big yellow moment on the page */
+html[data-skin="live"] .reg{background:var(--tdz-y)}
+html[data-skin="live"] .reg::before{background:radial-gradient(closest-side,rgba(255,255,255,.55),transparent 70%)}
+html[data-skin="live"] .reg h2 em{background:none;color:#141414;text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.12em}
+html[data-skin="live"] .reg .incl li svg{color:#141414}
+html[data-skin="live"] .reg .seats{border-left-color:#141414}
+html[data-skin="live"] .reg .rise{background:#fff}
+html[data-skin="live"] .reg .card{box-shadow:0 40px 80px -36px rgba(80,55,0,.55)}
+html[data-skin="live"] .reg .btn-light,html[data-skin="live"] .reg .card .btn{background:#141414;color:#fff;box-shadow:none}
+/* floating mobile bar stays an ink pill so it reads as a button */
+html[data-skin="live"] .sticky{background:#141414;color:#fff}
+html[data-skin="live"] .sticky small{color:#cfcabb}
+
+/* ---------- Weekend Founder sales page: the "latest" band ---------- */
+html[data-skin="wf"] .latest{background:var(--tdz-cream);color:#141414;border-block:1px solid var(--tdz-line)}
+
+/* ---------- free website tool: prompts and the "next" block ---------- */
+html[data-skin="tool"] .prompt{background:var(--tdz-cream);color:#141414;box-shadow:inset 0 0 0 1px var(--tdz-line)}
+html[data-skin="tool"] .prompt .ph{border-bottom-color:var(--tdz-line);color:#77736a}
+html[data-skin="tool"] .prompt .ttl{color:#141414}
+html[data-skin="tool"] .prompt button{background:#141414;color:#fff}
+html[data-skin="tool"] .prompt button:hover,html[data-skin="tool"] .prompt button.copied{background:var(--tdz-y);color:#141414}
+html[data-skin="tool"] .prompt mark{color:#7a5b00;background:var(--tdz-y-soft)}
+html[data-skin="tool"] .next{background:var(--tdz-y);color:#141414}
+
+/* ---------- founder + story dark blocks ---------- */
+html[data-skin="about"] .honest-block,html[data-skin="about"] .contact-block{background:var(--tdz-y)!important;color:#141414}
+html[data-skin="about"] .honest-block p,html[data-skin="about"] .honest-block .tag,
+html[data-skin="about"] .contact-block h2,html[data-skin="about"] .contact-block .sub{color:#141414!important}
+
+/* ---------- shared footer: cream, ink type, yellow wordmark ---------- */
+.tdz-foot{background:var(--tdz-cream);color:#4a4740;border-top:1px solid var(--tdz-line)}
+.tdz-foot .tdz-brand{color:#141414}
+.tdz-foot .tdz-brand i{box-shadow:inset 0 0 0 2.5px #141414}
+.tdz-foot-pitch{color:#4a4740}
+.tdz-foot h3{color:#77736a}
+.tdz-foot a{color:#141414}
+.tdz-foot a:hover{color:#141414}
+.tdz-foot-bottom{border-top-color:var(--tdz-line);color:#77736a}
+.tdz-foot-mark{color:#141414}
+.tdz-foot-mark span{color:var(--tdz-y);-webkit-text-stroke:0}
+
+/* =====================================================================
+   MOTION (21 Nov). Shared by every page through tdz.js.
+   Only transform and opacity, nothing above the fold is hidden,
+   and all of it switches off for prefers-reduced-motion.
+   ===================================================================== */
+
+/* yellow reading-progress line under the header */
+.tdz-prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--tdz-y);transform-origin:0 50%;transform:scaleX(0);z-index:950;pointer-events:none}
+
+/* scroll reveal for pages that had none (only things below the first screen) */
+.tdz-rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--tdz-ease),transform .8s var(--tdz-ease)}
+.tdz-rv.tdz-in{opacity:1;transform:none}
+
+/* marker sweep: the yellow highlight draws itself in once */
+.tdz-sweep{background-size:0% 100%!important;background-repeat:no-repeat!important;transition:background-size 1s var(--tdz-ease) .25s}
+.tdz-sweep.tdz-in{background-size:100% 100%!important}
+
+/* product marquee band */
+.tdz-mq{background:var(--tdz-y);color:#141414;overflow:hidden;border-block:1.5px solid #141414;font-family:var(--tdz-disp);position:relative;z-index:2}
+.tdz-mq-track{display:flex;width:max-content;animation:tdzMq 34s linear infinite}
+.tdz-mq:hover .tdz-mq-track{animation-play-state:paused}
+.tdz-mq a,.tdz-mq span{display:inline-flex;align-items:center;gap:14px;padding:14px 0 14px 28px;white-space:nowrap;font-stretch:112%;font-weight:850;font-size:clamp(17px,2.2vw,24px);letter-spacing:-.02em;color:#141414;text-decoration:none}
+.tdz-mq a small{font-family:var(--tdz-sans);font-weight:600;font-size:13px;letter-spacing:0;color:#4a4740}
+.tdz-mq a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.tdz-mq i{width:9px;height:9px;border-radius:50%;background:#141414;flex:none}
+@keyframes tdzMq{to{transform:translateX(-50%)}}
+
+/* live hero: slow drifting glow */
+html[data-skin="live"] .hero::before{animation:tdzDrift 14s ease-in-out infinite alternate}
+html[data-skin="live"] .hero::after{animation:tdzDrift 18s ease-in-out infinite alternate-reverse}
+@keyframes tdzDrift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-60px,40px,0) scale(1.12)}}
+
+/* cards lift a little more on hover (desktop only) */
+@media (hover:hover){
+  html[data-skin="live"] .stat,html[data-skin="live"] .fact{transition:transform .3s var(--tdz-ease)}
+  html[data-skin="live"] .stat:hover{transform:translateY(-4px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .tdz-prog{display:none}
+  .tdz-rv{opacity:1!important;transform:none!important;transition:none!important}
+  .tdz-sweep{background-size:100% 100%!important;transition:none!important}
+  .tdz-mq-track{animation:none;flex-wrap:wrap;width:auto}
+  html[data-skin] .hero::before,html[data-skin] .hero::after{animation:none!important}
+}
+html[data-skin="wf"] .pr{background:var(--tdz-cream);color:#141414;box-shadow:inset 0 0 0 1px var(--tdz-line)}
+html[data-skin="wf"] .pr mark{background:var(--tdz-y-soft);color:#7a5b00}
