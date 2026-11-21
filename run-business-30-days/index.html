@@ -1568,6 +1568,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         track('form_submitted', { form_name: 'lead_capture' });
       }
 
+      try { navigator.sendBeacon('https://script.google.com/macros/s/AKfycbyXR3mKc1CjNwpDKkSdemEQM0oSraVkIFL0BRjbUjsHhJtJhl_vash_qeD3Arr77T94/exec', new Blob([JSON.stringify(Object.assign({type:'lead', source:'run-business-30-days'}, Object.fromEntries(payload)))], {type:'text/plain'})); } catch(e){} // copy to the one lead sheet (Leads tab)
       if(WEBHOOK_URL && WEBHOOK_URL.indexOf('PLACEHOLDER') === -1){
         fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', body: payload })
           .then(showThanks)
