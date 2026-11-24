@@ -6,10 +6,8 @@
     // Google Apps Script web app URL (see tools/funnel/SETUP.md). Leave '' to run without the admin funnel.
     endpoint: 'https://script.google.com/macros/s/AKfycbyXR3mKc1CjNwpDKkSdemEQM0oSraVkIFL0BRjbUjsHhJtJhl_vash_qeD3Arr77T94/exec',
     wa: '919629843122',
-    // From this moment (IST) the group cohort tile appears and 1:1 moves to ₹12,999.
-    // The OS stays ₹1,999.
-    newPricesFrom: '2026-12-01T00:00:00+05:30',
-    bizUntil: '2027-04-01T00:00:00+05:30',   // ₹29,999 → ₹79,999
+    // 24 Nov (Noor): 1:1 stays ₹4,999 (was ₹9,999), Business ₹31,999 (was ₹79,999). No dated price change,
+    // so no countdown on these tiles. The group cohort is gone. The OS stays ₹1,999.
     // December 1:1 seats. The admin panel overrides these; until it does, the tile says "open".
     decSeatsLeft: null, decSeatsTotal: null,
     startIndex: 1                              // 1 = the 1:1 tile in front
@@ -17,14 +15,14 @@
   var PLANS = {
     os:     { name:'Weekend Founder OS',              short:'Self-paced OS',  now:1999,  later:1999,  ga:'weekend_founder_os' },
     cohort: { name:'Group cohort (4 weekends)',       short:'Group cohort',   now:4999,  later:4999,  ga:'group_cohort_4wk' },
-    one:    { name:'1:1 Build it with me (4 weekends)', short:'1:1 with Noor', now:4999, later:12999, ga:'one_to_one_4wk' },
-    biz: { name:'Business Tech Enablement',      short:'Business',       now:29999, later:79999, ga:'business_tech' }
+    one:    { name:'1:1 Build it with me (4 sessions)', short:'1:1 with Noor', now:4999, later:4999, ga:'one_to_one_4wk' },
+    biz: { name:'AI for your business',          short:'Business',       now:31999, later:31999, ga:'business_tech' }
   };
   var D = document, W = window;
   var $ = function(s, r){ return (r || D).querySelector(s); };
   var $$ = function(s, r){ return Array.prototype.slice.call((r || D).querySelectorAll(s)); };
   var stage = $('#plStage'); if(!stage) return;
-  var newPrices = Date.now() >= +new Date(CFG.newPricesFrom);
+  var newPrices = false; // the cohort tile was removed on 24 Nov
   // The group cohort only exists from 1 Dec: before that, take its tile and tab out.
   if(!newPrices){ $$('[data-plan="cohort"], .pl-dots [data-go-plan="cohort"]').forEach(function(el){ el.parentNode.removeChild(el); }); }
   else {
@@ -105,7 +103,7 @@
   }
 
   /* ---------- prices, deadlines, countdowns ---------- */
-  var until = { os:Infinity, cohort:Infinity, one:+new Date(CFG.newPricesFrom), biz:+new Date(CFG.bizUntil) };
+  var until = { os:Infinity, cohort:Infinity, one:Infinity, biz:Infinity };
   function priceOf(k){ return now < until[k] ? PLANS[k].now : PLANS[k].later; }
   tiles.forEach(function(t){
     var k = t.getAttribute('data-plan');
@@ -135,14 +133,14 @@
     // no real seat count yet: hide the bar rather than show a made-up fill
     if(isNaN(left)){ if(bar && bar.parentNode) bar.parentNode.hidden = true; return; }
     if(left <= 0){
-      txt.textContent = 'December · full'; txt.className = 'no';
-      live.textContent = 'December full · join the January waitlist';
-      $$('[data-reserve="one"]').forEach(function(b){ b.firstChild.nodeValue = 'Join the January waitlist '; });
+      txt.textContent = 'This weekend · full'; txt.className = 'no';
+      live.textContent = 'This weekend is full · book the next one';
+      $$('[data-reserve="one"]').forEach(function(b){ b.firstChild.nodeValue = 'Reserve the next weekend '; });
       if(bar) bar.style.setProperty('--fill', '100%');
       return;
     }
-    txt.textContent = 'December · ' + left + ' left';
-    live.textContent = 'Only ' + left + (left === 1 ? ' December slot' : ' December slots') + ' left';
+    txt.textContent = 'This weekend · ' + left + ' left';
+    live.textContent = 'Only ' + left + (left === 1 ? ' 1:1 slot' : ' 1:1 slots') + ' left this weekend';
     if(bar && total > 0) bar.style.setProperty('--fill', Math.round((1 - left / total) * 100) + '%');
   }
   seats(CFG.decSeatsLeft, CFG.decSeatsTotal);
@@ -231,8 +229,8 @@
   function waText(plan, extra){
     var who = profile.name ? 'Hi Noor, this is ' + profile.name + '.' : 'Hi Noor,';
     if(plan === 'cohort') return who + ' I want to join the next group cohort (4 weekends, ' + inr(priceOf('cohort')) + ').' + answersLine() + (extra || '');
-    if(plan === 'one') return who + ' I want to reserve a December 1:1 slot for the 4-weekend course (' + inr(priceOf('one')) + ').' + answersLine() + (extra || '');
-    if(plan === 'biz') return who + ' I want to talk about Business Tech Enablement for my business.' + answersLine() + (extra || '');
+    if(plan === 'one') return who + ' I want to reserve a 1:1 weekend slot (' + inr(priceOf('one')) + ').' + answersLine() + (extra || '');
+    if(plan === 'biz') return who + ' I want to talk about the AI for your business package (' + inr(priceOf('biz')) + ').' + answersLine() + (extra || '');
     if(plan === 'os') return who + ' I have a question about the Weekend Founder OS (' + inr(priceOf('os')) + ') before I buy.' + answersLine() + (extra || '');
     return who + ' before I buy, which course is right for me?' + answersLine();
   }
@@ -263,9 +261,9 @@
   function openModal(k){
     mPlan = k; send('tile_cta', { plan:k, loc:'reserve' });
     var biz = k === 'biz';
-    $('#plModalT').textContent = k === 'cohort' ? 'Join the next cohort' : biz ? 'Book a business call' : ($('#plSeatTxt') && /full/.test($('#plSeatTxt').textContent) ? 'Join the January waitlist' : 'Reserve your December slot');
+    $('#plModalT').textContent = k === 'cohort' ? 'Join the next cohort' : biz ? 'Book a business call' : 'Reserve your 1:1 slot';
     $('#plModalP').textContent = k === 'cohort' ? 'Leave your number and Noor will send you the cohort dates on WhatsApp.' : biz ? 'Tell me a little about your business. I\'ll message you on WhatsApp to scope it. Price may vary slightly with your requirement.'
-      : 'Leave your number and Noor will confirm your December slot on WhatsApp.';
+      : 'Leave your number and Noor will confirm your weekend slot on WhatsApp.';
     $('#plModalBizL').hidden = !biz;
     if(profile.name) mForm.name.value = profile.name;
     if(profile.phone) mForm.phone.value = profile.phone.replace(/^91/, '');
@@ -284,6 +282,8 @@
     profile.name = name.slice(0, 40); profile.phone = ph; store('tdz_profile', JSON.stringify(profile));
     var biz = mPlan === 'biz' ? mForm.biz.value.trim().slice(0, 60) : '';
     send('lead_submit', { plan:mPlan, loc:'reserve', business:biz });
+    // also write it to the lead sheet (the tracker above runs older code and drops it)
+    try{ if(W.TDZ && TDZ.lead) TDZ.lead({ name:name, phone:'+' + ph, interest:mPlan === 'one' ? 'one' : mPlan === 'biz' ? 'business' : mPlan, source:'wf_reserve', note:biz, price:priceOf(mPlan) }); }catch(err){}
     chime(); closeModal();
     W.open(waUrl(waText(mPlan, biz ? ' My business: ' + biz + '.' : '')), '_blank', 'noopener');
   });
@@ -309,8 +309,8 @@
   var WHY = {
     cohort:'You want to build something real, with a group and Noor keeping you on track. Over 4 weekends you build live in Saturday group sessions, and the Weekend Founder OS is included.',
     os: 'You want to learn AI at your own pace. The OS walks you through Claude co-work and prompt engineering, and you finish with your own professional website. Start tonight.',
-    one:'You want something that earns or works for your business, and you have the time. In 4 weekends with me you build 2 websites and 1 working product on your own idea, all the way to code.',
-    biz:'You need your business running on tech, not a course. I set up your ERP or CRM, marketing and team tools around how you actually work.'
+    one:'You want something that earns or works for your business, and you have the time. In 4 live 1:1 sessions, on the weekend slots that suit you, we build your own product on your idea, all the way to live.',
+    biz:'You need your business running on AI, not a course. I set up your website, lead capture, auto-replies, marketing videos and an AI assistant around how you actually work, and train your team.'
   };
   function result(){
     var rank = recommend(ans), k = rank[0], alt = rank[1];
@@ -319,9 +319,9 @@
     steps.forEach(function(s){ s.classList.remove('on'); }); bars.forEach(function(b){ b.classList.add('on'); });
     var price = inr(priceOf(k));
     $('#fdTitle').innerHTML = PLANS[k].short +' · <em>' + price + (k === 'biz' ? '*' : '') + '</em>';
-    $('#fdWhy').textContent = WHY[k] + (k === 'one' ? ' The next batch starts in December.' : '');
+    $('#fdWhy').textContent = WHY[k];
     $('#fdAlt').textContent = 'Also worth a look: ' + PLANS[alt].short + ' (' + inr(priceOf(alt)) + ').' + (k === 'biz' ? ' *Price may vary slightly based on your requirement.' : '');
-    $('#fdGo').firstChild.nodeValue = (k === 'os' ? 'Get the OS now ' : k === 'cohort' ? 'Join the next cohort ' : k === 'one' ? 'Reserve my December slot ' : 'Book a business call ');
+    $('#fdGo').firstChild.nodeValue = (k === 'os' ? 'Get the OS now ' : k === 'cohort' ? 'Join the next cohort ' : k === 'one' ? 'Reserve my 1:1 slot ' : 'Book a business call ');
     $('#fdGo').setAttribute('data-k', k);
     $('#fdWa').href = waUrl(waText(k)); $('#fdWa').target = '_blank'; $('#fdWa').rel = 'noopener';
     $('#fdRes').classList.add('on'); chime();

@@ -37,7 +37,14 @@
 .tdz-open .tdz-sheet{opacity:1;transform:none;pointer-events:auto}
 .tdz-sheet a{font-family:var(--tdz-disp);font-stretch:112%;font-weight:850;font-size:clamp(30px,8vw,40px);letter-spacing:-.03em;text-decoration:none;padding:5px 0;color:var(--tdz-ink)}
 .tdz-sheet .tdz-btn{margin-top:18px;font-family:var(--tdz-sans);font-size:17px;align-self:flex-start;padding:0 26px;min-height:54px}
+/* opt-in sound toggle, injected by tdz.js */
+.tdz-links{margin:0 auto}
+.tdz-snd{margin-left:auto;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 13px;border-radius:999px;border:1.5px solid var(--tdz-line);background:#fff;color:var(--tdz-ink);font:700 13.5px var(--tdz-sans);cursor:pointer;transition:border-color .2s,background-color .2s}
+.tdz-snd:hover{border-color:var(--tdz-ink)}
+.tdz-snd[aria-pressed="true"]{background:var(--tdz-y);border-color:var(--tdz-ink)}
+.tdz-snd + .tdz-desk{margin-left:-8px}
 @media (max-width:960px){.tdz-links,.tdz-nav .tdz-desk{display:none}.tdz-menu{display:inline-flex}}
+@media (max-width:480px){.tdz-snd span{display:none}.tdz-snd{padding:0;width:40px;justify-content:center}}
 @media (max-width:380px){.tdz-brand{font-size:19px}}
 
 /* ---------- shared footer ---------- */
@@ -273,3 +280,49 @@ html[data-skin="live"] .hero::after{animation:tdzDrift 18s ease-in-out infinite 
 }
 html[data-skin="wf"] .pr{background:var(--tdz-cream);color:#141414;box-shadow:inset 0 0 0 1px var(--tdz-line)}
 html[data-skin="wf"] .pr mark{background:var(--tdz-y-soft);color:#7a5b00}
+
+/* ==========================================================================
+   LEAD CAPTURE (24 Nov). Soft card + pill, built by tdz.js capture().
+   Never covers the page: a card in the corner on desktop, a bottom sheet on phones.
+   ========================================================================== */
+.tdz-cap{position:fixed;z-index:950;right:20px;bottom:20px;width:min(380px,calc(100vw - 32px));background:#fff;color:var(--tdz-ink);font-family:var(--tdz-sans);border-radius:26px;border:1.5px solid var(--tdz-ink);box-shadow:0 30px 70px -28px rgba(60,40,0,.55),8px 8px 0 var(--tdz-y);transform:translateY(calc(100% + 40px));opacity:0;pointer-events:none;transition:transform .55s var(--tdz-ease),opacity .3s;max-height:calc(100vh - 40px);overflow:auto}
+.tdz-cap.on{transform:none;opacity:1;pointer-events:auto}
+.tdz-cap *{box-sizing:border-box}
+.tdz-cap-in{padding:22px 22px 18px}
+.tdz-cap-x{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:var(--tdz-cream);color:var(--tdz-ink);font-size:22px;line-height:1;cursor:pointer}
+.tdz-cap-x:hover{background:var(--tdz-y)}
+.tdz-cap-k{display:inline-flex;align-items:center;gap:8px;margin:0;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tdz-ink-2)}
+.tdz-cap-k i{width:8px;height:8px;border-radius:50%;background:#1aa34a;box-shadow:0 0 0 0 rgba(26,163,74,.6);animation:tdzPulse 1.8s infinite}
+@keyframes tdzPulse{70%{box-shadow:0 0 0 8px rgba(26,163,74,0)}100%{box-shadow:0 0 0 0 rgba(26,163,74,0)}}
+.tdz-cap h2,.tdz-cap h3{font-family:var(--tdz-disp);font-stretch:112%;font-weight:900;letter-spacing:-.03em;line-height:1.02;font-size:26px;margin:10px 40px 8px 0}
+.tdz-cap-p{margin:0 0 14px;font-size:14.5px;line-height:1.45;color:var(--tdz-ink-2)}
+.tdz-cap-ch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tdz-cap-ch button{border:1.5px solid var(--tdz-line);background:#fff;border-radius:999px;padding:7px 11px;font:600 13px/1 var(--tdz-sans);color:var(--tdz-ink);cursor:pointer;min-height:34px}
+.tdz-cap-ch button[aria-checked="true"]{background:var(--tdz-y);border-color:var(--tdz-ink)}
+.tdz-cap label{display:block;margin-bottom:9px}
+.tdz-cap label span{display:block;font-size:12.5px;font-weight:700;margin-bottom:4px}
+.tdz-cap label small{font-weight:500;color:var(--tdz-ink-3)}
+.tdz-cap input{width:100%;min-height:46px;border:1.5px solid #d9d3c2;border-radius:14px;padding:0 14px;font:500 16px var(--tdz-sans);color:var(--tdz-ink);background:#fff}
+.tdz-cap input:focus{outline:none;border-color:var(--tdz-ink);box-shadow:0 0 0 3px var(--tdz-y-soft)}
+.tdz-cap-go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin-top:6px;border:0;border-radius:999px;background:var(--tdz-y);color:var(--tdz-ink);font:800 16px var(--tdz-sans);text-decoration:none;cursor:pointer;box-shadow:0 10px 24px -14px rgba(160,110,0,.9);transition:transform .25s var(--tdz-ease)}
+.tdz-cap-go:hover{transform:translateY(-2px);background:#FFD21F}
+.tdz-cap-err{margin:8px 0 0;color:#b42318;font-size:13.5px;font-weight:600}
+.tdz-cap-fine{margin:10px 0 0;font-size:12px;color:var(--tdz-ink-3);text-align:center}
+.tdz-cap-fine a{color:inherit}
+.tdz-cap-ok{text-align:left}
+.tdz-cap-ok p{font-size:15px;color:var(--tdz-ink-2);margin:0 0 12px}
+.tdz-cap-tick{width:48px;height:48px;border-radius:50%;background:var(--tdz-y);display:grid;place-items:center;font-weight:900;font-size:24px;color:var(--tdz-ink)!important;margin:0!important}
+.tdz-cap-pill{position:fixed;z-index:940;left:20px;bottom:20px;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--tdz-ink);background:#fff;color:var(--tdz-ink);font:700 14.5px var(--tdz-sans);cursor:pointer;box-shadow:4px 4px 0 var(--tdz-y);transform:translateY(120px);opacity:0;pointer-events:none;transition:transform .45s var(--tdz-ease),opacity .3s}
+.tdz-cap-pill.on{transform:none;opacity:1;pointer-events:auto}
+.tdz-cap-pill i{width:9px;height:9px;border-radius:50%;background:#1aa34a}
+@media (max-width:640px){
+  .tdz-cap{right:0;left:0;bottom:0;width:100%;border-radius:24px 24px 0 0;border-width:1.5px 0 0;box-shadow:0 -20px 50px -20px rgba(60,40,0,.45)}
+  .tdz-cap-opt{display:none!important}
+  .tdz-cap-pill{left:16px;bottom:16px;min-height:42px;font-size:13.5px}
+  html[data-has-mcta] .tdz-cap-pill{bottom:86px}
+}
+@media (prefers-reduced-motion:reduce){.tdz-cap,.tdz-cap-pill{transition:none}.tdz-cap-k i{animation:none}}
+@media print{.tdz-cap,.tdz-cap-pill{display:none!important}}
+/* pages with their own sticky bottom bar: keep the capture above it */
+html[data-skin="wf"] .tdz-cap-pill{bottom:92px}
+@media (min-width:641px){html[data-skin="wf"] .tdz-cap{bottom:92px;max-height:calc(100vh - 170px)}}

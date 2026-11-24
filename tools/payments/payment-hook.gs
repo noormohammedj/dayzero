@@ -30,7 +30,7 @@ var PLANS = {
     amounts: [499900, 1299900],
     bookUrl: 'https://thedayzero.in/weekend-founder/book/',
     groupUrl: 'https://chat.whatsapp.com/EYYFwHqslBkLlDvTIv4no9',
-    when: 'Saturdays and Sundays, 12 PM – 6 PM IST'
+    when: 'Saturdays 12 PM – 8 PM IST and Sundays 11 AM – 8 PM IST'
   }
 };
 var PAY_HEAD = ['ts', 'payment_id', 'plan', 'amount', 'name', 'email', 'phone', 'emailed', 'whatsapp_paid', 'booked_at', 'whatsapp_booked', 'notes'];

@@ -82,13 +82,13 @@ dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
       <div class="card"><p class="k">Funnel (unique visitors)</p><div class="fn" id="fn"></div></div>
       <div class="card"><p class="k">Most interested in</p><div class="split" id="interest"></div><p class="k" style="margin-top:16px">Where they came from</p><div class="split" id="sources"></div></div>
       <div class="card">
-        <p class="k">December 1:1 seats (shown live on the site)</p>
+        <p class="k">1:1 slots left this weekend (shown live on the site)</p>
         <div class="seats">
           <label class="k">Left<input id="sLeft" type="number" min="0" max="50"></label>
           <label class="k">Total<input id="sTotal" type="number" min="1" max="50"></label>
           <button id="sSave">Update site</button>
         </div>
-        <p class="sub" style="margin-top:10px">Set the real number. At 0 the site switches to “December full · January waitlist”. Leave blank to just say “open”.</p>
+        <p class="sub" style="margin-top:10px">Set the real number. At 0 the site switches to “This weekend is full · book the next one”. Leave blank to just say “open”.</p>
       </div>
     </div>
 
@@ -132,12 +132,12 @@ dialog textarea{width:100%;min-height:90px;margin:4px 0 12px}
   var $ = function(s){ return document.querySelector(s); }, $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var LS = { get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set:function(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }, del:function(k){ try{ localStorage.removeItem(k); }catch(e){} } };
   var URL_ = LS.get('tdz_admin_url'), KEY = LS.get('tdz_admin_key'), LEADS = [], sortBy = 'score', sortDir = -1;
-  var NEW_PRICES = Date.now() >= +new Date('2026-12-01T00:00:00+05:30'); // from 1 Dec: group cohort ₹4,999, 1:1 ₹12,999
-  var PLAN = { os:{ n:'Weekend Founder OS', p:'₹1,999' }, cohort:{ n:'Group cohort (4 weekends)', p:'₹4,999' }, one:{ n:'1:1 weekend course', p:NEW_PRICES ? '₹12,999' : '₹4,999' }, biz:{ n:'Business Tech Enablement', p:'₹29,999' } };
+  var NEW_PRICES = false; // 24 Nov: 1:1 stays ₹4,999, no December rise
+  var PLAN = { os:{ n:'Weekend Founder OS', p:'₹1,999' }, cohort:{ n:'Group cohort (4 weekends)', p:'₹4,999' }, one:{ n:'1:1 weekend course', p:'₹4,999' }, biz:{ n:'AI for your business', p:'₹31,999' } };
   var LBL = { student:'Student', professional:'Professional', business:'Business owner', other:'Other', learn:'Learn AI', income:'Extra income', owntech:'Tech for idea', fullbiz:'Biz on tech', low:'2–5h', mid:'5–10h', high:'10h+' };
   var DEF_TPL = {
-    one_hot: 'Hi {name}, Noor here from TheDayZero. Saw you checking the 1:1 weekend course. I’m holding a few December slots at {price}' + (NEW_PRICES ? '' : ' (it goes to ₹12,999 on 1 Dec)') + '. Shall I block one for you?',
-    one_warm:'Hi {name}, Noor here. You were looking at building your product with me over 4 weekends. Happy to answer anything. What would you want to build? December slots are limited.',
+    one_hot: 'Hi {name}, Noor here from TheDayZero. Saw you checking the 1:1 weekend course. I can hold a weekend slot for you at {price} (normally ₹9,999), any time Sat or Sun 11 AM – 8 PM IST. Shall I block one?',
+    one_warm:'Hi {name}, Noor here. You were looking at building your product with me over 4 weekends. Happy to answer anything. What would you want to build?',
     os_hot:  'Hi {name}, Noor here. You looked at the Weekend Founder OS. It’s {price} one-time. Here’s the link: https://thedayzero.in/weekend-founder/#plans . Any question before you start? 7-day full refund if it’s not for you.',
     cohort_hot: 'Hi {name}, Noor here from TheDayZero. Saw you looking at the group cohort: 4 weekends of live Saturday builds, with the Weekend Founder OS included, for {price}. Want me to send you the next cohort dates?',
     cohort_warm:'Hi {name}, Noor here. You were looking at building with a group over 4 weekends. What would you want to build? Happy to answer anything.',
