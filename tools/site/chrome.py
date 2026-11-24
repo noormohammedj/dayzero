@@ -15,9 +15,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 # page -> (skin, show shared header + footer, header button)
 PAGES = {
     'index.html':                         (None,   True,  'crash'),
-    'weekend-founder/index.html':         ('wf',   True,  'os'),
+    'weekend-founder/index.html':         (None,   True,  'one'),
+    'weekend-founder/os/index.html':      ('wf',   True,  'os'),
     'weekend-founder/live/index.html':    ('live', True,  'register'),
-    'weekend-founder/live/global/index.html': ('live', True, 'register'),
     'weekend-founder/book/index.html':    ('book', True,  'wa'),
     'weekend-founder/live/booked/index.html': ('book', True, 'wa199'),
     'weekend-founder/free-website/index.html': ('tool', True, 'os'),
@@ -41,14 +41,15 @@ HEAD = '''<!--tdz:head-->
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
 {fonts}
-<link rel="stylesheet" href="/assets/tdz.css?v=5">
-<script src="/assets/tdz.js?v=5"></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=6">
+<script src="/assets/tdz.js?v=6"></script>
 <!--/tdz:head-->'''
 
 CTA = {
     'crash':    ('/weekend-founder/live/', 'Saturday class', 'nav_crash'),
     'os':       ('https://rzp.io/rzp/UQYIUZL', 'Get the OS · ₹1,999', 'nav_os'),
     'register': ('#register', 'Save my seat', 'nav_register'),
+    'one':      ('https://rzp.io/rzp/iACekPPW', 'Book 1:1 · ₹4,999', 'nav_1on1'),
     'wa':       ('https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20need%20help%20booking%20my%201%3A1%20sessions', 'Help on WhatsApp', 'nav_wa'),
     'wa199':    ('https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20paid%20for%20the%20%E2%82%B9199%20workshop%20and%20need%20help%20booking', 'Help on WhatsApp', 'nav_wa'),
 }
@@ -61,10 +62,10 @@ def nav(cta):
   <div class="tdz-w">
     <a class="tdz-brand" href="/" aria-label="TheDayZero home"><i aria-hidden="true"></i>TheDayZero</a>
     <nav class="tdz-links" aria-label="Main">
-      <a href="/#learn">Courses</a>
-      <a href="/weekend-founder/">Weekend Founder</a>
-      <a href="/#teams">For organisations</a>
-      <a href="/#products">Products</a>
+      <a href="/#class">Saturday class</a>
+      <a href="/weekend-founder/">1:1 coaching</a>
+      <a href="/#group">For institutions</a>
+      <a href="/#proof">Proof</a>
       <a href="/founder.html">Founder</a>
     </nav>
     <a class="tdz-btn tdz-desk" href="{href}" data-cta="{key}"{ext}>{label}</a>
@@ -72,10 +73,10 @@ def nav(cta):
   </div>
 </header>
 <div class="tdz-sheet" id="tdzSheet">
-  <a href="/#learn">Courses</a>
-  <a href="/weekend-founder/">Weekend Founder</a>
-  <a href="/#teams">For organisations</a>
-  <a href="/#products">Products</a>
+  <a href="/#class">Saturday class</a>
+  <a href="/weekend-founder/">1:1 coaching</a>
+  <a href="/#group">For institutions</a>
+  <a href="/#proof">Proof</a>
   <a href="/founder.html">Founder</a>
   <a class="tdz-btn ink" href="{href}" data-cta="{key}_menu"{ext}>{label}</a>
 </div>
@@ -93,10 +94,10 @@ FOOT = '''<!--tdz:foot-->
       <div>
         <h3>Learn</h3>
         <ul>
-          <li><a href="/weekend-founder/live/">Saturday AI class</a></li>
-          <li><a href="/#learn">1:1 weekend coaching</a></li>
-          <li><a href="/#learn">AI for your business</a></li>
-          <li><a href="/weekend-founder/">Weekend Founder OS</a></li>
+          <li><a href="/#class">Saturday AI class</a></li>
+          <li><a href="/weekend-founder/">1:1 weekend coaching</a></li>
+          <li><a href="/weekend-founder/#business">AI for your business</a></li>
+          <li><a href="/weekend-founder/os/">Weekend Founder OS</a></li>
           <li><a href="/weekend-founder/read/">Read a free sample</a></li>
         </ul>
       </div>
@@ -104,8 +105,8 @@ FOOT = '''<!--tdz:foot-->
         <h3>For organisations</h3>
         <ul>
           <li><a href="/#group">Schools and colleges</a></li>
-          <li><a href="/#teams">Corporate teams</a></li>
-          <li><a href="/#teams">NGOs and CSR programmes</a></li>
+          <li><a href="/#group">Companies</a></li>
+          <li><a href="/#group">NGOs and CSR programmes</a></li>
           <li><a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20we%27d%20like%20an%20AI%20programme%20for%20our%20organisation" target="_blank" rel="noopener" data-cta="foot_b2b">Book group training on WhatsApp</a></li>
           <li><a href="mailto:noormohammed.j@gmail.com?subject=Group%20AI%20training%20enquiry" data-cta="foot_email">noormohammed.j@gmail.com</a></li>
         </ul>

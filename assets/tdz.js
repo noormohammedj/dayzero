@@ -4,8 +4,9 @@
    2. Every ₹ amount on the page is shown in US$ outside India, using the price list below
       for real prices and a rough rate for anything else.
    3. Outside India, Razorpay links go to WhatsApp (Razorpay doesn't take international cards yet),
-      and the ₹199 India workshop links go to the US$9 global workshop.
-   4. The shared header's mobile menu. */
+      and Saturday class links go to WhatsApp (US$9, same Saturday hour).
+   4. The shared header's mobile menu.
+   5. Opt-in interface sounds (off until the visitor turns them on in the header). */
 (function(){
   'use strict';
   var D = document, W = window;
@@ -32,7 +33,7 @@
 
   /* ---------- 2. prices ---------- */
   // Real prices: INR → USD. Keep in step with Razorpay and the WhatsApp quotes.
-  // 24 Nov: 499 (class from 1 Dec), 4,999/9,999 (1:1) and 31,999/79,999 (Business) are PROPOSED US$ prices, waiting on Noor.
+  // 24 Nov: US$ prices approved by Noor: class $9, 1:1 $89 (was $179), Business $449 (was $999).
   var USD = { 99:2, 199:9, 499:19, 999:12, 1999:24, 2499:29, 2999:35, 4999:89, 9999:179, 12999:155, 29999:349, 31999:449, 79999:999 };
   var RATE = 85; // rough ₹ per US$ for amounts that aren't a product price
   function toUsd(n){
@@ -92,7 +93,9 @@
         a.setAttribute('href', waLink(PAY[id] || 'to join'));
         a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
       } else if (/^(https:\/\/thedayzero\.in)?\/weekend-founder\/live\/?(#.*)?$/.test(h)){
-        a.setAttribute('href', '/weekend-founder/live/global/' + (h.split('#')[1] ? '#' + h.split('#')[1] : ''));
+        // the global class is retired (24 Nov): abroad, the same Saturday class is booked on WhatsApp
+        a.setAttribute('href', waLink('a seat in the Saturday AI class (US$9)'));
+        a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
       }
     });
   }
@@ -109,12 +112,11 @@
   // The two workshop pages never redirect. Each page keeps its own price and date, and offers the
   // other session in a small bar if the visitor seems to be in the other region.
   var path = location.pathname.replace(/index\.html$/, '');
-  var IN_PAGE = path === '/weekend-founder/live/', GL_PAGE = path === '/weekend-founder/live/global/';
+  var IN_PAGE = path === '/weekend-founder/live/', GL_PAGE = false; // global page retired 24 Nov
   if (IN_PAGE || GL_PAGE) D.documentElement.setAttribute('data-keep-inr', '');
   function regionBar(){
     var html = '';
-    if (IN_PAGE && !india) html = 'Outside India? There is an English session for you on <b>Sat 5 Dec, 17:00 UTC, US$9</b>. <a href="/weekend-founder/live/global/">See the global session →</a>';
-    if (GL_PAGE && india) html = 'In India? Join the <b>₹199 session, every Saturday 11 AM – 12 PM IST</b>. <a href="/weekend-founder/live/">See the India session →</a>';
+    if (IN_PAGE && !india) html = 'Outside India? Join this same class for <b>US$9</b>, live online at 11 AM IST. <a href="' + waLink('a seat in the Saturday AI class (US$9)') + '" target="_blank" rel="noopener">Book on WhatsApp →</a>';
     if (!html) return;
     var bar = D.createElement('div'); bar.className = 'tdz-region-bar'; bar.innerHTML = html;
     var nav = D.getElementById('tdzNav'); if (nav && nav.nextSibling) nav.parentNode.insertBefore(bar, nav.nextSibling); else D.body.insertBefore(bar, D.body.firstChild);
@@ -286,7 +288,7 @@
       e.preventDefault(); open('button', a.getAttribute('data-capture'));
     });
     function next(){
-      if (interest === 'class') return india ? ['/weekend-founder/live/', preRise ? 'Book your seat now · ₹199' : 'Book your seat now'] : ['/weekend-founder/live/global/', 'See the global class'];
+      if (interest === 'class') return india ? ['/weekend-founder/live/', preRise ? 'Book your seat now · ₹199' : 'Book your seat now'] : [waLink('a seat in the Saturday AI class (US$9)'), 'Book your seat on WhatsApp · US$9'];
       if (interest === 'one') return [india ? 'https://rzp.io/rzp/iACekPPW' : waLink('1:1 coaching with Noor'), india ? 'Book 1:1 now · ₹4,999' : 'Ask how to pay in US$'];
       if (interest === 'business') return ['https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, I\'d like to talk about the Business AI package for my business.'), 'Talk about my business on WhatsApp'];
       return ['https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, we\'d like AI training for our team / college. Organisation:  | People:  | Online or on-site: '), 'Plan our training on WhatsApp'];
@@ -331,7 +333,59 @@
     }
   }
 
-  W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText, lead:lead };
+  /* ---------- 5. sound: opt-in, synthesised with Web Audio, no files, never autoplays ---------- */
+  var snd = { on:false, ctx:null, last:0 };
+  try { snd.on = localStorage.getItem('tdz_snd') === '1'; } catch(e){}
+  function ac(){
+    if (!snd.ctx){ var C = W.AudioContext || W.webkitAudioContext; if (!C) return null; snd.ctx = new C(); }
+    if (snd.ctx.state === 'suspended') snd.ctx.resume();
+    return snd.ctx;
+  }
+  function tone(f1, f2, dur, vol, type, delay){
+    var c = ac(); if (!c) return;
+    var t = c.currentTime + (delay || 0), o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine'; o.frequency.setValueAtTime(f1, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .008); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + dur + .02);
+  }
+  function sfx(name){
+    if (!snd.on) return;
+    var now = Date.now();
+    if (name === 'hover'){ if (now - snd.last < 90) return; snd.last = now; tone(1760, 0, .035, .018, 'sine'); return; }
+    if (name === 'tick') return tone(1320, 1100, .05, .04, 'triangle');
+    if (name === 'go'){ tone(660, 0, .09, .06, 'triangle'); tone(990, 0, .14, .05, 'triangle', .07); return; }
+    if (name === 'on'){ tone(523, 0, .1, .05, 'sine'); tone(784, 0, .16, .05, 'sine', .08); return; }
+    tone(880, 620, .06, .045, 'triangle'); // click
+  }
+  function soundUI(){
+    var nav = D.querySelector('#tdzNav .tdz-w'); if (!nav || D.getElementById('tdzSnd')) return;
+    var b = D.createElement('button'); b.type = 'button'; b.id = 'tdzSnd'; b.className = 'tdz-snd';
+    // icons: Tabler "volume" and "volume-off"
+    var ON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8a5 5 0 0 1 0 8"/><path d="M17.7 5a9 9 0 0 1 0 14"/><path d="M6 15h-2a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h2l3.5-4.5a.8.8 0 0 1 1.5.5v14a.8.8 0 0 1-1.5.5l-3.5-4.5"/></svg>';
+    var OFF = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8a5 5 0 0 1 1.912 4.934m-1.377 2.602a5 5 0 0 1-.535.464"/><path d="M17.7 5a9 9 0 0 1 2.362 11.086m-1.676 2.299a9 9 0 0 1-.686.615"/><path d="M9.069 5.054l.431-.554a.8.8 0 0 1 1.5.5v2m0 4v8a.8.8 0 0 1-1.5.5l-3.5-4.5h-2a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h2l1.294-1.664"/><path d="M3 3l18 18"/></svg>';
+    var paint = function(){ b.innerHTML = (snd.on ? ON : OFF) + '<span>' + (snd.on ? 'Sound on' : 'Sound') + '</span>'; b.setAttribute('aria-pressed', snd.on ? 'true' : 'false'); b.setAttribute('aria-label', snd.on ? 'Turn interface sounds off' : 'Turn interface sounds on'); };
+    paint();
+    b.addEventListener('click', function(){
+      snd.on = !snd.on; try { localStorage.setItem('tdz_snd', snd.on ? '1' : '0'); } catch(e){}
+      paint(); if (snd.on) sfx('on');
+      try { if (W.gtag) gtag('event', 'sound_toggle', { on:snd.on }); } catch(e){}
+    });
+    var at = nav.querySelector('.tdz-desk') || D.getElementById('tdzMenu'); nav.insertBefore(b, at || null);
+    // hover ticks on fine pointers, a click note on every button and link that acts
+    var fine = W.matchMedia && W.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var SEL = 'a.btn,a.tdz-btn,button,.tile,[data-snd],summary,.tdz-links a';
+    if (fine) D.addEventListener('pointerover', function(e){
+      var t = e.target.closest && e.target.closest(SEL); if (!t || t === b) return;
+      if (e.relatedTarget && t.contains(e.relatedTarget)) return;
+      sfx('hover');
+    });
+    D.addEventListener('click', function(e){
+      var t = e.target.closest && e.target.closest(SEL); if (!t || t === b) return;
+      sfx(t.getAttribute('data-snd') === 'go' ? 'go' : (t.nodeName === 'SUMMARY' ? 'tick' : 'click'));
+    });
+  }
+
+  W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText, lead:lead, sfx:sfx };
 
   function run(){
     regionBar();
@@ -350,6 +404,7 @@
     }
     try { motion(); } catch (e) {}
     try { capture(); } catch (e) {}
+    try { soundUI(); } catch (e) {}
     // footer wordmark: fill the width exactly
     var mk = D.querySelector('.tdz-foot-mark');
     if (mk){

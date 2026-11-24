@@ -37,7 +37,14 @@
 .tdz-open .tdz-sheet{opacity:1;transform:none;pointer-events:auto}
 .tdz-sheet a{font-family:var(--tdz-disp);font-stretch:112%;font-weight:850;font-size:clamp(30px,8vw,40px);letter-spacing:-.03em;text-decoration:none;padding:5px 0;color:var(--tdz-ink)}
 .tdz-sheet .tdz-btn{margin-top:18px;font-family:var(--tdz-sans);font-size:17px;align-self:flex-start;padding:0 26px;min-height:54px}
+/* opt-in sound toggle, injected by tdz.js */
+.tdz-links{margin:0 auto}
+.tdz-snd{margin-left:auto;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 13px;border-radius:999px;border:1.5px solid var(--tdz-line);background:#fff;color:var(--tdz-ink);font:700 13.5px var(--tdz-sans);cursor:pointer;transition:border-color .2s,background-color .2s}
+.tdz-snd:hover{border-color:var(--tdz-ink)}
+.tdz-snd[aria-pressed="true"]{background:var(--tdz-y);border-color:var(--tdz-ink)}
+.tdz-snd + .tdz-desk{margin-left:-8px}
 @media (max-width:960px){.tdz-links,.tdz-nav .tdz-desk{display:none}.tdz-menu{display:inline-flex}}
+@media (max-width:480px){.tdz-snd span{display:none}.tdz-snd{padding:0;width:40px;justify-content:center}}
 @media (max-width:380px){.tdz-brand{font-size:19px}}
 
 /* ---------- shared footer ---------- */
