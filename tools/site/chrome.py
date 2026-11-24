@@ -41,12 +41,12 @@ HEAD = '''<!--tdz:head-->
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
 {fonts}
-<link rel="stylesheet" href="/assets/tdz.css?v=4">
-<script src="/assets/tdz.js?v=4"></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=5">
+<script src="/assets/tdz.js?v=5"></script>
 <!--/tdz:head-->'''
 
 CTA = {
-    'crash':    ('/weekend-founder/live/', 'Crash course · ₹199', 'nav_crash'),
+    'crash':    ('/weekend-founder/live/', 'Saturday class', 'nav_crash'),
     'os':       ('https://rzp.io/rzp/UQYIUZL', 'Get the OS · ₹1,999', 'nav_os'),
     'register': ('#register', 'Save my seat', 'nav_register'),
     'wa':       ('https://wa.me/919629843122?text=Hi%20Noor%2C%20I%20need%20help%20booking%20my%201%3A1%20sessions', 'Help on WhatsApp', 'nav_wa'),
@@ -93,20 +93,21 @@ FOOT = '''<!--tdz:foot-->
       <div>
         <h3>Learn</h3>
         <ul>
-          <li><a href="/weekend-founder/live/">Weekend crash course</a></li>
+          <li><a href="/weekend-founder/live/">Saturday AI class</a></li>
+          <li><a href="/#learn">1:1 weekend coaching</a></li>
+          <li><a href="/#learn">AI for your business</a></li>
           <li><a href="/weekend-founder/">Weekend Founder OS</a></li>
-          <li><a href="/#learn">1:1 coaching</a></li>
-          <li><a href="/weekend-founder/#plans">Group cohort</a></li>
           <li><a href="/weekend-founder/read/">Read a free sample</a></li>
         </ul>
       </div>
       <div>
         <h3>For organisations</h3>
         <ul>
-          <li><a href="/#teams">Colleges and universities</a></li>
+          <li><a href="/#group">Schools and colleges</a></li>
           <li><a href="/#teams">Corporate teams</a></li>
           <li><a href="/#teams">NGOs and CSR programmes</a></li>
-          <li><a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20we%27d%20like%20an%20AI%20programme%20for%20our%20organisation" target="_blank" rel="noopener" data-cta="foot_b2b">Ask for a proposal</a></li>
+          <li><a href="https://wa.me/919629843122?text=Hi%20Noor%2C%20we%27d%20like%20an%20AI%20programme%20for%20our%20organisation" target="_blank" rel="noopener" data-cta="foot_b2b">Book group training on WhatsApp</a></li>
+          <li><a href="mailto:noormohammed.j@gmail.com?subject=Group%20AI%20training%20enquiry" data-cta="foot_email">noormohammed.j@gmail.com</a></li>
         </ul>
       </div>
       <div>

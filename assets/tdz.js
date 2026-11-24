@@ -32,7 +32,8 @@
 
   /* ---------- 2. prices ---------- */
   // Real prices: INR → USD. Keep in step with Razorpay and the WhatsApp quotes.
-  var USD = { 99:2, 199:9, 999:12, 1999:24, 2499:29, 2999:35, 4999:59, 12999:155, 29999:349, 79999:929 };
+  // 24 Nov: 499 (class from 1 Dec), 4,999/9,999 (1:1) and 31,999/79,999 (Business) are PROPOSED US$ prices, waiting on Noor.
+  var USD = { 99:2, 199:9, 499:19, 999:12, 1999:24, 2499:29, 2999:35, 4999:89, 9999:179, 12999:155, 29999:349, 31999:449, 79999:999 };
   var RATE = 85; // rough ₹ per US$ for amounts that aren't a product price
   function toUsd(n){
     if (!n) return 0;
@@ -203,7 +204,134 @@
     }
   }
 
-  W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText };
+
+  /* ---------- lead capture (24 Nov) ----------
+     One helper for every form: TDZ.lead({...}). It writes to the thedayzero_Lead sheet (the old
+     lead webhook, the one that works today), copies to the new tracker, and fires GA4 + Pixel.
+     Plus a soft card that asks for WhatsApp + email: it slides in after 12 s or 40% scroll
+     (or when the mouse leaves the page on desktop), never blocks the page, and once closed it
+     shrinks to a small pill. Not shown on pages that already have their own form. */
+  var LEAD_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
+  var TRACK_URL = 'https://script.google.com/macros/s/AKfycbyXR3mKc1CjNwpDKkSdemEQM0oSraVkIFL0BRjbUjsHhJtJhl_vash_qeD3Arr77T94/exec';
+  var RISE = new Date('2026-12-01T00:00:00+05:30');
+  function utm(){
+    var o = {}; try { var q = new URLSearchParams(location.search); ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ if (q.get(k)) o[k.replace('utm_','')] = q.get(k).slice(0, 60); }); } catch(e){}
+    try { if (Object.keys(o).length) sessionStorage.setItem('tdz_utm', JSON.stringify(o)); else o = JSON.parse(sessionStorage.getItem('tdz_utm') || '{}'); } catch(e){}
+    return o;
+  }
+  utm();
+  function lead(d){
+    var interest = d.interest || 'general', src = d.source || 'site';
+    var pageUrl = location.origin + location.pathname + '?reg=' + encodeURIComponent(src) + '&interest=' + encodeURIComponent(interest) + (d.note ? '&note=' + encodeURIComponent(String(d.note).slice(0, 80)) : '');
+    var p = new URLSearchParams({ name:d.name || '(not given)', email:d.email || '', whatsapp:d.phone || '', pageUrl:pageUrl, timestamp:new Date().toISOString(),
+      referrer:D.referrer || '', utm:JSON.stringify(utm()), role:interest, source:src, price:String(d.price || 0) });
+    try { fetch(LEAD_URL, { method:'POST', mode:'no-cors', keepalive:true, body:p }); } catch(e){}
+    try { navigator.sendBeacon(TRACK_URL, new Blob([JSON.stringify(Object.assign({ type:'lead', region:india ? 'in' : 'intl', tz:tz }, Object.fromEntries(p)))], { type:'text/plain' })); } catch(e){}
+    try { if (W.gtag) gtag('event', 'generate_lead', { form:src, interest:interest, value:0, currency:'INR' }); } catch(e){}
+    try { if (W.fbq) fbq('track', 'Lead', { content_name:interest }); } catch(e){}
+    try { localStorage.setItem('tdz_lead', JSON.stringify({ at:Date.now(), interest:interest, name:d.name || '' })); } catch(e){}
+  }
+  function capture(){
+    var p = location.pathname.replace(/index\.html$/, '');
+    if (/^\/weekend-founder\/(live|book|read|free-website)\b|^\/admin\/|thank-you|^\/Thankyou/i.test(p) || BOT) return;
+    var has = function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } };
+    var put = function(k, v){ try { localStorage.setItem(k, v); } catch(e){} };
+    var done = !!has('tdz_lead');
+    var snooze = +(has('tdz_cap_x') || 0);
+    var preRise = Date.now() < +RISE;
+    var CH = [['class', india ? 'Saturday class' : 'Live class'], ['one', '1:1 coaching'], ['business', 'For my business'], ['team', 'Team or college']];
+    var reason = india
+      ? (preRise ? 'Leave your WhatsApp and email. I\'ll send this Saturday\'s class link (11 AM IST), one reminder that morning, and a heads-up before ₹199 becomes ₹499 on 1 Dec.'
+                 : 'Leave your WhatsApp and email. I\'ll send this Saturday\'s class link (11 AM IST) and one reminder that morning.')
+      : 'Leave your WhatsApp and email. I\'ll send the next live class link in your time zone and one reminder before it starts.';
+    var box = D.createElement('aside');
+    box.className = 'tdz-cap'; box.setAttribute('aria-labelledby', 'tdzCapT'); box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'false');
+    box.innerHTML =
+      '<button class="tdz-cap-x" type="button" aria-label="Close">×</button>' +
+      '<div class="tdz-cap-in">' +
+        '<p class="tdz-cap-k"><i aria-hidden="true"></i>Live every weekend</p>' +
+        '<h2 id="tdzCapT">Get the class link on WhatsApp</h2>' +
+        '<p class="tdz-cap-p">' + reason + '</p>' +
+        '<form novalidate>' +
+          '<div class="tdz-cap-ch" role="radiogroup" aria-label="I\'m interested in">' + CH.map(function(c, i){ return '<button type="button" role="radio" aria-checked="' + (i ? 'false' : 'true') + '" data-v="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div>' +
+          '<label><span>WhatsApp number</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="' + (india ? '98765 43210' : '+44 7700 900123') + '" required></label>' +
+          '<label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required></label>' +
+          '<label class="tdz-cap-opt"><span>Name <small>(optional)</small></span><input name="name" autocomplete="name" placeholder="Your name"></label>' +
+          '<button class="tdz-cap-go" type="submit">Send me the details <span aria-hidden="true">→</span></button>' +
+          '<p class="tdz-cap-err" role="alert" hidden></p>' +
+          '<p class="tdz-cap-fine">Only about TheDayZero classes. Reply STOP any time. <a href="/privacy.html">Privacy</a></p>' +
+        '</form>' +
+        '<div class="tdz-cap-ok" hidden></div>' +
+      '</div>';
+    var pill = D.createElement('button');
+    pill.type = 'button'; pill.className = 'tdz-cap-pill'; pill.innerHTML = '<i aria-hidden="true"></i>' + (india ? 'Get Saturday\'s class link' : 'Get the class link');
+    D.body.appendChild(box); D.body.appendChild(pill);
+    var form = box.querySelector('form'), ok = box.querySelector('.tdz-cap-ok'), err = box.querySelector('.tdz-cap-err'), interest = 'class', shown = false;
+    function ga(n, x){ try { if (W.gtag) gtag('event', n, x || {}); } catch(e){} }
+    function pick(v){ interest = v; Array.prototype.forEach.call(box.querySelectorAll('.tdz-cap-ch button'), function(b){ b.setAttribute('aria-checked', b.getAttribute('data-v') === v ? 'true' : 'false'); }); }
+    function open(why, v){
+      if (v) pick(v);
+      if (done){ showOk(true); }
+      box.classList.add('on'); pill.classList.remove('on'); shown = true;
+      ga('capture_view', { trigger:why, interest:interest });
+    }
+    function close(){ box.classList.remove('on'); pill.classList.add('on'); put('tdz_cap_x', String(Date.now())); ga('capture_close', {}); }
+    box.querySelector('.tdz-cap-x').addEventListener('click', close);
+    D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && box.classList.contains('on')) close(); });
+    pill.addEventListener('click', function(){ open('pill'); });
+    box.querySelector('.tdz-cap-ch').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) pick(b.getAttribute('data-v')); });
+    // any button or link on the page can open it: data-capture="class|one|business|team"
+    D.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('[data-capture]'); if (!a) return;
+      e.preventDefault(); open('button', a.getAttribute('data-capture'));
+    });
+    function next(){
+      if (interest === 'class') return india ? ['/weekend-founder/live/', preRise ? 'Book your seat now · ₹199' : 'Book your seat now'] : ['/weekend-founder/live/global/', 'See the global class'];
+      if (interest === 'one') return [india ? 'https://rzp.io/rzp/iACekPPW' : waLink('1:1 coaching with Noor'), india ? 'Book 1:1 now · ₹4,999' : 'Ask how to pay in US$'];
+      if (interest === 'business') return ['https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, I\'d like to talk about the Business AI package for my business.'), 'Talk about my business on WhatsApp'];
+      return ['https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, we\'d like AI training for our team / college. Organisation:  | People:  | Online or on-site: '), 'Plan our training on WhatsApp'];
+    }
+    function showOk(again){
+      var n = next();
+      form.hidden = true; ok.hidden = false;
+      Array.prototype.forEach.call(box.querySelectorAll('.tdz-cap-k,#tdzCapT,.tdz-cap-p'), function(el){ el.hidden = true; });
+      ok.innerHTML = '<p class="tdz-cap-tick" aria-hidden="true">✓</p><h3>' + (again ? 'You\'re on my list.' : 'Got it. Talk soon.') + '</h3>' +
+        '<p>I\'ll message you on WhatsApp. Don\'t want to wait?</p>' +
+        '<a class="tdz-cap-go" href="' + n[0] + '"' + (/^https/.test(n[0]) ? ' target="_blank" rel="noopener"' : '') + ' data-cta="capture_next_' + interest + '">' + n[1] + ' <span aria-hidden="true">→</span></a>';
+      if (!india) fixLinks(ok);
+    }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var raw = form.phone.value.trim(), dig = raw.replace(/\D/g, ''), email = form.email.value.trim(), name = form.name.value.trim().slice(0, 60);
+      if (india && dig.length === 12 && dig.indexOf('91') === 0) dig = dig.slice(2);
+      if (dig.length === 11 && dig.charAt(0) === '0') dig = dig.slice(1);
+      var phone = india && /^[6-9]\d{9}$/.test(dig) ? '+91' + dig : (/^\+/.test(raw) || dig.length > 10) && dig.length >= 8 && dig.length <= 15 ? '+' + dig : '';
+      var okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      if (!phone || !okEmail){
+        err.hidden = false;
+        err.textContent = !phone ? (india ? 'Please enter a 10-digit mobile number.' : 'Please enter your number with the country code, like +44.') : 'Please check your email.';
+        (!phone ? form.phone : form.email).focus(); return;
+      }
+      err.hidden = true;
+      lead({ name:name, phone:phone, email:email, interest:interest, source:'soft_capture' });
+      done = true; showOk(false);
+      pill.innerHTML = '<i aria-hidden="true"></i>You\'re on the list';
+      setTimeout(function(){ if (box.classList.contains('on') && !box.contains(D.activeElement)) { box.classList.remove('on'); pill.classList.add('on'); } }, 15000);
+    });
+    if (done){ pill.classList.add('on'); pill.innerHTML = '<i aria-hidden="true"></i>You\'re on the list'; return; }
+    if (Date.now() - snooze < 3 * 864e5){ pill.classList.add('on'); return; }
+    var fire = function(why){ if (!shown) open(why); };
+    setTimeout(function(){ fire('timer'); }, 12000);
+    W.addEventListener('scroll', function sc(){
+      var h = D.documentElement.scrollHeight - innerHeight;
+      if (h > 0 && pageYOffset / h > .4){ W.removeEventListener('scroll', sc); fire('scroll'); }
+    }, { passive:true });
+    if (W.matchMedia && matchMedia('(pointer:fine)').matches){
+      D.addEventListener('mouseout', function mo(e){ if (!e.relatedTarget && e.clientY < 8){ D.removeEventListener('mouseout', mo); fire('exit'); } });
+    }
+  }
+
+  W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText, lead:lead };
 
   function run(){
     regionBar();
@@ -221,6 +349,7 @@
       }
     }
     try { motion(); } catch (e) {}
+    try { capture(); } catch (e) {}
     // footer wordmark: fill the width exactly
     var mk = D.querySelector('.tdz-foot-mark');
     if (mk){
