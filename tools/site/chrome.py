@@ -39,9 +39,9 @@ HEAD = '''<!--tdz:head-->
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
 {fonts}
-<link rel="stylesheet" href="/assets/tdz.css?v=6">
-<script src="/assets/tdz.js?v=6"></script>
-<script src="/assets/tdz-voice.js?v=2" defer></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=7">
+<script src="/assets/tdz.js?v=7"></script>
+<script src="/assets/tdz-voice.js?v=3" defer></script>
 <!--/tdz:head-->'''
 
 CTA = {
@@ -121,7 +121,7 @@ FOOT = '''<!--tdz:foot-->
     </div>
     <div class="tdz-foot-bottom">
       <span>© 2026 TheDayZero · Coimbatore, India · Live online, worldwide</span>
-      <span class="tdz-cur" data-keep-inr>Prices in ₹ in India, US$ everywhere else</span>
+      <span class="tdz-cur" data-keep-inr>Prices in Indian rupees (₹)</span>
     </div>
   </div>
   <div class="tdz-foot-mark" aria-hidden="true">TheDay<span>Zero</span></div>

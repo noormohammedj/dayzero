@@ -114,6 +114,11 @@
     '.tdz-va-m.me{align-self:flex-end;background:#141414;color:#fff;border-bottom-right-radius:6px}',
     '.tdz-va-pitch{background:#FFC800;border-radius:18px;padding:14px;font-size:14.5px;line-height:1.4}',
     '.tdz-va-pitch b{display:block;font-size:15.5px;margin-bottom:8px}',
+    '.tdz-va-lead{display:grid;gap:8px;background:#fff;border:1.5px solid #141414;border-radius:18px;padding:14px;font-size:14.5px;line-height:1.4}',
+    '.tdz-va-lead input{min-height:44px;border:1.5px solid #d9d3c2;border-radius:12px;padding:0 12px;font:15px "Schibsted Grotesk",system-ui,sans-serif;color:#141414}',
+    '.tdz-va-lead input:focus{outline:none;border-color:#141414}',
+    '.tdz-va-lead button{min-height:44px;border:0;border-radius:999px;background:#141414;color:#fff;font:800 14.5px "Schibsted Grotesk",system-ui,sans-serif;cursor:pointer}',
+    '.tdz-va-lead .err{margin:0;color:#b3261e;font-size:13px;font-weight:600}',
     '.tdz-va-pitch a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:#141414;color:#fff;font-weight:800;text-decoration:none}',
     '.tdz-va-chips{display:flex;gap:6px;overflow-x:auto;padding:0 18px 10px;scrollbar-width:none}',
     '.tdz-va-chips button{flex:none;font:700 13px inherit;font-family:inherit;padding:7px 11px;border-radius:999px;border:1.5px solid #ece7d8;background:#fff;color:#141414;cursor:pointer}',
@@ -166,7 +171,7 @@
   if (D.body) mount(); else D.addEventListener('DOMContentLoaded', mount);
 
   var log = box.querySelector('#tdzVaLog'), st = box.querySelector('#tdzVaSt'), input = box.querySelector('#tdzVaQ'), mic = box.querySelector('#tdzVaMic');
-  var asked = 0, pitched = false, opened = false;
+  var asked = 0, pitched = false, opened = false, asks = [];
 
   ['When is the next class?', 'How much is it?', 'What will I build?', 'Do I need coding?', 'Who built you?', '1:1 coaching?'].forEach(function(q){
     var b = D.createElement('button'); b.type = 'button'; b.textContent = q;
@@ -198,11 +203,28 @@
     var a = D.createElement('a'); a.href = BOOK; a.textContent = 'Book my seat · ' + classPrice + ' →'; a.setAttribute('data-cta', 'voice_agent_book');
     if (/^https:\/\/wa\.me/.test(BOOK)){ a.target = '_blank'; a.rel = 'noopener'; }
     a.addEventListener('click', function(){ track('voice_agent_book', {asked:asked}); close(); });
-    p.appendChild(a); log.appendChild(p); log.scrollTop = log.scrollHeight;
+    p.appendChild(a); log.appendChild(p);
+    /* lead capture: name + WhatsApp, straight to the lead sheet via TDZ.lead */
+    var f = D.createElement('form'); f.className = 'tdz-va-lead'; f.noValidate = true;
+    f.innerHTML = '<b>Not ready to book? Get the class details on WhatsApp.</b>' +
+      '<input name="n" type="text" autocomplete="name" placeholder="Your name" aria-label="Your name">' +
+      '<input name="w" type="tel" inputmode="tel" autocomplete="tel" placeholder="' + (india ? 'WhatsApp number' : 'WhatsApp with country code') + '" aria-label="WhatsApp number">' +
+      '<p class="err" hidden>Please add your name and a WhatsApp number.</p><button type="submit">Send me the details</button>';
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var n = f.n.value.trim(), w = f.w.value.trim(), dg = w.replace(/\D/g, '');
+      if (n.length < 2 || dg.length < 8 || (india && !/^\+/.test(w) && dg.length !== 10 && !/^91\d{10}$/.test(dg))){ f.querySelector('.err').hidden = false; return; }
+      var phone = /^\+/.test(w) ? '+' + dg : (dg.length === 10 ? (india ? '+91' : '+') + dg : '+' + dg);
+      try { if (W.TDZ && W.TDZ.lead) W.TDZ.lead({ name:n, phone:phone, interest:'class', source:'voice_agent', note:asks.join(' | ') }); } catch(err){}
+      track('voice_agent_lead', {asked:asked});
+      f.innerHTML = '<b>Thanks, ' + n.replace(/[<>&"]/g, '') + '.</b>Noor will send the class details on WhatsApp soon.';
+      var m = 'Thanks ' + n + '. Noor will send you the class details on WhatsApp soon.'; say(m);
+    });
+    log.appendChild(f); log.scrollTop = log.scrollHeight;
   }
   function ask(q, how){
     q = (q || '').trim(); if (!q) return;
-    add(q, 'me'); asked++;
+    add(q, 'me'); asked++; asks.push(q.slice(0, 60));
     var a = answer(q);
     setTimeout(function(){
       add(a, 'bot');

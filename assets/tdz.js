@@ -113,7 +113,18 @@
   // other session in a small bar if the visitor seems to be in the other region.
   var path = location.pathname.replace(/index\.html$/, '');
   var IN_PAGE = path === '/weekend-founder/live/', GL_PAGE = false; // global page retired 24 Nov
-  if (IN_PAGE || GL_PAGE) D.documentElement.setAttribute('data-keep-inr', '');
+  // Abroad, the Saturday page shows US$9 everywhere (no ₹499 rise) and books on WhatsApp instead of Razorpay.
+  if (IN_PAGE && !india) USD[499] = 9;
+  function intlClass(){
+    D.documentElement.classList.add('tdz-intl');
+    var st = D.createElement('style'); st.textContent = '.tdz-intl .rise-only{display:none!important}.tdz-intl-book h3{font-size:26px;letter-spacing:-.02em;margin:0 0 8px}.tdz-intl-book p{margin:0 0 16px;color:#4a463d}.tdz-intl-book .btn{width:100%}'; D.head.appendChild(st);
+    var card = D.getElementById('regCard'); if (!card) return;
+    ['regForm', 'done'].forEach(function(id){ var el = D.getElementById(id); if (el) el.hidden = true; });
+    var box = D.createElement('div'); box.className = 'tdz-intl-book';
+    box.innerHTML = '<h3>Book from outside India</h3><p>The class is US$9, live on Google Meet, Saturday 11 AM to 12 PM IST. Message Noor on WhatsApp: you get a card payment link, then your Meet invite.</p>' +
+      '<a class="btn btn-y" href="' + waLink('a seat in the Saturday AI class (US$9)') + '" target="_blank" rel="noopener" data-cta="intl_book">Book on WhatsApp · US$9 <span class="ar" aria-hidden="true">→</span></a>';
+    card.appendChild(box);
+  }
   function regionBar(){
     var html = '';
     if (IN_PAGE && !india) html = 'Outside India? Join this same class for <b>US$9</b>, live online at 11 AM IST. <a href="' + waLink('a seat in the Saturday AI class (US$9)') + '" target="_blank" rel="noopener">Book on WhatsApp →</a>';
@@ -389,7 +400,9 @@
 
   function run(){
     regionBar();
-    if (!india && !IN_PAGE && !GL_PAGE){
+    Array.prototype.forEach.call(D.querySelectorAll('.tdz-cur'), function(el){ el.textContent = india ? 'Prices in Indian rupees (₹)' : 'Prices in US dollars (US$)'; });
+    if (!india){
+      if (IN_PAGE) try { intlClass(); } catch(e){}
       walk(D.body);
       fixLinks(D);
       // keep converting whatever page scripts write later (countdowns, carousels, calculators)
