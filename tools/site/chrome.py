@@ -16,14 +16,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 PAGES = {
     'index.html':                         (None,   True,  'crash'),
     'weekend-founder/index.html':         (None,   True,  'one'),
-    'weekend-founder/os/index.html':      ('wf',   True,  'os'),
-    'weekend-founder/live/index.html':    ('live', True,  'register'),
+    'weekend-founder/live/index.html':    (None,   True,  'register'),
     'weekend-founder/book/index.html':    ('book', True,  'wa'),
     'weekend-founder/live/booked/index.html': ('book', True, 'wa199'),
     'weekend-founder/free-website/index.html': ('tool', True, 'os'),
     'weekend-founder/read/index.html':    ('read', False, None),
-    'founder.html':                       ('about', True, 'crash'),
-    'story.html':                         ('about', True, 'crash'),
+    'about/index.html':                   (None,   True,  'crash'),
     'privacy.html':                       ('legal', True, 'crash'),
     'terms.html':                         ('legal', True, 'crash'),
     'thank-you.html':                     (None,   False, None),
@@ -43,6 +41,7 @@ HEAD = '''<!--tdz:head-->
 {fonts}
 <link rel="stylesheet" href="/assets/tdz.css?v=6">
 <script src="/assets/tdz.js?v=6"></script>
+<script src="/assets/tdz-voice.js?v=1" defer></script>
 <!--/tdz:head-->'''
 
 CTA = {
@@ -66,7 +65,7 @@ def nav(cta):
       <a href="/weekend-founder/">1:1 coaching</a>
       <a href="/#group">For institutions</a>
       <a href="/#proof">Proof</a>
-      <a href="/founder.html">Founder</a>
+      <a href="/about/">About us</a>
     </nav>
     <a class="tdz-btn tdz-desk" href="{href}" data-cta="{key}"{ext}>{label}</a>
     <button class="tdz-menu" id="tdzMenu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="tdzSheet"><span></span></button>
@@ -77,7 +76,7 @@ def nav(cta):
   <a href="/weekend-founder/">1:1 coaching</a>
   <a href="/#group">For institutions</a>
   <a href="/#proof">Proof</a>
-  <a href="/founder.html">Founder</a>
+  <a href="/about/">About us</a>
   <a class="tdz-btn ink" href="{href}" data-cta="{key}_menu"{ext}>{label}</a>
 </div>
 <!--/tdz:nav-->'''
@@ -97,8 +96,6 @@ FOOT = '''<!--tdz:foot-->
           <li><a href="/#class">Saturday AI class</a></li>
           <li><a href="/weekend-founder/">1:1 weekend coaching</a></li>
           <li><a href="/weekend-founder/#business">AI for your business</a></li>
-          <li><a href="/weekend-founder/os/">Weekend Founder OS</a></li>
-          <li><a href="/weekend-founder/read/">Read a free sample</a></li>
         </ul>
       </div>
       <div>
@@ -114,8 +111,8 @@ FOOT = '''<!--tdz:foot-->
       <div>
         <h3>TheDayZero</h3>
         <ul>
-          <li><a href="/founder.html">Founder</a></li>
-          <li><a href="/story.html">Our story</a></li>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/about/#contact">Contact</a></li>
           <li><a href="https://www.instagram.com/thedayzero.in/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="/privacy.html">Privacy</a></li>
           <li><a href="/terms.html">Terms</a></li>

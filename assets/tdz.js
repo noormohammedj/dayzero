@@ -235,7 +235,7 @@
   }
   function capture(){
     var p = location.pathname.replace(/index\.html$/, '');
-    if (/^\/weekend-founder\/(live|book|read|free-website)\b|^\/admin\/|thank-you|^\/Thankyou/i.test(p) || BOT) return;
+    if (/^\/weekend-founder\/(live|book|read|free-website)\b|^\/about\/|^\/admin\/|thank-you|^\/Thankyou/i.test(p) || BOT) return;
     var has = function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } };
     var put = function(k, v){ try { localStorage.setItem(k, v); } catch(e){} };
     var done = !!has('tdz_lead');
@@ -423,7 +423,7 @@
       var here = location.pathname.replace(/index\.html$/, '');
       Array.prototype.forEach.call(nav.querySelectorAll('.tdz-links a'), function(a){
         var p = a.getAttribute('href').split('#')[0];
-        if (p && p !== '/' && here.indexOf(p) === 0) a.setAttribute('aria-current', 'page');
+        if (p && p !== '/' && here === p) a.setAttribute('aria-current', 'page');
       });
     }
   }
