@@ -65,7 +65,7 @@
       'Great. Tap Book my seat below and it takes about a minute.']
   ];
   var PITCH = 'Noor built this assistant with AI. In the Saturday class you can start building your own. Don\'t wait to build your AI agent. Book your class now.';
-  var GREET = 'Hi, I\'m Noor\'s AI assistant. Ask me anything about the Saturday class: time, price, what you\'ll build, or anything else.';
+  var GREET = 'Hi, I\'m Noor\'s AI assistant. Noor built me for TheDayZero, and you can build one like me through the course. Ask me anything about the Saturday class: time, price, what you\'ll build, or anything else.';
   var STOP = /\b(the|a|an|is|are|do|does|i|me|my|can|will|to|of|for|in|on|it|this|that|there|what's|whats|please|tell|about)\b/g;
 
   function answer(q){
@@ -89,7 +89,17 @@
     '.tdz-va-fab i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #141414;opacity:.5;animation:tdzVaPing 2.4s cubic-bezier(.16,1,.3,1) infinite}',
     '@keyframes tdzVaPing{0%{transform:scale(.85);opacity:.6}80%,100%{transform:scale(1.35);opacity:0}}',
     'html[data-has-mcta] .tdz-va-fab{bottom:20px}',
-    '@media (max-width:860px){html[data-has-mcta] .tdz-va-fab{bottom:86px}.tdz-va-fab span{display:none}.tdz-va-fab{padding:0 7px}}',
+    '@media (max-width:860px){html[data-has-mcta] .tdz-va-fab,html[data-has-mcta] .tdz-va-tip{bottom:86px}.tdz-va-fab{min-height:50px;font-size:14px;padding:0 16px 0 6px}.tdz-va-fab i{width:38px;height:38px}}',
+    /* sticky callout with an arrow pointing at the button */
+    '.tdz-va-tip{position:fixed;z-index:929;right:20px;bottom:20px;width:min(270px,calc(100vw - 40px));padding:12px 34px 12px 14px;margin-bottom:104px;background:#fff;color:#141414;border:1.5px solid #141414;border-radius:18px;box-shadow:5px 5px 0 #FFC800;font:500 13.5px/1.4 "Schibsted Grotesk",system-ui,sans-serif;animation:tdzVaTipIn .6s cubic-bezier(.16,1,.3,1) both}',
+    '.tdz-va-tip b{display:block;font-weight:800;font-size:14px;margin-bottom:2px}',
+    '.tdz-va-tip svg.ar{position:absolute;right:30px;bottom:-46px;width:30px;height:42px;color:#141414;animation:tdzVaPoint 1.6s ease-in-out infinite}',
+    '.tdz-va-tip button{position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:transparent;color:#6b675d;font:700 17px/1 system-ui;cursor:pointer}',
+    '.tdz-va-tip button:hover{background:#FFF4C2;color:#141414}',
+    '.tdz-va-tip.off{display:none}',
+    '@keyframes tdzVaTipIn{from{opacity:0;transform:translateY(10px)}}',
+    '@keyframes tdzVaPoint{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}',
+    '@media (max-width:860px){.tdz-va-tip{margin-bottom:98px;width:min(250px,calc(100vw - 40px));font-size:13px}}',
     '.tdz-va{position:fixed;z-index:960;right:20px;bottom:20px;width:min(400px,calc(100vw - 32px));max-height:calc(100dvh - 40px);display:flex;flex-direction:column;background:#fff;color:#141414;border:1.5px solid #141414;border-radius:26px;box-shadow:0 30px 70px -28px rgba(60,40,0,.55),8px 8px 0 #FFC800;font-family:"Schibsted Grotesk",system-ui,sans-serif;transform:translateY(24px) scale(.98);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .25s}',
     '.tdz-va.on{transform:none;opacity:1;pointer-events:auto}',
     '@media (max-width:620px){.tdz-va{right:0;left:0;bottom:0;width:100%;border-radius:24px 24px 0 0;border-width:1.5px 0 0;box-shadow:0 -20px 50px -20px rgba(60,40,0,.45)}}',
@@ -120,8 +130,8 @@
     '.tdz-va-wave i:nth-child(2){animation-delay:.15s}.tdz-va-wave i:nth-child(3){animation-delay:.3s}',
     '@keyframes tdzVaWave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}',
     '.tdz-va-fine{padding:0 18px 12px;font-size:11.5px;color:#6f6b62}',
-    '@media (prefers-reduced-motion:reduce){.tdz-va,.tdz-va-fab,.tdz-va-m{transition:none;animation:none}.tdz-va-fab i::after,.tdz-va-mic.rec::after,.tdz-va-wave i{animation:none}}',
-    '@media print{.tdz-va,.tdz-va-fab{display:none!important}}'
+    '@media (prefers-reduced-motion:reduce){.tdz-va,.tdz-va-fab,.tdz-va-m{transition:none;animation:none}.tdz-va-fab i::after,.tdz-va-mic.rec::after,.tdz-va-wave i,.tdz-va-tip,.tdz-va-tip svg.ar{animation:none}}',
+    '@media print{.tdz-va,.tdz-va-fab,.tdz-va-tip{display:none!important}}'
   ].join('\n');
   D.head.appendChild(css);
 
@@ -134,14 +144,25 @@
   var box = D.createElement('div');
   box.className = 'tdz-va'; box.id = 'tdzVa'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Noor\'s AI assistant');
   box.innerHTML =
-    '<div class="tdz-va-h"><div><b>Noor\'s AI assistant</b><small id="tdzVaSt">Built by Noor with AI. Ask by voice or text.</small></div><button class="tdz-va-x" type="button" aria-label="Close">×</button></div>' +
+    '<div class="tdz-va-h"><div><b>Noor\'s AI assistant</b><small id="tdzVaSt">Built by Noor for TheDayZero. Ask by voice or text.</small></div><button class="tdz-va-x" type="button" aria-label="Close">×</button></div>' +
     '<div class="tdz-va-log" id="tdzVaLog" aria-live="polite"></div>' +
     '<div class="tdz-va-chips" id="tdzVaChips"></div>' +
     '<form class="tdz-va-in" id="tdzVaForm"><button class="tdz-va-mic" id="tdzVaMic" type="button" aria-label="Tap to talk">' + MIC + '</button>' +
     '<label class="sr" for="tdzVaQ" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your question</label><input id="tdzVaQ" type="text" autocomplete="off" placeholder="Or type your question"><button class="tdz-va-send" type="submit">Ask</button></form>' +
     '<p class="tdz-va-fine">Answers come from TheDayZero\'s class details. Your voice is turned into text by your browser and isn\'t stored.</p>';
 
-  function mount(){ D.body.appendChild(fab); D.body.appendChild(box); }
+  var tip = D.createElement('div');
+  tip.className = 'tdz-va-tip'; tip.id = 'tdzVaTip';
+  tip.innerHTML = '<b>Talk to Noor\'s AI about the class</b>Noor built this agent for TheDayZero. You can build one like it through the course.' +
+    '<svg class="ar" viewBox="0 0 30 42" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2c-4 12 2 24 10 36"/><path d="M8 32l10 6 3-11"/></svg>' +
+    '<button type="button" aria-label="Hide this note">×</button>';
+  try { if (sessionStorage.getItem('tdz_va_tip') === '0') tip.classList.add('off'); } catch(e){}
+  tip.addEventListener('click', function(e){
+    if (e.target.closest('button')){ tip.classList.add('off'); try { sessionStorage.setItem('tdz_va_tip', '0'); } catch(err){} track('voice_agent_tip_hide'); return; }
+    open();
+  });
+  tip.style.cursor = 'pointer';
+  function mount(){ D.body.appendChild(tip); D.body.appendChild(fab); D.body.appendChild(box); }
   if (D.body) mount(); else D.addEventListener('DOMContentLoaded', mount);
 
   var log = box.querySelector('#tdzVaLog'), st = box.querySelector('#tdzVaSt'), input = box.querySelector('#tdzVaQ'), mic = box.querySelector('#tdzVaMic');
@@ -197,7 +218,7 @@
   if (!SR){ mic.hidden = true; input.placeholder = 'Type your question'; }
   function setListening(on){
     listening = on; mic.classList.toggle('rec', on);
-    st.innerHTML = on ? 'Listening<span class="tdz-va-wave" aria-hidden="true"><i></i><i></i><i></i></span>' : 'Built by Noor with AI. Ask by voice or text.';
+    st.innerHTML = on ? 'Listening<span class="tdz-va-wave" aria-hidden="true"><i></i><i></i><i></i></span>' : 'Built by Noor for TheDayZero. Ask by voice or text.';
   }
   mic.addEventListener('click', function(){
     if (!SR) return;
@@ -216,12 +237,12 @@
   box.querySelector('#tdzVaForm').addEventListener('submit', function(e){ e.preventDefault(); var q = input.value; input.value = ''; ask(q, 'text'); });
 
   function open(){
-    box.classList.add('on'); fab.style.visibility = 'hidden';
+    box.classList.add('on'); fab.style.visibility = 'hidden'; tip.style.visibility = 'hidden';
     if (!opened){ opened = true; add(GREET, 'bot'); say(GREET); }
     track('voice_agent_open');
     setTimeout(function(){ (SR ? mic : input).focus(); }, 300);
   }
-  function close(){ box.classList.remove('on'); fab.style.visibility = ''; if (synth) synth.cancel(); if (listening && rec) try { rec.stop(); } catch(e){} }
+  function close(){ box.classList.remove('on'); fab.style.visibility = ''; tip.style.visibility = ''; if (synth) synth.cancel(); if (listening && rec) try { rec.stop(); } catch(e){} }
   fab.addEventListener('click', open);
   box.querySelector('.tdz-va-x').addEventListener('click', close);
   D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && box.classList.contains('on')) close(); });

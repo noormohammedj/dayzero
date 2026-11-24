@@ -41,7 +41,7 @@ HEAD = '''<!--tdz:head-->
 {fonts}
 <link rel="stylesheet" href="/assets/tdz.css?v=6">
 <script src="/assets/tdz.js?v=6"></script>
-<script src="/assets/tdz-voice.js?v=1" defer></script>
+<script src="/assets/tdz-voice.js?v=2" defer></script>
 <!--/tdz:head-->'''
 
 CTA = {
