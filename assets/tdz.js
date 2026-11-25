@@ -221,7 +221,7 @@
   /* ---------- lead capture (24 Nov) ----------
      One helper for every form: TDZ.lead({...}). It writes to the thedayzero_Lead sheet (the old
      lead webhook, the one that works today), copies to the new tracker, and fires GA4 + Pixel.
-     Plus a soft card that asks for WhatsApp + email: it slides in after 12 s or 40% scroll
+     Plus a soft card that asks for WhatsApp only (25 Nov: email removed, 14 of 16 viewers closed the two-field card): it slides in after 12 s or 40% scroll
      (or when the mouse leaves the page on desktop), never blocks the page, and once closed it
      shrinks to a small pill. Not shown on pages that already have their own form. */
   var LEAD_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
@@ -254,9 +254,9 @@
     var preRise = Date.now() < +RISE;
     var CH = [['class', india ? 'Saturday class' : 'Live class'], ['one', '1:1 coaching'], ['business', 'For my business'], ['team', 'Team or college']];
     var reason = india
-      ? (preRise ? 'Leave your WhatsApp and email. I\'ll send this Saturday\'s class link (11 AM IST), one reminder that morning, and a heads-up before ₹199 becomes ₹499 on 1 Dec.'
-                 : 'Leave your WhatsApp and email. I\'ll send this Saturday\'s class link (11 AM IST) and one reminder that morning.')
-      : 'Leave your WhatsApp and email. I\'ll send the next live class link in your time zone and one reminder before it starts.';
+      ? (preRise ? 'Leave your WhatsApp. I\'ll send this Saturday\'s class link (11 AM IST), one reminder that morning, and a heads-up before ₹199 becomes ₹499 on 1 Dec.'
+                 : 'Leave your WhatsApp. I\'ll send this Saturday\'s class link (11 AM IST) and one reminder that morning.')
+      : 'Leave your WhatsApp. I\'ll send the next live class link in your time zone and one reminder before it starts.';
     var box = D.createElement('aside');
     box.className = 'tdz-cap'; box.setAttribute('aria-labelledby', 'tdzCapT'); box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'false');
     box.innerHTML =
@@ -268,7 +268,6 @@
         '<form novalidate>' +
           '<div class="tdz-cap-ch" role="radiogroup" aria-label="I\'m interested in">' + CH.map(function(c, i){ return '<button type="button" role="radio" aria-checked="' + (i ? 'false' : 'true') + '" data-v="' + c[0] + '">' + c[1] + '</button>'; }).join('') + '</div>' +
           '<label><span>WhatsApp number</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="' + (india ? '98765 43210' : '+44 7700 900123') + '" required></label>' +
-          '<label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required></label>' +
           '<label class="tdz-cap-opt"><span>Name <small>(optional)</small></span><input name="name" autocomplete="name" placeholder="Your name"></label>' +
           '<button class="tdz-cap-go" type="submit">Send me the details <span aria-hidden="true">→</span></button>' +
           '<p class="tdz-cap-err" role="alert" hidden></p>' +
@@ -315,15 +314,14 @@
     }
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      var raw = form.phone.value.trim(), dig = raw.replace(/\D/g, ''), email = form.email.value.trim(), name = form.name.value.trim().slice(0, 60);
+      var raw = form.phone.value.trim(), dig = raw.replace(/\D/g, ''), email = '', name = form.name.value.trim().slice(0, 60);
       if (india && dig.length === 12 && dig.indexOf('91') === 0) dig = dig.slice(2);
       if (dig.length === 11 && dig.charAt(0) === '0') dig = dig.slice(1);
       var phone = india && /^[6-9]\d{9}$/.test(dig) ? '+91' + dig : (/^\+/.test(raw) || dig.length > 10) && dig.length >= 8 && dig.length <= 15 ? '+' + dig : '';
-      var okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-      if (!phone || !okEmail){
+      if (!phone){
         err.hidden = false;
-        err.textContent = !phone ? (india ? 'Please enter a 10-digit mobile number.' : 'Please enter your number with the country code, like +44.') : 'Please check your email.';
-        (!phone ? form.phone : form.email).focus(); return;
+        err.textContent = india ? 'Please enter a 10-digit mobile number.' : 'Please enter your number with the country code, like +44.';
+        form.phone.focus(); return;
       }
       err.hidden = true;
       lead({ name:name, phone:phone, email:email, interest:interest, source:'soft_capture' });
