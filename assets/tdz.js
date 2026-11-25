@@ -81,6 +81,10 @@
     'iACekPPW': '1:1 coaching with Noor',
     '9hyRWq04': 'the weekend crash course'
   };
+  // 25 Nov: abroad, 1:1 buttons go straight to Noor's Topmate page (takes international cards),
+  // instead of a WhatsApp "how do I pay?" message that had no payment link to send back.
+  var TOPMATE_1ON1 = 'https://topmate.io/noor_mohammed_j/2354146';
+  var PAY_INTL = { 'iACekPPW': TOPMATE_1ON1 };
   function waLink(what){
     return 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, I\'m outside India (' + (tz || 'abroad') + ') and I\'d like ' + what + '. How do I pay in US$?');
   }
@@ -90,7 +94,7 @@
       if (/rzp\.io\/rzp\//.test(h)){
         var id = (h.match(/rzp\/([A-Za-z0-9]+)/) || [])[1];
         a.setAttribute('data-rzp', h);
-        a.setAttribute('href', waLink(PAY[id] || 'to join'));
+        a.setAttribute('href', PAY_INTL[id] || waLink(PAY[id] || 'to join'));
         a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
       } else if (/^(https:\/\/thedayzero\.in)?\/weekend-founder\/live\/?(#.*)?$/.test(h)){
         // the global class is retired (24 Nov): abroad, the same Saturday class is booked on WhatsApp
@@ -106,7 +110,8 @@
     if (!a) return;
     e.preventDefault(); e.stopImmediatePropagation();
     var id = (a.getAttribute('href').match(/rzp\/([A-Za-z0-9]+)/) || [])[1];
-    W.open(waLink(PAY[id] || 'to join'), '_blank', 'noopener');
+    if (PAY_INTL[id]) { try { if (W.gtag) W.gtag('event', 'intl_checkout', { via: 'topmate', item: id }); } catch(err){} }
+    W.open(PAY_INTL[id] || waLink(PAY[id] || 'to join'), '_blank', 'noopener');
   }, true);
 
   // The two workshop pages never redirect. Each page keeps its own price and date, and offers the
@@ -299,7 +304,7 @@
     });
     function next(){
       if (interest === 'class') return india ? ['/weekend-founder/live/', preRise ? 'Book your seat now · ₹199' : 'Book your seat now'] : [waLink('a seat in the Saturday AI class (US$9)'), 'Book your seat on WhatsApp · US$9'];
-      if (interest === 'one') return [india ? 'https://rzp.io/rzp/iACekPPW' : waLink('1:1 coaching with Noor'), india ? 'Book 1:1 now · ₹4,999' : 'Ask how to pay in US$'];
+      if (interest === 'one') return [india ? 'https://rzp.io/rzp/iACekPPW' : TOPMATE_1ON1, india ? 'Book 1:1 now · ₹4,999' : 'Book 1:1 now · pay by card'];
       if (interest === 'business') return ['https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, I\'d like to talk about the Business AI package for my business.'), 'Talk about my business on WhatsApp'];
       return ['https://wa.me/' + WA + '?text=' + encodeURIComponent('Hi Noor, we\'d like AI training for our team / college. Organisation:  | People:  | Online or on-site: '), 'Plan our training on WhatsApp'];
     }
