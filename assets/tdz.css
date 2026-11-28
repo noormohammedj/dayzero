@@ -326,3 +326,33 @@ html[data-skin="wf"] .pr mark{background:var(--tdz-y-soft);color:#7a5b00}
 /* pages with their own sticky bottom bar: keep the capture above it */
 html[data-skin="wf"] .tdz-cap-pill{bottom:92px}
 @media (min-width:641px){html[data-skin="wf"] .tdz-cap{bottom:92px;max-height:calc(100vh - 170px)}}
+
+/* ---------- STUDENT REVIEW (28 Nov): one component used on /live/, home and /weekend-founder/ ---------- */
+.tdz-review{padding:clamp(40px,6vw,88px) 0;background:linear-gradient(180deg,var(--tdz-paper),var(--tdz-cream));font-family:var(--tdz-sans);color:var(--tdz-ink)}
+.tdz-review-grid{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:clamp(24px,5vw,72px);align-items:center;max-width:var(--tdz-max);margin:0 auto;padding:0 var(--tdz-gut)}
+.tdz-review-vid{position:relative;margin:0;aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#0e0e0e;box-shadow:0 40px 70px -40px rgba(70,50,0,.6),0 0 0 1.5px var(--tdz-ink);transform:rotate(-1.2deg);transition:transform .6s var(--tdz-ease)}
+.tdz-review-vid:hover{transform:rotate(0deg) translateY(-4px)}
+.tdz-review-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tdz-review-snd{position:absolute;z-index:2;left:50%;bottom:18px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 20px 0 8px;border:0;border-radius:999px;background:var(--tdz-y);color:var(--tdz-ink);font:800 15px var(--tdz-sans);white-space:nowrap;cursor:pointer;box-shadow:0 16px 34px -14px rgba(0,0,0,.8);transition:transform .3s var(--tdz-ease),opacity .3s}
+.tdz-review-snd:hover{transform:translateX(-50%) scale(1.05)}
+.tdz-review-snd i{width:34px;height:34px;border-radius:50%;background:var(--tdz-ink);display:grid;place-items:center}
+.tdz-review-snd i::before{content:"";border-left:11px solid var(--tdz-y);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.tdz-review-vid.on .tdz-review-snd{opacity:0;pointer-events:none}
+.tdz-review-k{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tdz-ink-3)}
+.tdz-review-k::before{content:"";width:9px;height:9px;border-radius:50%;background:#e0341b;box-shadow:0 0 0 4px rgba(224,52,27,.15)}
+.tdz-review h2{font-family:var(--tdz-disp);font-stretch:110%;font-weight:900;font-size:clamp(34px,4.6vw,62px);letter-spacing:-.035em;line-height:.98;margin:14px 0 0;max-width:13ch}
+.tdz-review h2 em{font-style:normal;background:linear-gradient(transparent 58%,var(--tdz-y) 58%,var(--tdz-y) 92%,transparent 92%)}
+.tdz-review-copy>p{font-size:17px;line-height:1.5;color:var(--tdz-ink-2);margin:16px 0 0;max-width:40ch}
+.tdz-review-next{margin-top:26px;padding:22px 24px;border-radius:22px;background:#fff;border:1.5px solid var(--tdz-ink);box-shadow:8px 8px 0 var(--tdz-y);max-width:460px}
+.tdz-review-next small{display:block;font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tdz-ink-3)}
+.tdz-review-next>b{display:block;font-family:var(--tdz-disp);font-stretch:108%;font-weight:900;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.02em;margin-top:4px}
+.tdz-review-next>span{display:block;font-size:15px;color:var(--tdz-ink-2);margin-top:2px}
+.tdz-review-last{margin:14px 0 0;padding:10px 14px;border-radius:14px;background:var(--tdz-ink);color:#fff;font-size:15px;line-height:1.35}
+.tdz-review-last b{color:var(--tdz-y)}
+.tdz-review-next .tdz-btn{margin-top:16px;width:100%;min-height:54px;font-size:16.5px}
+@media (max-width:760px){
+  .tdz-review-grid{grid-template-columns:1fr}
+  .tdz-review-vid{width:min(78vw,340px);margin:0 auto;transform:none}
+  .tdz-review-copy{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){.tdz-review-vid,.tdz-review-vid:hover{transform:none}}
