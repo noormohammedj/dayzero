@@ -468,9 +468,9 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Schibsted+Grotesk:ital,wght@0,400..800;1,400..600&display=swap">
-<link rel="stylesheet" href="/assets/tdz.css?v=7">
-<script src="/assets/tdz.js?v=9"></script>
-<script src="/assets/tdz-voice.js?v=5" defer></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=8">
+<script src="/assets/tdz.js?v=10"></script>
+<script src="/assets/tdz-voice.js?v=6" defer></script>
 <!--/tdz:head-->
 </head>
 <body>
@@ -511,7 +511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h1 class="disp rv" id="h1">Build a website with AI in <em>one hour.</em></h1>
       <p class="sub rv" style="--i:1">Live with Noor on Google Meet. You leave with your own website and a plan to sell one. No coding.</p>
-      <div class="price-in rv" style="--i:2"><b>₹199</b><s class="rise-only">₹499</s><span class="rise-only">₹499 from 1 Dec · <em data-rise-left>Until 30 Nov</em></span></div>
+      <div class="price-in rv" style="--i:2"><b>₹199</b><s class="rise-only">₹499</s><span class="rise-only">Last ₹199 class: Sat 5 Dec · <em data-rise-left>₹499 after</em></span></div>
       <div class="cta-row tight rv" style="--i:2">
         <a class="btn btn-y" href="#register" data-cta="hero" data-snd="go">Save my seat · ₹199 <span class="ar" aria-hidden="true">→</span></a>
         <button class="btn btn-line" type="button" data-voice data-cta="hero_voice">Ask a question by voice</button>
@@ -537,6 +537,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- STUDENT REVIEW (Sat 28 Nov): the main proof, right under the hero -->
+<section class="tdz-review" id="review" aria-labelledby="revH">
+  <div class="tdz-review-grid">
+    <figure class="tdz-review-vid rv" data-review>
+      <video src="/assets/proof/review-28-nov.mp4" poster="/assets/proof/review-28-nov-poster.jpg" muted loop playsinline preload="metadata" width="540" height="960" aria-label="A student reviews the Saturday AI class on 28 November, filmed on his own phone, in Tamil and English"></video>
+      <button class="tdz-review-snd" type="button" data-snd="go"><i aria-hidden="true"></i>Tap for sound · 45 sec</button>
+    </figure>
+    <div class="tdz-review-copy rv" style="--i:1">
+      <span class="tdz-review-k">Sat 28 Nov · filmed on his phone</span>
+      <h2 id="revH">Straight from <em>Saturday's class.</em></h2>
+      <p>One of the people in the room, right after the hour ended. Tamil and English, no script.</p>
+      <div class="tdz-review-next">
+        <small>Your turn</small>
+        <b data-sat="long">Saturday</b>
+        <span>11 AM to 12 PM IST · live on Google Meet</span>
+        <p class="tdz-review-last rise-only"><b>Last class at ₹199.</b> From 12 Dec it is ₹499.</p>
+        <a class="tdz-btn" href="#register" data-cta="review" data-snd="go">Book this Saturday · ₹199 <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- THE HOUR: four steps, self-explanatory -->
 <section class="lv-hour" aria-labelledby="hourH">
   <div class="wrap">
@@ -553,7 +575,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PROOF -->
 <section class="lv-proof" aria-labelledby="proofH">
   <div class="wrap">
-    <h2 class="disp rv" id="proofH">Last Saturday, live.</h2>
+    <h2 class="disp rv" id="proofH">Inside a live class.</h2>
     <div class="lv-bento">
       <figure class="tile lv-clip rv">
         <video id="clipV" src="/assets/proof/live-class-21-nov.mp4" poster="/assets/proof/live-class-21-nov-poster.jpg" muted loop playsinline preload="none" width="464" height="832" aria-label="Noor teaching the live class on 21 November"></video>
@@ -574,7 +596,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap lv-reg-grid">
     <div class="rv">
       <h2 class="disp" id="regh">Save your seat.</h2>
-      <div class="price-in"><b>₹199</b><s class="rise-only">₹499</s></div>
+      <div class="price-in"><b>₹199</b><s class="rise-only">₹499</s><span class="rise-only">Last ₹199 class · ₹499 from 12 Dec</span></div>
       <ul class="lv-incl">
         <li>The one-hour live build, with Noor</li>
         <li>The prompt pack we use on the day</li>
@@ -664,10 +686,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // If this is ever blanked to PASTE_..., the pay button falls back to a WhatsApp chat with Noor.
   // The Meet link and WhatsApp group link are NOT on this page any more: they go to people after they pay.
   var PAY_URL = 'https://rzp.io/rzp/9hyRWq04';
-  // Price rise: ₹199 until 30 Nov 2026, ₹499 per session from 1 Dec 2026 00:00 IST.
-  // Paste the ₹499 Razorpay link here before 1 Dec. Until then, after 1 Dec the pay button opens WhatsApp to Noor.
+  // Price rise (Noor, 28 Nov): Sat 5 Dec is the LAST ₹199 class. Booking for it closes Sat 5 Dec 10:00 IST,
+  // and from then on (the 12 Dec class onwards) it is ₹499 per session.
+  // Paste the ₹499 Razorpay link here before 5 Dec. Until then, after the rise the pay button opens WhatsApp to Noor.
   var PAY_URL_499 = 'PASTE_499_RAZORPAY_LINK';
-  var RISE_AT = Date.UTC(2026, 10, 30, 18, 30); // = 1 Dec 2026 00:00 IST
+  var RISE_AT = Date.UTC(2026, 11, 5, 4, 30); // = Sat 5 Dec 2026 10:00 IST
   var AFTER_RISE = Date.now() >= RISE_AT;
   var PRICE = AFTER_RISE ? 499 : 199;
   if (AFTER_RISE){
@@ -681,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   } else {
     // "5 days left" style counter on the price-rise notes
     var daysLeft = Math.ceil((RISE_AT - Date.now()) / 86400000);
-    var leftTxt = daysLeft <= 1 ? 'Last day' : daysLeft + ' days left';
+    var leftTxt = daysLeft <= 1 ? 'booking closes today' : daysLeft + ' days left';
     document.querySelectorAll('[data-rise-left]').forEach(function(el){ el.textContent = leftTxt; });
   }
   // Registration backend (webinar-registration-backend.gs): writes to the webinar leads tab.

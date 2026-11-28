@@ -12,7 +12,7 @@
   function money(n){ return T.money ? T.money(n) : '₹' + n.toLocaleString('en-IN'); }
   function track(n, p){ try { if (W.gtag) gtag('event', n, p || {}); } catch(e){} }
   var WA = 'https://wa.me/919629843122?text=';
-  var RISE = new Date('2026-12-01T00:00:00+05:30'), pre = Date.now() < +RISE;
+  var RISE = new Date('2026-12-05T10:00:00+05:30'), pre = Date.now() < +RISE;
   var CLASS = pre ? 199 : 499;
   function nextSat(){
     var t = new Date(), ist = new Date(t.getTime() + 330 * 60000), add = (6 - ist.getUTCDay() + 7) % 7;
@@ -31,7 +31,7 @@
     [['when','time','date','day','saturday','schedule','timing','start','next'],
       'The class is live every Saturday, 11 AM to 12 PM India time. The next one is ' + satIST + (india ? '' : ', which is ' + satLocal + ' your time') + '.'],
     [['price','cost','fee','fees','much','pay','charge','rupees','dollar','money','₹199','499','cheap','expensive'],
-      india ? (pre ? 'It is ₹199 for the one-hour live class until 30 November. From 1 December it goes up to ₹499, so booking now locks in ₹199.' : 'The class is ₹499 for one live hour, paid on Razorpay with UPI, card or net banking.')
+      india ? (pre ? 'It is ₹199 for the one-hour live class, but Saturday 5 December is the last class at that price. From 12 December it is ₹499, so book the 5 December class now to lock in ₹199.' : 'The class is ₹499 for one live hour, paid on Razorpay with UPI, card or net banking.')
             : 'Outside India it is 9 US dollars. You book on WhatsApp and Noor sends you a way to pay.'],
     [['what','learn','build','website','outcome','get','teach','cover','syllabus','topics'],
       'In one hour you build your own one-page website with Claude or ChatGPT, live, step by step. You keep the exact prompts, and in the last part Noor shows how to price it and sell one to a local business.'],

@@ -430,9 +430,9 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
-<link rel="stylesheet" href="/assets/tdz.css?v=7">
-<script src="/assets/tdz.js?v=9"></script>
-<script src="/assets/tdz-voice.js?v=5" defer></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=8">
+<script src="/assets/tdz.js?v=10"></script>
+<script src="/assets/tdz-voice.js?v=6" defer></script>
 <!--/tdz:head-->
 </head>
 <body class="no-js">
@@ -536,7 +536,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
       <article class="tile t t-class rv">
         <span class="tag">Every Saturday · 11 AM–12 PM IST · live online</span>
         <h3>Saturday AI class</h3>
-        <div class="price" data-keep-inr><b id="pfClassPrice">₹199</b><span class="rise in-only" id="pfRise">₹499 from 1 Dec</span></div>
+        <div class="price" data-keep-inr><b id="pfClassPrice">₹199</b><span class="rise in-only" id="pfRise">Last ₹199 class: Sat 5 Dec</span></div>
         <p class="line">Watch a real product get built with AI in one hour, then start your own.</p>
         <div class="go"><a class="btn btn-ink" href="/weekend-founder/live/" data-cta="pf_class">Book a seat <span class="ar" aria-hidden="true">→</span></a></div>
       </article>
@@ -609,9 +609,9 @@ d.body.classList.remove('no-js');
 /* reveal */
 var io = 'IntersectionObserver' in W ? new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('seen'); io.unobserve(e.target); } }); }, {threshold:.1}) : null;
 Array.prototype.forEach.call(d.querySelectorAll('.rv'), function(el){ io ? io.observe(el) : el.classList.add('seen'); });
-/* Saturday class price: ₹199 till 30 Nov, ₹499 from 1 Dec (IST). Abroad it is always US$9. */
+/* Saturday class price: ₹199 up to the Sat 5 Dec class (booking closes 10 AM IST), ₹499 after. Abroad it is always US$9. */
 var intl = d.documentElement.getAttribute('data-region') === 'intl';
-var rise = Date.now() >= Date.parse('2026-12-01T00:00:00+05:30');
+var rise = Date.now() >= Date.parse('2026-12-05T10:00:00+05:30');
 d.getElementById('pfClassPrice').textContent = intl ? '$9' : (rise ? '₹499' : '₹199');
 if (intl || rise) d.getElementById('pfRise').hidden = true;
 /* tile spotlight */

@@ -462,7 +462,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
   .cta-row .btn{width:100%}
   .bento{grid-template-columns:1fr}
   .b-clip,.b-money,.b-rcpt{grid-column:1;grid-row:auto}
-  .b-clip{min-height:0;aspect-ratio:9/12}
+  .b-clip{min-height:0;aspect-ratio:9/16;max-width:420px;width:100%;justify-self:center}
   .b-rcpt{min-height:240px}
   .b-prods{grid-template-columns:1fr;padding:24px 20px 0}
   .fan{height:200px}
@@ -486,9 +486,9 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
-<link rel="stylesheet" href="/assets/tdz.css?v=7">
-<script src="/assets/tdz.js?v=9"></script>
-<script src="/assets/tdz-voice.js?v=5" defer></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=8">
+<script src="/assets/tdz.js?v=10"></script>
+<script src="/assets/tdz-voice.js?v=6" defer></script>
 <!--/tdz:head-->
 </head>
 <body class="no-js">
@@ -576,9 +576,9 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
         <figcaption class="cap"><b>Four products, one minute.</b>Every screen is a real, live product.</figcaption>
       </figure>
 
-      <figure class="tile b-clip rv" style="--i:1">
-        <video id="clipV" src="/assets/proof/live-class-21-nov.mp4" poster="/assets/proof/live-class-21-nov-poster.jpg" muted loop playsinline preload="none" width="464" height="832" aria-label="Clip from the live Saturday class on 21 November"></video>
-        <figcaption class="cap"><b>Last Saturday, 21 Nov.</b>Live class on Google Meet, building with the group.</figcaption>
+      <figure class="tile b-clip rv" style="--i:1" data-review>
+        <video id="clipV" src="/assets/proof/review-28-nov.mp4" poster="/assets/proof/review-28-nov-poster.jpg" muted loop playsinline preload="none" width="540" height="960" aria-label="A student reviews the Saturday AI class on 28 November, filmed on his own phone"></video>
+        <button class="tdz-review-snd" type="button" data-snd="go"><i aria-hidden="true"></i>Tap for sound</button>
       </figure>
 
       <div class="tile stat b-money rv" style="--i:2">
@@ -617,7 +617,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
       <article class="tile t t-class rv" id="class" aria-labelledby="t1">
         <span class="tag">Every Saturday, live</span>
         <h3 id="t1">Saturday AI class</h3>
-        <div class="price"><b id="clsPrice">₹199</b><s id="clsWas">₹499</s><span class="rise" id="clsRise">₹499 from 1 Dec <span data-cd="rise"></span></span></div>
+        <div class="price"><b id="clsPrice">₹199</b><s id="clsWas">₹499</s><span class="rise" id="clsRise">Last ₹199 class: Sat 5 Dec <span data-cd="rise"></span></span></div>
         <div class="cd-box" aria-live="off">
           <div><small>Next class starts in</small><span class="cd" data-cd="class"></span></div>
           <em id="clsWhen">Sat, 11 AM to 12 PM IST</em>
@@ -767,8 +767,8 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
   d.addEventListener('visibilitychange', function(){ if (d.hidden) clearTimeout(timer); else loop(); });
   loop();
 
-  /* Saturday class: next-class countdown and the real ₹199 to ₹499 rise on 1 Dec (IST) */
-  var RISE = new Date('2026-12-01T00:00:00+05:30'), preRise = Date.now() < +RISE;
+  /* Saturday class: next-class countdown and the real ₹199 to ₹499 rise. Sat 5 Dec is the last ₹199 class (booking closes 10 AM IST). */
+  var RISE = new Date('2026-12-05T10:00:00+05:30'), preRise = Date.now() < +RISE;
   function nextSat(t){
     // Saturday 11:00 IST; sign-ups close at 10:00 IST, then it rolls to the next Saturday
     var ist = new Date(t.getTime() + 330 * 60000), add = (6 - ist.getUTCDay() + 7) % 7;
@@ -816,10 +816,7 @@ details .ans{padding:0 0 22px;color:var(--ink-2);max-width:60ch}
     track('tdz_home_video_play');
   });
   fv.addEventListener('ended', function(){ film.classList.remove('on'); fv.controls = false; });
-  var cv = d.getElementById('clipV');
-  if (!reduce && io){
-    new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ var p = cv.play(); if (p && p.catch) p.catch(function(){}); } else cv.pause(); }); }, {threshold:.4}).observe(cv);
-  } else cv.controls = true;
+  // #clipV is the student review now: tdz.js review() loops it muted on screen and adds sound on tap.
 
   /* count-up on the stat tile (whole numbers only) */
   var money = d.querySelector('.b-money b');

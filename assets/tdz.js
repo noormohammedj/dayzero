@@ -231,7 +231,7 @@
      shrinks to a small pill. Not shown on pages that already have their own form. */
   var LEAD_URL = 'https://script.google.com/macros/s/AKfycbwtyokM2Y2IGcFfz2bqd3AI-sI9xEtFtkKQlawnnFrrWO6G8gGjplxaO7Rqg_ZkKqkj/exec';
   var TRACK_URL = 'https://script.google.com/macros/s/AKfycbyXR3mKc1CjNwpDKkSdemEQM0oSraVkIFL0BRjbUjsHhJtJhl_vash_qeD3Arr77T94/exec';
-  var RISE = new Date('2026-12-01T00:00:00+05:30');
+  var RISE = new Date('2026-12-05T10:00:00+05:30'); // Sat 5 Dec is the last ₹199 class; booking for it closes 10 AM IST, ₹499 after
   function utm(){
     var o = {}; try { var q = new URLSearchParams(location.search); ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ if (q.get(k)) o[k.replace('utm_','')] = q.get(k).slice(0, 60); }); } catch(e){}
     try { if (Object.keys(o).length) sessionStorage.setItem('tdz_utm', JSON.stringify(o)); else o = JSON.parse(sessionStorage.getItem('tdz_utm') || '{}'); } catch(e){}
@@ -259,7 +259,7 @@
     var preRise = Date.now() < +RISE;
     var CH = [['class', india ? 'Saturday class' : 'Live class'], ['one', '1:1 coaching'], ['business', 'For my business'], ['team', 'Team or college']];
     var reason = india
-      ? (preRise ? 'Leave your WhatsApp. I\'ll send this Saturday\'s class link (11 AM IST), one reminder that morning, and a heads-up before ₹199 becomes ₹499 on 1 Dec.'
+      ? (preRise ? 'Leave your WhatsApp. I\'ll send this Saturday\'s class link (11 AM IST), one reminder that morning, and a heads-up before ₹199 becomes ₹499. Sat 5 Dec is the last ₹199 class.'
                  : 'Leave your WhatsApp. I\'ll send this Saturday\'s class link (11 AM IST) and one reminder that morning.')
       : 'Leave your WhatsApp. I\'ll send the next live class link in your time zone and one reminder before it starts.';
     var box = D.createElement('aside');
@@ -401,6 +401,24 @@
 
   W.TDZ = { india:india, tz:tz, money:money, usd:toUsd, wa:waLink, convert:convertText, lead:lead, sfx:sfx };
 
+
+  /* Student review video (28 Nov): loops muted (captions are burned in) while on screen; the button replays it with sound. */
+  function review(){
+    var reduce = W.matchMedia && W.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    Array.prototype.forEach.call(D.querySelectorAll('[data-review]'), function(fig){
+      var v = fig.querySelector('video'), b = fig.querySelector('.tdz-review-snd'), loud = false;
+      if (!v) return;
+      var play = function(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); };
+      if (!reduce && 'IntersectionObserver' in W){
+        new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ if (!loud) play(); } else v.pause(); }); }, {threshold:.35}).observe(v);
+      }
+      if (b) b.addEventListener('click', function(){
+        loud = true; fig.classList.add('on'); v.loop = false; v.controls = true; v.muted = false; v.currentTime = 0; play();
+        try { if (typeof gtag === 'function') gtag('event', 'review_play_sound', {page: location.pathname}); } catch(e){}
+      });
+      v.addEventListener('ended', function(){ if (loud){ loud = false; fig.classList.remove('on'); v.controls = false; v.muted = true; v.loop = true; } });
+    });
+  }
   function run(){
     regionBar();
     Array.prototype.forEach.call(D.querySelectorAll('.tdz-cur'), function(el){ el.textContent = india ? 'Prices in Indian rupees (₹)' : 'Prices in US dollars (US$)'; });
@@ -421,6 +439,7 @@
     try { motion(); } catch (e) {}
     try { capture(); } catch (e) {}
     try { soundUI(); } catch (e) {}
+    try { review(); } catch (e) {}
     // footer wordmark: fill the width exactly
     var mk = D.querySelector('.tdz-foot-mark');
     if (mk){

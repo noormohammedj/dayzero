@@ -39,9 +39,9 @@ HEAD = '''<!--tdz:head-->
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#FFC800">
 {fonts}
-<link rel="stylesheet" href="/assets/tdz.css?v=7">
-<script src="/assets/tdz.js?v=7"></script>
-<script src="/assets/tdz-voice.js?v=5" defer></script>
+<link rel="stylesheet" href="/assets/tdz.css?v=8">
+<script src="/assets/tdz.js?v=10"></script>
+<script src="/assets/tdz-voice.js?v=6" defer></script>
 <!--/tdz:head-->'''
 
 CTA = {
